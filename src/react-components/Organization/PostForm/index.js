@@ -24,10 +24,12 @@ class PostForm extends React.Component {
   render() {  
     const {queueComponent} = this.props;
     return (
-      
+      <div>
+      <OrgNav/>
+      <h1>Fill in the form</h1>
       <Grid className="student-form">
         {}
-        <OrgNav/>
+        
         <Input
           name="jobName"
           value={this.state.jobName}
@@ -70,6 +72,7 @@ class PostForm extends React.Component {
           </Link>
         </Grid>
       </Grid>
+      </div>
     );
   }
 }

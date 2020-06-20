@@ -7,14 +7,16 @@ import "./styles.css";
 class Applicant extends React.Component {
 
   render() {
-    const { name, rank } = this.props;
+    const { name, rank ,jobName} = this.props;
 
     return (
       <TableRow className="student" key={name}>
         <TableCell component="th" scope="row">
           {name}
         </TableCell>
-
+        <TableCell component="th" scope="row">
+          {jobName}
+        </TableCell>
         <TableCell component="th" scope="row">
           {rank}
         </TableCell>

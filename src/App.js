@@ -11,6 +11,10 @@ class App extends React.Component{
     posts: [
       { name: 'Driver', description: "Deliver food", requirement: "Driver's license", status: "Approved"},
       { name: "Rider", description: "Deliver food", requirement: "Has a bike", status: "Approved"}
+    ],
+    applicants: [
+      {name: 'Jack', jobName: 'Driver', rank: 'A'},
+      {name: 'Mike', jobName: 'Rider', rank: 'B'}
     ]
   }
   render() {
@@ -27,7 +31,7 @@ class App extends React.Component{
             <Route exact path='/post' render={() => 
                             (<PostForm queueComponent={this}/>)}/>
             <Route exact path='/applicants' render={() => 
-                            (<ApplicantList posts={this.state.posts} queueComponent={this}/>)}/>
+                            (<ApplicantList applicants={this.state.applicants}/>)}/>
           </Switch>
         </BrowserRouter>
       </div>

@@ -10,14 +10,17 @@ class OrgNav extends React.Component {
     
     return (
       <div className="header">
-        <Link to={"./../home"}>
+          <Link to={"./../home"}>
           <Button className="home__button">HOME</Button>
           </Link>
-        <Link to={"./../post"}>
+          <Link to={"./../post"}>
           <Button className="home__button">POST A NEW JOB</Button>
           </Link>
           <Link to={"./../orgProfile"}>
           <Button className="home__button">PROFILE</Button>
+          </Link>
+          <Link to={"./../applicants"}>
+          <Button className="home__button">ALL APPLICANTS</Button>
           </Link>
           <Link to={"./../home"}>
           <Button className="home__button">LOG OUT</Button>

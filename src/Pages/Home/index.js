@@ -3,11 +3,11 @@ import HomeNav from '../../react-components/HomeNav';
 import HomeHeader from "../../react-components/HomeHeader";
 
 
-import "../../css/animate.css";
-import "../../css/icomoon.css";
-import "../../css/bootstrap.css";
-import "../../css/magnific-popup.css";
-import "../../css/style.css";
+// import "../../css/animate.css";
+// import "../../css/icomoon.css";
+// import "../../css/bootstrap.css";
+// import "../../css/magnific-popup.css";
+// import "../../css/style.css";
 import HomeIntro from "../../react-components/HomeIntro";
 import PostArea from "../../react-components/PostArea";
 import Footer from "../../react-components/Footer";

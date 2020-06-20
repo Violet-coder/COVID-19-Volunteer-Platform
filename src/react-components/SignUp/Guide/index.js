@@ -14,7 +14,7 @@ class Guide extends React.Component {
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-6 ">
-                            <Link to="/">
+                            <Link to="/orgSignUp">
                             <div class="feature-center animate-box" data-animate-effect="fadeInUp">
                                 <span class="icon">
                                     <i class="icon-command"></i>

@@ -7,6 +7,8 @@ import ApplicantList from './react-components/Organization/ApplicantList';
 import Userpage_volunteer from './Pages/Userpage_volunteer';
 import Home from './Pages/Home';
 import SignUpGuide from './Pages/SignUpGuide';
+import OrgSignUp from './Pages/OrgSignUp';
+
 
 
 class App extends React.Component{
@@ -29,6 +31,7 @@ class App extends React.Component{
                             (<Home state={this.state}/>)}/> */}
             <Route exact path='/' render={()=> (<Home />)}/>
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
+            <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
             <Route exact path='/Userpage_volunteer' render={() => 
                             (<Userpage_volunteer />)}/>
             <Route exact path='/orgProfile' render={() => 

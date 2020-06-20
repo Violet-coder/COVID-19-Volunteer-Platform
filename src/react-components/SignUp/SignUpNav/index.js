@@ -14,7 +14,7 @@ class SignUpNav extends React.Component {
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li class="active"><a href="/signGuide">Sign Up</a></li>
-                                <li><a href="/">Log In</a></li>
+                                <li><a href="/login">Log In</a></li>
                             </ul>
                         </div>
                     </div>

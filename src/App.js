@@ -8,6 +8,8 @@ import Userpage_volunteer from './Pages/Userpage_volunteer';
 import Home from './Pages/Home';
 import SignUpGuide from './Pages/SignUpGuide';
 import OrgSignUp from './Pages/OrgSignUp';
+import VolSignUp from './Pages/VolSignUp';
+import Login from './Pages/Login';
 
 
 
@@ -32,6 +34,8 @@ class App extends React.Component{
             <Route exact path='/' render={()=> (<Home />)}/>
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
             <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
+            <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
+            <Route exact path='/login' render={() => (<Login />)} />
             <Route exact path='/Userpage_volunteer' render={() => 
                             (<Userpage_volunteer />)}/>
             <Route exact path='/orgProfile' render={() => 

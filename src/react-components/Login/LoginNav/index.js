@@ -1,7 +1,7 @@
 import React from "react";
-import Home from '../../Pages/Home';
 
-class HomeNav extends React.Component {
+
+class LoginNav extends React.Component {
     render() {
         return(
             <nav class="fh5co-nav" role="navigation">
@@ -12,9 +12,9 @@ class HomeNav extends React.Component {
                         </div>
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
-                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="/signGuide">Sign Up</a></li>
-                                <li><a href="/login">Log In</a></li>
+                                <li class="active"><a href="/login">Log In</a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,4 +26,4 @@ class HomeNav extends React.Component {
 
 }
 
-export default HomeNav;
+export default LoginNav;

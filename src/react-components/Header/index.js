@@ -19,8 +19,8 @@ class Header extends React.Component {
 			<div id="opportunity-search-box">
 				<div className="searchbar">
 					<form>
-						<span ><input type="text" placeholder="Search"/></span>
-						<span ><button type="submit" className="btn btn-primary">GO</button></span>
+						<span><input type="text" placeholder="Search"/></span>
+						<span><button id="searchbutton" type="submit" className="btn-search btn-primary">GO</button></span>
 					</form>
 				</div>
 			</div>

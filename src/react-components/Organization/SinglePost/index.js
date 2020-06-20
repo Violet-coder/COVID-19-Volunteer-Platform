@@ -27,7 +27,7 @@ class SinglePost extends React.Component {
 
     const { post, queueComponent} = this.props;
     const filteredApplicatns = queueComponent.state.applicants.filter(applicant => {
-      return applicant.jobName!==post.name});
+      return applicant.jobName==post.name});
     return (
       <div>
         <TableRow className="student" key={post.name}>

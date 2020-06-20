@@ -1,8 +1,9 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Input from "./../../Input";
 import OrgNav from './../../OrgNav';
+import RequirementHook from '../Hook/requirement';
+import TitleSelect from '../Hook/jobTitle';
 import { addPost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
 import "./styles.css";
@@ -44,14 +45,11 @@ class PostForm extends React.Component {
           onChange={this.handleInputChange}
           label="Job Description"
         />
-
-        <Input
-          name="requirement"
-          value={this.state.requirement}
-          onChange={this.handleInputChange}
-          label="Requirement"
-        />
-
+        
+        <div class="options">
+        <TitleSelect/>
+        <RequirementHook/>
+        </div>
         </div>
         <div class="contain">
           <Link to={"./../orgProfile"}>

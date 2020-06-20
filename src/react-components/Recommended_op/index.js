@@ -6,27 +6,27 @@ class Recommended_ops extends React.Component{
        const {ops} = this.props
 
        return(
-        <div id="fh5co-blog" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box row-pb-md" data-animate-effect="fadeInUp">
-				<div class="col-md-8 col-md-offset-2 text-left fh5co-heading">
+        <div id="fh5co-blog" className="fh5co-bg-section">
+		<div className="container">
+			<div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
+				<div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
 					<h2>Recommended Opportunities</h2>
 					<p>See what we selected for you</p>
 				</div>
 			</div> 
-        <div class="row">
+        <div className="row">
             {ops.map(op => (
-            <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
-            <div class="fh5co-post">
-                <span class="fh5co-date">{ op.date }</span>
+            <div key={uid(op)} className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
+            <div className="fh5co-post">
+                <span className="fh5co-date">{ op.date }</span>
                 <h3><a href="#">{ op.title }</a></h3>
                 <p>{ op.content }</p>
-            <p class="author"><cite>{ op.organization }</cite></p>
+            <p className="author"><cite>{ op.organization }</cite></p>
             </div>
         </div>  
           ))}
-          <div class="center">
-					<p><span><button type="submit" class="btn btn-primary">See All</button></span></p>
+          <div className="center">
+					<p><span><button type="submit" className="btn btn-primary">See All</button></span></p>
 				</div>
 			</div>		
 		</div>

@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import PostForm from './react-components/Organization/PostForm';
-import Userpage_volunteer from './react-components/Userpage_volunteer';
 import OrgProfile from './react-components/Organization/OrgProfile';
 import ApplicantList from './react-components/Organization/ApplicantList';
+import Userpage_volunteer from './Pages/Userpage_volunteer'
 
 class App extends React.Component{
   state = {

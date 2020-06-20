@@ -13,7 +13,7 @@ class HomeNav extends React.Component {
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
                                 <li class="active"><a href="index.html">Home</a></li>
-                                <li><a href="/">Sign Up</a></li>
+                                <li><a href="/signGuide">Sign Up</a></li>
                                 <li><a href="about.html">Log In</a></li>
                             </ul>
                         </div>

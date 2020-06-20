@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./styles.css";
 class LoginForm extends React.Component {
     render(){
         return(
@@ -13,7 +13,7 @@ class LoginForm extends React.Component {
                             <p><input type="text" name="email" /></p>
                             <span>Password</span>
                             <p><input type="text" name="password" /></p>
-                            <p><a href=''>Forget your email or password?</a></p>
+                            <p><a href='/'>Forget your email or password?</a></p>
                             <p><button type="submit" class="btn btn-primary">Log In</button></p>
                         </div>
                     </div>

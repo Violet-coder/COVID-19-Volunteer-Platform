@@ -13,7 +13,7 @@ class SelfPosts extends React.Component {
     const { posts, queueComponent} = this.props;
 
     return (
-      <Table className="student-list">
+      <Table style={{ width: "100%"}}>
         <TableBody>
           {posts.map(post => (
             <SinglePost

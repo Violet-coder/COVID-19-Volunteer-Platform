@@ -26,10 +26,11 @@ class PostForm extends React.Component {
     return (
       <div>
       <OrgNav/>
-      <h1>Fill in the form</h1>
-      <Grid className="student-form">
-        {}
-        
+      <div id="fh5co-started">
+      <h1 class='header'>Fill in the form</h1>
+      </div>
+      <div id="fh5co-services" class="fh5co-bg-section border-bottom">
+        <div class="contain">
         <Input
           name="jobName"
           value={this.state.jobName}
@@ -51,27 +52,21 @@ class PostForm extends React.Component {
           label="Requirement"
         />
 
-        <Grid
-          className="student-form__button-grid"
-          item
-          xl={2}
-          lg={2}
-          md={12}
-          s={12}
-          xs={12}
-        >
+        </div>
+        <div class="contain">
           <Link to={"./../orgProfile"}>
           <Button
             variant="contained"
             color="primary"
             onClick={addPost.bind(this, queueComponent, this.state)}
-            className="student-form__submit-button"
+            className="button"
+            style={{fontSize: 20}}
           >
             Submit
           </Button>
           </Link>
-        </Grid>
-      </Grid>
+      </div>
+      </div>
       </div>
     );
   }

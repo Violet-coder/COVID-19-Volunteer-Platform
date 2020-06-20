@@ -13,10 +13,18 @@ class OrgProfile extends React.Component {
     return (
       <div>
         <OrgNav/>
-        <h1>{name}</h1>
-        <h3>{intro}</h3>
+        <div id="fh5co-started">
+        <div class="container">
+        <h1 class='h'>{name}</h1>
+        <h3 class='h'>{intro}</h3>
+        </div>
+        </div>
+        <div id="fh5co-services" class="fh5co-bg-section border-bottom">
+        <div class="container">
         <h1>My Posts</h1>
         <SelfPosts posts={posts} queueComponent={queueComponent}/>
+        </div>
+        </div>
       </div>
     );
   }

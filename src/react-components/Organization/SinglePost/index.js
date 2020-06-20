@@ -30,11 +30,11 @@ class SinglePost extends React.Component {
       return applicant.jobName===post.name});
     return (
       <div>
-        <TableRow className="student" key={post.name}>
-        <TableCell component="th" scope="row">
-        <h1>
+        <TableRow key={post.name}>
+        <TableCell component="th" scope="row" colspan='1' style={{ width: "75%"}}>
+        <h2>
         {post.name}
-        </h1>
+        </h2>
         <p>Job description: {post.description}</p>
         <p>Requirement: {post.requirement}</p>
         <p>Status: {post.status}</p>
@@ -44,8 +44,8 @@ class SinglePost extends React.Component {
         <Button
             variant="contained"
             color="primary"
-            className="student-form__submit-button"
             onClick={this.handleClick}
+            style={{fontSize: 12}}
           >
             See applicants
           </Button>
@@ -54,15 +54,15 @@ class SinglePost extends React.Component {
           <Button
             variant="contained"
             color="secondary"
-            className="student-form__submit-button"
             onClick={deletePost.bind(this, queueComponent, post)}
+            style={{fontSize: 12}}
           >
             Delete
           </Button>
           
         </TableCell>
       </TableRow>
-      <div style={{display: this.state.display}}>
+      <div style={{display: this.state.display}} >
       {filteredApplicatns.map(applicant=>(
             <SingleApplicant
               key={uid(

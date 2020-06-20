@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-
 import "./styles.css";
 
 /* The Navigarion Bar of Organization Component */
@@ -9,23 +6,25 @@ class OrgNav extends React.Component {
   render() {
     
     return (
-      <div className="header">
-          <Link to={"./../home"}>
-          <Button className="home__button">HOME</Button>
-          </Link>
-          <Link to={"./../post"}>
-          <Button className="home__button">POST A NEW JOB</Button>
-          </Link>
-          <Link to={"./../orgProfile"}>
-          <Button className="home__button">PROFILE</Button>
-          </Link>
-          <Link to={"./../applicants"}>
-          <Button className="home__button">ALL APPLICANTS</Button>
-          </Link>
-          <Link to={"./../home"}>
-          <Button className="home__button">LOG OUT</Button>
-          </Link>
-      </div>
+      <nav class="fh5co-nav" role="navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2 text-left">
+                            <div id="fh5co-logo"><a href="index.html">Volunteer<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/post">Post a New Job</a></li>
+                                <li><a href="/OrgProfile">Profile</a></li>
+                                <li><a href="/applicants">All applicants</a></li>
+                                <li><a href="/">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+	        </nav>
     );
   }
 }

@@ -10,14 +10,14 @@ class Applicant extends React.Component {
     const { name, rank ,jobName} = this.props;
 
     return (
-      <TableRow className="student" key={name}>
-        <TableCell component="th" scope="row">
+      <TableRow key={name} style={{ width: "100%"}}>
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           {name}
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           {jobName}
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           {rank}
         </TableCell>
 

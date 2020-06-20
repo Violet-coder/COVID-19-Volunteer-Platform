@@ -6,8 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import OrgNav from "../../OrgNav";
-
-//import "./styles.css";
+import "./styles.css";
 
 /* Component for the List of Posts */
 class ApplicantList extends React.Component {
@@ -16,17 +15,23 @@ class ApplicantList extends React.Component {
     return (
     <div>
         <OrgNav/>
-        <h1>Applicants</h1>
-      <Table className="student-list">
+        <div id="fh5co-started">
+      <div class="container">
+        <h1 class='h'>All Applicants</h1>
+        </div>
+        </div>
+        <div id="fh5co-services" class="fh5co-bg-section border-bottom">
+        <div class="container">
+      <Table>
         <TableBody>
-        <TableRow className="student">
-        <TableCell component="th" scope="row">
+        <TableRow>
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           Name
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           Job
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
           Rank
         </TableCell> 
         <TableCell component="th" scope="row">
@@ -48,6 +53,8 @@ class ApplicantList extends React.Component {
           ))}
         </TableBody>
       </Table>
+      </div>
+      </div>
     </div>
     );
   }

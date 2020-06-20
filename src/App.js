@@ -4,7 +4,9 @@ import './App.css';
 import PostForm from './react-components/Organization/PostForm';
 import OrgProfile from './react-components/Organization/OrgProfile';
 import ApplicantList from './react-components/Organization/ApplicantList';
-import Userpage_volunteer from './Pages/Userpage_volunteer'
+import Userpage_volunteer from './Pages/Userpage_volunteer';
+import Home from './Pages/Home';
+
 
 class App extends React.Component{
   state = {
@@ -24,6 +26,7 @@ class App extends React.Component{
           <Switch> 
             {/* <Route exact path='/' render={() => 
                             (<Home state={this.state}/>)}/> */}
+            <Route exact path='/' render={()=> (<Home />)}/>
             <Route exact path='/Userpage_volunteer' render={() => 
                             (<Userpage_volunteer />)}/>
             <Route exact path='/orgProfile' render={() => 

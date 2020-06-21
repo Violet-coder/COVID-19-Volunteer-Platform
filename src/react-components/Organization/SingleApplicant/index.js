@@ -12,17 +12,17 @@ class Applicant extends React.Component {
     return (
       <TableRow key={name}>
         <div className="feature-center animate-box" data-animate-effect="fadeInUp">
-        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
-          {name}
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
+          <p className='name'>{name}</p>
         </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
-          {jobName}
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
+          <p className='job'>{jobName}</p>
         </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
-          {rank}
+        <TableCell component="th" scope="row" style={{fontSize:20}}>
+        {rank}
         </TableCell>
 
-        <TableCell component="th" scope="row" style={{width: '17%'}}>
+        <TableCell component="th" scope="row">
           <Button
             variant="contained"
             color="primary"
@@ -31,7 +31,7 @@ class Applicant extends React.Component {
             detail
           </Button>
         </TableCell>
-        <TableCell component="th" scope="row" style={{width: '17%'}}>
+        <TableCell component="th" scope="row">
           <Button
             variant="contained"
             color="secondary"
@@ -40,7 +40,7 @@ class Applicant extends React.Component {
             reject
           </Button>
           </TableCell>
-          <TableCell component="th" scope="row" style={{width: '40%'}}>
+          <TableCell component="th" scope="row">
           <Button
             variant="contained"
             color="primary"

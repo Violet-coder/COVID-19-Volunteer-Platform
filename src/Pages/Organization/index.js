@@ -11,8 +11,8 @@ class Organization extends React.Component{
         { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver"}
       ],
       applicants: [
-        {name: 'Jack', jobName: 'Driver', rank: 'A'},
-        {name: 'Mike', jobName: 'Rider', rank: 'B'}
+        {name: 'Jack', jobName: 'Driver', rank: 'A', status: ''},
+        {name: 'Mike', jobName: 'Rider', rank: 'B', status: ''}
       ],
       info: {
         name: "Food Delivery Organization",

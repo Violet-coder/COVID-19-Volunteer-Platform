@@ -55,7 +55,9 @@ class SinglePost extends React.Component {
           <Button
             variant="contained"
             color="secondary"
-            onClick={deletePost.bind(this, queueComponent, post)}
+            onClick={
+                deletePost.bind(this, queueComponent, post)
+            }
             style={{fontSize: 12}}
           >
             Delete

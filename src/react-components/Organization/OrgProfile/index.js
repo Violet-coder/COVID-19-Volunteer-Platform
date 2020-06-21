@@ -5,9 +5,8 @@ import "./styles.css";
 
 /* The Organization Profile Component */
 class OrgProfile extends React.Component {
-
   render() {
-    const { posts, queueComponent} = this.props;
+    const {posts, queueComponent} = this.props;
     const name = "Food Delivery Organization"
     const intro = "We deliver food. We need you! Phone number: 123456789. Email: 123456789"
     return (

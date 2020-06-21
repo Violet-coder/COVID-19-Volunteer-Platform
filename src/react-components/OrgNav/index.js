@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 /* The Navigarion Bar of Organization Component */
@@ -14,11 +15,11 @@ class OrgNav extends React.Component {
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/post">Post a New Job</a></li>
-                                <li><a href="/OrgProfile">Profile</a></li>
-                                <li><a href="/applicants">All applicants</a></li>
-                                <li><a href="/">Log Out</a></li>
+                                <li><Link to="./../">Home</Link></li>
+                                <li><Link to="./../post">Post a New Job</Link></li>
+                                <li><Link to="./../orgProfile">Profile</Link></li>
+                                <li><Link to="./../applicants">All applicants</Link></li>
+                                <li><Link to="./../">Log Out</Link></li>
                             </ul>
                         </div>
                     </div>

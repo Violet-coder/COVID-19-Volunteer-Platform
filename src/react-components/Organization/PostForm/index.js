@@ -59,7 +59,7 @@ class PostForm extends React.Component {
         </div>
         </div>
         <div className="contain">
-          <Link to={"./../orgProfile"}>
+          <Link to="./../orgProfile">
           <Button
             variant="contained"
             color="primary"

@@ -13,30 +13,79 @@ const useStyles = makeStyles({
     },
   },
 });
+const datasets = [
+  [
+    { title: 'IT'},
+    { title: 'driver'},
+    { title: 'laborer'},
+    { title: 'finance'},
+    { title: 'food'},
+    { title: 'arts'},
+    { title: 'healthcare'},
+    { title: 'retail'},
+    { title: 'education'},
+    { title: 'other'}
+  ],
+  [
+    { title: 'Ottawa'},
+    { title: 'Edmonton'},
+    { title: 'Victoria'},
+    { title: 'Winnipeg'},
+    { title: 'Fredericton'},
+    { title: "St. John's"},
+    { title: 'Halifax'},
+    { title: 'Toronto'},
+    { title: 'Quebec City'},
+    { title: 'Regina'},
+    { title: 'Yellowknife'},
+    { title: 'Iqaluit'},
+    { title: 'Whitehorse'},
+    { title: 'other'}
+  ]
+];
 
 export default function TitleSelect(props) {
   const classes = useStyles();
-  const { context } = props;
+  const { context, label, dataset, id } = props;
+  const setJob = (event, newValue) => {
+    try{
+    context.setState({
+      jobTitle: newValue.title
+    });
+  } catch(error){
+    context.setState({
+      jobTitle: ""
+    });
+  }}
+  const setLocation = (event, newValue) => {
+    try{
+    context.setState({
+      location: newValue.title
+    });
+  } catch(error){
+    context.setState({
+      location: ""
+    });
+  }}
+  if (dataset=='job') {
+   var optionSet=datasets[0]
+   var setFunc = setJob
+  }
+  else if (dataset=='location') {
+    var optionSet=datasets[1]
+    var setFunc = setLocation
+  }
   return (
     <Autocomplete
-      id="title-select-demo"
+      id={id}
       style={{ width: "100%" }}
-      options={jobTitles}
+      options={optionSet}
       classes={{
         option: classes.option,
       }}
       onChange={(event, newValue) => {
-        try{
-        context.setState({
-          jobTitle: newValue.title
-        });
-      } catch(error){
-        context.setState({
-          jobTitle: ""
-        });
+        setFunc(event, newValue)}
       }
-      
-      }}
       autoHighlight
       getOptionLabel={(option) => option.title}
       renderOption={(option) => (
@@ -48,7 +97,7 @@ export default function TitleSelect(props) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Choose a job area"
+          label={label}
           InputLabelProps={{style: {fontSize: 20} }}
           required
           variant="filled"
@@ -63,15 +112,3 @@ export default function TitleSelect(props) {
   );
 }
 
-const jobTitles = [
-    { title: 'IT'},
-    { title: 'driver'},
-    { title: 'laborer'},
-    { title: 'finance'},
-    { title: 'food'},
-    { title: 'arts'},
-    { title: 'healthcare'},
-    { title: 'retail'},
-    { title: 'education'},
-    { title: 'other'}
-  ];

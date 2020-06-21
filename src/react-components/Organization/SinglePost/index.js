@@ -31,17 +31,21 @@ class SinglePost extends React.Component {
     return (
       <div>
         <TableRow key={post.name}>
-        <TableCell component="th" scope="row" colSpan='1' style={{ width: "75%"}}>
+				<div class="feature-center animate-box" data-animate-effect="fadeInUp">
+        <TableCell component="th" scope="row">
         <h2>
         {post.name}
         </h2>
+        </TableCell>
+        <TableCell component="th" scope="row" colSpan='1' style={{ width: 500}}>
         <p>Area: {post.title}</p>
         <p>Job description: {post.description}</p>
         <p>Requirement: {post.requirement}</p>
-        <p>Status: {post.status}</p>
         </TableCell>
-
         <TableCell component="th" scope="row">
+        <p>{post.status} on {post.date}</p>
+        </TableCell>
+        <TableCell component="th" scope="row" style={{ width: 100}}>
         <Button
             variant="contained"
             color="primary"
@@ -62,8 +66,8 @@ class SinglePost extends React.Component {
           >
             Delete
           </Button>
-          
-        </TableCell>
+          </TableCell>
+      </div>
       </TableRow>
       <div style={{display: this.state.display}} >
       {filteredApplicatns.map(applicant=>(

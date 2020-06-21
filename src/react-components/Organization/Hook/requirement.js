@@ -34,7 +34,7 @@ const InputWrapper = styled('div')`
 
   & input {
     font-size: 20px;
-    height: 30px;
+    height: 35px;
     box-sizing: border-box;
     padding: 4px 6px;
     width: 0;

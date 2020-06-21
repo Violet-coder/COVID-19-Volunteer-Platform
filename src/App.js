@@ -1,29 +1,18 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import PostForm from './react-components/Organization/PostForm';
-import OrgProfile from './react-components/Organization/OrgProfile';
-import ApplicantList from './react-components/Organization/ApplicantList';
 import Userpage_volunteer from './Pages/Userpage_volunteer';
 import Home from './Pages/Home';
 import SignUpGuide from './Pages/SignUpGuide';
 import OrgSignUp from './Pages/OrgSignUp';
 import VolSignUp from './Pages/VolSignUp';
 import Login from './Pages/Login';
+import Organization from './Pages/Organization';
 
 
 
 class App extends React.Component{
-  state = {
-    posts: [
-      { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved"},
-      { name: "Rider", description: "Deliver food", requirement: "repititive task, self-motivated", title: "Driver", status: "Approved"}
-    ],
-    applicants: [
-      {name: 'Jack', jobName: 'Driver', rank: 'A'},
-      {name: 'Mike', jobName: 'Rider', rank: 'B'}
-    ]
-  }
+
   render() {
     
     return (
@@ -39,12 +28,7 @@ class App extends React.Component{
             <Route exact path='/login' render={() => (<Login />)} />
             <Route exact path='/Userpage_volunteer' render={() => 
                             (<Userpage_volunteer />)}/>
-            <Route exact path='/orgProfile' render={() => 
-                            (<OrgProfile posts={this.state.posts} queueComponent={this}/>)}/>
-            <Route exact path='/post' render={() => 
-                            (<PostForm queueComponent={this}/>)}/>
-            <Route exact path='/applicants' render={() => 
-                            (<ApplicantList applicants={this.state.applicants}/>)}/>
+            <Route path='/organization' component={Organization}/>
           </Switch>
         </BrowserRouter>
       </div>

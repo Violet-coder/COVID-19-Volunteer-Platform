@@ -20,10 +20,8 @@ export const addPost = (queue, info) => {
     postList.push(post);
     queue.setState({
       posts: postList,
-    });
-    
+    });  
   }
-
 };
 
 export const deletePost = (queue, post) => {

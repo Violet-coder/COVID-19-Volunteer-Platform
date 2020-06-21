@@ -26,9 +26,16 @@ export default function TitleSelect(props) {
         option: classes.option,
       }}
       onChange={(event, newValue) => {
+        try{
         context.setState({
           jobTitle: newValue.title
         });
+      } catch(error){
+        context.setState({
+          jobTitle: ""
+        });
+      }
+      
       }}
       autoHighlight
       getOptionLabel={(option) => option.title}

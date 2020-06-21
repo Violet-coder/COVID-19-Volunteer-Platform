@@ -1,0 +1,29 @@
+input {
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #d6d1d5;
+    width: 30%;
+  }
+
+
+
+input.error {
+  border: 1px solid #EADAE4;
+}
+
+.error {
+  color:#db2269;
+  font-size: 0.625em;
+  display: relative;
+}
+
+label {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+button {
+    margin: 20px;
+}

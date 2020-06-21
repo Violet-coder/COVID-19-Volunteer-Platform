@@ -69,12 +69,7 @@ class OrgSignUp extends React.Component {
     validateForm = () => {
         let valid = true;
         let state = this.state
-        let errors= {
-            orgName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-        }
+        let errors= this.state.errors
 
 
         Object.values(errors).forEach(

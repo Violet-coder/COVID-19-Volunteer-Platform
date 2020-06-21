@@ -1,11 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Input from "./../../Input";
 import OrgNav from './../../OrgNav';
-import RequirementHook from '../Hook/requirement';
-import TitleSelect from '../Hook/jobTitle';
-import { addPost } from "../../../actions/postList";
+import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
+import { updateOrgProfile } from "../../../actions/updateOrgProfile";
 //import "./styles.css";
 /* Component for the Post Form */
 class ProfileForm extends React.Component {
@@ -19,11 +17,10 @@ class ProfileForm extends React.Component {
   };
   state = {
     website: "",
-    location: "",
     intro: ""
   } 
   render() {  
-    const {info} = this.props;
+    const {info, infoComponent} = this.props;
     return (
       <div>
       <OrgNav/>
@@ -32,30 +29,50 @@ class ProfileForm extends React.Component {
       </div>
       <div id="fh5co-services" className="fh5co-bg-section border-bottom">
         <div className="contain">
-        <Input
-          name="website"
-          value={this.state.website}
-          onChange={this.handleInputChange}
-          label="Website"
-        />
-
-        <Input
+        <TextField
+            name="name"
+            defaultValue={info.name}
+            className="input"
+            margin='normal'
+            variant="filled"
+            disabled
+            InputProps={{style:{fontSize: 20}}}
+            InputLabelProps={{style: {fontSize: 20} }}
+          />
+        <TextField
+            name="email"
+            defaultValue={info.email}
+            className="input"
+            margin='normal'
+            variant="filled"
+            disabled
+            InputProps={{style:{fontSize: 20}}}
+            InputLabelProps={{style: {fontSize: 20} }}
+          />
+        <TextField
+            name="website"
+            label="Website"
+            defaultValue={this.state.website || ""}
+            className="input"
+            margin='normal'
+            onChange={this.handleInputChange}
+            multiline
+            variant="filled"
+            InputProps={{style:{fontSize: 20}}}
+            InputLabelProps={{style: {fontSize: 20} }}
+          />
+        <TextField
           name="intro"
-          value={this.state.intro}
+          defaultValue={this.state.intro || ""}
+          className="input"
+          margin='normal'
           onChange={this.handleInputChange}
+          multiline
+          variant="filled"
+          InputProps={{style:{fontSize: 20}}}
+          InputLabelProps={{style: {fontSize: 20} }}
           label="Introduction"
         />
-        
-        <div className="options">
-        <TitleSelect
-          context={this}
-        />
-
-        <RequirementHook
-          context={this}
-        />
-
-        </div>
         </div>
         <div className="contain">
           <Link to="./../organization/profile">
@@ -63,6 +80,7 @@ class ProfileForm extends React.Component {
             variant="contained"
             color="primary"
             className="button"
+            onClick={updateOrgProfile.bind(this, infoComponent, this.state)}
             style={{fontSize: 20}}
           >
             Submit

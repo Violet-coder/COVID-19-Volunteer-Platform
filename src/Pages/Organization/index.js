@@ -7,8 +7,8 @@ import ProfileForm from '../../react-components/Organization/ProfileForm';
 class Organization extends React.Component{
     state = {
       posts: [
-        { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020"},
-        { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020"}
+        { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto"},
+        { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver"}
       ],
       applicants: [
         {name: 'Jack', jobName: 'Driver', rank: 'A'},
@@ -17,8 +17,8 @@ class Organization extends React.Component{
       info: {
         name: "Food Delivery Organization",
         intro: "We deliver food. We need you! Phone number: 123456789. Email: 123456789.",
-        location: 'Toronto',
-        website: 'www.FDO.ca'
+        website: 'www.FDO.ca',
+        email: "abc@abc.com"
       }
     }
     render() {
@@ -32,7 +32,7 @@ class Organization extends React.Component{
               <Route exact path='/organization/applicants' render={() => 
                               (<ApplicantList applicants={this.state.applicants}/>)}/>
               <Route exact path='/organization/update' render={() => 
-                              (<ProfileForm info={this.state.info}/>)}/>
+                              (<ProfileForm info={this.state.info} infoComponent={this}/>)}/>
               </Switch> 
         </div>
       );  

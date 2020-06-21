@@ -11,7 +11,7 @@ class Applicant extends React.Component {
 
     return (
       <TableRow key={name}>
-        <div class="feature-center animate-box" data-animate-effect="fadeInUp">
+        <div className="feature-center animate-box" data-animate-effect="fadeInUp">
         <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
           {name}
         </TableCell>

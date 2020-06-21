@@ -22,6 +22,7 @@ class PostForm extends React.Component {
     jobDescription: "",
     requirement: [],
     jobTitle: "",
+    location: "",
   } 
   render() {  
     const {queueComponent} = this.props;
@@ -50,8 +51,18 @@ class PostForm extends React.Component {
         <div className="options">
         <TitleSelect
           context={this}
+          label='Choose a Relevant Area'
+          dataset='job'
+          id='job-select'
         />
-
+        </div>
+        <div className="options">
+        <TitleSelect
+          context={this}
+          label='Job Location'
+          dataset='location'
+          id='location-select'
+        />
         <RequirementHook
           context={this}
         />

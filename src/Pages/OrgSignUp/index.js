@@ -30,13 +30,11 @@ class OrgSignUp extends React.Component {
         const name = target.name
         const value = target.value
         let errors = this.state.errors;
-        // console.log(event)
-        // console.log(name)
-        // console.log(value)
+
         
         switch(name) {
             case 'orgName':
-                console.log("orgname", value.length)
+               
                 errors.orgName = 
                     value.length < 4
                         ? "Organization name must be 4 characters long."
@@ -68,32 +66,56 @@ class OrgSignUp extends React.Component {
         // console.log("state", this.state)
     }
 
-    validateForm = (errors) => {
+    validateForm = () => {
         let valid = true;
-    
-        console.log(Object)
-        console.log(Object.values)
+        let state = this.state
+        let errors= {
+            orgName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+        }
+
+
         Object.values(errors).forEach(
             (val) => val.length >0 && (valid = false)
         );
+
+        if(!state.orgName){
+            valid = false;
+            errors["orgName"]="Please enter organization name."
+        }
+
+        if(!state.email){
+            valid = false;
+            errors["email"]="Please enter email."
+        }
+        if(!state.password){
+            valid = false;
+            errors["password"]="Please enter password."
+        }
+        if(!state.confirmPassword){
+            valid = false;
+            errors["confirmPassword"]="Please enter password."
+        }
+
+        
+
         if(this.state.password !== this.state.confirmPassword){
-            this.setState({errors: 
-                {
-                    orgName: "",
-                    email: "",
-                    password: "",
-                    confirmPassword: "Password doesn't match.",
-                }
-            })
+            console.log(errors)
+            errors['confirmPassword']="Password doesn't match."
             valid =false;
         }
+        this.setState({
+            errors: errors
+        })
     
         return valid;
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        if(this.validateForm(this.state.errors)) {
+        if(this.validateForm()) {
             console.info('Valid Form')
         } else {
             console.error('Invalid Form')
@@ -103,7 +125,7 @@ class OrgSignUp extends React.Component {
     }
 
     render() {
-        const {errors} = this.state;
+
 
         return (
             <div id='page'>

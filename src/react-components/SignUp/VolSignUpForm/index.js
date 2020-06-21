@@ -4,9 +4,9 @@ class VolSignUpForm extends React.Component {
     render(){
         return(
             <div id="fh5co-started">
-                <div class="container">
-                    <div class="row animate-box">
-                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                <div className="container">
+                    <div className="row animate-box">
+                        <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                             <h2>Sign up</h2>
                             <p>as a volunteer</p>
                             <span>First name</span>
@@ -19,7 +19,7 @@ class VolSignUpForm extends React.Component {
                             <p><input type="text" name="password" /></p>
                             <span>Comfirm the password</span>
                             <p><input type="text" name="confirm_password" /></p>
-                            <p><button type="submit" class="btn btn-primary">Sign Up</button></p>
+                            <p><button type="submit" className="btn btn-primary">Sign Up</button></p>
                             <p><a href='/orgSignUp'>Sign up as an organization here</a></p>
                         </div>
                     </div>

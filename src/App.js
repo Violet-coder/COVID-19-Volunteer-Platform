@@ -13,6 +13,18 @@ import Organization from './Pages/Organization';
 
 class App extends React.Component{
 
+  state = {
+    posts: [
+      { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society"},
+      { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society"},
+      { name: "Grocery Delivery", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The Atrium Project"},
+      { name: "Grocery Delivery", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The mental Health books"},
+
+    ]
+  }
+
+
+  
   render() {
     
     return (
@@ -27,7 +39,7 @@ class App extends React.Component{
             <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
             <Route exact path='/login' render={() => (<Login />)} />
             <Route exact path='/Userpage_volunteer' render={() => 
-                            (<Userpage_volunteer />)}/>
+                            (<Userpage_volunteer  posts={this.state.posts}/>)}/>
             <Route path='/organization' component={Organization}/>
           </Switch>
         </BrowserRouter>

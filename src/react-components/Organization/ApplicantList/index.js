@@ -2,14 +2,13 @@ import React from "react";
 import { uid } from "react-uid";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import OrgNav from "../../OrgNav";
 import "./styles.css";
 
 /* Component for the List of Posts */
 class ApplicantList extends React.Component {
+  
   render() {
     const {applicants} = this.props;
     return (
@@ -22,25 +21,8 @@ class ApplicantList extends React.Component {
         </div>
         <div id="fh5co-services" class="fh5co-bg-section border-bottom">
         <div class="container">
-      <Table>
+      <Table style={{ width: '80%' }}>
         <TableBody>
-        <TableRow>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
-          Name
-        </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
-          Job
-        </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
-          Rank
-        </TableCell> 
-        <TableCell component="th" scope="row">
-        </TableCell>    
-        <TableCell component="th" scope="row">
-        </TableCell>  
-        <TableCell component="th" scope="row">
-        </TableCell>      
-      </TableRow>
         {applicants.map(applicant => (
             <SingleApplicant
               key={uid(

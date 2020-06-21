@@ -7,44 +7,49 @@ import "./styles.css";
 class Applicant extends React.Component {
 
   render() {
-    const { name, rank ,jobName} = this.props;
+    const { name, rank ,jobName } = this.props;
 
     return (
-      <TableRow key={name} style={{ width: "100%"}}>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
+      <TableRow key={name}>
+        <div class="feature-center animate-box" data-animate-effect="fadeInUp">
+        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
           {name}
         </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
+        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
           {jobName}
         </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
+        <TableCell component="th" scope="row" style={{fontSize:20, width: '17%'}}>
           {rank}
         </TableCell>
 
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{width: '17%'}}>
           <Button
             variant="contained"
             color="primary"
+            style={{fontSize: 12}}
           >
             detail
           </Button>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row" style={{width: '17%'}}>
           <Button
             variant="contained"
             color="secondary"
+            style={{fontSize: 12}}
           >
             reject
           </Button>
           </TableCell>
-          <TableCell component="th" scope="row">
+          <TableCell component="th" scope="row" style={{width: '40%'}}>
           <Button
             variant="contained"
             color="primary"
+            style={{fontSize: 12}}
           >
             accept
           </Button>
-        </TableCell>        
+        </TableCell>  
+        </div>      
       </TableRow>
     );
   }

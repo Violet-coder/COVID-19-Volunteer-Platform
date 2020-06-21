@@ -6,9 +6,9 @@ import RequirementHook from '../Hook/requirement';
 import TitleSelect from '../Hook/jobTitle';
 import { addPost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
-import "./styles.css";
+//import "./styles.css";
 /* Component for the Post Form */
-class PostForm extends React.Component {
+class ProfileForm extends React.Component {
   handleInputChange = event => {
     const target = event.target;
     const value = target.value;
@@ -18,33 +18,32 @@ class PostForm extends React.Component {
     });
   };
   state = {
-    jobName: "",
-    jobDescription: "",
-    requirement: [],
-    jobTitle: "",
+    website: "",
+    location: "",
+    intro: ""
   } 
   render() {  
-    const {queueComponent} = this.props;
+    const {info} = this.props;
     return (
       <div>
       <OrgNav/>
       <div id="fh5co-started">
-      <h1 className='header'>Fill in the form</h1>
+      <h1 className='header'>Update your profile</h1>
       </div>
       <div id="fh5co-services" className="fh5co-bg-section border-bottom">
         <div className="contain">
         <Input
-          name="jobName"
-          value={this.state.jobName}
+          name="website"
+          value={this.state.website}
           onChange={this.handleInputChange}
-          label="Job Name"
+          label="Website"
         />
 
         <Input
-          name="jobDescription"
-          value={this.state.jobDescription}
+          name="intro"
+          value={this.state.intro}
           onChange={this.handleInputChange}
-          label="Job Description"
+          label="Introduction"
         />
         
         <div className="options">
@@ -63,7 +62,6 @@ class PostForm extends React.Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={addPost.bind(this, queueComponent, this.state)}
             className="button"
             style={{fontSize: 20}}
           >
@@ -77,4 +75,4 @@ class PostForm extends React.Component {
   }
 }
 
-export default PostForm;
+export default ProfileForm;

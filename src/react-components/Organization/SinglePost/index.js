@@ -31,10 +31,11 @@ class SinglePost extends React.Component {
     return (
       <div>
         <TableRow key={post.name}>
-        <TableCell component="th" scope="row" colspan='1' style={{ width: "75%"}}>
+        <TableCell component="th" scope="row" colSpan='1' style={{ width: "75%"}}>
         <h2>
         {post.name}
         </h2>
+        <p>Area: {post.title}</p>
         <p>Job description: {post.description}</p>
         <p>Requirement: {post.requirement}</p>
         <p>Status: {post.status}</p>

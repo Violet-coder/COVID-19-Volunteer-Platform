@@ -16,8 +16,8 @@ import Login from './Pages/Login';
 class App extends React.Component{
   state = {
     posts: [
-      { name: 'Driver', description: "Deliver food", requirement: "Driver's license", status: "Approved"},
-      { name: "Rider", description: "Deliver food", requirement: "Has a bike", status: "Approved"}
+      { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved"},
+      { name: "Rider", description: "Deliver food", requirement: "repititive task, self-motivated", title: "Driver", status: "Approved"}
     ],
     applicants: [
       {name: 'Jack', jobName: 'Driver', rank: 'A'},

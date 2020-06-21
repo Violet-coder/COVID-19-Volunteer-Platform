@@ -20,7 +20,8 @@ class PostForm extends React.Component {
   state = {
     jobName: "",
     jobDescription: "",
-    requirement: "",
+    requirement: [],
+    jobTitle: "",
   } 
   render() {  
     const {queueComponent} = this.props;
@@ -28,10 +29,10 @@ class PostForm extends React.Component {
       <div>
       <OrgNav/>
       <div id="fh5co-started">
-      <h1 class='header'>Fill in the form</h1>
+      <h1 className='header'>Fill in the form</h1>
       </div>
-      <div id="fh5co-services" class="fh5co-bg-section border-bottom">
-        <div class="contain">
+      <div id="fh5co-services" className="fh5co-bg-section border-bottom">
+        <div className="contain">
         <Input
           name="jobName"
           value={this.state.jobName}
@@ -46,12 +47,18 @@ class PostForm extends React.Component {
           label="Job Description"
         />
         
-        <div class="options">
-        <TitleSelect/>
-        <RequirementHook/>
+        <div className="options">
+        <TitleSelect
+          context={this}
+        />
+
+        <RequirementHook
+          context={this}
+        />
+
         </div>
         </div>
-        <div class="contain">
+        <div className="contain">
           <Link to={"./../orgProfile"}>
           <Button
             variant="contained"

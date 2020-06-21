@@ -126,7 +126,8 @@ const Listbox = styled('ul')`
   }
 `;
 
-export default function RequirementHook() {
+export default function RequirementHook(props) {
+  const { context } = props;
   const {
     getRootProps,
     getInputLabelProps,
@@ -140,12 +141,17 @@ export default function RequirementHook() {
     setAnchorEl,
   } = useAutocomplete({
     id: 'requirement-hook-demo',
-    defaultValue: [requirements[1]],
+    defaultValue: [],
     multiple: true,
     options: requirements,
+    onChange: (event, newValue) => {
+      context.setState({
+        requirement: newValue,
+      });
+    },
     getOptionLabel: (option) => option.title,
   });
-
+  
   return (
     <NoSsr>
       <div>
@@ -187,5 +193,6 @@ const requirements = [
   { title: 'health degree'},
   { title: 'retail experiance'},
   { title: 'teaching experiance'},
-  { title: 'volunteering experiance'}
+  { title: 'volunteering experiance'},
+  { title: 'other'}
 ];

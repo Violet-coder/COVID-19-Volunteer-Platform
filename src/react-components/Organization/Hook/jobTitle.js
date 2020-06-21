@@ -14,9 +14,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TitleSelect() {
+export default function TitleSelect(props) {
   const classes = useStyles();
-
+  const { context } = props;
   return (
     <Autocomplete
       id="title-select-demo"
@@ -24,6 +24,11 @@ export default function TitleSelect() {
       options={jobTitles}
       classes={{
         option: classes.option,
+      }}
+      onChange={(event, newValue) => {
+        context.setState({
+          jobTitle: newValue.title
+        });
       }}
       autoHighlight
       getOptionLabel={(option) => option.title}
@@ -60,5 +65,6 @@ const jobTitles = [
     { title: 'arts'},
     { title: 'healthcare'},
     { title: 'retail'},
-    { title: 'education'}
+    { title: 'education'},
+    { title: 'other'}
   ];

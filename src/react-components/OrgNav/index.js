@@ -6,13 +6,13 @@ class OrgNav extends React.Component {
   render() {
     
     return (
-      <nav class="fh5co-nav" role="navigation">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-2 text-left">
+      <nav className="fh5co-nav" role="navigation">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-2 text-left">
                             <div id="fh5co-logo"><a href="index.html">Volunteer<span>.</span></a></div>
                         </div>
-                        <div class="col-xs-10 text-right menu-1">
+                        <div className="col-xs-10 text-right menu-1">
                             <ul>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/post">Post a New Job</a></li>

@@ -10,7 +10,7 @@ import "./styles.css";
 class ApplicantList extends React.Component {
   
   render() {
-    const {applicants} = this.props;
+    const {applicants, context} = this.props;
     return (
     <div>
         <OrgNav/>
@@ -31,6 +31,8 @@ class ApplicantList extends React.Component {
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}
+              status={applicant.status}
+              context={context}
             />
           ))}
         </TableBody>

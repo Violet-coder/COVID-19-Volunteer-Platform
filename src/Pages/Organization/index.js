@@ -11,8 +11,10 @@ class Organization extends React.Component{
         { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver"}
       ],
       applicants: [
-        {name: 'Jack', jobName: 'Driver', rank: 'A', status: ''},
-        {name: 'Mike', jobName: 'Rider', rank: 'B', status: ''}
+        {name: 'Jack', jobName: 'Driver', rank: 'A', status: 'pending'},
+        {name: 'Mike', jobName: 'Rider', rank: 'B', status: 'pending'},
+        {name: 'Lily', jobName: 'Rider', rank: 'A', status: 'accepted'},
+        {name: 'Lucy', jobName: 'Driver', rank: 'C', status: 'rejected'},
       ],
       info: {
         name: "Food Delivery Organization",
@@ -30,7 +32,7 @@ class Organization extends React.Component{
               <Route exact path='/organization/post' render={() => 
                               (<PostForm queueComponent={this}/>)}/>
               <Route exact path='/organization/applicants' render={() => 
-                              (<ApplicantList applicants={this.state.applicants}/>)}/>
+                              (<ApplicantList applicants={this.state.applicants} context={this}/>)}/>
               <Route exact path='/organization/update' render={() => 
                               (<ProfileForm info={this.state.info} infoComponent={this}/>)}/>
               </Switch> 

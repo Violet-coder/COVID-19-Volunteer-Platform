@@ -82,6 +82,8 @@ class SinglePost extends React.Component {
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}
+              status={applicant.status}
+              context={queueComponent}
             />
           ))}
       </div>

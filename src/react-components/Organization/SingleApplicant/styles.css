@@ -12,3 +12,13 @@ p.job {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+p.accepted {
+    color: tomato;
+    width: 180px;
+}
+
+p.rejected {
+    width: 180px;
+    color: slategray;
+}

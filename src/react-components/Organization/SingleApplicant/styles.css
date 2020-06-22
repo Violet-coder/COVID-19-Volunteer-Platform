@@ -1,0 +1,24 @@
+p.name {
+    display: inline-block;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+p.job {
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+p.accepted {
+    color: tomato;
+    width: 180px;
+}
+
+p.rejected {
+    width: 180px;
+    color: slategray;
+}

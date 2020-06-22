@@ -54,7 +54,6 @@ class SinglePost extends React.Component {
         <Button
             variant="contained"
             color="default"
-            onClick={this.handleClick}
             style={{fontSize: 12}}
           >
             Detail
@@ -83,6 +82,8 @@ class SinglePost extends React.Component {
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}
+              status={applicant.status}
+              context={queueComponent}
             />
           ))}
       </div>

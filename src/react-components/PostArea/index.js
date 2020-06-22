@@ -1,13 +1,11 @@
 import React from 'react';
+import { uid } from 'react-uid';
 
 class PostArea extends React.Component {
     
     render(){
         const {desc, title, subtitle, ops} = this.props;
-        console.log(desc)
-        console.log(title)
-        console.log(subtitle)
-        console.log(ops)
+
         return(
             <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
@@ -20,7 +18,7 @@ class PostArea extends React.Component {
                     </div>
                     <div className="row">
                         {ops.map( op => (
-                            <div className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
+                            <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
                             <div className="fh5co-post">
                                 <span className="fh5co-date">{op.date}</span>
                                 <h3><a href="#">{op.title}</a></h3>

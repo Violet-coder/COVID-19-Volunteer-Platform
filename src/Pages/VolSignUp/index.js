@@ -2,7 +2,6 @@ import React from 'react';
 import SignUpNav from '../../react-components/SignUp/SignUpNav';
 import VolSignUpForm from '../../react-components/SignUp/VolSignUpForm';
 
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
 class VolSignUp extends React.Component {
     constructor(props){
@@ -26,6 +25,8 @@ class VolSignUp extends React.Component {
 
     handleChange = (event) => {
         event.preventDefault();
+        //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+        const validEmailRegex = /\S+@\S+\.\S+/;
         const target = event.target
         const name = target.name
         const value = target.value
@@ -69,7 +70,7 @@ class VolSignUp extends React.Component {
         }
 
         this.setState({ errors, [name]: value})
-        console.log("state", this.state)
+        //console.log("state", this.state)
     }
 
     validateForm = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import SignUpNav from '../../react-components/SignUp/SignUpNav';
 import OrgSignUpForm from '../../react-components/SignUp/OrgSignUpForm';
 
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
 
 
@@ -26,6 +25,8 @@ class OrgSignUp extends React.Component {
 
     handleChange = (event) => {
         event.preventDefault();
+        //const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+        const validEmailRegex = /\S+@\S+\.\S+/;
         const target = event.target
         const name = target.name
         const value = target.value

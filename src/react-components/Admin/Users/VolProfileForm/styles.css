@@ -1,0 +1,20 @@
+
+.btn-profile {
+    position: relative; 
+    margin-top: 5%; 
+    margin-bottom: 5%;
+}
+.profile-form {
+    align-items: center; 
+    display: flex; 
+    justify-content: center; 
+    width: 100%
+}
+.fullTextField .MuiTextField-root{
+        
+    margin-left: 10%;
+    margin-right: 10%;
+    color:red;
+    font-size: 30;
+    width: 300px;
+}

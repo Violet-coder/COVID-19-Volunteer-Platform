@@ -1,0 +1,176 @@
+.admin-nav {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  padding: 25px 0;
+  z-index: 1001;
+
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  background: #fff;
+  padding: 10px 0;
+  -webkit-box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+}
+@media screen and (max-width: 768px) {
+  .admin-nav {
+    padding: 25px 0;
+  }
+}
+.admin-nav #admin-logo {
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .admin-nav #admin-logo {
+    margin-bottom: 0;
+  }
+}
+.admin-nav #admin-logo a > span {
+  color: #F73859;
+}
+.admin-nav a {
+  padding: 5px 10px;
+  color: black;
+  font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .admin-nav .menu-1 {
+    display: none;
+  }
+}
+.admin-nav ul {
+  padding: 0;
+  margin: 7px 0 0 0;
+}
+.admin-nav ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+.admin-nav ul li a {
+  font-size: 16px;
+  padding: 30px 10px;
+  color: black;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.admin-nav ul li a:hover, .admin-nav ul li a:focus, .admin-nav ul li a:active {
+  color: red;
+}
+.admin-nav ul li.has-dropdown {
+  position: relative;
+}
+.admin-nav ul li.has-dropdown .dropdown {
+  width: 130px;
+  -webkit-box-shadow: 0px 8px 13px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 8px 13px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 8px 13px -9px rgba(0, 0, 0, 0.75);
+  z-index: 1002;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  text-align: left;
+  background: #fff;
+  padding: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: 0s;
+  -o-transition: 0s;
+  transition: 0s;
+}
+.admin-nav ul li.has-dropdown .dropdown:before {
+  bottom: 100%;
+  left: 40px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: #fff;
+  border-width: 8px;
+  margin-left: -8px;
+}
+.admin-nav ul li.has-dropdown .dropdown li {
+  display: block;
+  margin-bottom: 7px;
+}
+.admin-nav ul li.has-dropdown .dropdown li:last-child {
+  margin-bottom: 0;
+}
+.admin-nav ul li.has-dropdown .dropdown li a {
+  padding: 2px 0;
+  display: block;
+  color: #999999;
+  line-height: 1.2;
+  text-transform: none;
+  font-size: 15px;
+}
+.admin-nav ul li.has-dropdown .dropdown li a:hover {
+  color: #000;
+}
+.admin-nav ul li.has-dropdown:hover a, .admin-nav ul li.has-dropdown:focus a {
+  color: #fff;
+}
+.admin-nav ul li.btn-cta a {
+  color: #F73859;
+}
+.admin-nav ul li.btn-cta a span {
+  background: #f35f55;
+  color: #fff;
+  padding: 4px 20px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+.admin-nav ul li.btn-cta a:hover span {
+  background: #f14034 !important;
+  -webkit-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+}
+.admin-nav ul li.active > a {
+  color: #fff;
+  position: relative;
+}
+.scrolled .admin-nav {
+  background: #fff;
+  padding: 10px 0;
+  -webkit-box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.15);
+}
+.scrolled .admin-nav a {
+  color: #000;
+}
+.scrolled .admin-nav ul li a:hover, .scrolled .admin-nav ul li a:focus, .scrolled .admin-nav ul li a:active {
+  color: #F73859 !important;
+}
+.scrolled .admin-nav ul li.active a {
+  color: #F73859;
+}
+.scrolled .admin-nav ul li.has-dropdown:hover > a, .scrolled .admin-nav ul li.has-dropdown:focus > a {
+  color: #F73859;
+}

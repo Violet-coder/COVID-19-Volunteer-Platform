@@ -1,0 +1,8 @@
+.user-name {
+    display: inline-block;
+}
+
+.user-manage {
+    display: inline-block; 
+    float: right;
+}

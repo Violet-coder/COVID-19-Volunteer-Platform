@@ -2,7 +2,15 @@ import React from "react";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import PostDetail from "../../../react-components/Volunteer/PostDetail";
-import PostDetail_button from "../../../react-components/Volunteer/PostDetail_button"
+// import PostDetail_button from "../../../react-components/Volunteer/PostDetail_button"
+import Button from '@material-ui/core/Button';
+// import Volunteer from "../../../Pages/Volunteer/Vol"
+// import My_application from "../../../Pages/Volunteer/My_application"
+import { addApplication } from "../../../actions/applicationList"
+// import "./styles.css"
+import { Link} from 'react-router-dom';
+
+
 
 
 import "../../../css/animate.css";
@@ -21,18 +29,37 @@ const posts=[
 
 
 class PostDetailPage extends React.Component {
+    /* componentWillMount(){
+        console.log(this.props.location.state)
+    } */
+    
+
     
     render(){
+        // this.componentWillMount()
         const {id} = this.props.match.params
+        // console.log(id)
         const post = posts.find((p) => p.id==id)
-        /* const post = this.props.location.state.post
-        const volunteer = this.props */
+        // console.log("state", this.props.location)
+        
+        const queueComponent = this.props.location.query
+        console.log(queueComponent)
+    
         return(
             <div id="page">
             <Navbar user="Application"/>
             <Header_appli title={post.name} subtitle={post.organization}/>
             <PostDetail post={post}/>
-            <PostDetail_button  application={post}/>
+            {/* <PostDetail_button  application={post}/> */}
+            <div className="button">
+            <span><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}}>
+            Organization Profile
+            </Button></span>
+            <span><Link to="/volunteer/My_application"><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}} onClick={ addApplication.bind(this, queueComponent, post)}>
+            Apply Now
+            </Button></Link></span>
+            
+            </div>  
 
             </div>
 

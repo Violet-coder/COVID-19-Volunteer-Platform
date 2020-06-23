@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+.post{
+    width: 80%;
+    /* padding: 20px; */
+    /* margin: 10px; */
+    margin-top: 10px;
+    margin-left: 10%;
+     /* position: 'absolute'  */
+   
+}
+.post h2  {
+    font-family:'Balsamiq Sans', cursive;
+}
+.post h4  {
+    font-family:'Balsamiq Sans', cursive;
+    line-height:1.5em;
+}
+

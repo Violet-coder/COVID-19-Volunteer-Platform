@@ -5,10 +5,14 @@ import UserDiv from '../../UserDiv';
 
 class VolUsers extends React.Component{
     render(){
+        const volusers=this.props.volusers
+        //console.log("volusers",volusers)
+        const queueComponent = this.props.queueComponent
+        console.log("VolUsers queueComponent", queueComponent)
         return(
             <div id='page'>
                 <AdminNav />
-                <UserDiv />
+                <UserDiv volusers={volusers} queueComponent={queueComponent}/>
             </div>
         )
     }

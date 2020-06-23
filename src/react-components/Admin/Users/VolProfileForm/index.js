@@ -65,7 +65,7 @@ const styles = theme => ({
   });
 
 
-class VolUserProfile extends React.Component{
+class VolUserProfileForm extends React.Component{
     state = {
         name: 'Cat in the Hat',
         age: '',
@@ -97,7 +97,20 @@ class VolUserProfile extends React.Component{
     
     render(){
         const { classes } = this.props;
+        //console.log("form prop", this.props)
+        const {
+            id,
+            firstName, 
+            lastName, 
+            email,
+            links,
+            location,
+            desc,
+            skills,
+            availability,
+        } = this.props.user
 
+        //console.log("availability", availability)
 
         return(
         <div id="fh5co-services" className="fh5co-bg-section border-bottom">
@@ -115,7 +128,7 @@ class VolUserProfile extends React.Component{
           id="firstName"
           label="First Name"
           className={classes.textField}
-          value={this.state.name}
+          value={firstName}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -137,7 +150,7 @@ class VolUserProfile extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          value={this.state.name}
+          value={lastName}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -160,7 +173,7 @@ class VolUserProfile extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          value={this.state.name}
+          value={email}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -184,7 +197,7 @@ class VolUserProfile extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          value={this.state.name}
+          value={location}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -208,7 +221,7 @@ class VolUserProfile extends React.Component{
           id="links"
           label="Links"
           className={classes.fullTextField}
-          value={this.state.name}
+          value={links}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -232,7 +245,7 @@ class VolUserProfile extends React.Component{
           id="description"
           label="About you"
           className={classes.fullTextField}
-          value={this.state.name}
+          value={desc}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -260,7 +273,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.analytics}
+                    checked={skills.analytics}
                     name='analytics'
                     color='primary'
                     inputProps={{
@@ -275,7 +288,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.biology}
+                    checked={skills.biology}
                     name='biology'
                     color='primary'
                     inputProps={{
@@ -290,7 +303,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.biotech}
+                    checked={skills.biotech}
                     name='biotech'
                     color='primary'
                     inputProps={{
@@ -305,7 +318,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.community}
+                    checked={skills.community}
                     name='community'
                     color='primary'
                     inputProps={{
@@ -320,7 +333,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.content}
+                    checked={skills.content}
                     name='content'
                     color='primary'
                     inputProps={{
@@ -335,7 +348,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.data}
+                    checked={skills.data}
                     name='data'
                     color='primary'
                     inputProps={{
@@ -350,7 +363,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.finance}
+                    checked={skills.finance}
                     name='finance'
                     color='primary'
                     inputProps={{
@@ -365,7 +378,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.helpdesk}
+                    checked={skills.helpdesk}
                     name='helpdesk'
                     color='primary'
                     inputProps={{
@@ -380,7 +393,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.manufacturing}
+                    checked={skills.manufacturing}
                     name='manufacturing'
                     color='primary'
                     inputProps={{
@@ -395,7 +408,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.marketing}
+                    checked={skills.marketing}
                     name='marketing'
                     color='primary'
                     inputProps={{
@@ -410,7 +423,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.mechanics}
+                    checked={skills.mechanics}
                     name='mechanics'
                     color='primary'
                     inputProps={{
@@ -425,7 +438,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.IT}
+                    checked={skills.IT}
                     name='IT'
                     color='primary'
                     inputProps={{
@@ -440,7 +453,7 @@ class VolUserProfile extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={this.state.checklist.anything}
+                    checked={skills.anything}
                     name='anything'
                     color='primary'
                     inputProps={{
@@ -450,9 +463,88 @@ class VolUserProfile extends React.Component{
                 }
                 label={<span className={classes.formControlLabel}>Anything</span>}
             />
-          
+
 
         </FormGroup>
+        </FormControl>
+        <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel className={classes.formControlLabel} >Availabitly</FormLabel>
+            <FormGroup row>
+            <FormControlLabel
+                control={
+                <Checkbox
+                    className={classes.checkbox}
+                    checked={availability.option1}
+                    name='option1'
+                    color='primary'
+                    inputProps={{
+                        readOnly: true,
+                    }}    
+                />
+                }
+                label={<span className={classes.formControlLabel}>1-2 hours a day</span>}
+            />
+
+            <FormControlLabel
+                control={
+                <Checkbox
+                    className={classes.checkbox}
+                    checked={availability.option2}
+                    name='option2'
+                    color='primary'
+                    inputProps={{
+                        readOnly: true,
+                    }}    
+                />
+                }
+                label={<span className={classes.formControlLabel}>2-4 hours a day</span>}
+            />
+            <FormControlLabel
+                control={
+                <Checkbox
+                    className={classes.checkbox}
+                    checked={availability.option3}
+                    name='option3'
+                    color='primary'
+                    inputProps={{
+                        readOnly: true,
+                    }}    
+                />
+                }
+                label={<span className={classes.formControlLabel}>more than 4 hours a day</span>}
+            />
+
+            <FormControlLabel
+                control={
+                <Checkbox
+                    className={classes.checkbox}
+                    checked={availability.option4}
+                    name='option4'
+                    color='primary'
+                    inputProps={{
+                        readOnly: true,
+                    }}    
+                />
+                }
+                label={<span className={classes.formControlLabel}>only weekends</span>}
+            />
+            <FormControlLabel
+                control={
+                <Checkbox
+                    className={classes.checkbox}
+                    checked={availability.option5}
+                    name='option5'
+                    color='primary'
+                    inputProps={{
+                        readOnly: true,
+                    }}    
+                />
+                }
+                label={<span className={classes.formControlLabel}>anytime</span>}
+            />
+            
+            </FormGroup>
+            
         </FormControl>   
       </form>
       </div>
@@ -461,7 +553,7 @@ class VolUserProfile extends React.Component{
     }
 }
             
-VolUserProfile.propTypes = {
+VolUserProfileForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(VolUserProfile);
+export default withStyles(styles)(VolUserProfileForm);

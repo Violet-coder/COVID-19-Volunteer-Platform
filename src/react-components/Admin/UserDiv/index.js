@@ -1,87 +1,44 @@
 import React from 'react';
 import './styles.css';
-
+import { UID, uid } from 'react-uid';
+import {Link} from "react-router-dom";
+import {deleteUser} from "../../../actions/deleteUser";
 class UserDiv extends React.Component {
     render(){
+        const volusers = this.props.volusers;
+        //console.log("userlist", volusers)
+        const queueComponent = this.props.queueComponent;
         return(
-            <div id="fh5co-blog" class="fh5co-bg-section">
-                <div class="container">
-                    <div class="row animate-box row-pb-md" data-animate-effect="fadeInUp">
-                        <div class="col-md-8 col-md-offset-2 text-left fh5co-heading">
+            <div id="fh5co-blog" className="fh5co-bg-section">
+                <div className="container">
+                    <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
+                        <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
                             <span>Admin Functionality</span>
                             <h2>User Management</h2>
                         </div>
                     </div>
-                    
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">James Smith</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Maria Hernandez</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Oliva Jones</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Thomas Wilson</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>						
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Jessica Taylor</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Michael Johnson</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Jack Brown</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
-                    <div class=" animate-box" data-animate-effect="fadeInUp">
-                            <div class="fh5co-post">
-                                <h3 class="user-name">Emma Garcia</h3>
-                                <button  type="submit" class="btn btn-primary user-manage">Delete</button>
-                                <button  type="submit" class="btn btn-primary user-manage">Edit</button>
-                                <button  type="submit" class="btn btn-primary user-manage">View</button>
-                            </div>
-                    </div>
+                    {
+                        volusers.map((vol) => {
+                            return(<div key={uid(vol)} className=" animate-box" data-animate-effect="fadeInUp">
+                                    <div className="fh5co-post">
 
-                        <div class="center">
-                        <p><span><button type="submit" class="btn btn-primary">&laquo; Previous</button></span>
-                            <span><button type="submit" class="btn btn-primary">Next &raquo;</button></span></p>
-                        </div>
+                                        <h3 className="user-name">{"ID: "+ vol.id +" " + vol.firstName + " "+ vol.lastName}</h3>
+                                        <button  type="submit" className="btn btn-primary user-manage"  
+                                            onClick={deleteUser.bind(this, queueComponent, vol)}>Delete</button>
+                                        <button  type="submit" className="btn btn-primary user-manage">Edit</button>
+
+                                        <Link to={{pathname:`/admin/volprofile/${vol.id}`}}>
+                                            <button  type="submit" className="btn btn-primary user-manage">View</button></Link>
+                                    </div>
+                                    </div>)}
+                    )
+                    }
+                    
+
+                    <div className="center">
+                    <p><span><button type="submit" className="btn btn-primary">&laquo; Previous</button></span>
+                        <span><button type="submit" className="btn btn-primary">Next &raquo;</button></span></p>
+                    </div>
 
                 </div>
             </div>

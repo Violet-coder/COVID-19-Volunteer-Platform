@@ -28,9 +28,9 @@ class Admin extends React.Component {
                 marketing: false,
                 mechanics: false,
                 IT: true,
-                anyting: false,
+                anything: false,
                 },
-            availabitly:{
+            availability:{
                 option1: true,
                 option2: false,
                 option3: false,
@@ -59,15 +59,15 @@ class Admin extends React.Component {
                 marketing: true,
                 mechanics: false,
                 IT: true,
-                anyting: false,
+                anything: false,
                 },
-            availabitly:{
+            availability:{
                 option1: true,
                 option2: false,
                 option3: false,
                 option4: false,
                 option5: false,
-            }
+            },
             },
 
         ],
@@ -79,8 +79,11 @@ class Admin extends React.Component {
         return(
             <div>
                 <Switch>
-                    <Route exact path='/admin/volusers' render={() => (<VolUsers />)} />
-                    <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} />
+                    <Route exact path='/admin/volusers' render={() => (<VolUsers  
+                        volusers={this.state.volusers} queueComponent={this} />)}/>
+                    {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
+                    {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
+                    <Route path='/admin/volprofile/:id' component={VolFixedProfilePage} />
                 </Switch>
             </div>
         )

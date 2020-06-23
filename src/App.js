@@ -12,6 +12,7 @@ import Organization from './Pages/Organization';
 
 import CheckLogin from './react-components/Login/CheckLogin';
 import LoginForm from './react-components/Login/LoginForm';
+import Admin from './Pages/Admin';
 let passport = new CheckLogin();
 
 
@@ -55,6 +56,7 @@ class App extends React.Component{
                 }
             }}/> */}
             <Route path='/organization' component={Organization}/>
+            <Route path='/admin' component={Admin} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -31,28 +31,32 @@ class SinglePost extends React.Component {
     return (
       <div>
         <TableRow key={post.name}>
-				<div class="feature-center animate-box" data-animate-effect="fadeInUp">
-        <TableCell component="th" scope="row">
-        <h2>
+				<div className="feature-center animate-box" data-animate-effect="fadeInUp">
+        <TableCell component="th" scope="row"  style={{width: 500}}>
+        <p className='name'>
         {post.name}
-        </h2>
+        </p>
         </TableCell>
-        <TableCell component="th" scope="row" colSpan='1' style={{ width: 500}}>
-        <p>Area: {post.title}</p>
-        <p>Job description: {post.description}</p>
-        <p>Requirement: {post.requirement}</p>
-        </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell component="th" scope="row"  style={{width: 200}}>
         <p>{post.status} on {post.date}</p>
         </TableCell>
-        <TableCell component="th" scope="row" style={{ width: 100}}>
+        <TableCell component="th" scope="row">
         <Button
             variant="contained"
             color="primary"
             onClick={this.handleClick}
             style={{fontSize: 12}}
           >
-            See applicants
+            Applicants
+          </Button>
+          </TableCell>
+          <TableCell component="th" scope="row">
+        <Button
+            variant="contained"
+            color="default"
+            style={{fontSize: 12}}
+          >
+            Detail
           </Button>
           </TableCell>
           <TableCell component="th" scope="row">
@@ -78,6 +82,8 @@ class SinglePost extends React.Component {
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}
+              status={applicant.status}
+              context={queueComponent}
             />
           ))}
       </div>

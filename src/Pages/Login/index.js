@@ -7,7 +7,7 @@ import "./styles.css";
 class Login extends React.Component{
     render(){
         return(
-            <div id='page'>
+            <div id='page'className='login'>
                 <LoginNav />
                 <LoginForm />
             </div>

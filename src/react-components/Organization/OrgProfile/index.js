@@ -18,7 +18,6 @@ class OrgProfile extends React.Component {
         <div className="container">
         <h1 className='h'>{queueComponent.state.info.name}</h1>
         <h3 className='h'>{queueComponent.state.info.intro}</h3>
-        <p className='h'>Location: {queueComponent.state.info.location}</p>
         <p className='h'>Website: {queueComponent.state.info.website}</p>
         <Link to="./../organization/update">
         <Button

@@ -9,13 +9,17 @@ export const addPost = (queue, info) => {
     }
     requirements += info.requirement[i].title
   }
+  const d = new Date()
   const post = {
     name: info.jobName,
     description: info.jobDescription,
     requirement: requirements,
     title: info.jobTitle,
-    status: "Under review"
+    status: "Under review",
+    date: d.toLocaleDateString(),
+    location: info.location
   };
+  log(info.location)
   if (post.name!=="" && post.description!=="" && post.title!=="") {
     postList.push(post);
     queue.setState({

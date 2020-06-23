@@ -156,7 +156,7 @@ export default function RequirementHook(props) {
     <NoSsr>
       <div>
         <div {...getRootProps()}>
-          <Label {...getInputLabelProps()}>Choose requirements</Label>
+          <Label {...getInputLabelProps()}>Choose Requirements</Label>
           <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
             {value.map((option, index) => (
               <Tag label={option.title} {...getTagProps({ index })} />

@@ -5,7 +5,6 @@ import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
 import { deletePost } from "../../../actions/postList";
-import { uid } from "react-uid";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class SinglePost extends React.Component {
     return (
       <div>
         <TableRow key={post.name}>
-				<div className="feature-center animate-box" data-animate-effect="fadeInUp">
+        <div className="fh5co-post">
         <TableCell component="th" scope="row"  style={{width: 500}}>
         <p className='name'>
         {post.name}
@@ -76,9 +75,7 @@ class SinglePost extends React.Component {
       <div style={{display: this.state.display}} >
       {filteredApplicatns.map(applicant=>(
             <SingleApplicant
-              key={uid(
-                applicant
-              )}
+              id={applicant.id}
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}

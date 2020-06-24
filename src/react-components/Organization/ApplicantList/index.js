@@ -19,15 +19,13 @@ class ApplicantList extends React.Component {
         <h1 class='h'>All Applicants</h1>
         </div>
         </div>
-        <div id="fh5co-services" class="fh5co-bg-section border-bottom">
+        <div id="fh5co-blog" className="fh5co-bg-section">
         <div class="container">
       <Table style={{ width: '80%' }}>
         <TableBody>
         {applicants.map(applicant => (
             <SingleApplicant
-              key={uid(
-                applicant
-              )}
+              id={applicant.id}
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}

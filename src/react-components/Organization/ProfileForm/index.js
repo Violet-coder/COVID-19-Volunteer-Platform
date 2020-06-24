@@ -16,8 +16,8 @@ class ProfileForm extends React.Component {
     });
   };
   state = {
-    website: "",
-    intro: ""
+    website: this.props.info.website,
+    intro: this.props.info.intro
   } 
   render() {  
     const {info, infoComponent} = this.props;
@@ -75,7 +75,7 @@ class ProfileForm extends React.Component {
         />
         </div>
         <div className="contain">
-          <Link to="./../organization/profile">
+          <Link to="/organization/profile">
           <Button
             variant="contained"
             color="primary"

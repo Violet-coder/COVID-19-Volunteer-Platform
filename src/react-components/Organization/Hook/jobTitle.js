@@ -40,6 +40,7 @@ const datasets = [
     { title: 'Yellowknife'},
     { title: 'Iqaluit'},
     { title: 'Whitehorse'},
+    { title: 'remote'},
     { title: 'other'}
   ]
 ];
@@ -67,11 +68,11 @@ export default function TitleSelect(props) {
       location: ""
     });
   }}
-  if (dataset=='job') {
+  if (dataset==='job') {
    var optionSet=datasets[0]
    var setFunc = setJob
   }
-  else if (dataset=='location') {
+  else if (dataset==='location') {
     var optionSet=datasets[1]
     var setFunc = setLocation
   }
@@ -94,7 +95,7 @@ export default function TitleSelect(props) {
           {option.title}
         </React.Fragment>
       )}
-      renderInput={(params) => (
+      renderInput={(params) =>(
         <TextField
           {...params}
           label={label}
@@ -106,8 +107,9 @@ export default function TitleSelect(props) {
             style: {fontSize: 20},
             autoComplete: 'new-password', // disable autocomplete and autofill
           }}
-        />
-      )}
+
+        />)
+      }
     />
   );
 }

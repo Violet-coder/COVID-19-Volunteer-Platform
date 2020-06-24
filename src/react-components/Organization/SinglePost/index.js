@@ -5,6 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
 import { deletePost } from "../../../actions/postList";
+import { Link } from "react-router-dom";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class SinglePost extends React.Component {
     const { post, queueComponent} = this.props;
     const filteredApplicatns = queueComponent.state.applicants.filter(applicant => {
       return applicant.jobName===post.name});
+    const addr = "/organization/posts/"+String(post.id)
     return (
       <div>
         <TableRow key={post.name}>
@@ -50,6 +52,7 @@ class SinglePost extends React.Component {
           </Button>
           </TableCell>
           <TableCell component="th" scope="row">
+        <Link to={addr}>
         <Button
             variant="contained"
             color="default"
@@ -57,6 +60,7 @@ class SinglePost extends React.Component {
           >
             Detail
           </Button>
+          </Link>
           </TableCell>
           <TableCell component="th" scope="row">
           <Button

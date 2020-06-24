@@ -1,8 +1,7 @@
 import React from "react";
-import { uid } from "react-uid";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-
+import {uid} from "react-uid";
 import SinglePost from "./../SinglePost";
 
 //import "./styles.css";
@@ -17,9 +16,7 @@ class SelfPosts extends React.Component {
         <TableBody>
           {posts.map(post => (
             <SinglePost
-              key={uid(
-                post
-              )}
+              key = {uid(post)}
               post={post}
               queueComponent={queueComponent}
             />

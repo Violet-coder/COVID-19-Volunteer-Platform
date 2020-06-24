@@ -8,6 +8,8 @@ import VolSignUp from './Pages/VolSignUp';
 import Login from './Pages/Login';
 import Organization from './Pages/Organization';
 import Volunteer from './Pages/Volunteer/Vol'
+import Publicpost from './Pages/Publicpost'
+import PostDetailPage from './Pages/Volunteer/PostDetailPage'
 
 
 import CheckLogin from './react-components/Login/CheckLogin';
@@ -47,6 +49,9 @@ class App extends React.Component{
                   {return <Login passport={passport} />
                   }} />
             <Route path='/volunteer' render={() => <Volunteer posts={this.state.posts} />}/>
+            <Route path='/publicpost' render={() => <Publicpost posts={this.state.posts} />}/>
+            <Route path='/post/:id' component={PostDetailPage} />
+
             {/* <Route exact path='/Userpage_volunteer' render={(props) => {
                 if(passport.isLogin){
                   return <Userpage_volunteer  posts={this.state.posts} />

@@ -32,10 +32,10 @@ class Volunteer extends React.Component{
       return (
           <div>
             <Switch> 
-              <Route exact path='/volunteer/Userpage_volunteer' render={() => (<Userpage_volunteer  queueComponent={this} posts={posts}/>)}/>
-              <Route exact path='/volunteer/My_application' render={() => (<My_application applications={this.state.applied_posts} />)}/>
+              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} posts={posts}/>)}/>
+              <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} />)}/>
               {/* <Route path='/volunteer/post/postdetail/:id' render={()=>(<PostDetailPage volunteer={}/>)}/> */}
-              <Route path='/volunteer/post/:id' component={PostDetailPage} />
+              {/* <Route path='/post/:id' component={PostDetailPage} /> */}
               {/* <Route path='/volunteer/post/:id' render={ ()=>(<PostDetailPage/>)} /> */}
               {/* <Route path='/volunteer/post/:id' render= {()=>(<PostDetailPage queueComponent={this}/>)}/> */}
 

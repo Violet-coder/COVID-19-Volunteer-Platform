@@ -10,7 +10,7 @@ class HomeHeader extends React.Component {
                             <span>Let's work together</span>
                             <h2>Help together</h2>
                             <p>A platform for connecting passionate people to contribute together. </p>
-                            <p><button type="submit" className="btn btn-primary">Get In Touch</button></p>
+                            {/* <p><button type="submit" className="btn btn-primary">Get In Touch</button></p> */}
                         </div>
                     </div>
                 </div>

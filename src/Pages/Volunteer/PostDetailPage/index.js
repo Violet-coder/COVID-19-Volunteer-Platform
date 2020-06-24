@@ -29,21 +29,18 @@ const posts=[
 
 
 class PostDetailPage extends React.Component {
-    /* componentWillMount(){
-        console.log(this.props.location.state)
-    } */
-    
 
     
     render(){
         // this.componentWillMount()
         const {id} = this.props.match.params
-        // console.log(id)
+        console.log(id)
         const post = posts.find((p) => p.id==id)
         // console.log("state", this.props.location)
         
         const queueComponent = this.props.location.query
-        console.log(queueComponent)
+        console.log('!!!!!!!!')
+        console.log("detail page",queueComponent)
     
         return(
             <div id="page">
@@ -55,7 +52,7 @@ class PostDetailPage extends React.Component {
             <span><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}}>
             Organization Profile
             </Button></span>
-            <span><Link to="/volunteer/My_application"><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}} onClick={ addApplication.bind(this, queueComponent, post)}>
+            <span><Link to="/volunteer/myapplication"><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}} onClick={ addApplication.bind(this, queueComponent, post)}>
             Apply Now
             </Button></Link></span>
             

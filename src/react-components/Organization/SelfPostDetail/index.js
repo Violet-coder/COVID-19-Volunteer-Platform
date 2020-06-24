@@ -2,14 +2,14 @@ import React from "react";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import OrgNav from "../../../react-components/OrgNav";
 import PostDetail from "../../../react-components/Volunteer/PostDetail";
-
-
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import "../../../css/animate.css";
 import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
-// import "./styles.css"
+import "./styles.css"
 
 
 
@@ -23,13 +23,32 @@ class SelfPostDetail extends React.Component {
         const {id} = this.props.match.params
         console.log(id)
         const post = posts.find((p) => p.id==id)
-        const queueComponent = this.props.location.query
     
         return(
             <div>
             <OrgNav/>
             <Header_appli title={post.name} subtitle={post.organization}/>
             <PostDetail post={post}/>
+            <div className='buttons'>
+                <Link to="/organization/profile">
+                <Button
+                variant="contained"
+                color="secondary"
+                style={{fontSize: 12}}
+            >
+                delete
+                </Button>
+                </Link>
+                <Link to="/organization/applicants">
+                <Button
+                variant="contained"
+                color="primary"
+                style={{fontSize: 12}}
+            >
+                applicants
+                </Button>
+                </Link>
+                </div>
             </div>
 
         )

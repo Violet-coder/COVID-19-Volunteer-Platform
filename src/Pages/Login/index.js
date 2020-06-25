@@ -102,13 +102,24 @@ class Login extends React.Component{
             console.log("this passport",this.props.passport)
             const p = this.props.passport;
             
-            p.login(this.state.email,this.state.password, 
-                ()=> {this.props.history.push('/volunteer/userpage')})
+            // p.login(this.state.email,this.state.password, 
+            //     ()=> {this.props.history.push('/volunteer/userpage')})
+            const email = this.state.email
+            const password = this.state.password
+            if(email === 'user1@user.com'){
+                p.login(email, password, ()=> {this.props.history.push('/volunteer/userpage')})
+            } else if (email === 'user2@user.com'){
+                p.login(email, password, ()=> {this.props.history.push('/organization/profile')})
+            } else if(email === 'admin@admin.com') {
+                p.login(email, password, ()=> {this.props.history.push('/admin/volusers')})
+            }
+
             console.log(p)
             if(p.isLogin===false){
                 console.log('error')
                 errors["password"]="Email or password is not correct."
             }
+
         } else {
             console.error('Invalid Form')
         }

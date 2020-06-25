@@ -1,8 +1,8 @@
 import React from 'react';
 import AdminNav from '../../AdminNav';
-import VolProfileForm from "../VolProfileForm";
+import EditVolProfileForm from '../EditVolProfileForm';
 
-// let volusers=[
+// const volusers=[
 //     {
 //     id: 1,
 //     firstName:"John", 
@@ -68,30 +68,56 @@ import VolProfileForm from "../VolProfileForm";
 
 // ]
 
-class VolFixedProfilePage extends React.Component {
+class EditVolProfilePage extends React.Component {
+
+
+    state = {
+    
+            links:"",
+            location:"",
+            desc:"",
+            
+    }
+
+    handleInputChange = (event) => {
+        console.log("input change")
+        const target = event.target;
+        const value = target.value;
+        const id = target.id;
+        //console.log("target id", id)
+        //console.log("target value", value)
+        this.setState({
+            [id]:value
+        });
+    }
+
     render(){
         //console.log(this.props.match)
 
-        //get the id of user and read the user info from database
+        //get the id of user and read the selected user info from database
         const {id} = this.props.match.params
-        //console.log('id',id)
-        //console.log('user1.id', volusers[0].id)
 
         const queueComponent = this.props.location.query;
         const volusers = queueComponent.state.volusers
+        //console.log("edit page volusers", volusers)
         const user = volusers.find((u) => u.id==id)
         //console.log("view user", user)
 
         //const userToView = this.props.location.query
         //console.log("user",userToView)
+
+
+        console.log("edit page queue",queueComponent)
+        //console.log("edit page state", queueComponent.state)
+
         return(
-        
+            
             <div id='page'>
                 <AdminNav />
-                <VolProfileForm user={user}/>
+                <EditVolProfileForm user={user} state={this.state} handleInputChange={this.handleInputChange} queueComponent={queueComponent} />
             </div>
         )
     }
 }
 
-export default VolFixedProfilePage;
+export default EditVolProfilePage;

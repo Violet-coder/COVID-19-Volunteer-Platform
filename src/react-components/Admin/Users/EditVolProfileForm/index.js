@@ -8,7 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-
+import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
 
 const styles = theme => ({
     typography: {
@@ -59,15 +59,8 @@ const styles = theme => ({
   });
 
 
-class VolProfileForm extends React.Component{
-    
-      handleChange = name => event => {
-        this.setState({
-          [name]: event.target.value,
-        });
-      };
-    
-    
+class EditVolProfileForm extends React.Component{
+        
     render(){
         const { classes } = this.props;
         //console.log("form prop", this.props)
@@ -82,6 +75,15 @@ class VolProfileForm extends React.Component{
             skills,
             availability,
         } = this.props.user
+        console.log("form user id", id)
+        console.log("from props user", this.props.user)
+        const newInfo = this.props.state
+        console.log("form new state", this.props.state)
+
+        const handleInputChange = this.props.handleInputChange;
+        const queueComponent = this.props.queueComponent;
+        console.log("edit form", queueComponent)
+
 
         //console.log("availability", availability)
 
@@ -101,10 +103,10 @@ class VolProfileForm extends React.Component{
           id="firstName"
           label="First Name"
           className={classes.textField}
-          value={firstName}
-          onChange={this.handleChange('name')}
+          defaultValue={firstName}
           margin="normal"
           variant="outlined"
+          disabled
           InputProps={
               {
                   classes:{
@@ -123,10 +125,10 @@ class VolProfileForm extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          value={lastName}
-          onChange={this.handleChange('name')}
+          defaultValue={lastName}
           margin="normal"
           variant="outlined"
+          disabled
           InputProps={
               {
                   classes:{
@@ -146,11 +148,10 @@ class VolProfileForm extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          value={email}
-          onChange={this.handleChange('name')}
+          defaultValue={email}
           margin="normal"
           variant="outlined"
-          
+          disabled
           InputProps={
               {
                   classes:{
@@ -170,17 +171,16 @@ class VolProfileForm extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          value={location}
-          onChange={this.handleChange('name')}
+          defaultValue={location}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
-          
           InputProps={
               {
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
+
               }
           }
           InputLabelProps={{
@@ -188,14 +188,15 @@ class VolProfileForm extends React.Component{
                   root: classes.labelResize,
               }
           }}
+          
         />  
 
         <TextField
           id="links"
           label="Links"
           className={classes.fullTextField}
-          value={links}
-          onChange={this.handleChange('name')}
+          defaultValue={links}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -204,7 +205,7 @@ class VolProfileForm extends React.Component{
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
+                  
               }
           }
           InputLabelProps={{
@@ -215,11 +216,11 @@ class VolProfileForm extends React.Component{
         />
 
         <TextField
-          id="description"
+          id="desc"
           label="About you"
           className={classes.fullTextField}
-          value={desc}
-          onChange={this.handleChange('name')}
+          defaultValue={desc}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -230,7 +231,6 @@ class VolProfileForm extends React.Component{
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
               }
           }
           InputLabelProps={{
@@ -251,7 +251,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled    
                 />
                 }
                 label={<span className={classes.formControlLabel}>Analytics</span>}
@@ -266,7 +267,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Biology</span>}
@@ -281,7 +283,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Biotech</span>}
@@ -296,7 +299,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Community</span>}
@@ -311,7 +315,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Content</span>}
@@ -326,7 +331,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Data</span>}
@@ -341,7 +347,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Finance</span>}
@@ -356,7 +363,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Helpdesk</span>}
@@ -371,7 +379,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Manufacturing</span>}
@@ -386,7 +395,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Marketing</span>}
@@ -401,7 +411,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Mechanics</span>}
@@ -416,7 +427,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>IT&Engineering</span>}
@@ -431,7 +443,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Anything</span>}
@@ -452,7 +465,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>1-2 hours a day</span>}
@@ -467,7 +481,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>2-4 hours a day</span>}
@@ -481,7 +496,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }} 
+                    disabled    
                 />
                 }
                 label={<span className={classes.formControlLabel}>more than 4 hours a day</span>}
@@ -496,7 +512,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}  
+                    disabled   
                 />
                 }
                 label={<span className={classes.formControlLabel}>only weekends</span>}
@@ -510,7 +527,8 @@ class VolProfileForm extends React.Component{
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}  
+                    disabled   
                 />
                 }
                 label={<span className={classes.formControlLabel}>anytime</span>}
@@ -519,6 +537,12 @@ class VolProfileForm extends React.Component{
             </FormGroup>
             
         </FormControl>   
+        <div class="form-group row">
+            <div class="offset-4 col-8">
+                
+                <button  type='button' class="btn btn-primary update" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update My Profile</button>
+            </div>
+        </div>
       </form>
       </div>
       </div>
@@ -526,7 +550,7 @@ class VolProfileForm extends React.Component{
     }
 }
             
-VolProfileForm.propTypes = {
+EditVolProfileForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(VolProfileForm);
+export default withStyles(styles)(EditVolProfileForm);

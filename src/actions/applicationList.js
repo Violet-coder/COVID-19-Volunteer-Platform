@@ -20,4 +20,3 @@ export const addApplication = (Volunteer, newAppli) => {
         applied_posts: applications
     }); 
     }
-

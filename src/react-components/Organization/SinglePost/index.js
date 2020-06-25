@@ -26,8 +26,8 @@ class SinglePost extends React.Component {
   render() {
 
     const { post, queueComponent} = this.props;
-    const filteredApplicatns = queueComponent.state.applicants.filter(applicant => {
-      return applicant.jobName===post.name});
+    const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
+      return applicant.jobId===post.id});
     const addr = "/organization/posts/"+String(post.id)
     return (
       <div>
@@ -77,7 +77,7 @@ class SinglePost extends React.Component {
       </div>
       </TableRow>
       <div style={{display: this.state.display}} >
-      {filteredApplicatns.map(applicant=>(
+      {filteredApplicants.map(applicant=>(
             <SingleApplicant
               id={applicant.id}
               name={applicant.name}

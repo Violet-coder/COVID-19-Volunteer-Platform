@@ -13,16 +13,16 @@ class Organization extends React.Component{
         { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver", id: 2}
       ],
       applicants: [
-        {name: 'Jonh Smith', jobName: 'Driver', rank: 'A', status: 'pending', id: 1},
-        {name: 'Maria Hernandz', jobName: 'Rider', rank: 'B', status: 'pending', id: 2},
-        {name: 'Lily', jobName: 'Rider', rank: 'A', status: 'accepted', id: 3},
-        {name: 'Lucy', jobName: 'Driver', rank: 'C', status: 'rejected', id: 4},
+        {name: 'Jonh Smith', jobId: 1, rank: 'A', status: 'pending', id: 1},
+        {name: 'Maria Hernandz', jobId: 2, rank: 'B', status: 'pending', id: 2},
+        {name: 'Lily', jobId: 2, rank: 'A', status: 'accepted', id: 3},
+        {name: 'Lucy', jobId: 1, rank: 'C', status: 'rejected', id: 4},
       ],
       info: {
         name: "Listening Society",
         intro: "We deliver food. We need you!",
         website: 'www.LS.ca',
-        email: "abc@abc.com"
+        email: "user2@user.com"
       }
     }
     render() {

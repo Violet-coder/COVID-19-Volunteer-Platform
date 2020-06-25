@@ -21,7 +21,7 @@ class My_application extends React.Component{
     
     render() {
       const {applications} = this.props
-      console.log(applications)
+      console.log("myapplicationinapplicationpage", applications)
         return(
             <div id="page">
             <Navbar user="Application"/>

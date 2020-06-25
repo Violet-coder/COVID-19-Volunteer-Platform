@@ -1,0 +1,11 @@
+.fh5co-post  {
+    overflow: scroll; 
+    text-overflow: ellipsis; 
+    -o-text-overflow: ellipsis;
+    white-space:pre-wrap;;
+    height: 200px;
+    text-overflow: ellipsis; 
+}
+.fh5co-post p {
+    color:"#989898"
+} 

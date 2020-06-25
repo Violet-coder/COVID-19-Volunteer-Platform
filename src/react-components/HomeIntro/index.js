@@ -21,7 +21,7 @@ class HomeIntro extends React.Component {
                                     <i className="icon-command"></i>
                                 </span>
                                 <h3>POST</h3>
-                                <p>If you are an organization working to help people through this diffcult time, you can post opportunities on CONCEPT</p>
+                                <p>If you are an organization working to help people through this diffcult time, you can post opportunities.</p>
                                 <strong>Post your opportunities and find the people you need</strong>
 
                             </div>
@@ -32,7 +32,7 @@ class HomeIntro extends React.Component {
                                     <i className="icon-eye"></i>
                                 </span>
                                 <h3>SEARCH</h3>
-                                <p>If you are a volunteer looking for an opportunities to help people affected by COVID-19, you can find opportunities on CONCEPT</p>
+                                <p>If you are a volunteer looking for an opportunities to help people affected by COVID-19, you can find opportunities.</p>
                                 <strong>Find your opportunities and help the people you care</strong>
 
                             </div>

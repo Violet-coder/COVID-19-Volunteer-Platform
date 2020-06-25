@@ -9,7 +9,7 @@ import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
 import "./styles.css"
-// import "../../js/modernizr-2.6.2.min.js"
+
 
 
 

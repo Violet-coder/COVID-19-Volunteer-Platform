@@ -10,20 +10,18 @@ class Navbar extends React.Component{
 		<div className="container">
 			<div className="row">
 				<div className="col-xs-2 text-left">
-					<div id="fh5co-logo"><a href="index.html">Volunteer<span>.</span></a></div>
+					<div id="fh5co-logo"><a href="/">Volunteer<span>.</span></a></div>
 				</div>
 				<div className="col-xs-10 text-right menu-1">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li className="has-dropdown">
-							<a href="services.html">Account</a>
-							<ul className="dropdown">
-								<li><a href="#">{user}</a></li>
-								<li><a href="#">Profile</a></li>
-								<li><a href="#">Log Out</a></li>
-							</ul>
-						</li> 
+						<li><a href="/">Home</a></li>
+						{/* <li><a href="#">{user}</a></li> */}
+						<li><a href="#">My Profile</a></li>
+						<li><a href="/volunteer/myapplication">My Application</a></li>
+						<li><a href="/">Log Out</a></li>					
 					</ul>
+						
+					
 				</div>
 			</div>
 			

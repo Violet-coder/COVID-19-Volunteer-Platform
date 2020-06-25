@@ -1,0 +1,65 @@
+#opportunity-search-box {
+    height: 10px; 
+    margin: 0 auto; 
+    margin-bottom: 20px;
+  }
+  
+  div.search {padding: 30px 0;}
+  
+  .searchbar form {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  
+  .searchinput {
+    display: inline;
+  }
+  
+  .searchbutton {
+    display: inline;
+    margin-left: -10px;
+  }
+  
+  
+  .searchbar input {
+    width: 60%;
+    height: 42px;
+    padding-left: 13px;
+    padding-right:46px;
+    border-radius: 5px;
+    color: black;
+    vertical-align: middle;
+  }
+  
+  
+  .searchbar button:before {
+    font-family: FontAwesome ;
+    font-size: 16px;
+    color: white; 
+  } 
+  .center {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    position: relative;
+    left: 91%;	  
+  }
+  
+  .btn-search {
+  
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    padding: 8px 20px;
+    vertical-align: middle;
+  }

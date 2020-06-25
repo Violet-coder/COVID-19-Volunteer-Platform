@@ -1,5 +1,6 @@
 import React from 'react';
 import { uid } from 'react-uid';
+import { Link} from 'react-router-dom'
 
 class PostArea extends React.Component {
     
@@ -17,19 +18,19 @@ class PostArea extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        {ops.map( op => (
+                        {ops.map( op => (<Link to={{pathname:`/post/${op.id}`}} >
                             <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
+                            
                             <div className="fh5co-post">
                                 <span className="fh5co-date">{op.date}</span>
-                                <h3><a href="#">{op.title}</a></h3>
-                                <p>{op.content}</p>
+                                <h3>{op.name}</h3>
+                                <p style={{color:"#989898"}}>{op.description}</p>
                                 <p className="author"><cite> {op.organization}</cite></p>
-                                
-                                
+                               
                             </div>
-                            </div>))}
+                            </div></Link>))}
                             <div className="center">
-                                <p><span><button type="submit" className="btn btn-primary">See All</button></span></p>
+                                <p><span><Link to="/publicpost" ><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
                             </div>
                         
                     </div>	

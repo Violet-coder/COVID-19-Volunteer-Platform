@@ -17,26 +17,10 @@ import Footer from "../../react-components/Footer";
 class Home extends React.Component {
     state = {
         ops: [
-          { date: "May. 29th", 
-            organization: "The Atrium Project",
-            title: "Volunteer for Grocery Delivery",
-            content: "If you are looking for a simple way to get involved in your community, this is a great volunteer opportunity for you! There is no required time commitment!"
-            },
-          { date: "May. 27th", 
-            organization: "The mental Health books",
-            title: "Peer Support Volunteer",
-            content: "Your tasks for this position would include, attending sessions about mental health and crisis intervention, supporting a youth or adult 1:1."
-            },
-          { date: "May. 26th", 
-            organization: "Family Counselling and Support Services",
-            title: "Distress Line Volunteer",
-            content: "Through this role you will have the opportunity to safely volunteer from the comfort of your own home. All volunteers are provided with online training."
-            },
-          { date: "May. 24th", 
-            organization: "Certified Listeners Society",
-            title: "COVID-19 Chat Responder Volunteer",
-            content: "This is an opportunity to volunteer from home. Reporting to the Certified Listener Program Manager all volunteers are fully trained prior to taking emotional support chats."
-            }        
+          { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
+          { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
+          { name: "Online Chatting", description: "Through this role you will have the opportunity to safely volunteer from the comfort of your own home. All volunteers are provided with online training and the necessary support to safely and responsibly support local community members.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The Atrium Project",location: "Toronto", id:3},
+          { name: "Peer Support Volunteer", description: "Your tasks for this position would include, attending sessions about mental health and crisis intervention, supporting a youth or adult 1:1.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The mental Health books",location: "Vancouver", id:4}      
         ]
     
       };

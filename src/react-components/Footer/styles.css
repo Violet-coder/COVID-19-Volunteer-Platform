@@ -8,7 +8,10 @@
 #intro {
     color: rgb(183, 200, 207);
 }
-
+#copyright {
+  text-align: center;
+  color: rgb(183, 200, 207);
+}
 .footer-links
 {
   padding-top:20px;

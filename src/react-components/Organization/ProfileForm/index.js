@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import { updateOrgProfile } from "../../../actions/updateOrgProfile";
@@ -16,8 +17,8 @@ class ProfileForm extends React.Component {
     });
   };
   state = {
-    website: "",
-    intro: ""
+    website: this.props.info.website,
+    intro: this.props.info.intro
   } 
   render() {  
     const {info, infoComponent} = this.props;
@@ -75,7 +76,7 @@ class ProfileForm extends React.Component {
         />
         </div>
         <div className="contain">
-          <Link to="./../organization/profile">
+          <Link to="/organization/profile">
           <Button
             variant="contained"
             color="primary"
@@ -88,6 +89,7 @@ class ProfileForm extends React.Component {
           </Link>
       </div>
       </div>
+      <Footer/>
       </div>
     );
   }

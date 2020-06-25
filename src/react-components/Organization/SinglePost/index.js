@@ -5,7 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
 import { deletePost } from "../../../actions/postList";
-import { uid } from "react-uid";
+import { Link } from "react-router-dom";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   constructor(props) {
@@ -28,10 +28,11 @@ class SinglePost extends React.Component {
     const { post, queueComponent} = this.props;
     const filteredApplicatns = queueComponent.state.applicants.filter(applicant => {
       return applicant.jobName===post.name});
+    const addr = "/organization/posts/"+String(post.id)
     return (
       <div>
         <TableRow key={post.name}>
-				<div className="feature-center animate-box" data-animate-effect="fadeInUp">
+        <div className="fh5co-post">
         <TableCell component="th" scope="row"  style={{width: 500}}>
         <p className='name'>
         {post.name}
@@ -51,6 +52,7 @@ class SinglePost extends React.Component {
           </Button>
           </TableCell>
           <TableCell component="th" scope="row">
+        <Link to={addr}>
         <Button
             variant="contained"
             color="default"
@@ -58,6 +60,7 @@ class SinglePost extends React.Component {
           >
             Detail
           </Button>
+          </Link>
           </TableCell>
           <TableCell component="th" scope="row">
           <Button
@@ -76,9 +79,7 @@ class SinglePost extends React.Component {
       <div style={{display: this.state.display}} >
       {filteredApplicatns.map(applicant=>(
             <SingleApplicant
-              key={uid(
-                applicant
-              )}
+              id={applicant.id}
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}

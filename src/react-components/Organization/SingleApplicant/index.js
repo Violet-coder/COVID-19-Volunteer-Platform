@@ -4,26 +4,27 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import "./styles.css";
 import { ButtonGroup } from "@material-ui/core";
+import { Link } from "react-router-dom";
 class Applicant extends React.Component {
   state = {
     status: this.props.status
   }
-  checkState = (context, name) => {
-    if (this.state.status=='rejected') {
+  checkState = (context, id) => {
+    if (this.state.status==='rejected') {
       return (
         <TableCell component="th" scope="row">
         <p className='rejected'>Rejected</p>
         </TableCell>
       )
     }
-    if (this.state.status=='accepted') {
+    if (this.state.status==='accepted') {
       return (
         <TableCell component="th" scope="row">
         <p className='accepted'>Accepted</p>
         </TableCell>
       )
     }
-    else if (this.state.status=='pending') {
+    else if (this.state.status==='pending') {
       return (
       <TableCell component="th" scope="row">
         <ButtonGroup style={{width: 180}}>
@@ -32,7 +33,7 @@ class Applicant extends React.Component {
         color="secondary"
         style={{fontSize: 12}}
         onClick={()=>{
-          this.reject(context, name)
+          this.reject(context, id)
         }}
       >
         reject
@@ -41,7 +42,7 @@ class Applicant extends React.Component {
         variant="contained"
         color="primary"
         onClick={()=>{
-          this.accept(context, name)
+          this.accept(context, id)
         }}
         style={{fontSize: 12}}
       >
@@ -53,14 +54,14 @@ class Applicant extends React.Component {
     }
     
   }
-  accept = (context, name) => {
+  accept = (context, id) => {
     if (window.confirm("Are you sure you want to accept this candidate?")) {
       this.setState({
         status: 'accepted'
       })
       let appList = context.state.applicants
       for (var i in appList) {
-        if (appList[i].name==name) {
+        if (appList[i].id==id) {
           appList[i].status='accepted'
           break
         }
@@ -70,14 +71,14 @@ class Applicant extends React.Component {
       })
     }
   }
-  reject = (context, name) => {
+  reject = (context, id) => {
     if (window.confirm("Are you sure you want to reject this candidate?")) {
       this.setState({
         status: 'rejected'
       })
       let appList = context.state.applicants
       for (var i in appList) {
-        if (appList[i].name==name) {
+        if (appList[i].id===id) {
           appList[i].status='rejected'
           break
         }
@@ -88,10 +89,11 @@ class Applicant extends React.Component {
     }
   }
   render() {
-    const { name, rank ,jobName, context } = this.props;
+    const { name, rank ,jobName, context, id } = this.props;
+    const addr = "/organization/volprofile/" + String(id)
     return (
       <TableRow key={name}>
-        <div className="feature-center animate-box" data-animate-effect="fadeInUp">
+        <div className="fh5co-post">
         <TableCell component="th" scope="row" style={{fontSize:20}}>
           <p className='name'>{name}</p>
         </TableCell>
@@ -102,6 +104,7 @@ class Applicant extends React.Component {
         {rank}
         </TableCell>
         <TableCell component="th" scope="row">
+        <Link to={addr}>
           <Button
             variant="contained"
             color="default"
@@ -109,9 +112,9 @@ class Applicant extends React.Component {
           >
             detail
           </Button>
+          </Link>
         </TableCell>
-        {this.checkState(context, name)}
-        
+        {this.checkState(context, id)}
         </div>
               
       </TableRow>

@@ -1,6 +1,7 @@
 import React from "react";
 import SelfPosts from "./../SelfPosts";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import { Link } from "react-router-dom";
@@ -18,7 +19,7 @@ class OrgProfile extends React.Component {
         <div className="container">
         <h1 className='h'>{queueComponent.state.info.name}</h1>
         <h3 className='h'>{queueComponent.state.info.intro}</h3>
-        <p className='h'>Website: {queueComponent.state.info.website}</p>
+        <div className='h'>Website: {queueComponent.state.info.website}</div>
         <Link to="./../organization/update">
         <Button
             variant="contained"
@@ -30,7 +31,7 @@ class OrgProfile extends React.Component {
           </Link>
         </div>
         </div>
-        <div id="fh5co-services" className="fh5co-bg-section border-bottom">
+        <div id="fh5co-blog" className="fh5co-bg-section">
         <div className="container">
         <h1>My Posts</h1>
         <Table style={{ width: '100%' }}>
@@ -38,6 +39,7 @@ class OrgProfile extends React.Component {
         </Table>
         </div>
         </div>
+        <Footer/>
       </div>
     );
   }

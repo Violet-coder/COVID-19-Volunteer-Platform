@@ -2,8 +2,10 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Input from "./../../Input";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import RequirementHook from '../Hook/requirement';
 import TitleSelect from '../Hook/jobTitle';
+import ErrorTextField from '../Hook/errorInput';
 import { addPost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
 import "./styles.css";
@@ -16,6 +18,16 @@ class PostForm extends React.Component {
     this.setState({
       [name]: value
     });
+    if (value==="") {
+      this.setState({
+        [name+'IsEmpty']: true
+      })
+    }
+    else {
+      this.setState({
+        [name+'IsEmpty']: false
+      })
+    }
   };
   state = {
     jobName: "",
@@ -24,30 +36,96 @@ class PostForm extends React.Component {
     jobTitle: "",
     location: "",
   } 
-  render() {  
-    const {queueComponent} = this.props;
-    return (
-      <div>
-      <OrgNav/>
-      <div id="fh5co-started">
-      <h1 className='header'>Fill in the form</h1>
-      </div>
-      <div id="fh5co-services" className="fh5co-bg-section border-bottom">
-        <div className="contain">
+  nameErrorCheck = () => {
+    if (this.state.jobNameIsEmpty===true) {
+      return (
+        <ErrorTextField
+          name="jobName"
+          value={this.state.jobName}
+          onChange={this.handleInputChange}
+          label="Job Name"
+        />
+      )
+    }
+    else {
+      return (
         <Input
           name="jobName"
           value={this.state.jobName}
           onChange={this.handleInputChange}
           label="Job Name"
         />
-
+      )
+    }
+  }
+  descriptionErrorCheck = () => {
+    if (this.state.jobDescriptionIsEmpty===true) {
+      return (
+        <ErrorTextField
+          name="jobDescription"
+          value={this.state.jobDescription}
+          onChange={this.handleInputChange}
+          label="Job Description"
+        />
+      )
+    }
+    else {
+      return (
         <Input
           name="jobDescription"
           value={this.state.jobDescription}
           onChange={this.handleInputChange}
           label="Job Description"
         />
-        
+      )
+    
+  }
+}
+  submit = () => {
+    if (this.state.jobName===""||this.state.jobDescription===""||this.state.jobTitle===""||this.state.location==="") {
+      return (
+        <div>
+        <Button
+            variant="contained"
+            color="primary"
+            disabled
+            className="button"
+            style={{fontSize: 20}}
+          >
+            Submit
+          </Button>
+          <p className='notify'>Fill in the required blank to submit</p>
+          </div>
+      )}
+    else {
+      return (
+        <Link to="/organization/profile">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addPost.bind(this, this.props.queueComponent, this.state)}
+            className="button"
+            style={{fontSize: 20}}
+          >
+            Submit
+          </Button>
+          </Link>
+      )
+    }
+    }
+  
+  render() {  
+    return (
+      <div>
+      <OrgNav/>
+      <div id="fh5co-started">
+      <h1 className='header'>Fill in your job information</h1>
+      <p>Your job will be posted after our review</p>
+      </div>
+      <div id="fh5co-services" className="fh5co-bg-section border-bottom">
+        <div className="contain">
+          {this.nameErrorCheck()}
+          {this.descriptionErrorCheck()}
         <div className="options">
         <TitleSelect
           context={this}
@@ -70,19 +148,10 @@ class PostForm extends React.Component {
         </div>
         </div>
         <div className="contain">
-          <Link to="./../organization/profile">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addPost.bind(this, queueComponent, this.state)}
-            className="button"
-            style={{fontSize: 20}}
-          >
-            Submit
-          </Button>
-          </Link>
+          {this.submit()}
       </div>
       </div>
+      <Footer/>
       </div>
     );
   }

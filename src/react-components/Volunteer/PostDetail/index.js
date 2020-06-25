@@ -29,6 +29,8 @@ class PostDetail extends React.Component {
             <h4>{post.description}</h4>
             <h2>Job Requirement</h2>
             <h4>{post.requirement}</h4>
+            <h2>Job Location</h2>
+            <h4>{post.location}</h4>
         
         {/* </Grid> */}
       {/* </Grid> */}

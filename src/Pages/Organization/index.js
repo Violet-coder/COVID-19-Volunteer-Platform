@@ -4,22 +4,24 @@ import PostForm from '../../react-components/Organization/PostForm';
 import OrgProfile from '../../react-components/Organization/OrgProfile';
 import ApplicantList from '../../react-components/Organization/ApplicantList';
 import ProfileForm from '../../react-components/Organization/ProfileForm';
+import SelfPostDetail from '../../react-components/Organization/SelfPostDetail';
+import ApplicantDetail from '../../react-components/Organization/ApplicantDetail';
 class Organization extends React.Component{
     state = {
       posts: [
-        { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto"},
-        { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver"}
+        { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto", id: 1},
+        { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver", id: 2}
       ],
       applicants: [
-        {name: 'Jack', jobName: 'Driver', rank: 'A', status: 'pending'},
-        {name: 'Mike', jobName: 'Rider', rank: 'B', status: 'pending'},
-        {name: 'Lily', jobName: 'Rider', rank: 'A', status: 'accepted'},
-        {name: 'Lucy', jobName: 'Driver', rank: 'C', status: 'rejected'},
+        {name: 'Jonh Smith', jobName: 'Driver', rank: 'A', status: 'pending', id: 1},
+        {name: 'Maria Hernandz', jobName: 'Rider', rank: 'B', status: 'pending', id: 2},
+        {name: 'Lily', jobName: 'Rider', rank: 'A', status: 'accepted', id: 3},
+        {name: 'Lucy', jobName: 'Driver', rank: 'C', status: 'rejected', id: 4},
       ],
       info: {
-        name: "Food Delivery Organization",
-        intro: "We deliver food. We need you! Phone number: 123456789. Email: 123456789.",
-        website: 'www.FDO.ca',
+        name: "Listening Society",
+        intro: "We deliver food. We need you!",
+        website: 'www.LS.ca',
         email: "abc@abc.com"
       }
     }
@@ -35,6 +37,8 @@ class Organization extends React.Component{
                               (<ApplicantList applicants={this.state.applicants} context={this}/>)}/>
               <Route exact path='/organization/update' render={() => 
                               (<ProfileForm info={this.state.info} infoComponent={this}/>)}/>
+              <Route path='/organization/volprofile/:id' component={ApplicantDetail}/>
+              <Route path='/organization/posts/:id' component={SelfPostDetail} />
               </Switch> 
         </div>
       );  

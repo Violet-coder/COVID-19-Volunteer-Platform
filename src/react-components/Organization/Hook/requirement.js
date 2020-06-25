@@ -6,7 +6,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styled-components';
 const Label = styled('label')`
-  padding-left: 13px;
+  padding-left: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
   line-height: 1.5;
@@ -160,8 +160,7 @@ export default function RequirementHook(props) {
           <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
             {value.map((option, index) => (
               <Tag label={option.title} {...getTagProps({ index })} />
-            ))}
-
+            ))}            
             <input {...getInputProps()} />
           </InputWrapper>
         </div>

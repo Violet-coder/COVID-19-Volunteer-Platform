@@ -1,9 +1,9 @@
 import React from "react";
-import { uid } from "react-uid";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import SingleApplicant from "./../SingleApplicant";
 import OrgNav from "../../OrgNav";
+import {uid} from "react-uid";
 import "./styles.css";
 
 /* Component for the List of Posts */
@@ -15,19 +15,18 @@ class ApplicantList extends React.Component {
     <div>
         <OrgNav/>
         <div id="fh5co-started">
-      <div class="container">
-        <h1 class='h'>All Applicants</h1>
+      <div className="container">
+        <h1 className='h'>All Applicants</h1>
         </div>
         </div>
-        <div id="fh5co-services" class="fh5co-bg-section border-bottom">
+        <div id="fh5co-blog" className="fh5co-bg-section">
         <div class="container">
       <Table style={{ width: '80%' }}>
         <TableBody>
         {applicants.map(applicant => (
             <SingleApplicant
-              key={uid(
-                applicant
-              )}
+              key = {uid(applicant)}
+              id={applicant.id}
               name={applicant.name}
               rank={applicant.rank}
               jobName={applicant.jobName}

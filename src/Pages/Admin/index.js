@@ -4,6 +4,7 @@ import VolUsers from '../../react-components/Admin/Users/VolUsers';
 import VolFixedProfilePage from '../../react-components/Admin/Users/VolFixedProfilePage';
 import EditVolProfileForm from '../../react-components/Admin/Users/EditVolProfileForm';
 import EditVolProfilePage from '../../react-components/Admin/Users/EditVolProfilePage'
+import AdminGuide from '../../react-components/Admin/Posts/AdminGuide';
 
 let users= []
 class Admin extends React.Component {
@@ -87,6 +88,7 @@ class Admin extends React.Component {
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
                     <Route path='/admin/volprofile/:id' component={VolFixedProfilePage} />
                     <Route path='/admin/editvolprofile/:id' component={EditVolProfilePage} />
+                    <Route path='/admin' component={AdminGuide} />
                 </Switch>
             </div>
         )

@@ -3,6 +3,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import SingleApplicant from "./../SingleApplicant";
 import OrgNav from "../../OrgNav";
+import Footer from './../../Footer';
 import {uid} from "react-uid";
 import "./styles.css";
 
@@ -38,6 +39,7 @@ class ApplicantList extends React.Component {
       </Table>
       </div>
       </div>
+      <Footer/>
     </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import OrgNav from '../../OrgNav';
+import Footer from './../../Footer';
 import VolProfileForm from "../../Admin/Users/VolProfileForm";
 import Button from "@material-ui/core/Button";
 import "./styles.css";
@@ -136,6 +137,7 @@ class ApplicantDetail extends React.Component {
                 <OrgNav />
                 <VolProfileForm user={user}/>
                 {this.checkState()}
+                <Footer/>
             </div>
         )
     }

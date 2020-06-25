@@ -1,6 +1,7 @@
 import React from "react";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import OrgNav from "../../../react-components/OrgNav";
+import Footer from '../../../react-components/Footer';
 import PostDetail from "../../../react-components/Volunteer/PostDetail";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
@@ -49,6 +50,7 @@ class SelfPostDetail extends React.Component {
                 </Button>
                 </Link>
                 </div>
+            <Footer/>
             </div>
 
         )

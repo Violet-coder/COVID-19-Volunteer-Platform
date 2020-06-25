@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Input from "./../../Input";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import RequirementHook from '../Hook/requirement';
 import TitleSelect from '../Hook/jobTitle';
 import ErrorTextField from '../Hook/errorInput';
@@ -150,6 +151,7 @@ class PostForm extends React.Component {
           {this.submit()}
       </div>
       </div>
+      <Footer/>
       </div>
     );
   }

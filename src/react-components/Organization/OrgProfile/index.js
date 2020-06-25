@@ -1,6 +1,7 @@
 import React from "react";
 import SelfPosts from "./../SelfPosts";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import { Link } from "react-router-dom";
@@ -38,6 +39,7 @@ class OrgProfile extends React.Component {
         </Table>
         </div>
         </div>
+        <Footer/>
       </div>
     );
   }

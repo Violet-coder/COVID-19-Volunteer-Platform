@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import OrgNav from './../../OrgNav';
+import Footer from './../../Footer';
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import { updateOrgProfile } from "../../../actions/updateOrgProfile";
@@ -88,6 +89,7 @@ class ProfileForm extends React.Component {
           </Link>
       </div>
       </div>
+      <Footer/>
       </div>
     );
   }

@@ -17,7 +17,8 @@ export const addPost = (queue, info) => {
     title: info.jobTitle,
     status: "Under review",
     date: d.toLocaleDateString(),
-    location: info.location
+    location: info.location,
+    id: postList.length+1
   };
   log(info.location)
   if (post.name!=="" && post.description!=="" && post.title!=="") {

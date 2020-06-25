@@ -4,6 +4,7 @@ import Footer from './../../Footer';
 import VolProfileForm from "../../Admin/Users/VolProfileForm";
 import Button from "@material-ui/core/Button";
 import { ButtonGroup } from "@material-ui/core";
+import { BackButton } from '../Hook/backButton'
 import "./styles.css";
 const volusers=[
     {
@@ -139,13 +140,7 @@ class ApplicantDetail extends React.Component {
                 <VolProfileForm user={user}/>
                 <div className='buttons'>
                 {this.checkState()}
-                <Button
-            variant="contained"
-            color="default"
-            style={{fontSize: 12, height: 30}}
-        >
-            back
-            </Button>
+                <BackButton/>
             </div>
                 <Footer/>
             </div>

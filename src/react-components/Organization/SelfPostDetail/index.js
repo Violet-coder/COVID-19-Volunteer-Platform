@@ -9,7 +9,7 @@ import TableBody from "@material-ui/core/TableBody";
 import { Link } from "react-router-dom";
 import {uid} from "react-uid";
 import SingleApplicant from "./../SingleApplicant";
-import { useHistory } from "react-router-dom";
+import { BackButton } from '../Hook/backButton'
 import "../../../css/animate.css";
 import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
@@ -17,14 +17,6 @@ import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
 import "./styles.css"
 
-export const Item = () => {
-    let history = useHistory();
-    return (
-        <>
-          <button onClick={() => history.goBack()}>Back</button>
-        </>
-    );
-};
 class SelfPostDetail extends React.Component {
     state = {
         posts: [
@@ -61,13 +53,7 @@ class SelfPostDetail extends React.Component {
                 delete
                 </Button>
                 </Link>
-                <Button
-                variant="contained"
-                color="default"
-                style={{fontSize: 12}}
-            >
-                back
-                </Button>
+                <BackButton/>
                 </div>
                 
                 <div id="fh5co-blog" className="fh5co-bg-section">

@@ -120,7 +120,7 @@ class PostForm extends React.Component {
       <OrgNav/>
       <div id="fh5co-started">
       <h1 className='header'>Fill in your job information</h1>
-      <p>Your job will be posted after our review</p>
+      <p className='post-form'>Your job will be posted after our review</p>
       </div>
       <div id="fh5co-services" className="fh5co-bg-section border-bottom">
         <div className="contain">

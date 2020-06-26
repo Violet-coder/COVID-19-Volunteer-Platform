@@ -63,7 +63,7 @@ export const editPost = (id, queue, info) => {
     status: "Under review",
     date: d.toLocaleDateString(),
     location: info.location,
-    id: postList.length+1
+    id: id
   };
   for (var i in postList) {
     if (postList[i].id===id) {

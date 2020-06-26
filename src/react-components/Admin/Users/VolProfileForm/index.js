@@ -103,7 +103,7 @@ class VolProfileForm extends React.Component{
           id="firstName"
           label="First Name"
           className={classes.textField}
-          value={firstName}
+          value={firstName || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -125,7 +125,7 @@ class VolProfileForm extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          value={lastName}
+          value={lastName || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -148,7 +148,7 @@ class VolProfileForm extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          value={email}
+          value={email || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -172,7 +172,7 @@ class VolProfileForm extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          value={location}
+          value={location || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -196,7 +196,7 @@ class VolProfileForm extends React.Component{
           id="links"
           label="Links"
           className={classes.fullTextField}
-          value={links}
+          value={links || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -220,7 +220,7 @@ class VolProfileForm extends React.Component{
           id="description"
           label="About you"
           className={classes.fullTextField}
-          value={desc}
+          value={desc || ""}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"

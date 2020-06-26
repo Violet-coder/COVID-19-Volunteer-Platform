@@ -6,6 +6,8 @@ import EditVolProfileForm from '../../react-components/Admin/Users/EditVolProfil
 import EditVolProfilePage from '../../react-components/Admin/Users/EditVolProfilePage'
 import AdminGuide from '../../react-components/Admin/Posts/AdminGuide';
 import PostList from '../../react-components/Admin/Posts/PostList';
+import AdminPostForm from '../../react-components/Admin/Posts/AdminPostForm';
+
 
 let users= []
 class Admin extends React.Component {
@@ -97,12 +99,15 @@ class Admin extends React.Component {
                 <Switch>
                     <Route exact path='/admin/volusers' render={() => (<VolUsers  
                         volusers={this.state.volusers} queueComponent={this} />)}/>
+                    <Route exact path='/admin/publishpost' render={() => (
+                        <AdminPostForm queueComponent={this} />)} />
                     {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
                     <Route path='/admin/volprofile/:id' component={VolFixedProfilePage} />
                     <Route path='/admin/editvolprofile/:id' component={EditVolProfilePage} />
                     <Route path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
+                    
                     <Route path='/admin' component={AdminGuide} />
                     
                     

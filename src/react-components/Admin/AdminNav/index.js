@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css'
 
 class AdminNav extends React.Component {
@@ -15,7 +16,7 @@ class AdminNav extends React.Component {
                                 <li><a href="/admin" >Home</a></li>
                                 <li><a href="/">Log Out</a></li>
                                 <li>
-                                    <button type="submit" className="btn btn-primary navBtn">Create New Post</button>
+                                    <Link to='/admin/publishpost'><button type="submit" className="btn btn-primary navBtn">Create New Post</button></Link>
                                 </li>
         
                             

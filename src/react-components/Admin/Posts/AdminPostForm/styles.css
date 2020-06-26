@@ -1,0 +1,34 @@
+.header {
+    margin-top: 40px;
+    color: white;
+    text-align: center;
+  }
+
+.button {
+  width: 30%;
+}
+
+.contain {
+  width: 100%;
+  padding-left:20%;
+  padding-right:20%;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.options {
+  width: 100%;
+  padding-left:20%;
+  padding-right:20%;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+p.post-form {
+  text-align: center;
+}
+
+p.notify {
+  font-size: 13px;
+}

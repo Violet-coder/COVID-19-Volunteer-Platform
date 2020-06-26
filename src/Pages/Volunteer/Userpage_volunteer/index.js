@@ -22,12 +22,16 @@ class Userpage_volunteer extends React.Component{
         const {queueComponent, posts} = this.props
         /* console.log("queueComponent",queueComponent)
         console.log("posts",posts)  */
+         //only display posts that are approved
+        const filteredPosts = posts.filter(
+            p => p.status === 'Approved'
+        )
 
         return(
             <div id="page">
             <Navbar user="Application"/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together"/>
-            <Recommended_ops queueComponent={queueComponent} posts={posts}/>
+            <Recommended_ops queueComponent={queueComponent} posts={filteredPosts}/>
 
 
 

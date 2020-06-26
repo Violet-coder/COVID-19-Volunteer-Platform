@@ -10,11 +10,6 @@ import { Link } from "react-router-dom";
 import {uid} from "react-uid";
 import SingleApplicant from "./../SingleApplicant";
 import { BackButton } from '../Hook/backButton'
-import "../../../css/animate.css";
-import "../../../css/icomoon.css";
-import "../../../css/bootstrap.css";
-import "../../../css/magnific-popup.css";
-import "../../../css/style.css";
 import "./styles.css"
 
 class SelfPostDetail extends React.Component {
@@ -24,10 +19,10 @@ class SelfPostDetail extends React.Component {
           { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver", id: 2}
         ],
         applicants: [
-          {name: 'Jonh Smith', jobId: 1, rank: 'A', status: 'pending', id: 1},
-          {name: 'Maria Hernandz', jobId: 2, rank: 'B', status: 'pending', id: 2},
-          {name: 'Lily', jobId: 2, rank: 'A', status: 'accepted', id: 3},
-          {name: 'Lucy', jobId: 1, rank: 'C', status: 'rejected', id: 4},
+          {name: 'Jonh Smith', jobId: 1, rank: 'A', status: 'pending', id: 1, jobName: 'Driver'},
+          {name: 'Maria Hernandz', jobId: 2, rank: 'B', status: 'pending', id: 2, jobName: 'Rider'},
+          {name: 'Lily', jobId: 2, rank: 'A', status: 'accepted', id: 3, jobName: 'Rider'},
+          {name: 'Lucy', jobId: 1, rank: 'C', status: 'rejected', id: 4, jobName: 'Driver'},
         ]
       }
     
@@ -41,7 +36,9 @@ class SelfPostDetail extends React.Component {
         return(
             <div>
             <OrgNav/>
-            <Header_appli title={post.name} subtitle={post.organization}/>
+            <Header_appli title={post.name} subtitle='Listening Society'/>
+            <div id="fh5co-blog" class="fh5co-bg-section">
+            <div class="container">
             <PostDetail post={post}/>
             <div className='buttons'>
                 <Link to="/organization/profile">
@@ -49,15 +46,14 @@ class SelfPostDetail extends React.Component {
                 variant="contained"
                 color="secondary"
                 style={{fontSize: 12}}
+                onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {}} }
             >
                 delete
                 </Button>
                 </Link>
                 <BackButton/>
                 </div>
-                
-                <div id="fh5co-blog" className="fh5co-bg-section">
-        <div class="container">
+
         <h1>Applicants</h1>
       <Table style={{ width: '80%' }}>
         <TableBody>

@@ -33,12 +33,12 @@ class SinglePost extends React.Component {
       <div>
         <TableRow key={post.name}>
         <div className="fh5co-post">
-        <TableCell component="th" scope="row"  style={{width: 500}}>
-        <p className='name'>
+        <TableCell component="th" scope="row" style={{width: 300}}>
+        <p id='name'>
         {post.name}
         </p>
         </TableCell>
-        <TableCell component="th" scope="row"  style={{width: 200}}>
+        <TableCell component="th" scope="row" style={{width: 200}}>
         <p>{post.status} on {post.date}</p>
         </TableCell>
         <TableCell component="th" scope="row">

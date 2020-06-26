@@ -8,7 +8,7 @@ export function BackButton() {
         <Button
         variant="contained"
         color="default"
-        style={{fontSize: 12, height: 30}}
+        style={{fontSize: 12, height: 33}}
         onClick={() => history.goBack()}
     >
         back

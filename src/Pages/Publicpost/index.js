@@ -16,11 +16,16 @@ class Publicpost extends React.Component {
     
     render() {
         const {posts} = this.props
+        //only display posts that are approved
+        const filteredPosts = posts.filter(
+            p => p.status === 'Approved'
+        )
+        //console.log('filteredPosts', filteredPosts) 
         return(
             <div id='page'>
                 <HomeNav />
                 <Header title="Support Our Community During Covid-19" subtitle="Let's work together"/>
-                <Posts posts={posts}/>
+                <Posts posts={filteredPosts}/>
                 <Footer />
             </div>
         )

@@ -6,6 +6,11 @@
     margin:0 auto;
 }
 
+.guide-page{
+  width: 100%;
+  height: 100vh;
+}
+
 .Center-Container {
     position: relative;
     height: 100%;

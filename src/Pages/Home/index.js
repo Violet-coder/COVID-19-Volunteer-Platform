@@ -1,7 +1,7 @@
 import React from "react";
 import HomeNav from '../../react-components/HomeNav';
 import HomeHeader from "../../react-components/HomeHeader";
-
+import { Link} from 'react-router-dom';
 
 // import "../../css/animate.css";
 // import "../../css/icomoon.css";

@@ -13,11 +13,12 @@ export const  MyButton = styled(Button)({
   borderRadius: 3,
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   color: 'white',
-  height: 500,
+  height: 400,
   padding: '0 30px',
-  width: 500,
+  width: 400,
   fontSize:30,
   justifyContent:'center',
+
 
 });
 
@@ -33,8 +34,13 @@ export const Container = styled(Box)(
         textAlign: "center",
         justifyContent:'center',
         display:'flex',
-        boxShadow:'0',
-        marginTop:'20%'
+        boxShadow:'none',
+        backgroundColor: 'transparent',      
+        marginTop:'10%',
+        marginBottom:'10%',
+        marginLeft:'20%',
+        marginRight:'20%'
+
     }
 )
 

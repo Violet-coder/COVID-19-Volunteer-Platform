@@ -1,0 +1,23 @@
+.fh5co-post  {
+    overflow: scroll; 
+    text-overflow: ellipsis; 
+    -o-text-overflow: ellipsis;
+    white-space:pre-wrap;;
+    height: 200px;
+    text-overflow: ellipsis; 
+}
+.fh5co-post p {
+    color:"#989898"
+} 
+
+.user-manage {
+    display: inline-block; 
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+.post-manage {
+    margin-top: 10%;
+    margin-bottom: 20%;
+
+}

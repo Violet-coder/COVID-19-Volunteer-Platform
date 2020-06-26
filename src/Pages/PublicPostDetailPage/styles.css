@@ -1,0 +1,13 @@
+.detailpagebutton{
+    width: 100%;
+}
+.Organizationbutton {
+    width:"50%";
+    text-align:"center";
+    display:"inline-block"
+}
+.Applybutton {
+    width:"50%";
+    text-align:"center";
+    display:"inline-block"
+}

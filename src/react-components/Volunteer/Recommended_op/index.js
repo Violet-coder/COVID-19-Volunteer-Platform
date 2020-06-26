@@ -3,6 +3,7 @@ import { uid } from "react-uid";
 import { Link} from 'react-router-dom'
 import PostDetailPage from '../../../Pages/Volunteer/PostDetailPage'
 import { Route} from 'react-router-dom';
+import './styles.css'
 
 class Recommended_ops extends React.Component{
     render(){
@@ -29,7 +30,7 @@ class Recommended_ops extends React.Component{
                 <span className="fh5co-date">{ post.date }</span>
                 <h3>{ post.name }</h3>
                 {/* {console.log(queueComponent)} */}
-                <p>{ post.description }</p>
+                <p id='post-para'>{ post.description }</p>
             <p className="author"><cite>{ post.organization }</cite></p>
             </div>
         </div>  </Link>

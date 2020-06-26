@@ -39,11 +39,11 @@ class PublicPostDetailPage extends React.Component {
                 <div id="fh5co-blog" class="fh5co-bg-section">
                 <div class="container">
                 <PostDetail post={post}/>
-                <div className="detailpagebutton"  style={{width:"100%"}}>
-                <span><Button className="Organizationbutton" variant="contained" color="secondary">
+                <div className="detailpagebutton">
+                <span ><Button className="Organizationbutton" variant="contained" color="secondary">
                 Organization Profile
                 </Button></span>
-                <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary" >
+                <span ><Link to="/volunteer/myapplication"><Button  className="Applybutton" variant="contained" color="secondary" >
                 Apply Now
                 </Button></Link></span>
                 </div>

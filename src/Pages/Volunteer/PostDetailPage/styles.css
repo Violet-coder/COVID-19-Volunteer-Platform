@@ -1,5 +1,19 @@
-.button{
-    width: 60%;
+.detailpagebutton{
+    width: 100%;
     margin-left: 30%;
-    margin-top: 50px
+}
+.Organizationbutton {
+    width: 220px;
+    text-align: center;
+    display: inline-block;
+    /* margin-right:"20px" */
+}
+.Applybutton {
+    width:220px;
+    text-align: center ;
+    display:inline-block;
+    /* margin-left: 20px; */
+}
+.detailpagebutton span {
+    margin-left: 10px;
 }

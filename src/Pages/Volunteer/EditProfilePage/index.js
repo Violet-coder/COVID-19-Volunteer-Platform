@@ -95,7 +95,7 @@ class EditProfilePage extends React.Component {
             
             <div id='page'>
             <Navbar />
-            <Header_appli title="My Profile" subtitle="Let's work together"/>
+            <Header_appli title="Update Profile" subtitle="Let's work together"/>
             <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} />
                       
             </div>

@@ -8,7 +8,7 @@ import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
-import "./styles.css"
+// import "./styles.css"
 
 
 

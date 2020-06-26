@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PostForm from '../../react-components/Organization/PostForm';
+import PostEditForm from '../../react-components/Organization/PostForm/edit';
 import OrgProfile from '../../react-components/Organization/OrgProfile';
 import ApplicantList from '../../react-components/Organization/ApplicantList';
 import ProfileForm from '../../react-components/Organization/ProfileForm';
@@ -37,8 +38,12 @@ class Organization extends React.Component{
                               (<ApplicantList applicants={this.state.applicants} context={this}/>)}/>
               <Route exact path='/organization/update' render={() => 
                               (<ProfileForm info={this.state.info} infoComponent={this}/>)}/>
-              <Route path='/organization/volprofile/:id' component={ApplicantDetail}/>
-              <Route path='/organization/posts/:id' component={SelfPostDetail} />
+              <Route exact path='/organization/post_edit/:id' render={(matchProps) => 
+                              (<PostEditForm matchProps = {matchProps} posts={this.state.posts} context={this}/>)}/>
+              <Route path='/organization/volprofile/:id' render={(matchProps) => 
+                              (<ApplicantDetail matchProps = {matchProps} applicants={this.state.applicants} context={this}/>)}/>
+              <Route path='/organization/posts/:id' render={(matchProps) => 
+                              (<SelfPostDetail matchProps = {matchProps} context={this}/>)}/>
               </Switch> 
         </div>
       );  

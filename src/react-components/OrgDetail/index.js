@@ -7,21 +7,21 @@ class OrgDetail extends React.Component {
     const {info} = this.props;
     
     return (
-		<div class="container">
+		<div className="container">
       
-      <div class="fh5co-post" style={{minHeight: "100px"}}>
+      <div className="fh5co-post" style={{minHeight: "100px"}}>
 			<h3>Organization Name</h3>
       <hr/>
 			<p>{info.name}</p>			
 			</div>
 
-			<div class="fh5co-post" style={{minHeight: "300px"}}>
+			<div className="fh5co-post" style={{minHeight: "300px"}}>
 			<h3>Organization Introduction</h3>
       <hr/>
       <p>{info.intro}</p>
 			</div>
 
-      <div class="fh5co-post" style={{minHeight: "100px"}}>
+      <div className="fh5co-post" style={{minHeight: "100px"}}>
 			<h3>Website</h3>
       <hr/>
       <p>{info.website}</p>

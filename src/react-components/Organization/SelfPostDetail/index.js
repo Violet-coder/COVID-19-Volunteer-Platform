@@ -10,35 +10,23 @@ import { Link } from "react-router-dom";
 import {uid} from "react-uid";
 import SingleApplicant from "./../SingleApplicant";
 import { BackButton } from '../Hook/backButton'
+import { deletePost } from "../../../actions/postList";
 import "./styles.css"
 
 class SelfPostDetail extends React.Component {
-    state = {
-        posts: [
-          { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto", id: 1},
-          { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver", id: 2}
-        ],
-        applicants: [
-          {name: 'Jonh Smith', jobId: 1, rank: 'A', status: 'pending', id: 1, jobName: 'Driver'},
-          {name: 'Maria Hernandz', jobId: 2, rank: 'B', status: 'pending', id: 2, jobName: 'Rider'},
-          {name: 'Lily', jobId: 2, rank: 'A', status: 'accepted', id: 3, jobName: 'Rider'},
-          {name: 'Lucy', jobId: 1, rank: 'C', status: 'rejected', id: 4, jobName: 'Driver'},
-        ]
-      }
-    
     render(){
-        
-        const {id} = this.props.match.params
-        console.log(id)
-        const post = this.state.posts.find((p) => p.id==id)
-        const filteredApplicants = this.state.applicants.filter(applicant => {
+        const {matchProps,context} = this.props
+        const id = parseInt(matchProps.match.params.id)
+        const post = context.state.posts.find((p) => p.id===id)
+        const filteredApplicants = context.state.applicants.filter(applicant => {
             return applicant.jobId===post.id});
+        const addr = "/organization/post_edit/" + String(id)
         return(
             <div>
             <OrgNav/>
             <Header_appli title={post.name} subtitle='Listening Society'/>
-            <div id="fh5co-blog" class="fh5co-bg-section">
-            <div class="container">
+            <div id="fh5co-blog" className="fh5co-bg-section">
+            <div className="container">
             <PostDetail post={post}/>
             <div className='buttons'>
                 <Link to="/organization/profile">
@@ -46,9 +34,24 @@ class SelfPostDetail extends React.Component {
                 variant="contained"
                 color="secondary"
                 style={{fontSize: 12}}
-                onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) {} else {e.preventDefault()}} }
+                onClick={(e)=>{
+                  const r = deletePost(context, post, e);
+                  if (r===false) {
+                    e.preventDefault()
+                  }
+                }
+                }
             >
                 delete
+                </Button>
+                </Link>
+                <Link to={addr}>
+                <Button
+                variant="contained"
+                color="primary"
+                style={{fontSize: 12}}
+            >
+                edit
                 </Button>
                 </Link>
                 <BackButton/>

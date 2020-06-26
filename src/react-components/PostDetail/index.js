@@ -14,21 +14,21 @@ class PostDetail extends React.Component {
 
   return (
   
-		<div class="container">
+		<div className="container">
       
-      <div class="fh5co-post" style={{minHeight: "300px"}}>
+      <div className="fh5co-post" style={{minHeight: "300px"}}>
 			<h3>Job Description</h3>
       <hr/>
 			<p>{post.description}</p>			
 			</div>
 
-			<div class="fh5co-post" style={{minHeight: "300px"}}>
+			<div className="fh5co-post" style={{minHeight: "300px"}}>
 			<h3>Skills Needed</h3>
       <hr/>
       <p>{post.requirement}</p>
 			</div>
 
-      <div class="fh5co-post">
+      <div className="fh5co-post">
 			<h3>Location</h3>
       <hr/>
       <p>{post.location}</p>

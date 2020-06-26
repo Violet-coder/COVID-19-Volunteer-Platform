@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminNav from '../../AdminNav';
 import EditVolProfileForm from '../EditVolProfileForm';
-
+import './styles.css';
 // const volusers=[
 //     {
 //     id: 1,

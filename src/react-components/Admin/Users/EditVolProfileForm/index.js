@@ -9,6 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
 import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
+import './styles.css';
 
 const styles = theme => ({
     typography: {
@@ -537,12 +538,10 @@ class EditVolProfileForm extends React.Component{
             </FormGroup>
             
         </FormControl>   
-        <div class="form-group row">
-            <div class="offset-4 col-8">
+        
                 
-                <button  type='button' class="btn btn-primary update" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update My Profile</button>
-            </div>
-        </div>
+            <span id='updateform'><button  type='button' class="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
+            </span>
       </form>
       </div>
       </div>

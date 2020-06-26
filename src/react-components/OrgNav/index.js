@@ -15,10 +15,9 @@ class OrgNav extends React.Component {
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/organization/post">Post a New Job</Link></li>
                                 <li><Link to="/organization/profile">Profile</Link></li>
-                                <li><Link to="/organization/applicants">All applicants</Link></li>
+                                <li><Link to="/organization/post">Post a New Job</Link></li>
+                                <li><Link to="/organization/applicants">All Applicants</Link></li>
                                 <li><Link to="/">Log Out</Link></li>
                             </ul>
                         </div>

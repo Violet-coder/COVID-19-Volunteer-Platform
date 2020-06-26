@@ -16,7 +16,7 @@ class Navbar extends React.Component{
 					<ul>
 						<li><a href="/">Home</a></li>
 						{/* <li><a href="#">{user}</a></li> */}
-						<li><a href="#">My Profile</a></li>
+						<li><a href="/volunteer/myprofile">My Profile</a></li>
 						<li><a href="/volunteer/myapplication">My Application</a></li>
 						<li><a href="/">Log Out</a></li>					
 					</ul>

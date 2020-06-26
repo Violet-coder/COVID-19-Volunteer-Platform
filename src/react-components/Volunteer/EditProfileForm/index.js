@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import classNames from 'classnames';
-
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -10,8 +8,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-import { Link} from 'react-router-dom';
+import { updateVolProfile } from '../../../actions/updateVolProfile';
 import Button from '@material-ui/core/Button';
+import { Link} from 'react-router-dom'
+import './styles.css'
 
 
 const styles = theme => ({
@@ -63,15 +63,8 @@ const styles = theme => ({
   });
 
 
-class VolProfileForm extends React.Component{
-    
-      handleChange = name => event => {
-        this.setState({
-          [name]: event.target.value,
-        });
-      };
-    
-    
+class EditProfileForm extends React.Component{
+        
     render(){
         const { classes } = this.props;
         //console.log("form prop", this.props)
@@ -86,29 +79,32 @@ class VolProfileForm extends React.Component{
             skills,
             availability,
         } = this.props.user
+       
+          let newInfo = this.props.newInfo
+        // console.log("form new state", this.props.state)
+        // console.log("newInfo",newInfo)
 
-        //console.log("availability", availability)
+        const handleInputChange = this.props.handleInputChange;
+        const handleCheckboxChange = this.props.handleCheckboxChange;
+        
+        const queueComponent = this.props.queueComponent;
+        // console.log("edit form", queueComponent)
+
+
+
 
         return(
         <div id="fh5co-services" className="fh5co-bg-section border-bottom">
         <div className='container'>
-            <div className="row row-pb-md">
-                <div className="col-md-8 col-md-offset-2 text-left animate-box" data-animate-effect="fadeInUp">
-                    <div className="fh5co-heading">
-                        <h2>User Profile</h2>
-                        <p>View volunteer users' information.</p>
-                    </div>
-                </div>
-            </div>
         <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="firstName"
           label="First Name"
           className={classes.textField}
-          value={firstName || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={firstName}
           margin="normal"
           variant="outlined"
+          disabled
           InputProps={
               {
                   classes:{
@@ -127,10 +123,10 @@ class VolProfileForm extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          value={lastName || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={lastName}
           margin="normal"
           variant="outlined"
+          disabled
           InputProps={
               {
                   classes:{
@@ -150,11 +146,10 @@ class VolProfileForm extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          value={email || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={email}
           margin="normal"
           variant="outlined"
-          
+          disabled
           InputProps={
               {
                   classes:{
@@ -174,17 +169,16 @@ class VolProfileForm extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          value={location || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={location}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
-          
           InputProps={
               {
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
+
               }
           }
           InputLabelProps={{
@@ -192,14 +186,15 @@ class VolProfileForm extends React.Component{
                   root: classes.labelResize,
               }
           }}
+          
         />  
 
         <TextField
           id="links"
           label="Links"
           className={classes.fullTextField}
-          value={links || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={links}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -208,7 +203,7 @@ class VolProfileForm extends React.Component{
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
+                  
               }
           }
           InputLabelProps={{
@@ -219,11 +214,11 @@ class VolProfileForm extends React.Component{
         />
 
         <TextField
-          id="description"
+          id="desc"
           label="About you"
           className={classes.fullTextField}
-          value={desc || ""}
-          onChange={this.handleChange('name')}
+          defaultValue={desc}
+          onChange={handleInputChange}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -234,7 +229,6 @@ class VolProfileForm extends React.Component{
                   classes:{
                       input: classes.inputResize,
                   },
-                  readOnly:true,
               }
           }
           InputLabelProps={{
@@ -249,13 +243,15 @@ class VolProfileForm extends React.Component{
             <FormControlLabel
                 control={
                 <Checkbox
-                    className={classes.checkbox}
-                    checked={skills.analytics}
-                    name='analytics'
+                    onChange={handleCheckboxChange}
+                    className={classes.checkbox}                 
+                    checked={newInfo.analytics}
+                    id='analytics'
                     color='primary'
                     inputProps={{
-                        readOnly: true,
-                    }}    
+                        readOnly: false,
+                    }}
+                    // disabled    
                 />
                 }
                 label={<span className={classes.formControlLabel}>Analytics</span>}
@@ -265,12 +261,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.biology}
-                    name='biology'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.biology}
+                    id='biology'
                     color='primary'
                     inputProps={{
-                        readOnly: true,
-                    }}    
+                        readOnly: false,
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Biology</span>}
@@ -280,12 +278,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.biotech}
-                    name='biotech'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.biotech}
+                    id='biotech'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Biotech</span>}
@@ -295,12 +295,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.community}
-                    name='community'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.community}
+                    id='community'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Community</span>}
@@ -310,12 +312,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.content}
-                    name='content'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.content}
+                    id='content'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Content</span>}
@@ -325,12 +329,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.data}
-                    name='data'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.data}
+                    id='data'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Data</span>}
@@ -340,12 +346,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.finance}
-                    name='finance'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.finance}
+                    id='finance'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Finance</span>}
@@ -355,12 +363,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.helpdesk}
-                    name='helpdesk'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.helpdesk}
+                    id='helpdesk'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Helpdesk</span>}
@@ -370,12 +380,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.manufacturing}
-                    name='manufacturing'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.manufacturing}
+                    id='manufacturing'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Manufacturing</span>}
@@ -385,12 +397,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.marketing}
-                    name='marketing'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.marketing}
+                    id='marketing'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Marketing</span>}
@@ -400,12 +414,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.mechanics}
-                    name='mechanics'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.mechanics}
+                    id='mechanics'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Mechanics</span>}
@@ -415,12 +431,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.IT}
-                    name='IT'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.IT}
+                    id='IT'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>IT&Engineering</span>}
@@ -430,12 +448,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={skills.anything}
-                    name='anything'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.anything}
+                    id='anything'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>Anything</span>}
@@ -445,18 +465,20 @@ class VolProfileForm extends React.Component{
         </FormGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel className={classes.formControlLabel} >Availabitly</FormLabel>
+        <FormLabel className={classes.formControlLabel} >Availability</FormLabel>
             <FormGroup row>
             <FormControlLabel
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={availability.option1}
-                    name='option1'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.option1}
+                    id='option1'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>1-2 hours a day</span>}
@@ -466,12 +488,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={availability.option2}
-                    name='option2'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.option2}
+                    id='option2'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}
+                    // disabled     
                 />
                 }
                 label={<span className={classes.formControlLabel}>2-4 hours a day</span>}
@@ -480,12 +504,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={availability.option3}
-                    name='option3'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.option3}
+                    id='option3'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }} 
+                    // disabled    
                 />
                 }
                 label={<span className={classes.formControlLabel}>more than 4 hours a day</span>}
@@ -495,12 +521,14 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={availability.option4}
-                    name='option4'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.option4}
+                    id='option4'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}  
+                    // disabled   
                 />
                 }
                 label={<span className={classes.formControlLabel}>only weekends</span>}
@@ -509,20 +537,27 @@ class VolProfileForm extends React.Component{
                 control={
                 <Checkbox
                     className={classes.checkbox}
-                    checked={availability.option5}
-                    name='option5'
+                    onChange={handleCheckboxChange}
+                    checked={newInfo.option5}
+                    id='option5'
                     color='primary'
                     inputProps={{
                         readOnly: true,
-                    }}    
+                    }}  
+                    // disabled   
                 />
                 }
                 label={<span className={classes.formControlLabel}>anytime</span>}
             />
             
             </FormGroup>
+        
             
         </FormControl>   
+                 
+            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, queueComponent, newInfo)}  >Update My Profile</Button></Link></span>
+        
+           
       </form>
       </div>
       </div>
@@ -530,7 +565,7 @@ class VolProfileForm extends React.Component{
     }
 }
             
-VolProfileForm.propTypes = {
+EditProfileForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(VolProfileForm);
+export default withStyles(styles)(EditProfileForm);

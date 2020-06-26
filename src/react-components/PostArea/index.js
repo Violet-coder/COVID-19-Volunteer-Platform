@@ -24,7 +24,7 @@ class PostArea extends React.Component {
                             <div className="fh5co-post">
                                 <span className="fh5co-date">{op.date}</span>
                                 <h3>{op.name}</h3>
-                                <p style={{color:"#989898"}}>{op.description}</p>
+                                <p >{op.description}</p>
                                 <p className="author"><cite> {op.organization}</cite></p>
                                
                             </div>

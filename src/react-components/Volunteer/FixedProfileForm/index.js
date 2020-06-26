@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import "./styles.css"
 //import classNames from 'classnames';
 
 
@@ -10,8 +13,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-import { Link} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
@@ -94,10 +95,10 @@ class VolProfileForm extends React.Component{
         <div className='container'>
             <div className="row row-pb-md">
                 <div className="col-md-8 col-md-offset-2 text-left animate-box" data-animate-effect="fadeInUp">
-                    <div className="fh5co-heading">
+                    {/* <div className="fh5co-heading">
                         <h2>User Profile</h2>
                         <p>View volunteer users' information.</p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         <form className={classes.container} noValidate autoComplete="off">
@@ -105,7 +106,7 @@ class VolProfileForm extends React.Component{
           id="firstName"
           label="First Name"
           className={classes.textField}
-          value={firstName || ""}
+          value={firstName}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -127,7 +128,7 @@ class VolProfileForm extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          value={lastName || ""}
+          value={lastName}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -150,7 +151,7 @@ class VolProfileForm extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          value={email || ""}
+          value={email}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -174,7 +175,7 @@ class VolProfileForm extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          value={location || ""}
+          value={location}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -198,7 +199,7 @@ class VolProfileForm extends React.Component{
           id="links"
           label="Links"
           className={classes.fullTextField}
-          value={links || ""}
+          value={links}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -222,7 +223,7 @@ class VolProfileForm extends React.Component{
           id="description"
           label="About you"
           className={classes.fullTextField}
-          value={desc || ""}
+          value={desc}
           onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
@@ -445,7 +446,7 @@ class VolProfileForm extends React.Component{
         </FormGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel className={classes.formControlLabel} >Availabitly</FormLabel>
+        <FormLabel className={classes.formControlLabel} >Availability</FormLabel>
             <FormGroup row>
             <FormControlLabel
                 control={
@@ -525,6 +526,8 @@ class VolProfileForm extends React.Component{
         </FormControl>   
       </form>
       </div>
+      <span id="profileupdate"><Link to ={{pathname:'/volunteer/editprofile' }}><Button className="updatebutton" variant="contained" color="secondary">
+      Update</Button></Link></span>
       </div>
         );
     }

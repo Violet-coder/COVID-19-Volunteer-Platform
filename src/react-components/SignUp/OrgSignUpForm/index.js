@@ -46,7 +46,7 @@ class OrgSignUpForm extends React.Component {
                                 {errors.confirmPassword.length > 0 && 
                                     <span><small className='error'>{errors.confirmPassword}</small></span>}
                             </div>
-                            <button type="submit" className="btn btn-primary">Sign Up</button>
+                            <button type="submit" className="btn btn-primary sign">Sign Up</button>
                             </form>
                             <p><a href='/volSignUp'>Sign up as a volunteer here</a></p>
                         </div>

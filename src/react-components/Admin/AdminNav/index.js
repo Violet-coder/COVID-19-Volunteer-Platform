@@ -12,8 +12,8 @@ class AdminNav extends React.Component {
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
-                                <li><a href="/" >Home</a></li>
-                                <li><a href="#">Log Out</a></li>
+                                <li><a href="/admin" >Home</a></li>
+                                <li><a href="/">Log Out</a></li>
                                 <li>
                                     <button type="submit" className="btn btn-primary navBtn">Create New Post</button>
                                 </li>

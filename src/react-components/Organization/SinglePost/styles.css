@@ -2,9 +2,8 @@ p {
     font-size: 18px;
 }
 
-.name {
-    display: inline-block;
-    width: 500px;
+#name {
+    width: 300px;
     font-size: 25px;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -33,12 +33,7 @@ class UserDiv extends React.Component {
                                     </div>)}
                     )
                     }
-                    
-
-                    <div className="center">
-                    <p><span><button type="submit" className="btn btn-primary">&laquo; Previous</button></span>
-                        <span><button type="submit" className="btn btn-primary">Next &raquo;</button></span></p>
-                    </div>
+                
 
                 </div>
             </div>

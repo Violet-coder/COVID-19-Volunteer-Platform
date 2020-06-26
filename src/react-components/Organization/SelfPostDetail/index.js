@@ -46,7 +46,7 @@ class SelfPostDetail extends React.Component {
                 variant="contained"
                 color="secondary"
                 style={{fontSize: 12}}
-                onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {}} }
+                onClick={(e) => { if (window.confirm('Are you sure you wish to delete this item?')) {} else {e.preventDefault()}} }
             >
                 delete
                 </Button>

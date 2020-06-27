@@ -526,8 +526,8 @@ class VolProfileForm extends React.Component{
         </FormControl>   
       </form>
       </div>
-      <span id="profileupdate"><Link to ={{pathname:'/volunteer/editprofile' }}><Button className="updatebutton" variant="contained" color="secondary">
-      Update</Button></Link></span>
+      {/* <span id="profileupdate"><Link to ={{pathname:'/volunteer/editprofile' }}><Button className="updatebutton" variant="contained" color="secondary">
+      Update</Button></Link></span> */}
       </div>
         );
     }

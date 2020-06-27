@@ -4,7 +4,7 @@ import Header_appli from "../../react-components/Volunteer/Header_appli";
 import PostDetail from "../../react-components/PostDetail"
 import { Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-
+import './styles.css'
 
 
 
@@ -39,11 +39,11 @@ class PublicPostDetailPage extends React.Component {
                 <div id="fh5co-blog" class="fh5co-bg-section">
                 <div class="container">
                 <PostDetail post={post}/>
-                <div className="button">
-                <span><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}}>
+                <div className="detailpagebutton">
+                <span ><Button className="Organizationbutton" variant="contained" color="secondary">
                 Organization Profile
                 </Button></span>
-                <span><Link to="/volunteer/myapplication"><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}}>
+                <span ><Link to="/volunteer/myapplication"><Button  className="Applybutton" variant="contained" color="secondary" >
                 Apply Now
                 </Button></Link></span>
                 </div>

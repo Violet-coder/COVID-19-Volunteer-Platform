@@ -67,15 +67,80 @@ const volusers=[
         option3: false,
         option4: false,
         option5: false,
+    }
     },
+    {
+      id:3,
+      firstName:"Hannah", 
+      lastName:"Logan", 
+      email:"hannahlogan@user.com",
+      links:"github.com/hannah",
+      location:"Toronto",
+      desc:"Food industry",
+      skills:{
+          analytics: false,
+          biology: false,
+          biotech: false,
+          community: false,
+          content: false,
+          data: false,
+          finance: false,
+          helpdesk: true,
+          manufacturing: false,
+          marketing: true,
+          mechanics: false,
+          IT: true,
+          anything: false,
+          },
+      availability:{
+          option1: true,
+          option2: false,
+          option3: false,
+          option4: false,
+          option5: false,
+    }
     },
+    {
+      id:4,
+      firstName:"Janice", 
+      lastName:"Bingham", 
+      email:"janicebingham@user.com",
+      links:"github.com/janice",
+      location:"Toronto",
+      desc:"Front-desk",
+      skills:{
+          analytics: false,
+          biology: false,
+          biotech: false,
+          community: true,
+          content: false,
+          data: false,
+          finance: false,
+          helpdesk: true,
+          manufacturing: false,
+          marketing: false,
+          mechanics: false,
+          IT: true,
+          anything: false,
+          },
+      availability:{
+          option1: true,
+          option2: false,
+          option3: false,
+          option4: false,
+          option5: false,
+      }
+      }
 
 ]
 class ApplicantDetail extends React.Component {
+  id = this.props.matchProps.match.params.id
+  applicant = this.props.applicants.find((u) => u.id===parseInt(this.id))
+  
     state = {
-        status: 'pending'
+        status: this.applicant.status
       }
-      checkState = () => {
+      checkState = (context, id) => {
         if (this.state.status==='rejected') {
           return (
             <div className='buttons'>
@@ -98,7 +163,7 @@ class ApplicantDetail extends React.Component {
             color="secondary"
             style={{fontSize: 12}}
             onClick={()=>{
-                this.reject()
+                this.reject(context, id)
               }}
         >
             reject
@@ -108,7 +173,7 @@ class ApplicantDetail extends React.Component {
             color="primary"
             style={{fontSize: 12}}
             onClick={()=>{
-                this.accept()
+                this.accept(context, id)
               }}
         >
             accept
@@ -118,28 +183,49 @@ class ApplicantDetail extends React.Component {
         }
         
       }
-    accept = () => {
+    accept = (context, id) => {
         if (window.confirm("Are you sure you want to accept this candidate?")) {
           this.setState({
             status: 'accepted'
           })
+          let appList = context.state.applicants
+      for (var i in appList) {
+        if (appList[i].id===id) {
+          appList[i].status='accepted'
+          break
+        }
+      }
+      context.setState({
+        applicants: appList
+      })
       }}
-      reject = () => {
+      reject = (context, id) => {
         if (window.confirm("Are you sure you want to reject this candidate?")) {
           this.setState({
             status: 'rejected'
           })
+          let appList = context.state.applicants
+      for (var i in appList) {
+        if (appList[i].id===id) {
+          appList[i].status='rejected'
+          break
+        }
+      }
+      context.setState({
+        applicants: appList
+      })
       }}
     render(){
-        const {id} = this.props.match.params
-        const user = volusers.find((u) => u.id==id)
+        const id = this.props.matchProps.match.params.id
+        const context = this.props.context
+        const user = volusers.find((u) => u.id===parseInt(id))
         return(
         
             <div>
                 <OrgNav />
                 <VolProfileForm user={user}/>
                 <div className='buttons'>
-                {this.checkState()}
+                {this.checkState(context, parseInt(id))}
                 <BackButton/>
             </div>
                 <Footer/>

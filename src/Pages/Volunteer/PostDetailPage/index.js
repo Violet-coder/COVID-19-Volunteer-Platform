@@ -53,11 +53,11 @@ class PostDetailPage extends React.Component {
             <div class="container">
             <PostDetail post={post}/>
             {/* <PostDetail_button  application={post}/> */}
-            <div className="button">
-            <span><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}}>
+            <div className="detailpagebutton">
+            <span><Button className="Organizationbutton" variant="contained" color="secondary">
             Organization Profile
             </Button></span>
-            <span><Link to="/volunteer/myapplication"><Button variant="contained" color="secondary" style={{width:"230px", textAlign:"center"}} onClick={ addApplication.bind(this, queueComponent, post)}>
+            <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
             Apply Now
             </Button></Link></span>
             </div>

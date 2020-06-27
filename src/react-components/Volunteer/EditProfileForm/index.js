@@ -101,7 +101,7 @@ class EditProfileForm extends React.Component{
           id="firstName"
           label="First Name"
           className={classes.textField}
-          defaultValue={firstName}
+          defaultValue={firstName || ""}
           margin="normal"
           variant="outlined"
           disabled
@@ -123,7 +123,7 @@ class EditProfileForm extends React.Component{
           id="lastName"
           label="Last Name"
           className={classes.textField}
-          defaultValue={lastName}
+          defaultValue={lastName || ""}
           margin="normal"
           variant="outlined"
           disabled
@@ -146,7 +146,7 @@ class EditProfileForm extends React.Component{
           id="email"
           label="Email"
           className={classes.textField}
-          defaultValue={email}
+          defaultValue={email || ""}
           margin="normal"
           variant="outlined"
           disabled
@@ -169,7 +169,7 @@ class EditProfileForm extends React.Component{
           id="location"
           label="location"
           className={classes.textField}
-          defaultValue={location}
+          defaultValue={location || ""}
           onChange={handleInputChange}
           margin="normal"
           variant="outlined"
@@ -193,7 +193,7 @@ class EditProfileForm extends React.Component{
           id="links"
           label="Links"
           className={classes.fullTextField}
-          defaultValue={links}
+          defaultValue={links || ""}
           onChange={handleInputChange}
           margin="normal"
           variant="outlined"
@@ -217,7 +217,7 @@ class EditProfileForm extends React.Component{
           id="desc"
           label="About you"
           className={classes.fullTextField}
-          defaultValue={desc}
+          defaultValue={desc || ""}
           onChange={handleInputChange}
           margin="normal"
           variant="outlined"

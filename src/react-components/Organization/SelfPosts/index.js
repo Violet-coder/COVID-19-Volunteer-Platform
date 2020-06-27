@@ -13,15 +13,14 @@ class SelfPosts extends React.Component {
 
     return (
       <Table style={{ width: "100%"}}>
-        <TableBody>
-          {posts.map(post => (
-            <SinglePost
-              key = {uid(post)}
+
+          {posts.map(post => 
+            <SinglePost key = {uid(post)}
               post={post}
               queueComponent={queueComponent}
             />
-          ))}
-        </TableBody>
+          )}
+
       </Table>
     );
   }

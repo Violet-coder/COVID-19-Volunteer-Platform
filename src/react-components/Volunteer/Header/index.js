@@ -1,5 +1,5 @@
 import React from "react";
-// import "./styles.css";
+import "./styles.css";
 
 /* The Header Component */
 class Header extends React.Component {
@@ -19,7 +19,7 @@ class Header extends React.Component {
 				<div className="searchbar">
 					<form>
 						<span className="searchinput"><input type="text" placeholder="Search"/></span>
-						<span className="searchbutton"><button id="searchbutton" type="submit" className="btn-search btn-primary">GO</button></span>
+						<span ><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></span>
 					</form>
 				</div>
 			</div>

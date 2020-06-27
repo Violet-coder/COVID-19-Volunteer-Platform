@@ -11,6 +11,7 @@ import { FormControl } from '@material-ui/core';
 import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
 import  SucessSnackbars  from '../../Hook/sucessMsg';
 import  SuccessWrapper  from '../../Hook/successWrapper';
+import { BackButton } from '../../Hook/backButton';
 
 import './styles.css';
 
@@ -28,8 +29,8 @@ const styles = theme => ({
       flexWrap: 'wrap',
     },
     textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
       width:300,
     },
     dense: {
@@ -82,14 +83,14 @@ class EditVolProfileForm extends React.Component{
             skills,
             availability,
         } = this.props.user
-        console.log("form user id", id)
-        console.log("from props user", this.props.user)
+        //console.log("form user id", id)
+        //console.log("from props user", this.props.user)
         const newInfo = this.props.state
-        console.log("form new state", this.props.state)
+        //console.log("form new state", this.props.state)
 
         const handleInputChange = this.props.handleInputChange;
         const queueComponent = this.props.queueComponent;
-        console.log("edit form", queueComponent)
+        //console.log("edit form", queueComponent)
 
 
         //console.log("availability", availability)
@@ -546,9 +547,11 @@ class EditVolProfileForm extends React.Component{
         </FormControl>   
         
  
-            <span id='updateform'><button  type='button' class="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
+            <span id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
+            <BackButton />
             </span>
             {/* <span id = 'updateform' onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}><SucessSnackbars /></span> */}
+            
       </form>
       </div>
       </div>

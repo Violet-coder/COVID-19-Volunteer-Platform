@@ -8,7 +8,7 @@ class VolUsers extends React.Component{
         const volusers=this.props.volusers
         //console.log("volusers",volusers)
         const queueComponent = this.props.queueComponent
-        console.log("VolUsers queueComponent", queueComponent)
+        //console.log("VolUsers queueComponent", queueComponent)
         return(
             <div id='page'>
                 <AdminNav />

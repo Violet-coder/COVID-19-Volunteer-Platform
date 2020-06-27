@@ -9,7 +9,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
 import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
+import  SucessSnackbars  from '../../Hook/sucessMsg';
+import  SuccessWrapper  from '../../Hook/successWrapper';
+
 import './styles.css';
+
+
+
 
 const styles = theme => ({
     typography: {
@@ -539,9 +545,10 @@ class EditVolProfileForm extends React.Component{
             
         </FormControl>   
         
-                
+ 
             <span id='updateform'><button  type='button' class="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
             </span>
+            {/* <span id = 'updateform' onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}><SucessSnackbars /></span> */}
       </form>
       </div>
       </div>

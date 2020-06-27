@@ -6,6 +6,8 @@ import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
 import { deletePost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
+import {uid} from "react-uid";
+import { TableBody } from "@material-ui/core";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   constructor(props) {
@@ -30,9 +32,9 @@ class SinglePost extends React.Component {
       return applicant.jobId===post.id});
     const addr = "/organization/posts/"+String(post.id)
     return (
-      <div>
-        <TableRow key={post.name}>
-        <div className="fh5co-post">
+      <>
+        <TableBody>
+        <TableRow key={post.name} className="fh5co-post">
         <TableCell component="th" scope="row" style={{width: 300}}>
         <p id='name'>
         {post.name}
@@ -74,11 +76,12 @@ class SinglePost extends React.Component {
             Delete
           </Button>
           </TableCell>
-      </div>
       </TableRow>
-      <div style={{display: this.state.display}} >
+      </TableBody>
+      <TableBody style={{display: this.state.display}}>
       {filteredApplicants.map(applicant=>(
             <SingleApplicant
+              key = {uid(applicant)}
               id={applicant.id}
               name={applicant.name}
               rank={applicant.rank}
@@ -87,8 +90,8 @@ class SinglePost extends React.Component {
               context={queueComponent}
             />
           ))}
-      </div>
-      </div>
+      </TableBody>
+      </>
     );
   }
 }

@@ -21,7 +21,7 @@ class ApplicantList extends React.Component {
         </div>
         </div>
         <div id="fh5co-blog" className="fh5co-bg-section">
-        <div class="container">
+        <div className="container">
       <Table style={{ width: '80%' }}>
         <TableBody>
         {applicants.map(applicant => (

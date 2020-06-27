@@ -34,9 +34,7 @@ class OrgProfile extends React.Component {
         <div id="fh5co-blog" className="fh5co-bg-section">
         <div className="container">
         <h1>My Posts</h1>
-        <Table style={{ width: '100%' }}>
         <SelfPosts posts={posts} queueComponent={queueComponent}/>
-        </Table>
         </div>
         </div>
         <Footer/>

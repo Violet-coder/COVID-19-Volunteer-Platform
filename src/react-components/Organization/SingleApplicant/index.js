@@ -61,7 +61,7 @@ class Applicant extends React.Component {
       })
       let appList = context.state.applicants
       for (var i in appList) {
-        if (appList[i].id==id) {
+        if (appList[i].id===id) {
           appList[i].status='accepted'
           break
         }
@@ -92,8 +92,7 @@ class Applicant extends React.Component {
     const { name, rank ,jobName, context, id } = this.props;
     const addr = "/organization/volprofile/" + String(id)
     return (
-      <TableRow key={name}>
-        <div className="fh5co-post">
+      <TableRow key={name} className="fh5co-post">
         <TableCell component="th" scope="row" style={{fontSize:20}}>
           <p className='name'>{name}</p>
         </TableCell>
@@ -115,7 +114,6 @@ class Applicant extends React.Component {
           </Link>
         </TableCell>
         {this.checkState(context, id)}
-        </div>
               
       </TableRow>
     );

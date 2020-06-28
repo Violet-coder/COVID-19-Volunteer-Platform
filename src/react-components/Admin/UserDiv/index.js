@@ -25,9 +25,9 @@ class UserDiv extends React.Component {
                                         <h3 className="user-name">{"ID: "+ vol.id +" " + vol.firstName + " "+ vol.lastName}</h3>
                                         <button  type="submit" className="btn btn-primary user-manage"  
                                             onClick={deleteUser.bind(this, queueComponent, vol)}>Delete</button>
-                                        <Link to={{pathname:`/admin/editvolprofile/${vol.id}`,query: queueComponent}}>
+                                        <Link to={{pathname:`/admin/volunteers/editvolprofile/${vol.id}`}}>
                                         <button  type="submit" className="btn btn-primary user-manage">Edit</button></Link> 
-                                        <Link to={{pathname:`/admin/volprofile/${vol.id}`,query: queueComponent}}>
+                                        <Link to={{pathname:`/admin/volunteers/volprofile/${vol.id}`}}>
                                             <button  type="submit" className="btn btn-primary user-manage" >View</button></Link>
                                     </div>
                                     </div>)}

@@ -10,11 +10,11 @@
     justify-content: center; 
     width: 100%
 }
-.fullTextField .MuiTextField-root{
-        
-    margin-left: 10%;
-    margin-right: 10%;
-    color:red;
-    font-size: 30;
-    width: 300px;
+
+
+
+#profile-services{
+    padding-top: 7em;
+    padding-bottom: 0;
 }
+

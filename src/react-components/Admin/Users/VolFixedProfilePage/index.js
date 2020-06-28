@@ -1,6 +1,8 @@
 import React from 'react';
 import AdminNav from '../../AdminNav';
 import VolProfileForm from "../VolProfileForm";
+import {BackButton} from '../../Hook/backButton';
+import './styles.css'
 
 // let volusers=[
 //     {
@@ -71,24 +73,26 @@ import VolProfileForm from "../VolProfileForm";
 class VolFixedProfilePage extends React.Component {
     render(){
         //console.log(this.props.match)
-
         //get the id of user and read the user info from database
-        const {id} = this.props.match.params
-        //console.log('id',id)
-        //console.log('user1.id', volusers[0].id)
-
-        const queueComponent = this.props.location.query;
+        //const {id} = this.props.matchProps.match.params
+        const matchProps = this.props.matchProps
+        const {id} = matchProps.match.params
+        console.log("id",id)
+        const queueComponent = this.props.queueComponent
         const volusers = queueComponent.state.volusers
         const user = volusers.find((u) => u.id==id)
-        //console.log("view user", user)
 
-        //const userToView = this.props.location.query
-        //console.log("user",userToView)
+
         return(
         
             <div id='page'>
                 <AdminNav />
+                
                 <VolProfileForm user={user}/>
+                <div id='button-services' className='fh5co-bg-section'>
+                <span id='updateform'><BackButton/></span>
+                </div>
+                
             </div>
         )
     }

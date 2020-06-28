@@ -159,14 +159,18 @@ class Admin extends React.Component {
         return(
             <div>
                 <Switch>
-                    <Route exact path='/admin/volusers' render={() => (<VolUsers  
+                    <Route exact path='/admin/volunteers' render={() => (<VolUsers  
                         volusers={this.state.volusers} queueComponent={this} />)}/>
                     <Route exact path='/admin/publishpost' render={() => (
                         <AdminPostForm queueComponent={this} />)} />
                     {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
-                    <Route path='/admin/volprofile/:id' component={VolFixedProfilePage} />
-                    <Route path='/admin/editvolprofile/:id' component={EditVolProfilePage} />
+                    <Route exact path='/admin/volunteers/volprofile/:id' render={(matchProps)=> {
+                       return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} />
+                    }} />
+                    <Route exact path='/admin/volunteers/editvolprofile/:id' render={(matchProps)=> {
+                       return <EditVolProfilePage matchProps={matchProps} {...this.props} queueComponent={this} />
+                    }} />
                     <Route path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
                     

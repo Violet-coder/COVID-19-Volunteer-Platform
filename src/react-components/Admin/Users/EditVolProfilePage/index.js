@@ -80,7 +80,7 @@ class EditVolProfilePage extends React.Component {
     }
 
     handleInputChange = (event) => {
-        console.log("input change")
+
         const target = event.target;
         const value = target.value;
         const id = target.id;
@@ -92,23 +92,14 @@ class EditVolProfilePage extends React.Component {
     }
 
     render(){
-        //console.log(this.props.match)
-
         //get the id of user and read the selected user info from database
-        const {id} = this.props.match.params
-
-        const queueComponent = this.props.location.query;
+        const {id} = this.props.matchProps.match.params
+        const queueComponent = this.props.queueComponent;
         const volusers = queueComponent.state.volusers
-        //console.log("edit page volusers", volusers)
+
         const user = volusers.find((u) => u.id==id)
-        //console.log("view user", user)
 
-        //const userToView = this.props.location.query
-        //console.log("user",userToView)
-
-
-        console.log("edit page queue",queueComponent)
-        //console.log("edit page state", queueComponent.state)
+        //console.log("edit page queue",queueComponent)
 
         return(
             

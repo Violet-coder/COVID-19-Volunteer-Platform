@@ -4,8 +4,8 @@ export const adminUpdateVolProfile = (queue, info, userId) => {
     let newInfo = userToUpdate;
 
     const index = oldVols.findIndex(u => u.id==userId)
-    console.log("index", index)
-    console.log("userto update", userToUpdate)
+    //console.log("index", index)
+    //console.log("userto update", userToUpdate)
     if(info.links !==''){
       newInfo.links=info.links
     }
@@ -16,9 +16,9 @@ export const adminUpdateVolProfile = (queue, info, userId) => {
       newInfo.desc=info.desc
     }
     
-    console.log('new info', newInfo)
+    //console.log('new info', newInfo)
     oldVols[index]=newInfo;
-    console.log("new vols", oldVols)
+    //console.log("new vols", oldVols)
     
     queue.setState(
       {volusers: oldVols}

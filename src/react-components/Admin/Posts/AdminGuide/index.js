@@ -20,7 +20,7 @@ class AdminGuide extends React.Component {
                     
                     <div className=' col-md-4 col-sm-6'>
                     <div className="feature-center animate-box" data-animate-effect="fadeInUp">
-                        <Link to='/admin/volusers'><Container shadows={0}><MyButton>User Management</MyButton></Container></Link>
+                        <Link to='/admin/volunteers'><Container shadows={0}><MyButton>User Management</MyButton></Container></Link>
 
                         </div>
                     </div>

@@ -10,8 +10,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-import { Link} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { BackButton } from '../../Hook/backButton';
+import'./styles.css'
 
 
 const styles = theme => ({
@@ -44,8 +44,8 @@ const styles = theme => ({
     },
     fullTextField: {
         
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
     },
     checkbox: {
         fontSize:20,
@@ -90,7 +90,7 @@ class VolProfileForm extends React.Component{
         //console.log("availability", availability)
 
         return(
-        <div id="fh5co-services" className="fh5co-bg-section border-bottom">
+        <div id="profile-services" className="fh5co-bg-section ">
         <div className='container'>
             <div className="row row-pb-md">
                 <div className="col-md-8 col-md-offset-2 text-left animate-box" data-animate-effect="fadeInUp">
@@ -523,6 +523,7 @@ class VolProfileForm extends React.Component{
             </FormGroup>
             
         </FormControl>   
+        
       </form>
       </div>
       </div>

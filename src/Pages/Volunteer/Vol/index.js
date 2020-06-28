@@ -5,6 +5,8 @@ import My_application from '../My_application';
 import PostDetailPage from '../PostDetailPage';
 import EditProfilePage from '../EditProfilePage';
 import My_profile from '../My_profile';
+import SearchResultPage from '../SearchResultPage';
+
 
 class Volunteer extends React.Component{
     state = {
@@ -56,6 +58,7 @@ class Volunteer extends React.Component{
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile}/>)}/>
               <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this}/>)} />
               <Route path='/volunteer/post/:id' component={PostDetailPage} />
+              <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
 
               
 

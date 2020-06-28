@@ -14,9 +14,10 @@ import "../../../css/style.css";
 
 
 class Userpage_volunteer extends React.Component{
+
     
     
-    
+       
     
     render() {
         const {queueComponent, posts} = this.props
@@ -30,7 +31,7 @@ class Userpage_volunteer extends React.Component{
         return(
             <div id="page">
             <Navbar user="Application"/>
-            <Header title="Support Our Community During Covid-19" subtitle="Let's work together"/>
+            <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts}/>
             <Recommended_ops queueComponent={queueComponent} posts={filteredPosts}/>
 
 

@@ -6,7 +6,7 @@ import React from "react";
 class Header_appli extends React.Component {
   render() {
 	const { title, subtitle } = this.props;
-	console.log(title)
+	
 
     return (
         <div id="fh5co-started">

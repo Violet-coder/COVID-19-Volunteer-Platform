@@ -10,6 +10,8 @@ import { Link} from 'react-router-dom';
 
 
 
+
+
 import "../../../css/animate.css";
 import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
@@ -43,6 +45,7 @@ class PostDetailPage extends React.Component {
         const queueComponent = this.props.location.query
         // console.log("queueComponent",queueComponent)
         
+        
     
         return(
             <div id="page">
@@ -60,10 +63,9 @@ class PostDetailPage extends React.Component {
             <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
             Apply Now
             </Button></Link></span>
-            </div>
-            </div>
-        
             
+            </div>
+            </div>         
             </div>  
 
             </div>

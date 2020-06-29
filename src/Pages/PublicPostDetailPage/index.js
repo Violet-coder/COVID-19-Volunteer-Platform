@@ -2,10 +2,10 @@ import React from "react";
 import HomeNav from '../../react-components/HomeNav';
 import Header_appli from "../../react-components/Volunteer/Header_appli";
 import PostDetail from "../../react-components/PostDetail"
-import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import Dialog from '../../react-components/Dialog';
 import './styles.css'
-
 
 
 import "../../css/animate.css";
@@ -27,11 +27,19 @@ const posts=[
               location: "Toronto", id:5},
     ]
 
-class PublicPostDetailPage extends React.Component {
     
+   
+
+class PublicPostDetailPage extends React.Component {
+    state = {
+        isOpen: false
+    }
+    
+      
     render() {
         const {id} = this.props.match.params
         const post = posts.find((p) => p.id==id)
+       
         return(
             <div id='page'>
                 <HomeNav />
@@ -43,9 +51,13 @@ class PublicPostDetailPage extends React.Component {
                 <span ><Button className="Organizationbutton" variant="contained" color="secondary">
                 Organization Profile
                 </Button></span>
-                <span ><Link to="/volunteer/myapplication"><Button  className="Applybutton" variant="contained" color="secondary" >
+                <span ><Button  onClick={(e) => this.setState({isOpen: true})} className="Applybutton" variant="contained" color="secondary">
                 Apply Now
-                </Button></Link></span>
+                </Button></span>
+
+                <Dialog isOpen={this.state.isOpen} onClose={(e) => this.setState({ isOpen: false})}>If you are interested in this opportunity, please log in.</Dialog>
+
+                
                 </div>
                 </div>
             
@@ -58,3 +70,4 @@ class PublicPostDetailPage extends React.Component {
 }
 
 export default PublicPostDetailPage;
+

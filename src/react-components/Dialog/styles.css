@@ -1,0 +1,15 @@
+.popupbutton{
+    width: 400px;
+    margin-left: 70%;
+    margin-top: 40px;
+}
+.Loginfirst {
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+.popupbutton span {
+    margin-left: 20px;
+}

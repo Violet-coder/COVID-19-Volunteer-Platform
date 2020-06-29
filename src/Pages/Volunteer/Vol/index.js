@@ -6,7 +6,7 @@ import PostDetailPage from '../PostDetailPage';
 import EditProfilePage from '../EditProfilePage';
 import My_profile from '../My_profile';
 import SearchResultPage from '../SearchResultPage';
-
+import VolunteerSeeall from '../VolunteerSeeall';
 
 class Volunteer extends React.Component{
     state = {
@@ -53,12 +53,14 @@ class Volunteer extends React.Component{
       return (
           <div>
             <Switch> 
-              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} posts={posts}/>)}/>
+              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} recommended_posts={posts.slice(2,5)} posts={posts}/>)}/>
               <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} />)}/>
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile}/>)}/>
               <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this}/>)} />
               <Route path='/volunteer/post/:id' component={PostDetailPage} />
               <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
+              <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)}/>
+
 
               
 

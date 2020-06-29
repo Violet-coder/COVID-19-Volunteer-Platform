@@ -1,11 +1,9 @@
 import React from "react";
 import { uid } from "react-uid";
 import { Link} from 'react-router-dom'
-import PostDetailPage from '../../../Pages/Volunteer/PostDetailPage'
-import { Route} from 'react-router-dom';
 import './styles.css'
 
-class Recommended_ops extends React.Component{
+class All_ops extends React.Component{
     render(){
        
        const {queueComponent, posts} = this.props
@@ -19,8 +17,8 @@ class Recommended_ops extends React.Component{
 		<div className="container">
 			<div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
 				<div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
-					<h2>Recommended Opportunities</h2>
-					<p>See what we selected for you</p>
+					<h2>Opportunities</h2>
+					<p>You will find your opprtunity</p>
 				</div>
 			</div> 
         <div className="row">
@@ -35,9 +33,9 @@ class Recommended_ops extends React.Component{
             </div>
         </div></Link>
           ))}
-          <div className="center">
+          {/* <div className="center">
 					<p><span><Link to="/volunteer/seeall"><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
-				</div>
+				</div> */}
 			</div>		
 		</div>
         </div>
@@ -45,4 +43,4 @@ class Recommended_ops extends React.Component{
     }
 }
 
-export default Recommended_ops;
+export default All_ops;

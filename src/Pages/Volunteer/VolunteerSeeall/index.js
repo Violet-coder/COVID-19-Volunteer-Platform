@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import Header from "../../../react-components/Volunteer/Header";
-import Recommended_ops from "../../../react-components/Volunteer/Recommended_op";
+import All_ops from "../../../react-components/Volunteer/All_ops";
 
 import "../../../css/animate.css";
 import "../../../css/icomoon.css";
@@ -13,30 +13,26 @@ import "../../../css/style.css";
 
 
 
-class Userpage_volunteer extends React.Component{
+class VolunteerSeeall extends React.Component{
 
     
     
        
     
     render() {
-        const {queueComponent,recommended_posts, posts,} = this.props
+        const {queueComponent, posts} = this.props
         /* console.log("queueComponent",queueComponent)
         console.log("posts",posts)  */
          //only display posts that are approved
         const filteredPosts = posts.filter(
             p => p.status === 'Approved'
         )
-        const filteredRecommendedPosts = recommended_posts.filter(
-            p => p.status === 'Approved'
-        )
-
 
         return(
             <div id="page">
             <Navbar user="Application"/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts}/>
-            <Recommended_ops queueComponent={queueComponent} posts={filteredRecommendedPosts}/>
+            <All_ops queueComponent={queueComponent} posts={filteredPosts}/>
 
 
 
@@ -50,5 +46,5 @@ class Userpage_volunteer extends React.Component{
     }
 }
 
-export default Userpage_volunteer;
+export default VolunteerSeeall;
 

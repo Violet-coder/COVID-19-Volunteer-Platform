@@ -1,16 +1,22 @@
 export const deleteUser = (queue, user) => {
-    console.log("to delete queue",queue.state.volusers)
-    console.log("student", user)
+    //console.log("to delete queue",queue.state.volusers)
+    //console.log("student", user)
     const filteredUser = queue.state.volusers.filter(
         u => {
             return u !== user;
         }
     );
     //console.log(filteredUser)
+    const filteredOrganizations= queue.state.organizations.filter(
+        u => {
+            return u !== user;
+        }
+    );
 
     queue.setState(
         {
-            volusers: filteredUser
+            volusers: filteredUser,
+            organizations: filteredOrganizations,
         }
     )
 };

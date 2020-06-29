@@ -1,0 +1,7 @@
+#update-button {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

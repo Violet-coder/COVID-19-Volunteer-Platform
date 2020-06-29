@@ -106,7 +106,6 @@ class VolProfileForm extends React.Component{
           label="First Name"
           className={classes.textField}
           value={firstName || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           InputProps={
@@ -128,7 +127,6 @@ class VolProfileForm extends React.Component{
           label="Last Name"
           className={classes.textField}
           value={lastName || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           InputProps={
@@ -151,7 +149,6 @@ class VolProfileForm extends React.Component{
           label="Email"
           className={classes.textField}
           value={email || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           
@@ -175,7 +172,6 @@ class VolProfileForm extends React.Component{
           label="location"
           className={classes.textField}
           value={location || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           
@@ -199,7 +195,6 @@ class VolProfileForm extends React.Component{
           label="Links"
           className={classes.fullTextField}
           value={links || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -223,7 +218,6 @@ class VolProfileForm extends React.Component{
           label="About you"
           className={classes.fullTextField}
           value={desc || ""}
-          onChange={this.handleChange('name')}
           margin="normal"
           variant="outlined"
           fullWidth
@@ -445,7 +439,7 @@ class VolProfileForm extends React.Component{
         </FormGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel className={classes.formControlLabel} >Availabitly</FormLabel>
+        <FormLabel className={classes.formControlLabel} >Availability</FormLabel>
             <FormGroup row>
             <FormControlLabel
                 control={

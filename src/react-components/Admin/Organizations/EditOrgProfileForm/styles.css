@@ -1,0 +1,14 @@
+.updatebutton {
+    width:200px;
+    text-align: center;
+}
+#updateform {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+
+}

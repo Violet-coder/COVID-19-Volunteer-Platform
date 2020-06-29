@@ -7,9 +7,10 @@ import OrgSignUp from './Pages/OrgSignUp';
 import VolSignUp from './Pages/VolSignUp';
 import Login from './Pages/Login';
 import Organization from './Pages/Organization';
-import Volunteer from './Pages/Volunteer/Vol'
-import Publicpost from './Pages/Publicpost'
-import PublicPostDetailPage from './Pages/PublicPostDetailPage'
+import Volunteer from './Pages/Volunteer/Vol';
+import Publicpost from './Pages/Publicpost';
+import PublicPostDetailPage from './Pages/PublicPostDetailPage';
+import PublicSearchResultPage from './Pages/PublicSearchResultPage';
 
 
 import CheckLogin from './react-components/Login/CheckLogin';
@@ -55,6 +56,10 @@ class App extends React.Component{
             <Route path='/volunteer' render={() => <Volunteer posts={this.state.posts} />}/>
             <Route path='/publicpost' render={() => <Publicpost posts={this.state.posts} />}/>
             <Route path='/post/:id' component={PublicPostDetailPage} />
+            <Route path='/searchresult' component={PublicSearchResultPage}/>
+            
+            
+            
 
             {/* <Route exact path='/Userpage_volunteer' render={(props) => {
                 if(passport.isLogin){

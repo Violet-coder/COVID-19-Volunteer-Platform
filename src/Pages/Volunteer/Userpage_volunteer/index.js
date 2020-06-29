@@ -35,7 +35,7 @@ class Userpage_volunteer extends React.Component{
         return(
             <div id="page">
             <Navbar user="Application"/>
-            <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts}/>
+            <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} queueComponent={queueComponent}/>
             <Recommended_ops queueComponent={queueComponent} posts={filteredRecommendedPosts}/>
 
 

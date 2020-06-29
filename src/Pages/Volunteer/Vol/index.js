@@ -60,6 +60,8 @@ class Volunteer extends React.Component{
               <Route path='/volunteer/post/:id' component={PostDetailPage} />
               <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
               <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)}/>
+              {/* <Route path='/volunteer/searchresult'  render={() => (<SearchResultPage queueComponent={this} />)}/> */}
+
 
 
               

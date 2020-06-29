@@ -1,6 +1,6 @@
 import React from "react";
 import HomeNav from '../../react-components/HomeNav';
-import Header from "../../react-components/Volunteer/Header";
+import HeaderwithSearchbar from "../../react-components/HeaderwithSearchBar";
 import Posts from "../../react-components/Posts";
 
 
@@ -24,7 +24,7 @@ class Publicpost extends React.Component {
         return(
             <div id='page'>
                 <HomeNav />
-                <Header title="Support Our Community During Covid-19" subtitle="Let's work together"/>
+                <HeaderwithSearchbar title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} />
                 <Posts posts={filteredPosts}/>
                 <Footer />
             </div>

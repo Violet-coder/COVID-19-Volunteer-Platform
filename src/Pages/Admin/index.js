@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route,Switch } from 'react-router-dom';
+import { Route,Switch, Redirect } from 'react-router-dom';
 import VolUsers from '../../react-components/Admin/Users/VolUsers';
 import VolFixedProfilePage from '../../react-components/Admin/Users/VolFixedProfilePage';
 import EditVolProfileForm from '../../react-components/Admin/Users/EditVolProfileForm';
@@ -7,14 +7,17 @@ import EditVolProfilePage from '../../react-components/Admin/Users/EditVolProfil
 import AdminGuide from '../../react-components/Admin/Posts/AdminGuide';
 import PostList from '../../react-components/Admin/Posts/PostList';
 import AdminPostForm from '../../react-components/Admin/Posts/AdminPostForm';
+import FixedOrgProfilePage from '../../react-components/Admin/Organizations/FixedOrgProfilePage';
+import EditOrgProfilePage from '../../react-components/Admin/Organizations/EditOrgProfilePage';
+import OrganizationListPage from '../../react-components/Admin/Organizations/OrganizationListPage';
 
 
-let users= []
 class Admin extends React.Component {
     state={
         volusers:[
             {
             id: 1,
+            type:'volunteer',
             firstName:"John", 
             lastName:"Smith", 
             email:"johnsmith@user.com",
@@ -46,6 +49,7 @@ class Admin extends React.Component {
             },
             {
             id:2,
+            type:'volunteer',
             firstName:"Maria", 
             lastName:"Hernandz", 
             email:"mariahernandez@user.com",
@@ -77,6 +81,7 @@ class Admin extends React.Component {
             },
             {
             id:3,
+            type:'volunteer',
             firstName:"Hannah", 
             lastName:"Logan", 
             email:"hannahlogan@user.com",
@@ -108,6 +113,7 @@ class Admin extends React.Component {
             },
             {
             id:4,
+            type:'volunteer',
             firstName:"Janice", 
             lastName:"Bingham", 
             email:"janicebingham@user.com",
@@ -140,6 +146,25 @@ class Admin extends React.Component {
 
         ],
 
+        organizations: [
+            {
+            id:5,
+            type:'organization',
+            orgName:"Listening Society",
+            email: "ls@organization.com",
+            website: "www.LS.ca",
+            introduction: "We deliver food. We need you!"
+            },
+            {
+            id:6,
+            type:'volunteer',
+            orgName:"EAST TORONTO FOOD COALITION",
+            email: "covidfoodcoalition@gmail.com",
+            website:"https://covidfoodcoalition.wixsite.com/website",
+            introduction:"The East Toronto Food Coalition (ETFC) is a grassroots food security initiative serving the Beaches East-York, Regent Park, Leslieville areas. "
+            }
+        ],
+
         posts: [
             { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
             { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
@@ -161,20 +186,47 @@ class Admin extends React.Component {
                 <Switch>
                     <Route exact path='/admin/volunteers' render={() => (<VolUsers  
                         volusers={this.state.volusers} queueComponent={this} />)}/>
+                    <Route exact path='/admin/organizations' render={() => (<OrganizationListPage  
+                        organizations={this.state.organizations} queueComponent={this} />)}/>
+
                     <Route exact path='/admin/publishpost' render={() => (
                         <AdminPostForm queueComponent={this} />)} />
                     {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
+
+
                     <Route exact path='/admin/volunteers/volprofile/:id' render={(matchProps)=> {
                        return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} />
                     }} />
                     <Route exact path='/admin/volunteers/editvolprofile/:id' render={(matchProps)=> {
                        return <EditVolProfilePage matchProps={matchProps} {...this.props} queueComponent={this} />
                     }} />
-                    <Route path='/admin/posts' render={
+
+
+                    <Route exact path='/admin/organizations/orgprofile/:id' render={(matchProps)=> {
+                        const {id}=matchProps.match.params
+                        const organization = this.state.organizations.find(u => u.id==id)
+                        if(organization){
+                            return <FixedOrgProfilePage organization={organization} />}
+                        else{
+                           return <Redirect to='/not-found' />
+                       }
+                    }} />
+                    <Route exact path='/admin/organizations/editorgprofile/:id' render={(matchProps)=> {
+                        const {id}=matchProps.match.params
+                        const organization = this.state.organizations.find(u => u.id==id)
+                        if(organization){
+                            return <EditOrgProfilePage organization={organization} queueComponent={this} />}
+                        else{
+                           return <Redirect to='/not-found' />
+                       }
+                    }} />
+
+
+                    <Route exact path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
                     
-                    <Route path='/admin' component={AdminGuide} />
+                    <Route exact path='/admin' component={AdminGuide} />
                     
                     
                     

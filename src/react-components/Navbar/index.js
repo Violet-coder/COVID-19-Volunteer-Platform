@@ -10,7 +10,7 @@ class Navbar extends React.Component{
 		<div className="container">
 			<div className="row">
 				<div className="col-xs-2 text-left">
-					<div id="fh5co-logo"><a href="index.html">Volunteer<span>.</span></a></div>
+					<div id="fh5co-logo"><a href="/">Volunteer<span>.</span></a></div>
 				</div>
 				<div className="col-xs-10 text-right menu-1">
 					<ul>

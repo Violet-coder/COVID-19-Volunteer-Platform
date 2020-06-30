@@ -44,7 +44,15 @@ const organizations= [
     email: "ThementalHealthbooks@gmail.com",
     website:"https://covidfoodcoalition.wixsite.com/website",
     intro:"The mental Health books is an organization helps vulnerable groups with their mental health in this special period."
-    }
+    },
+    {
+    id:9,
+    type:'organization',
+    name:'Hand Up from Hunger Toronto',
+    email:'kevin.hoang@handuptoronto.org',
+    website:'www.handuptoronto.org',
+    intro:'Reconnect Community Health Services is a not-for-profit health service organization located in the west end of Toronto. We provide services for seniors, caregivers, and people living with mental health and addictions concerns.',
+    },
 
     
 ]

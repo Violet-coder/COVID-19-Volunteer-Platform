@@ -10,7 +10,8 @@ import AdminPostForm from '../../react-components/Admin/Posts/AdminPostForm';
 import FixedOrgProfilePage from '../../react-components/Admin/Organizations/FixedOrgProfilePage';
 import EditOrgProfilePage from '../../react-components/Admin/Organizations/EditOrgProfilePage';
 import OrganizationListPage from '../../react-components/Admin/Organizations/OrganizationListPage';
-import VolUserTable from '../../react-components/Admin/VolUserTable';
+import PostDetailPage from '../../react-components/Admin/Posts/PostDetailPage';
+
 
 
 class Admin extends React.Component {
@@ -163,19 +164,42 @@ class Admin extends React.Component {
             email: "covidfoodcoalition@gmail.com",
             website:"https://covidfoodcoalition.wixsite.com/website",
             introduction:"The East Toronto Food Coalition (ETFC) is a grassroots food security initiative serving the Beaches East-York, Regent Park, Leslieville areas. "
+            },
+            {
+            id:7,
+            type:'organization',
+            orgName:"The Atrium Project",
+            email: "TheAtriumProject@gmail.com",
+            website:"https://TheAtriumProject.wixsite.com/website",
+            introduction:"The Atrium Project was created as a way for people within different communities to come together and support each other."
+            },
+            {
+            id:8,
+            type:'organization',
+            orgName:"The mental Health books",
+            email: "ThementalHealthbooks@gmail.com",
+            website:"https://covidfoodcoalition.wixsite.com/website",
+            introduction:"The mental Health books is an organization helps vulnerable groups with their mental health in this special period."
+            },
+            {
+            id:9,
+            type:'organization',
+            orgName:'Hand Up from Hunger Toronto',
+            email:'kevin.hoang@handuptoronto.org',
+            website:'www.handuptoronto.org',
+            introduction:'Reconnect Community Health Services is a not-for-profit health service organization located in the west end of Toronto. We provide services for seniors, caregivers, and people living with mental health and addictions concerns.',
             }
         ],
 
         posts: [
-            { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
-            { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
-            { name: "Online Chatting", description: "Through this role you will have the opportunity to safely volunteer from the comfort of your own home. All volunteers are provided with online training and the necessary support to safely and responsibly support local community members.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The Atrium Project",location: "Toronto", id:3},
-            { name: "Peer Support Volunteer", description: "Your tasks for this position would include, attending sessions about mental health and crisis intervention, supporting a youth or adult 1:1.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The mental Health books",location: "Vancouver", id:4},
+            { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",orgId:5,location: "Toronto", id:1},
+            { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",orgId:5,location: "Vancouver",id:2},
+            { name: "Online Chatting", description: "Through this role you will have the opportunity to safely volunteer from the comfort of your own home. All volunteers are provided with online training and the necessary support to safely and responsibly support local community members.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The Atrium Project",orgId:7,location: "Toronto", id:3},
+            { name: "Peer Support Volunteer", description: "Your tasks for this position would include, attending sessions about mental health and crisis intervention, supporting a youth or adult 1:1.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The mental Health books",orgId:8,location: "Vancouver", id:4},
             { name: 'THIS SATURDAY - Contactless Delivery Driver Volunteers', 
-              description: "We are looking for volunteer drivers, with their own vehicle, to deliver grocery care packages to families that are unable to leave their home this Saturday June 27th", 
-              requirement: "driver's license, multi-task", 
-              title: "Driver", status: "Under Review", date: "6/27/2020", organization:"Hand Up from Hunger Toronto",
-              location: "Toronto", id:5},
+                    description: "We are looking for volunteer drivers, with their own vehicle, to deliver grocery care packages to families that are unable to leave their home this Saturday June 27th", 
+                    requirement: "driver's license, multi-task", 
+                    title: "Driver", status: "Under Review", date: "6/27/2020", organization:"Hand Up from Hunger Toronto",orgId:9,location: "Toronto", id:5},
           ]
         
 
@@ -194,7 +218,6 @@ class Admin extends React.Component {
                         <AdminPostForm queueComponent={this} />)} />
                     {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
-
 
                     <Route exact path='/admin/volunteers/volprofile/:id' render={(matchProps)=> {
                        return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} />
@@ -226,6 +249,16 @@ class Admin extends React.Component {
 
                     <Route exact path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
+
+                    <Route exact path='/admin/posts/:id' render={(matchProps)=> {
+                        const {id}=matchProps.match.params
+                        const post = this.state.posts.find(u => u.id==id)
+                        if(post){
+                            return <PostDetailPage post={post} />}
+                        else{
+                           return <Redirect to='/not-found' />
+                       }
+                    }} />
                     
                     <Route exact path='/admin' component={AdminGuide} />                   
                     

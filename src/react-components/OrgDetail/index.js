@@ -7,7 +7,7 @@ class OrgDetail extends React.Component {
     const {info} = this.props;
     
     return (
-		<div className="container">
+		<div className="container" style={{marginTop:"60px"}}>
       
       <div className="fh5co-post" style={{minHeight: "100px"}}>
 			<h3>Organization Name</h3>

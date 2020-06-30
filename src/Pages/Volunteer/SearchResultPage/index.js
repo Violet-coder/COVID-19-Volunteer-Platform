@@ -2,7 +2,7 @@ import React from "react";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import {searchByKeyword} from "../../../actions/searchByKeyword"
-import Posts from "../../../react-components/Posts"
+import All_ops from "../../../react-components/Volunteer/All_ops"
 
 class SearchResultPage extends React.Component {
 
@@ -10,8 +10,12 @@ class SearchResultPage extends React.Component {
     render(){     
         
          const keyword = this.props.location.state
-         const posts = this.props.location.query
-         console.log("posts",posts )
+         const posts = this.props.location.query.posts
+         const queueComponent =  this.props.location.query.queueComponent
+         
+         console.log("queueComponent",queueComponent )
+         
+
 
         //  if (keyword.length|posts.length === 0)
 
@@ -25,8 +29,9 @@ class SearchResultPage extends React.Component {
             <div id="page">
             <Navbar/>
             <Header_appli title="Search Result" subtitle="Good Luck"/>
-            
-            <Posts posts={result}/>           
+         
+            <All_ops queueComponent={queueComponent} posts={result}/>
+                      
             </div>  
         )} else{
             return(

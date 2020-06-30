@@ -7,6 +7,7 @@ import EditProfilePage from '../EditProfilePage';
 import My_profile from '../My_profile';
 import SearchResultPage from '../SearchResultPage';
 import VolunteerSeeall from '../VolunteerSeeall';
+import OrgProfilePage from '../OrgProfilePage';
 
 class Volunteer extends React.Component{
     state = {
@@ -60,6 +61,8 @@ class Volunteer extends React.Component{
               <Route path='/volunteer/post/:id' component={PostDetailPage} />
               <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
               <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)}/>
+              <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} />
+
 
 
               

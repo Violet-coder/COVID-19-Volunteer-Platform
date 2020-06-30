@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Button from "@material-ui/core/Button";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
 import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
-import  SucessSnackbars  from '../../Hook/sucessMsg';
+import  VolUpdateSucessSnackbars  from '../../Hook/volSuccessMsg';
 import  SuccessWrapper  from '../../Hook/successWrapper';
 import { BackButton } from '../../Hook/backButton';
 
@@ -48,8 +48,8 @@ const styles = theme => ({
     },
     fullTextField: {
         
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
     },
     checkbox: {
         fontSize:20,
@@ -62,7 +62,7 @@ const styles = theme => ({
         fontSize:16,
         fontWeight:600,
         color:'#303030',
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
      }
   });
 
@@ -546,11 +546,13 @@ class EditVolProfileForm extends React.Component{
             
         </FormControl>   
         
- 
-            <span id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
+
+            {/* <span id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
             <BackButton />
-            </span>
-            {/* <span id = 'updateform' onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}><SucessSnackbars /></span> */}
+            </span> */}
+            <span id = 'updateform'><VolUpdateSucessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
+            <BackButton /></span>
+
             
       </form>
       </div>

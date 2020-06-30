@@ -12,11 +12,12 @@ export const deleteUser = (queue, user) => {
             return u !== user;
         }
     );
-
+    if(window.confirm("Are you sure to DELETE this user?")){
     queue.setState(
         {
             volusers: filteredUser,
             organizations: filteredOrganizations,
         }
     )
+    }
 };

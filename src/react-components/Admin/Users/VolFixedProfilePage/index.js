@@ -90,9 +90,8 @@ class VolFixedProfilePage extends React.Component {
                 
                 <VolProfileForm user={user}/>
                 <div id='button-services' className='fh5co-bg-section'>
-                <span id='updateform'><BackButton/></span>
+                <div id='update-button'><BackButton/></div>
                 </div>
-                
             </div>
         )
     }

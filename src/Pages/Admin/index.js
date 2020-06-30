@@ -10,6 +10,7 @@ import AdminPostForm from '../../react-components/Admin/Posts/AdminPostForm';
 import FixedOrgProfilePage from '../../react-components/Admin/Organizations/FixedOrgProfilePage';
 import EditOrgProfilePage from '../../react-components/Admin/Organizations/EditOrgProfilePage';
 import OrganizationListPage from '../../react-components/Admin/Organizations/OrganizationListPage';
+import VolUserTable from '../../react-components/Admin/VolUserTable';
 
 
 class Admin extends React.Component {
@@ -226,8 +227,7 @@ class Admin extends React.Component {
                     <Route exact path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
                     
-                    <Route exact path='/admin' component={AdminGuide} />
-                    
+                    <Route exact path='/admin' component={AdminGuide} />                   
                     
                     
                 </Switch>

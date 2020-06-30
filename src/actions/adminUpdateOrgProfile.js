@@ -3,8 +3,7 @@ export const adminUpdateOrgProfile = (queue, info, userId) => {
     const userToUpdate = oldOrgs.find(u => u.id==userId)
     let newInfo = userToUpdate;
     const index = oldOrgs.findIndex(u => u.id==userId)
-    //console.log("index", index)
-    //console.log("userto update", userToUpdate)
+
     if(info.orgName !==''){
       newInfo.orgName=info.orgName
     }
@@ -19,7 +18,7 @@ export const adminUpdateOrgProfile = (queue, info, userId) => {
     //console.log('new info', newInfo)
     oldOrgs[index]=newInfo;
     //console.log("new vols", oldVols)
-    
+
     queue.setState(
       {orgnizations: oldOrgs}
     )

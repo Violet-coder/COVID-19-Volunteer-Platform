@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {BackButton} from '../../Hook/backButton';
 import {adminUpdateOrgProfile} from '../../../../actions/adminUpdateOrgProfile';
+import OrgUpdateSuccessSnackbars from '../../Hook/orgSuccessMsg';
 import './styles.css'
 
 
@@ -164,9 +165,12 @@ class EditOrgProfileForm extends React.Component{
                 />
                 <br />
 
-            <div id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateOrgProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
+            {/* <div id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateOrgProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
             <BackButton />
-            </div>
+            </div> */}
+
+            <span id = 'updateform'><OrgUpdateSuccessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
+            <BackButton /></span>
 
             </form>
             </div>

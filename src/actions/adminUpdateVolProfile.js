@@ -19,7 +19,6 @@ export const adminUpdateVolProfile = (queue, info, userId) => {
     //console.log('new info', newInfo)
     oldVols[index]=newInfo;
     //console.log("new vols", oldVols)
-    
     queue.setState(
       {volusers: oldVols}
     )

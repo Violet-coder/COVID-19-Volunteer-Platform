@@ -2,6 +2,7 @@ import React from 'react';
 
 import AdminNav from '../../AdminNav';
 import OrganizationList from '../OrganizationList';
+import OrganizationTable from '../OrganizationTable';
 
 class OrganizationListPage extends React.Component{
     render(){
@@ -11,7 +12,7 @@ class OrganizationListPage extends React.Component{
         return(
             <div id='page'>
                 <AdminNav />
-                <OrganizationList organizations={organizations} queueComponent={queueComponent}/>
+                <OrganizationTable organizations={organizations} queueComponent={queueComponent}/>
             </div>
         )
     }

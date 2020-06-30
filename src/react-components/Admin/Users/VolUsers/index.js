@@ -2,6 +2,7 @@ import React from 'react';
 
 import AdminNav from '../../AdminNav';
 import UserDiv from '../../UserDiv';
+import VolUserTable from '../../VolUserTable';
 
 class VolUsers extends React.Component{
     render(){
@@ -12,7 +13,7 @@ class VolUsers extends React.Component{
         return(
             <div id='page'>
                 <AdminNav />
-                <UserDiv volusers={volusers} queueComponent={queueComponent}/>
+                <VolUserTable volusers={volusers} queueComponent={queueComponent}/>
             </div>
         )
     }

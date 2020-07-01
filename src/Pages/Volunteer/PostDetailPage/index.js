@@ -36,20 +36,28 @@ class PostDetailPage extends React.Component {
     
     render(){
         // this.componentWillMount()
-        const {id} = this.props.match.params
-
+        //const {id} = this.props.match.params
+        const id = parseInt(this.props.matchProps.match.params.id)
+        
         const post = posts.find((p) => p.id==id)
         // console.log("state", this.props.location)
         
-        const queueComponent = this.props.location.query
-        // console.log("queueComponent",queueComponent)
+        //const queueComponent = this.props.location.query
+        const queueComponent = this.props.queueComponent
+        //console.log("queueComponent",queueComponent)
+        const applied_posts = this.props.applied_posts
+        let applied_posts_ids = []
+        for(let i=0; i< applied_posts.length; i++){
+            applied_posts_ids.push(applied_posts[i].id)
+        }
         
-        
+        //console.log('include', applied_posts_ids.includes(id))
+
+        const post_apply_status = applied_posts_ids.includes(id)
     
         return(
             <div id="page">
             <Navbar user="Application"/>
-            { console.log("queueComponent",queueComponent)}
             <Header_appli title={post.name} subtitle={post.organization}/>
             <div id="fh5co-blog" class="fh5co-bg-section">
             <div class="container">
@@ -57,9 +65,16 @@ class PostDetailPage extends React.Component {
             {/* <PostDetail_button  application={post}/> */}
             <div className="detailpagebutton">
             <span ><Link to={{pathname:`/volunteer/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span>
+            {/* <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
+            Apply Now
+            </Button></Link></span> */}
+            {
+            (post_apply_status)? <span><Button>Applied</Button></span> : 
             <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
             Apply Now
             </Button></Link></span>
+              
+            }
             
             </div>
             </div>         

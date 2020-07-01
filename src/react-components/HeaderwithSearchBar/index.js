@@ -17,7 +17,19 @@ class HeaderwithSearchbar extends React.Component {
         this.setState({
             [id]:value
         });
-    }
+	}
+
+	validateForm= () => {
+		if(! this.state.postname){
+			console.error("invalid form")
+			return false
+		}
+		else
+			return true
+		
+	}
+	
+	
   render() {
 	const { title, subtitle, posts } = this.props;
 
@@ -33,9 +45,14 @@ class HeaderwithSearchbar extends React.Component {
 			<div id="opportunity-search-box">
 				<div className="searchbar">
 					<form>
-						<span className="searchinput"><input id="postname" onChange={this.handleInputChange} type="text" placeholder="Search"/></span>
-						<span ><Link to={{pathname:`/searchresult`, state: this.state.postname,query: posts }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span>
-						
+						<span className="searchinput"><input id="postname"  required="required" onChange={this.handleInputChange} type="text" placeholder="Search"/></span>
+						{console.log('valid',this.validateForm())}
+						{(this.validateForm())?
+						<span ><Link to={{pathname:`/searchresult`, state: this.state.postname,query: posts }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span> :
+						<span ><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></span>
+
+ 						 }
+
 					</form>
 				</div>
 			</div>

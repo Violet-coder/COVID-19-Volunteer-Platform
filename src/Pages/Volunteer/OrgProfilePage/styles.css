@@ -1,0 +1,10 @@
+.Applybutton {
+    width:220px;
+    justify-content: center;
+    text-align: center ;
+    display:inline-block;
+    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* margin-left: 20px; */
+}

@@ -20,7 +20,7 @@ class Userpage_volunteer extends React.Component{
        
     
     render() {
-        const {queueComponent,recommended_posts, posts,} = this.props
+        const {queueComponent,recommended_posts, posts,applied_posts} = this.props
         /* console.log("queueComponent",queueComponent)
         console.log("posts",posts)  */
          //only display posts that are approved
@@ -36,7 +36,7 @@ class Userpage_volunteer extends React.Component{
             <div id="page">
             <Navbar user="Application"/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} queueComponent={queueComponent}/>
-            <Recommended_ops queueComponent={queueComponent} posts={filteredRecommendedPosts}/>
+            <Recommended_ops queueComponent={queueComponent} posts={filteredRecommendedPosts} applied_posts={applied_posts}/>
 
 
 

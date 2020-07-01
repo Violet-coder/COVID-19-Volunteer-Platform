@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
-import OrgDetail from "../../../react-components/OrgDetail"
+import OrgDetail from "../../../react-components/OrgDetail";
+import {BackButton} from '../../../react-components/Organization/Hook/backButton';
+import './styles.css';
 
 
 
@@ -62,6 +64,7 @@ class OrgProfilePage extends React.Component {
                 <Navbar />
                 <Header_appli title={info.name} subtitle={info.email}/>
                 <OrgDetail info={info}/>
+                <span className='Applybutton'><BackButton/></span>
                 
             </div>
         )

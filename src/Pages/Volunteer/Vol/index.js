@@ -58,7 +58,12 @@ class Volunteer extends React.Component{
               <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} />)}/>
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile}/>)}/>
               <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this}/>)} />
-              <Route path='/volunteer/post/:id' component={PostDetailPage} />
+              {/* <Route path='/volunteer/post/:id' component={PostDetailPage} /> */}
+              <Route path='/volunteer/post/:id' render={
+                (matchProps) => {
+                 return<PostDetailPage matchProps={matchProps} applied_posts={this.state.applied_posts} queueComponent={this}/>
+                }
+              } />
               <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
               <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)}/>
               <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} />

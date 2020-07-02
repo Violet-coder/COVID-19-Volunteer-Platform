@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
 import {uid} from "react-uid";
 import SinglePost from "./../SinglePost";
 

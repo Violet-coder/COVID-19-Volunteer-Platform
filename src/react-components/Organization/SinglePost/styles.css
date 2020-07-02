@@ -1,11 +1,28 @@
-p {
+p.single-post {
     font-size: 18px;
+    text-align: center;
+    width: 300px;
 }
-
+td {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100px;
+}
+#row {
+    height: 180px;
+}
 #name {
     width: 300px;
+    text-align: center;
     font-size: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+tbody {
+    color: rgba(42, 51, 86, .9);
+}
+td.button {
+    width: 180px;
+    text-align: center;
 }

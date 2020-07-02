@@ -21,9 +21,8 @@ class ApplicantList extends React.Component {
         </div>
         </div>
         <div id="fh5co-blog" className="fh5co-bg-section">
-        <div className="container">
-      <Table style={{ width: '80%' }}>
-        <TableBody>
+        <div className="container" id='single-applicant'>
+
         {applicants.map(applicant => (
             <SingleApplicant
               key = {uid(applicant)}
@@ -35,8 +34,7 @@ class ApplicantList extends React.Component {
               context={context}
             />
           ))}
-        </TableBody>
-      </Table>
+
       </div>
       </div>
       <Footer/>

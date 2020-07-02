@@ -12,22 +12,22 @@ class Applicant extends React.Component {
   checkState = (context, id) => {
     if (this.state.status==='rejected') {
       return (
-        <TableCell component="th" scope="row">
+        <td className='status'>
         <p className='rejected'>Rejected</p>
-        </TableCell>
+        </td>
       )
     }
     if (this.state.status==='accepted') {
       return (
-        <TableCell component="th" scope="row">
+        <td className='status'>
         <p className='accepted'>Accepted</p>
-        </TableCell>
+        </td>
       )
     }
     else if (this.state.status==='pending') {
       return (
-      <TableCell component="th" scope="row">
-        <ButtonGroup style={{width: 180}}>
+      <td className='status'>
+        <ButtonGroup style={{width: 250}}>
       <Button
         variant="contained"
         color="secondary"
@@ -49,7 +49,7 @@ class Applicant extends React.Component {
         accept
       </Button>
       </ButtonGroup>
-    </TableCell>
+    </td>
       )
     }
     
@@ -92,30 +92,31 @@ class Applicant extends React.Component {
     const { name, rank ,jobName, context, id } = this.props;
     const addr = "/organization/volprofile/" + String(id)
     return (
-      <TableRow key={name} className="fh5co-post">
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
+      <tr key={name} className="fh5co-post" id='row'>
+        <td>
           <p className='name'>{name}</p>
-        </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
+        </td>
+        <td>
           <p className='job'>{jobName}</p>
-        </TableCell>
-        <TableCell component="th" scope="row" style={{fontSize:20}}>
-        {rank}
-        </TableCell>
-        <TableCell component="th" scope="row">
+        </td>
+        <td>
+         <p className='rank'>{rank}</p>
+        </td>
+        <td id='detail'>
         <Link to={addr}>
           <Button
             variant="contained"
             color="default"
-            style={{fontSize: 12}}
+            style={{fontSize: 12, width: 150}}
           >
             detail
           </Button>
           </Link>
-        </TableCell>
+        </td>
+        
         {this.checkState(context, id)}
-              
-      </TableRow>
+
+      </tr>
     );
   }
 }

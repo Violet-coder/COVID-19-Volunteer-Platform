@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
@@ -33,51 +32,51 @@ class SinglePost extends React.Component {
     const addr = "/organization/posts/"+String(post.id)
     return (
       <>
-        <TableBody>
-        <TableRow key={post.name} className="fh5co-post">
-        <TableCell component="th" scope="row" style={{width: 300}}>
+        <tbody>
+        <tr key={post.name} className="fh5co-post" id='row'>
+        <td>
         <p id='name'>
         {post.name}
         </p>
-        </TableCell>
-        <TableCell component="th" scope="row" style={{width: 200}}>
-        <p>{post.status} on {post.date}</p>
-        </TableCell>
-        <TableCell component="th" scope="row">
+        </td>
+        <td>
+        <p className='single-post'>{post.status} on {post.date}</p>
+        </td>
+        <td className='button'>
         <Button
             variant="contained"
             color="primary"
             onClick={this.handleClick}
-            style={{fontSize: 12}}
+            style={{fontSize: 12, width: 150}}
           >
             Applicants
           </Button>
-          </TableCell>
-          <TableCell component="th" scope="row">
+          </td>
+          <td className='button'>
         <Link to={addr}>
         <Button
             variant="contained"
             color="default"
-            style={{fontSize: 12}}
+            style={{fontSize: 12, width: 150}}
           >
             Detail
           </Button>
           </Link>
-          </TableCell>
-          <TableCell component="th" scope="row">
+          </td>
+          <td className='button'>
           <Button
             variant="contained"
             color="secondary"
             onClick={
                 deletePost.bind(this, queueComponent, post)
             }
-            style={{fontSize: 12}}
+            style={{fontSize: 12, width: 150}}
           >
             Delete
           </Button>
-          </TableCell>
-      </TableRow>
-      </TableBody>
+          </td>
+      </tr>
+      </tbody>
       <TableBody style={{display: this.state.display}}>
       {filteredApplicants.map(applicant=>(
             <SingleApplicant

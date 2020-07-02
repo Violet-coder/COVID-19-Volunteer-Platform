@@ -28,7 +28,7 @@ class PostDetail extends React.Component {
       <p>{post.requirement}</p>
 			</div>
 
-      <div className="fh5co-post">
+      <div className="fh5co-post" style={{minHeight: "250px"}}>
 			<h3>Location</h3>
       <hr/>
       <p>{post.location}</p>

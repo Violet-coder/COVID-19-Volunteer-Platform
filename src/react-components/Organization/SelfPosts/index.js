@@ -11,7 +11,7 @@ class SelfPosts extends React.Component {
     const { posts, queueComponent} = this.props;
 
     return (
-      <Table style={{ width: "100%"}}>
+      <>
 
           {posts.map(post => 
             <SinglePost key = {uid(post)}
@@ -20,7 +20,7 @@ class SelfPosts extends React.Component {
             />
           )}
 
-      </Table>
+      </>
     );
   }
 }

@@ -1,9 +1,21 @@
+td {
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    height: 100px;
+}
+#row {
+    height: 180px;
+}
 p.name {
     display: inline-block;
     width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+#detail {
+    width: 200px;
 }
 p.job {
     display: inline-block;
@@ -12,13 +24,24 @@ p.job {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
+p.rank {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
 p.accepted {
     color: tomato;
-    width: 180px;
+    width: 300px;
+    text-align: center;
 }
 
 p.rejected {
-    width: 180px;
+    width: 300px;
     color: slategray;
+    text-align: center;
+}
+
+td.status {
+    width: 500;
+    text-align: center;
 }

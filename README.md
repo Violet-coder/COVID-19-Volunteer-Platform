@@ -39,9 +39,40 @@ C: The applicant does not fit your position well
 #### Hire Volunteers:
 Volunteers who applied your jobs are shown in the *All Applicants* page and under every post respectively. Organizations can check their detailed profiles and accept or reject each applicant.
 ### For Administrator:
-#### Manage Volunteers/Organizations Profile:
-#### Delete Users:
-#### Manage Posts: 
-#### Approve New Post:
-#### Publish New Post
+#### Login Credentials: 
+Email: admin@admin.com	
+Password: admin
+
+After login as admin, the user will be redirected to the Administration Entry page and there are buttons: Organizations, Volunteers and Posts. You can enter the corresponding management page by clicking each button. 
+
+At the navigation bar, there is a Home button which can redirect you back to this Administration Entry Page. The Log Out button will log you out and direct to website home page.  
+
+#### Administration Entry page
+Volunteers Management:
+Click the VOLUNTEERS button at the administration page and you will enter the volunteers management page. There is a list of volunteer users shown below. 
+
+
+#### Manage Volunteer Profile:
+Clicking the View/Edit button at each row allows the admin user to view or modify a volunteer’s profile. Please note that admin can only modify part of the volunteer’s profile information, including location, links, and description. After editing, please click the Update Profile button at the bottom of the page, a success message will pop up and the user profile is updated.
+
+
+#### Delete Volunteer User:
+If you click the Delete button at the last column. A confirming window will  pop up and the selected user will be deleted if you choose “Yes”.
+Organizations Management:
+Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
+
+#### View/Edit Organization Profile: Similar to volunteer management, the admin can also edit the organization profile information except email.
+
+#### Delete Organization User: You can delete an organization user by clicking the Delete button.
+#### Posts Management:
+Go back to the Administration Entry page and click the third entry “POSTS”. You will enter the post management page which displays a list of posts. For each post, there are three buttons “Approved/Approve”, View and Delete.
+Approve Post: The “Approved/Approve” button shows the post status. When its color is blue, it displays “Approved”; when it’s red, the post status is under review. You can click the red “Approve” button to make the post become approved to be accessible to the public.
+
+#### Create New Post: 
+There is a button at the right top of the navigation bar which redirects you to the publishing post page. After filling in the post form and submit, the new post will appear at the post list.
+
+#### View/Delete Post: 
+The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts.
+
+
 

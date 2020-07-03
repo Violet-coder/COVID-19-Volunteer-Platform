@@ -106,7 +106,7 @@ class Login extends React.Component{
             //     ()=> {this.props.history.push('/volunteer/userpage')})
             const email = this.state.email
             const password = this.state.password
-            if(email === 'user1@user.com'){
+            if(email === 'user@user.com'){
                 p.login(email, password, ()=> {this.props.history.push('/volunteer/userpage')})
             } else if (email === 'user2@user.com'){
                 p.login(email, password, ()=> {this.props.history.push('/organization/profile')})

@@ -25,13 +25,15 @@ password: admin
 ### For Volunteers:
 
 ### For Organizations:
-#### Manage Profie:
+#### Manage Profile:
 #### Post New Jobs:
 #### Manage Posts:
 #### Hire Volunteers:
 
 ### For Administrator:
-
-
-Features?
+### Manage Volunteers/Organizations Profile:
+### Delete Users:
+### Manage Posts: 
+### Approve New Post:
+### Publish New Post
 

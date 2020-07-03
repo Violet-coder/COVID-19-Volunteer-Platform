@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TableRow from "@material-ui/core/TableRow";
 import SingleApplicant from "./../SingleApplicant";
 import "./styles.css";
 import { deletePost } from "../../../actions/postList";

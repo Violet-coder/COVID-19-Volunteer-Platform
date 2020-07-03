@@ -31,9 +31,9 @@ password: admin
 #### Hire Volunteers:
 
 ### For Administrator:
-### Manage Volunteers/Organizations Profile:
-### Delete Users:
-### Manage Posts: 
-### Approve New Post:
-### Publish New Post
+#### Manage Volunteers/Organizations Profile:
+#### Delete Users:
+#### Manage Posts: 
+#### Approve New Post:
+#### Publish New Post
 

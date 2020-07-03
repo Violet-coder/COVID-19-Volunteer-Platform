@@ -58,15 +58,20 @@ If you click the Delete button at the last column. A confirming window will  pop
 Organizations Management:
 Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
 
+#### Organizations Management:
+Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
+
 ##### View/Edit Organization Profile: 
 Similar to volunteer management, the admin can also edit the organization profile information except email.
 
 ##### Delete Organization User: 
 You can delete an organization user by clicking the Delete button.
 
-##### Posts Management:
+#### Posts Management:
 Go back to the Administration Entry page and click the third entry “POSTS”. You will enter the post management page which displays a list of posts. For each post, there are three buttons “Approved/Approve”, View and Delete.
-Approve Post: The “Approved/Approve” button shows the post status. When its color is blue, it displays “Approved”; when it’s red, the post status is under review. You can click the red “Approve” button to make the post become approved to be accessible to the public.
+
+##### Approve Post: 
+The “Approved/Approve” button shows the post status. When its color is blue, it displays “Approved”; when it’s red, the post status is under review. You can click the red “Approve” button to make the post become approved to be accessible to the public.
 
 ##### Create New Post: 
 There is a button at the right top of the navigation bar which redirects you to the publishing post page. After filling in the post form and submit, the new post will appear at the post list.

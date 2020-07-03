@@ -1,6 +1,4 @@
 import React from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
 import SingleApplicant from "./../SingleApplicant";
 import OrgNav from "../../OrgNav";
 import Footer from './../../Footer';

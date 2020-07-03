@@ -1,5 +1,4 @@
 import React from "react";
-import Table from "@material-ui/core/Table";
 import {uid} from "react-uid";
 import SinglePost from "./../SinglePost";
 import "./styles.css";

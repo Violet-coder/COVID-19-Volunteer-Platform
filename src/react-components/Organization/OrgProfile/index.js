@@ -31,7 +31,7 @@ class OrgProfile extends React.Component {
         </div>
         </div>
         <div id="fh5co-blog" className="fh5co-bg-section">
-        <div className="container">
+        <div className="container" id='single-post'>
         <h1>My Posts</h1>
         <SelfPosts posts={posts} queueComponent={queueComponent}/>
         </div>

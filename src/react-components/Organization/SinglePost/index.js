@@ -32,7 +32,6 @@ class SinglePost extends React.Component {
     const addr = "/organization/posts/"+String(post.id)
     return (
       <>
-        <tbody>
         <tr key={post.name} className="fh5co-post" id='row'>
         <td>
         <p id='name'>
@@ -76,7 +75,6 @@ class SinglePost extends React.Component {
           </Button>
           </td>
       </tr>
-      </tbody>
       <TableBody style={{display: this.state.display}}>
       {filteredApplicants.map(applicant=>(
             <SingleApplicant

@@ -8,8 +8,8 @@ class CheckLogin extends React.Component {
     }
 
     login(email, password, callback) {
-        if(email === 'user1@user.com' && 
-                password === 'user1'){
+        if(email === 'user@user.com' && 
+                password === 'user'){
                 console.log("logging in as volunteer")
                 this.isLogin = true;
                 callback();

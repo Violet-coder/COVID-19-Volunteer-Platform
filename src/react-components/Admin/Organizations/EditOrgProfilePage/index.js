@@ -23,6 +23,9 @@ class EditOrgProfilePage extends React.Component{
     }
 
     render(){
+
+        //get organization data from database, but here we get data from props instead
+        //the queueComponent represents the class object whose state we want to modify.
         const organization=this.props.organization;
         const queueComponent=this.props.queueComponent;
 

@@ -11,7 +11,10 @@ import {adminApprovePost} from '../../../../actions/adminApprovePost';
 
 class PostList extends React.Component{
     render(){
+        //here we get post data from global state
+        //in phase2 get data from database
         const posts = this.props.posts;
+        posts.reverse();
         const queueComponent = this.props.queueComponent;
         const desc = 'Administration'
         const title = 'Post Management'

@@ -70,7 +70,7 @@ import './styles.css';
 
 class EditVolProfilePage extends React.Component {
 
-
+    //store the upated profile information in state
     state = {
     
             links:"",
@@ -92,7 +92,7 @@ class EditVolProfilePage extends React.Component {
     }
 
     render(){
-        //get the id of user and read the selected user info from database
+        //get the id of user and read the selected user info from database in phase 2
         const {id} = this.props.matchProps.match.params
         const queueComponent = this.props.queueComponent;
         const volusers = queueComponent.state.volusers

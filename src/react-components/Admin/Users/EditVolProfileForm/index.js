@@ -552,6 +552,7 @@ class EditVolProfileForm extends React.Component{
             </span> */}
             <span id = 'updateform'><VolUpdateSucessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
             <BackButton /></span>
+            {/* Write the updated data to database after submit. */}
 
             
       </form>

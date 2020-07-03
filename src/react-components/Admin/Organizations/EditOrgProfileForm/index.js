@@ -171,7 +171,7 @@ class EditOrgProfileForm extends React.Component{
 
             <span id = 'updateform'><OrgUpdateSuccessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
             <BackButton /></span>
-
+            {/* We will write the updated data to database in phase 2. Now just modify the queueComponent state. */}
             </form>
             </div>
             </div>

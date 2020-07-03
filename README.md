@@ -11,8 +11,8 @@ In order to fight against COVID-19 pandemic, we are devoted to providing a platf
 ## How to Use
 ### Login:
 #### Volunteer: 
-email: user1@user.com  
-password: user1  
+email: user@user.com  
+password: user  
 
 #### Organization:
 email: user2@user.com  

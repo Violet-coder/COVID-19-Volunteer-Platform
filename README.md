@@ -26,9 +26,9 @@ password: admin
 
 ### For Organizations:
 profie:
-post a new job:
+post new jobs:
 manage posts:
-
+hire volunteers:
 
 ### For Administrator:
 

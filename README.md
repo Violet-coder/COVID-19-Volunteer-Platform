@@ -11,27 +11,27 @@ In order to fight against COVID-19 pandemic, we are devoted to providing a platf
 ## How to Use
 ### Login:
 #### Volunteer: 
-email: user1@user.com
-password: user1
+email: user1@user.com  
+password: user1  
 
 #### Organization:
-email: user2@user.com
-password: user2
+email: user2@user.com  
+password: user2  
 
 #### Admin: 
-email: admin@admin.com
-password: admin
+email: admin@admin.com  
+password: admin  
 
 ### For Volunteers:
 
 ### For Organizations:
-profie:
-post new jobs:
-manage posts:
-hire volunteers:
+#### Manage Profie:
+#### Post New Jobs:
+#### Manage Posts:
+#### Hire Volunteers:
 
 ### For Administrator:
 
 
-Features
+Features?
 

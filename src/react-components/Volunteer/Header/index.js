@@ -47,8 +47,9 @@ class Header extends React.Component {
 					<form>
 					<span className="searchinput"><input id="postname"  required="required" onChange={this.handleInputChange} type="text" placeholder="Search"/></span>
 						{console.log('valid',this.validateForm())}
+						{console.log("postsahaha",posts)}
 						{(this.validateForm())?
-						<span ><Link to={{pathname:`/searchresult`, state: this.state.postname,query: posts }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span> :
+						<span ><Link to={{pathname:`/volunteer/searchresult`, state: this.state.postname,query: {posts,queueComponent} }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span> :
 						<span ><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></span>
 
  						 }

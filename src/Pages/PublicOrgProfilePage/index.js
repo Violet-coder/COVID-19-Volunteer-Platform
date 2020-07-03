@@ -2,6 +2,7 @@ import React from "react";
 import HomeNav from '../../react-components/HomeNav';
 import Header_appli from "../../react-components/Volunteer/Header_appli";
 import OrgDetail from "../../react-components/OrgDetail"
+import {BackButton} from '../../react-components/Organization/Hook/backButton';
 
 
 
@@ -70,7 +71,12 @@ class OrgProfilePage extends React.Component {
             <div id='page'>
                 <HomeNav />
                 <Header_appli title={info.name} subtitle={info.email}/>
+                <div id="fh5co-blog" className="fh5co-bg-section">
+                <div className="container">
                 <OrgDetail info={info}/>
+                </div>
+                </div>
+                <span className='Applybutton'><BackButton/></span>
                 <Footer />
             </div>
         )

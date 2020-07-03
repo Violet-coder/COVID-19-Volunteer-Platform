@@ -63,7 +63,11 @@ class OrgProfilePage extends React.Component {
             <div id='page'>
                 <Navbar />
                 <Header_appli title={info.name} subtitle={info.email}/>
+                <div id="fh5co-blog" className="fh5co-bg-section">
+                <div className="container">
                 <OrgDetail info={info}/>
+                </div>
+                </div>
                 <span className='Applybutton'><BackButton/></span>
                 
             </div>

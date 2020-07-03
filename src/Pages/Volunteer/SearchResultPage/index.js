@@ -14,6 +14,7 @@ class SearchResultPage extends React.Component {
          const queueComponent =  this.props.location.query.queueComponent
          
          console.log("queueComponent",queueComponent )
+         console.log("posts", posts)
          
 
 

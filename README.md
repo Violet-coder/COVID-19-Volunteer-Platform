@@ -26,7 +26,9 @@ password: admin
 
 ### For Organizations:
 #### Manage Profile:
+Organization users can edit their introduction and website of the profile in the *Profile* page, which can be viewed by all volunteers and administrator.
 #### Post New Jobs:
+In the *Post a New Job* page
 #### Manage Posts:
 #### Hire Volunteers:
 

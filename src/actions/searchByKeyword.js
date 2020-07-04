@@ -6,6 +6,8 @@ export const searchByKeyword = (keyword, posts) => {
     }
 
     const peerpost = []
+    //code below requires server call 
+    //as usaual we do search in the database
 
     posts.forEach(function (value, index, array) {
         let s = '';

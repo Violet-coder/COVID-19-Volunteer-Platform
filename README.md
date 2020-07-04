@@ -10,7 +10,7 @@ In order to fight against COVID-19 pandemic, we are devoted to providing a platf
 
 ## How to Use
 ### Download&Install
-Please download the ZIP and uizip it.
+Please download the ZIP and unzip it.
 Open the folder "team20-master" in terminal and run **npm install**.
 Run the app using the command **npm start**.
 ### Login:

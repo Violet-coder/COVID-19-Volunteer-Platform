@@ -109,6 +109,7 @@ class AdminPostForm extends React.Component {
           >
             Submit
           </Button>
+          {/* Write the post form data to database after submit */}
           </Link>
       )
     }

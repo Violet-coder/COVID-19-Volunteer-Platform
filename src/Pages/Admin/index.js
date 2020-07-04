@@ -15,6 +15,10 @@ import PostDetailPage from '../../react-components/Admin/Posts/PostDetailPage';
 
 
 class Admin extends React.Component {
+    //Store all the data in Admin global state,
+    //and pass the necessary data to each page component.
+    //When the components of each page perform some actions, the global state will be updated.
+    //With databases in phase 2, we will get data from database each time enter a page.
     state={
         volusers:[
             {
@@ -254,7 +258,7 @@ class Admin extends React.Component {
                         const {id}=matchProps.match.params
                         const post = this.state.posts.find(u => u.id==id)
                         if(post){
-                            return <PostDetailPage post={post} />}
+                            return <PostDetailPage post={post} queueComponent={this} />}
                         else{
                            return <Redirect to='/not-found' />
                        }

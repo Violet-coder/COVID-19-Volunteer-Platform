@@ -6,6 +6,7 @@ import OrganizationTable from '../OrganizationTable';
 
 class OrganizationListPage extends React.Component{
     render(){
+        //In phase 2 get data from database instead
         const organizations = this.props.organizations
         const queueComponent = this.props.queueComponent
 

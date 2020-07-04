@@ -1,7 +1,7 @@
 
 export const addApplication = (Volunteer, newAppli) => {
     
-    const applications = Volunteer.state.applied_posts;
+    const applications = Volunteer.state.applied_posts; //Get applications from server 
     
     const application = {
         name: newAppli.name,
@@ -14,7 +14,7 @@ export const addApplication = (Volunteer, newAppli) => {
         id:newAppli.id,
         org_status: 'pending'};
    
-    
+    //code below requires server call
     applications.push(application)
     Volunteer.setState({
         applied_posts: applications

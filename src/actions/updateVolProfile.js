@@ -1,7 +1,7 @@
 export const updateVolProfile = (queueComponent, info) => {
     //  console.log(queueComponent)
     
-     let newInfo = queueComponent.state.profile;
+     let newInfo = queueComponent.state.profile;//Get old profile from server
      console.log("newInfo", newInfo)
      console.log("toupdate", info)
     // const userToUpdate = oldVols.find(u => u.id==userId)

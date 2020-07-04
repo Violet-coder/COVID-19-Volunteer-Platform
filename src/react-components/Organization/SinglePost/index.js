@@ -8,6 +8,8 @@ import {uid} from "react-uid";
 import { TableBody } from "@material-ui/core";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
+  //post information should be requested from the database
+  //deleting a post should delete the data in the database
   constructor(props) {
     super(props);
     this.state = {

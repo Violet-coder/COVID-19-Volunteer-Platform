@@ -8,6 +8,7 @@ import ProfileForm from '../../react-components/Organization/ProfileForm';
 import SelfPostDetail from '../../react-components/Organization/SelfPostDetail';
 import ApplicantDetail from '../../react-components/Organization/ApplicantDetail';
 class Organization extends React.Component{
+  //all these data below should be requested from the database
     state = {
       posts: [
         { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto", id: 1},

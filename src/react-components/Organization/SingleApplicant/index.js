@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
 import "./styles.css";
 import { ButtonGroup } from "@material-ui/core";
 import { Link } from "react-router-dom";
 class Applicant extends React.Component {
+  //applicants information should be requested from the database
+  //rejecting or accepting an applicant should make a change to the database
   state = {
     status: this.props.status
   }

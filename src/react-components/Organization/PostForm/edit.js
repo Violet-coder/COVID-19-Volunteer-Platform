@@ -9,7 +9,7 @@ import ErrorTextField from '../Hook/errorInput';
 import { editPost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
 import "./styles.css";
-/* Component for the Post Form */
+/* Component for Updating Post Form */
 class PostEditForm extends React.Component {
   handleInputChange = event => {
     const target = event.target;
@@ -83,6 +83,7 @@ class PostEditForm extends React.Component {
     
   }
 }
+//data should be changed in database respectively on submit
   submit = (id) => {
     if (this.state.jobName===""||this.state.jobDescription===""||this.state.jobTitle===""||this.state.location==="") {
       return (

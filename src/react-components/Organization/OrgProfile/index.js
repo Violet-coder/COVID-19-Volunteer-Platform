@@ -9,6 +9,7 @@ import "./styles.css";
 /* The Organization Profile Component */
 class OrgProfile extends React.Component {
   render() {
+    //organizations information should be requested from the database
     const {posts, queueComponent} = this.props;
     
     return (

@@ -5,10 +5,11 @@ import Footer from './../../Footer';
 import {uid} from "react-uid";
 import "./styles.css";
 
-/* Component for the List of Posts */
+/* Component for the List of Applicants */
 class ApplicantList extends React.Component {
   
   render() {
+    //applicants information should be requested from the database
     const {applicants, context} = this.props;
     return (
     <div>

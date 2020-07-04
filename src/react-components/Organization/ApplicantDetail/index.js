@@ -135,6 +135,8 @@ const volusers=[
 ]
 class ApplicantDetail extends React.Component {
   id = this.props.matchProps.match.params.id
+  //applicants information should be requested from the database
+  //rejecting or accepting an applicant should make a change to the database
   applicant = this.props.applicants.find((u) => u.id===parseInt(this.id))
   
     state = {

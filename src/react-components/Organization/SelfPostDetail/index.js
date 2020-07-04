@@ -15,6 +15,7 @@ import "./styles.css"
 
 class SelfPostDetail extends React.Component {
     render(){
+      //detailed information should be requested from the database
         const {matchProps,context} = this.props
         const id = parseInt(matchProps.match.params.id)
         const post = context.state.posts.find((p) => p.id===id)

@@ -5,8 +5,8 @@ import Footer from './../../Footer';
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import { updateOrgProfile } from "../../../actions/updateOrgProfile";
-//import "./styles.css";
-/* Component for the Post Form */
+
+/* Component for the Profile Form */
 class ProfileForm extends React.Component {
   handleInputChange = event => {
     const target = event.target;
@@ -16,6 +16,7 @@ class ProfileForm extends React.Component {
       [name]: value
     });
   };
+  //default value should be requested from the database
   state = {
     website: this.props.info.website,
     intro: this.props.info.intro

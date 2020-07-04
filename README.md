@@ -9,6 +9,10 @@ panganqi - Anqi Pang
 In order to fight against COVID-19 pandemic, we are devoted to providing a platform for connecting passionate people to contribute together. This web application, COVID-19 Volunteer Platform, is for volunteers who are looking for social volunteering opportunities to help people affected by COVID-19 and organizations that are looking for responsible volunteers. Our web application helps to transfer information between volunteers and organizations. People who want to serve the society as volunteers during this difficult time could browse our website to learn about current volunteering opportunities. Organizations that are hunting for volunteers could post their recruitment information. Our website supports to display information from responsible organizations and prospective volunteers in order to unite people more efficiently in this difficult time.
 
 ## How to Use
+### Download&Install
+Please download the ZIP and uizip it.
+Open the folder "team20-master" in terminal and run **npm install**.
+Run the app using the command **npm start**.
 ### Login:
 #### Volunteer: 
 email: user@user.com  

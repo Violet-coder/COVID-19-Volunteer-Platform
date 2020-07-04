@@ -22,7 +22,7 @@ password: user
 email: user2@user.com  
 password: user2  
 
-#### Admin: 
+#### Administrator: 
 email: admin@admin.com  
 password: admin  
 
@@ -47,16 +47,16 @@ Notes: Since the key word is obtained from user and this variable will be passed
 #### Manage Profile:
 Organization users can edit their introduction and website of the profile in the *Profile* page, which can be viewed by all volunteers and administrator.
 #### Post New Jobs:
-In the *Post a New Job* page, user can submit a new job information form to the administrator. The job will be posted after administrator's review. The administrator may contact organizations by phone call or email to ensure the reliability of the job. 
+In the *Post a New Job* page, user can submit a new job information form to the administrator. The job will be posted after administrator's review. The administrator will ensure the reliability of the job before approving it, especially during the pandemic. 
 #### Manage Posts:
-Users can always edit and delete their own posts. Edited posts will be reviewed by administrator again before posted.
+Users can always edit and delete their own posts in the *Profile* page. Edited posts will be reviewed by administrator again  and will be invisible to volunteers before posted.
 #### Fit Degree:
 The fit degree of applicants is calculated based on the job location, related area, and requirements that both applicants and organizations provide and is only for reference. It will be shown as A/B/C with each applicant's information.  
 A: The applicant is highly compatible with your position  
 B: The fit between the applicant and your position is average  
 C: The applicant does not fit your position well
 #### Hire Volunteers:
-Volunteers who applied your jobs are shown in the *All Applicants* page and under every post respectively. Organizations can check their detailed profiles and accept or reject each applicant.
+Volunteers who applied to your jobs are shown in the *All Applicants* page and under every post respectively as well. Organizations can check their detailed profiles and accept or reject each applicant.
 ### For Administrator:
 #### Login Credentials: 
 Email: admin@admin.com	

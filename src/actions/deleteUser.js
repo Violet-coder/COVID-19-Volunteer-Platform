@@ -1,6 +1,6 @@
 export const deleteUser = (queue, user) => {
-    //console.log("to delete queue",queue.state.volusers)
-    //console.log("student", user)
+    // here we get the user to be deleted from front-end
+    // code below requires server call: remove the deleted user from database
     const filteredUser = queue.state.volusers.filter(
         u => {
             return u !== user;

@@ -41,7 +41,9 @@ app.post("/volunteer", (req, res) => {
     // Create a new volunteer using the Volunteer mongoose model
     const volunteer = new Volunteer({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName:req.body.lastName
     });
 
     // Save volunteer to the database
@@ -69,15 +71,19 @@ app.post("/volunteer/:id", (req, res) => {
 		res.status(500).send('Internal server error')
 		return;
     } 
-    const volProfile = new Profile({
 
-    })
+    // const volSkills = req.body.skills
+    // const volAvailability = req.body.availability
 
     Volunteer.findById(id).then((volunteer)=> {
         if(!volunteer){
             res.status(404).send("404 Resource Not Found")
         } else {
-            volunteer.profile = volProfile
+            volunteer.location = req.body.location
+            volunteer.links = req.body.links
+            volunteer.desc = req.body.desc
+            volunteer.skills = req.body.skills
+            volunteer.availability = req.body.availability
             volunteer.save().then((result) => {
                 res.send(result)
             })
@@ -90,6 +96,30 @@ app.post("/volunteer/:id", (req, res) => {
             })
         }
     })
+});
+
+/*** Webpage routes below **********************************/
+// Serve the build
+app.use(express.static(__dirname + "/client/build"));
+
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+    // check for page routes that we expect in the frontend to provide correct status code.
+    const goodPageRoutes = ["/", "/volunteer"];
+    if (!goodPageRoutes.includes(req.url)) {
+        // if url not in expected page routes, set status to 404.
+        res.status(404);
+    }
+
+    // send index.html
+    res.sendFile(__dirname + "/client/build/index.html");
+});
+
+/*************************************************/
+// Express server listening...
+const port = process.env.PORT || 5000
+app.listen(port, () => {
+	log(`Listening on port ${port}...`)
 });
 
 

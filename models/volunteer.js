@@ -15,6 +15,104 @@ const ApplicationSchema = new mongoose.Schema({
     }
 });
 
+const SkillsSchema = new mongoose.Schema({
+    analytics: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    biology: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    biotech: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    community: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    content: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    data: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    finance: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    helpdesk: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    manufacturing: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    marketing: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+
+    mechanics: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    IT: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    anything: {
+        type: Boolean,
+        required:false,
+        default:false
+    }
+})
+
+const AvailabilitySchema = new mongoose.Schema({
+    option1: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    option2: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    option3: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    option4: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    option5: {
+        type: Boolean,
+        required:false,
+        default:false
+    },
+    
+});
+
 const VolunteerSchema = new mongoose.Schema({
 	email: {
 		type: String,
@@ -47,6 +145,20 @@ const VolunteerSchema = new mongoose.Schema({
         required:true,
         minlength:1
     },
+    location: {
+        type:String,
+        required:false,
+        minlength:1,
+
+    },
+    desc: {
+        type: String,
+        required: false,
+        minlength: 1
+
+    },
+    skills: SkillsSchema,
+    availability: AvailabilitySchema,
     applications:[ApplicationSchema]
 
 })

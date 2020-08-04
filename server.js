@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /*********************************************************/
 
 /*** API Routes below ************************************/
-// NOTE: The JSON routes (/students) are not protected in this react server (no authentication required). 
+// NOTE: The JSON routes (/volunteers) are not protected in this react server (no authentication required). 
 //       You can (and should!) add this using similar middleware techniques we used in lecture.
 
 /** volunteer resource routes **/
@@ -38,14 +38,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/volunteer", (req, res) => {
     // log(req.body)
 
-    // Create a new student using the Student mongoose model
+    // Create a new volunteer using the Volunteer mongoose model
     const volunteer = new Volunteer({
         email: req.body.email,
         password: req.body.password
     });
 
-    // Save student to the database
-    student.save().then(
+    // Save volunteer to the database
+    volunteer.save().then(
         result => {
             res.send(result);
         },

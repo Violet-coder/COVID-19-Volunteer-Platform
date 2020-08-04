@@ -14,6 +14,9 @@ const Post = mongoose.model('Post', {
         minlength: 1,
         trim: true
 	}, 
+	title: {
+
+	},
 	relevant_area: {
 		type: String,
 		required: true,
@@ -29,7 +32,10 @@ const Post = mongoose.model('Post', {
     is_approved: {
         type: Boolean,
         required: true
-    }
+	},
+	date: {
+		
+	}
 })
 
 module.exports = { Post }

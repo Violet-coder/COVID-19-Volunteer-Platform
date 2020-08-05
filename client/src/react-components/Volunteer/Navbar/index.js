@@ -43,8 +43,8 @@ class Navbar extends React.Component{
 							
 							
 						
-						<li><button onClick={()=> {
-							this.logoutUser(app)}}>Log Out</button></li>					
+						<li><a onClick={()=> {
+							this.logoutUser(app)}}>Log Out</a></li>					
 					</ul>
 						
 					

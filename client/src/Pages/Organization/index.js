@@ -8,6 +8,9 @@ import ProfileForm from '../../react-components/Organization/ProfileForm';
 import SelfPostDetail from '../../react-components/Organization/SelfPostDetail';
 import ApplicantDetail from '../../react-components/Organization/ApplicantDetail';
 class Organization extends React.Component{
+  constructor(props) {
+    super(props);
+  }
   //all these data below should be requested from the database
     state = {
       posts: [
@@ -28,23 +31,23 @@ class Organization extends React.Component{
       }
     }
     render() {
-      
+      const app = this.props.app
       return (
           <div>
             <Switch> 
-              <Route exact path='/organization/profile' render={() => (<OrgProfile posts={this.state.posts} queueComponent={this}/>)}/>
+              <Route exact path='/organization/profile' render={() => (<OrgProfile posts={this.state.posts} queueComponent={this} app={app}/>)}/>
               <Route exact path='/organization/post' render={() => 
-                              (<PostForm queueComponent={this}/>)}/>
+                              (<PostForm queueComponent={this} app={app} />)}/>
               <Route exact path='/organization/applicants' render={() => 
-                              (<ApplicantList applicants={this.state.applicants} context={this}/>)}/>
+                              (<ApplicantList applicants={this.state.applicants} context={this} app={app}/>)}/>
               <Route exact path='/organization/update' render={() => 
-                              (<ProfileForm info={this.state.info} infoComponent={this}/>)}/>
+                              (<ProfileForm info={this.state.info} infoComponent={this} app={app} />)}/>
               <Route exact path='/organization/post_edit/:id' render={(matchProps) => 
-                              (<PostEditForm matchProps = {matchProps} posts={this.state.posts} context={this}/>)}/>
+                              (<PostEditForm matchProps = {matchProps} posts={this.state.posts} context={this} app={app}/>)}/>
               <Route path='/organization/volprofile/:id' render={(matchProps) => 
-                              (<ApplicantDetail matchProps = {matchProps} applicants={this.state.applicants} context={this}/>)}/>
+                              (<ApplicantDetail matchProps = {matchProps} applicants={this.state.applicants} context={this} app={app}/>)}/>
               <Route path='/organization/posts/:id' render={(matchProps) => 
-                              (<SelfPostDetail matchProps = {matchProps} context={this}/>)}/>
+                              (<SelfPostDetail matchProps = {matchProps} context={this} app={app} />)}/>
               </Switch> 
         </div>
       );  

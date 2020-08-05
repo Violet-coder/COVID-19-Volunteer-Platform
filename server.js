@@ -90,9 +90,11 @@ app.post("/users/login", (req, res) => {
             console.log("find user",user)
             req.session.user = user._id;
             req.session.email = user.email;
-            //req.session.type = user.type
+            req.session.type = user.type
+
             res.send({ currentUser: user.email,
-                        currentUserId: user._id});
+                       currentUserId: user._id,
+                       type: user.type});
         })
         .catch(error => {
             res.status(400).send()
@@ -116,7 +118,7 @@ app.get("/users/logout", (req, res) => {
 app.get("/users/check-session", (req, res) => {
     console.log("req session",req.session.user)
     if (req.session.user) {
-        res.send({ currentUser: req.session.email, currentUserId: req.session.user});
+        res.send({ currentUser: req.session.email, currentUserId: req.session.user, type: req.session.type});
     } else {
         res.status(401).send();
     }

@@ -10,7 +10,8 @@ export const readCookie = (app) => {
         .then(json => {
             if (json && json.currentUser) {
                 app.setState({ currentUser: json.currentUser,
-                               currentUserId:json.currentUserId });
+                               currentUserId:json.currentUserId,
+                               type: json.type });
             }
         })
         .catch(error => {
@@ -42,7 +43,8 @@ export const login = (loginComp, app) => {
     .then(json => {
         if (json.currentUser !== undefined) {
             app.setState({ currentUser: json.currentUser,
-                currentUserId:  json.currentUserId});
+                currentUserId:  json.currentUserId,
+                type: json.type});
         }
     })
     .catch(error => {
@@ -60,6 +62,7 @@ export const logout = (app) => {
             app.setState({
                 currentUser: null,
                 currentUserId:null,
+                type:null,
                 message: { type: "", body: "" }
             });
         })

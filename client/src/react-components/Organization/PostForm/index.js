@@ -116,9 +116,10 @@ class PostForm extends React.Component {
     }
   
   render() {  
+    const app = this.props.app
     return (
       <div>
-      <OrgNav/>
+      <OrgNav app={app}/>
       <div id="fh5co-started">
       <h1 className='header'>Fill in your job information</h1>
       <p className='post-form'>Your job will be posted after our review</p>

@@ -11,10 +11,11 @@ class OrgProfile extends React.Component {
   render() {
     //organizations information should be requested from the database
     const {posts, queueComponent} = this.props;
+    const app = this.props.app
     
     return (
       <div>
-        <OrgNav/>
+        <OrgNav app={app} />
         <div id="fh5co-started">
         <div className="container">
         <h1 className='h'>{queueComponent.state.info.name}</h1>

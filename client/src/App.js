@@ -32,7 +32,7 @@ class App extends React.Component{
   state = {
     currentUser:null,
     currentUserId:null,
-    type:"volunteer",
+    type:null,
     posts: [
       { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
       { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
@@ -64,10 +64,19 @@ class App extends React.Component{
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
             <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
             <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
-            <Route exact path='/login' render={(history) => 
+            {/* <Route exact path='/login' render={(history) => 
                   (currentUser && type=='volunteer') ?  <Redirect to={"/volunteer/userpage"}/>:
                   <Login history={history} app={this} /> 
-                  } />
+                  } /> */}
+            <Route exact path='/login' render={(history) =>{
+              if(currentUser && type=='volunteer'){
+                return <Redirect to={"/volunteer/userpage"}/>
+              } else if (currentUser && type=='organization'){
+                return <Redirect to={"/organization/profile"}/>
+              } else {
+                return <Login history={history} app={this} />
+              }
+            } } />
             <Route path='/volunteer' render={() => (
               (currentUser && type=='volunteer') ?  <Volunteer posts={this.state.posts} app={this} /> :
               <Login app={this}/> )}/>

@@ -1,3 +1,25 @@
+export const getVolProfile = (id, vol) => {
+  const url = `/volunteer/profile/${id}`
+  fetch(url)
+  .then(res => {
+      if (res.status === 200) {
+          // return a promise that resolves with the JSON body
+          return res.json();
+      } else {
+          alert("Could not get students");
+      }
+  })
+  .then(json => {
+      // the resolved promise with the JSON body
+      console.log("json", json)
+      vol.setState({ user: json, isLoading: true });
+      console.log(vol.state)
+  })
+  .catch(error => {
+      console.log(error);
+  });
+}
+
 export const updateVolProfile = (queueComponent, info) => {
     //  console.log(queueComponent)
     

@@ -56,9 +56,37 @@ app.post("/volunteer", (req, res) => {
         }
     );
 });
+// a GET for getting vol profile from a particulat volunteer
+app.get('/volunteer/profile/:id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
 
-// a POST for adding profile info to a particular volunteer
-app.post("/volunteer/:id", (req, res) => {
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Volunteer.findById(id).then((volunteer)=>{
+		if(!volunteer){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(volunteer)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+
+// a POST for updating profile info to a particular volunteer
+app.post("/volunteer/update/:id", (req, res) => {
     // log(req.body)
     const id = req.params.id
 
@@ -105,7 +133,7 @@ app.use(express.static(__dirname + "/client/build"));
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/volunteer"];
+    const goodPageRoutes = ["/", "/volunteer","volunteer/5f29e3b9fcecd5232c568bfe"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
         res.status(404);

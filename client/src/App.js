@@ -14,16 +14,23 @@ import PublicSearchResultPage from './Pages/PublicSearchResultPage';
 import OrgProfilePage from './Pages/PublicOrgProfilePage';
 
 
+
 import CheckLogin from './react-components/Login/CheckLogin';
 import LoginForm from './react-components/Login/LoginForm';
 import Admin from './Pages/Admin';
-let passport = new CheckLogin();
+// let passport = new CheckLogin();
 
-
+const log = console.log
 
 class App extends React.Component{
+  constructor(props){
+    super(props)
+    //this.props.history.push("/");
+  }
 
   state = {
+    currentUser:null,
+    type:"volunteer",
     posts: [
       { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
       { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
@@ -40,7 +47,9 @@ class App extends React.Component{
 
   
   render() {
-    
+    const currentUser = this.state.currentUser;
+    const type = this.state.type
+    // log("current user", currentUser)
     return (
         <div>
         <BrowserRouter>
@@ -51,27 +60,24 @@ class App extends React.Component{
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
             <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
             <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
-            <Route exact path='/login' render={(props) => 
-                  {return <Login passport={passport} />
-                  }} />
-            <Route path='/volunteer' render={() => <Volunteer posts={this.state.posts} />}/>
+            <Route path='/login' render={(history) => 
+                  (currentUser && type=='volunteer') ?  <Redirect to={"/volunteer/userpage"}/>:
+                  <Login history={history} app={this} /> 
+                  } />
+            <Route path='/volunteer' render={() => (
+              (currentUser && type=='volunteer') ?  <Volunteer posts={this.state.posts} app={this} /> :
+              <Login app={this}/> )}/>
             <Route path='/publicpost' render={() => <Publicpost posts={this.state.posts} />}/>
             <Route path='/post/:id' component={PublicPostDetailPage} />
             <Route path='/searchresult' component={PublicSearchResultPage}/>
             <Route path='/orgProfile/:id' component={OrgProfilePage} />
-            
-            
-            
-
-            {/* <Route exact path='/Userpage_volunteer' render={(props) => {
-                if(passport.isLogin){
-                  return <Userpage_volunteer  posts={this.state.posts} />
-                } else {
-                  return <Redirect to='login'/>
-                }
-            }}/> */}
-            <Route path='/organization' component={Organization}/>
+            <Route path='/organization' render={() => 
+              (currentUser && type=='organization') ?  <Organization app={this} /> :
+              <Login  app={this}/>
+            }/>
             <Route path='/admin' component={Admin} />
+
+
           </Switch>
         </BrowserRouter>
       </div>

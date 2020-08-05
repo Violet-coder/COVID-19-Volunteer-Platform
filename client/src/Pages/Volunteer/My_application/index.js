@@ -21,11 +21,13 @@ class My_application extends React.Component{
     
     render() {
       const {applications} = this.props
+      const app = this.props.app
+      console.log("vol my applicaiton app", app)
       console.log("myapplicationinapplicationpage", applications)
         return(
             <div id="page">
             <Navbar user="Application"/>
-            <Header_appli title="My Application" subtitle="Let's work together"/>
+            <Header_appli title="My Application" subtitle="Let's work together" app={app} />
             <ApplicationList applications={applications}/>
 
 

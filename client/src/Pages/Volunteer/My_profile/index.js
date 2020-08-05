@@ -18,6 +18,8 @@ class My_profile extends React.Component{
     
     render() {
         const {user} = this.props
+        const app = this.props.app
+        console.log('vol my_profile app', app)
       
         return(
             <div id="page">

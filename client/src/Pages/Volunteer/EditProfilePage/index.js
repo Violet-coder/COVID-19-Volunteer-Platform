@@ -87,15 +87,13 @@ class EditProfilePage extends React.Component {
        
         const user = this.props.user
         const queueComponent = this.props.queueComponent
-
-
-        console.log("edit page queue",queueComponent)
-
+        const app = this.props.app
+        console.log('edit profile app',app)
         return(
             
             <div id='page'>
             <Navbar />
-            <Header_appli title="Update Profile" subtitle="Let's work together"/>
+            <Header_appli title="Update Profile" subtitle="Let's work together" app = {app} />
             <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} />
                       
             </div>

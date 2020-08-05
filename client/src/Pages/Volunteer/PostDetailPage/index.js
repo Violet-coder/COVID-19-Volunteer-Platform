@@ -46,6 +46,8 @@ class PostDetailPage extends React.Component {
         const queueComponent = this.props.queueComponent
         //console.log("queueComponent",queueComponent)
         const applied_posts = this.props.applied_posts
+        const app = this.props.app
+
         let applied_posts_ids = []
         for(let i=0; i< applied_posts.length; i++){
             applied_posts_ids.push(applied_posts[i].id)
@@ -58,7 +60,7 @@ class PostDetailPage extends React.Component {
         return(
             <div id="page">
             <Navbar user="Application"/>
-            <Header_appli title={post.name} subtitle={post.organization}/>
+            <Header_appli title={post.name} subtitle={post.organization} app={app} />
             <div id="fh5co-blog" class="fh5co-bg-section">
             <div class="container">
             <PostDetail post={post}/>

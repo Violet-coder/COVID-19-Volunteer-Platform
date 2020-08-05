@@ -57,12 +57,13 @@ class OrgProfilePage extends React.Component {
     
     render() {
         const {id} = this.props.match.params
+        const app = this.props.app
         const info = organizations.find((o) => o.id==id)
        
         return(
             <div id='page'>
                 <Navbar />
-                <Header_appli title={info.name} subtitle={info.email}/>
+                <Header_appli title={info.name} subtitle={info.email} app={app} />
                 <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
                 <OrgDetail info={info}/>

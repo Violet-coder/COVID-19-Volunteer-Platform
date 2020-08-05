@@ -6,6 +6,7 @@ import React from "react";
 class Header_appli extends React.Component {
   render() {
 	const { title, subtitle } = this.props;
+	const app = this.props.app
 	
 
     return (

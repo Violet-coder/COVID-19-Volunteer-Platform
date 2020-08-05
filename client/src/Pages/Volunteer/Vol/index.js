@@ -8,8 +8,13 @@ import My_profile from '../My_profile';
 import SearchResultPage from '../SearchResultPage';
 import VolunteerSeeall from '../VolunteerSeeall';
 import OrgProfilePage from '../OrgProfilePage';
+import { withRouter } from "react-router-dom";
+
 
 class Volunteer extends React.Component{
+  constructor(props) {
+    super(props);
+  }
     state = {
         applied_posts: [
             { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society", id:1,org_status: 'pending'},
@@ -50,23 +55,26 @@ class Volunteer extends React.Component{
     }
     render() {
      const {posts} = this.props
-      
+     const app = this.props.app
+     console.log("vol app",app)
+    
       return (
           <div>
             <Switch> 
-              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} recommended_posts={posts.slice(2,5)} posts={posts}/>)}/>
-              <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} />)}/>
-              <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile}/>)}/>
-              <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this}/>)} />
+              <Route exact path ='/volunteer' render = {() => (<div>404 Not Found</div>)}/> 
+              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} recommended_posts={posts.slice(2,5)} posts={posts} app ={app}/>)}/>
+              <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} app={app} />)}/>
+              <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile} app={app} />)}/>
+              <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this} app={app} />)} />
               {/* <Route path='/volunteer/post/:id' component={PostDetailPage} /> */}
               <Route path='/volunteer/post/:id' render={
                 (matchProps) => {
-                 return<PostDetailPage matchProps={matchProps} applied_posts={this.state.applied_posts} queueComponent={this}/>
+                 return<PostDetailPage matchProps={matchProps} applied_posts={this.state.applied_posts} queueComponent={this} app={app} /> 
                 }
-              } />
-              <Route path='/volunteer/searchresult'  component={SearchResultPage}/>
-              <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)}/>
-              <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} />
+              } app={app} />
+              <Route path='/volunteer/searchresult'  component={SearchResultPage} app={app} />
+              <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)} app={app} />
+              <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} app={app} />
 
 
 
@@ -80,4 +88,4 @@ class Volunteer extends React.Component{
     }
   }
   
-  export default Volunteer;
+  export default withRouter(Volunteer);

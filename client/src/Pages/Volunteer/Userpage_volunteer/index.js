@@ -16,10 +16,11 @@ import "../../../css/style.css";
 class Userpage_volunteer extends React.Component{
 
     
-    
        
     
     render() {
+        const app = this.props.app
+        console.log('vol userpage app',this.props.app)
         const {queueComponent,recommended_posts, posts,applied_posts} = this.props
         /* console.log("queueComponent",queueComponent)
         console.log("posts",posts)  */
@@ -35,7 +36,7 @@ class Userpage_volunteer extends React.Component{
         return(
             <div id="page">
             <Navbar user="Application"/>
-            <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} queueComponent={queueComponent}/>
+            <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} queueComponent={queueComponent} app={app}/>
             <Recommended_ops queueComponent={queueComponent} posts={filteredRecommendedPosts} applied_posts={applied_posts}/>
 
 

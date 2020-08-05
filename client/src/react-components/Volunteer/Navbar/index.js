@@ -5,11 +5,20 @@ import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
+import {withRouter} from 'react-router-dom'
+import { logout } from '../../../actions/login';
 
 
 class Navbar extends React.Component{
+	logoutUser = (app) => {
+		console.log("log out!1")
+        this.props.history.push("/");
+        logout(app);
+	};
+	
     render() {
-        const { user } = this.props;
+		const { user } = this.props;
+		const app = this.props.app
 
         return (
             <nav className="fh5co-nav" role="navigation">
@@ -34,7 +43,8 @@ class Navbar extends React.Component{
 							
 							
 						
-						<li><a href="/">Log Out</a></li>					
+						<li><button onClick={()=> {
+							this.logoutUser(app)}}>Log Out</button></li>					
 					</ul>
 						
 					
@@ -47,4 +57,4 @@ class Navbar extends React.Component{
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

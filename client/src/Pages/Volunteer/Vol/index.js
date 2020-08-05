@@ -56,7 +56,7 @@ class Volunteer extends React.Component{
     render() {
      const {posts} = this.props
      const app = this.props.app
-     console.log("vol app",app)
+
     
       return (
           <div>

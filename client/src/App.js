@@ -18,18 +18,20 @@ import OrgProfilePage from './Pages/PublicOrgProfilePage';
 import CheckLogin from './react-components/Login/CheckLogin';
 import LoginForm from './react-components/Login/LoginForm';
 import Admin from './Pages/Admin';
-// let passport = new CheckLogin();
+
+import {readCookie} from "./actions/login";
 
 const log = console.log
 
 class App extends React.Component{
   constructor(props){
     super(props)
-    //this.props.history.push("/");
+    readCookie(this);
   }
 
   state = {
     currentUser:null,
+    currentUserId:null,
     type:"volunteer",
     posts: [
       { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
@@ -48,7 +50,9 @@ class App extends React.Component{
   
   render() {
     const currentUser = this.state.currentUser;
+    const currentUserId = this.state.currentUserId;
     const type = this.state.type
+    log("current user", currentUser, currentUserId)
     // log("current user", currentUser)
     return (
         <div>
@@ -60,7 +64,7 @@ class App extends React.Component{
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
             <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
             <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
-            <Route path='/login' render={(history) => 
+            <Route exact path='/login' render={(history) => 
                   (currentUser && type=='volunteer') ?  <Redirect to={"/volunteer/userpage"}/>:
                   <Login history={history} app={this} /> 
                   } />

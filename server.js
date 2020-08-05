@@ -10,13 +10,8 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
-<<<<<<< HEAD
-
-const { Volunteer } = require("./models/volunteer");
-=======
 const { Volunteer } = require("./models/volunteer"); 
 // const { User } = require("./models/user");
->>>>>>> e82447c9c1583645b656ba33775ea279919d041d
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -29,10 +24,6 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-<<<<<<< HEAD
-
-log('connection status',mongoose.connection.readyState != 1)
-=======
 /*** Session handling **************************************/
 
 
@@ -41,6 +32,95 @@ log('connection status',mongoose.connection.readyState != 1)
 /*** API Routes below ************************************/
 // NOTE: The JSON routes (/volunteers) are not protected in this react server (no authentication required). 
 //       You can (and should!) add this using similar middleware techniques we used in lecture.
+
+/*** Session handling **************************************/
+// Create a session cookie
+app.use(
+    session({
+        secret: "oursecret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60000,
+            httpOnly: true
+        }
+    })
+);
+
+app.post("/users/register", (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    
+    console.log('req',req.body)
+
+    const volunteer = new Volunteer({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email:req.body.email,
+        password:req.body.password,
+        type:req.body.type
+    })
+    volunteer.save().then((result) => {
+        res.send(result)
+    }).catch((error) => {
+        log(error)
+        res.status(400).send("Bad Request.")
+    }) 
+
+})
+
+// A route to login and create a session
+app.post("/users/login", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log("this is login route")
+    console.log("login req", req.body)
+
+
+    log(email, password);
+    // Use the static method on the User model to find a user
+    // by their email and password
+    Volunteer.findByEmailPassword(email, password)
+        .then(user => {
+            // Add the user's id to the session cookie.
+            // We can check later if this exists to ensure we are logged in.
+            console.log("find user",user)
+            req.session.user = user._id;
+            req.session.email = user.email;
+            //req.session.type = user.type
+            res.send({ currentUser: user.email,
+                        currentUserId: user._id});
+        })
+        .catch(error => {
+            res.status(400).send()
+        });
+});
+
+// A route to logout a user
+app.get("/users/logout", (req, res) => {
+    // Remove the session
+    log('remove session')
+    req.session.destroy(error => {
+        if (error) {
+            res.status(500).send(error);
+        } else {
+            res.send()
+        }
+    });
+});
+
+// A route to check if a use is logged in on the session cookie
+app.get("/users/check-session", (req, res) => {
+    console.log("req session",req.session.user)
+    if (req.session.user) {
+        res.send({ currentUser: req.session.email, currentUserId: req.session.user});
+    } else {
+        res.status(401).send();
+    }
+});
 
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer
@@ -132,4 +212,3 @@ app.listen(port, () => {
 });
 
 
->>>>>>> e82447c9c1583645b656ba33775ea279919d041d

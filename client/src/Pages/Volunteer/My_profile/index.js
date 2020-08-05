@@ -25,7 +25,7 @@ class My_profile extends React.Component{
     }
 
     componentDidMount() {
-        getVolProfile("5f29e3b9fcecd5232c568bfe", this)
+        getVolProfile("5f2b03eac9e769061869b2b5", this)
     }
     
     
@@ -39,7 +39,8 @@ class My_profile extends React.Component{
             <Navbar />
             <Header_appli title="My Profile" subtitle="Let's work together"/>
             {/* <VolProfileForm user={user}/>            */}
-            { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }
+            <div>
+            { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }</div>
             </div>
 
 

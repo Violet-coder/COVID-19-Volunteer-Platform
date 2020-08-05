@@ -189,14 +189,13 @@ app.post("/volunteer/update/:id", (req, res) => {
 		return;
     } 
 
-    // const volSkills = req.body.skills
-    // const volAvailability = req.body.availability
+    
 
     Volunteer.findById(id).then((volunteer)=> {
         if(!volunteer){
             res.status(404).send("404 Resource Not Found")
         } else {
-            volunteer.location = req.body.location
+            volunteer.location = req.body.location       
             volunteer.links = req.body.links
             volunteer.desc = req.body.desc
             volunteer.skills = req.body.skills

@@ -157,6 +157,13 @@ const VolunteerSchema = new mongoose.Schema({
         minlength: 1
 
     },
+    links: {
+        type: String,
+        required: false,
+        minlength: 1
+
+    },
+
     skills: SkillsSchema,
     availability: AvailabilitySchema,
     applications:[ApplicationSchema]

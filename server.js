@@ -10,8 +10,13 @@ const { mongoose } = require("./db/mongoose");
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
+<<<<<<< HEAD
+
+const { Volunteer } = require("./models/volunteer");
+=======
 const { Volunteer } = require("./models/volunteer"); 
 // const { User } = require("./models/user");
+>>>>>>> e82447c9c1583645b656ba33775ea279919d041d
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -24,6 +29,10 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
+
+log('connection status',mongoose.connection.readyState != 1)
+=======
 /*** Session handling **************************************/
 
 
@@ -151,3 +160,4 @@ app.listen(port, () => {
 });
 
 
+>>>>>>> e82447c9c1583645b656ba33775ea279919d041d

@@ -15,16 +15,19 @@ const useStyles = makeStyles({
 });
 const datasets = [
   [
-    { title: 'IT'},
-    { title: 'driver'},
-    { title: 'laborer'},
+    { title: 'analytics'},
+    { title: "biology"},
+    { title: 'biotech'},
+    { title: 'community'},
+    { title: 'content'},
+    { title: 'data'},
     { title: 'finance'},
-    { title: 'food'},
-    { title: 'arts'},
-    { title: 'healthcare'},
-    { title: 'retail'},
-    { title: 'education'},
-    { title: 'other'}
+    { title: 'helpdesk'},
+    { title: 'manufacturing'},
+    { title: 'marketing'},
+    { title: 'mechanics'},
+    { title: 'IT'},
+    { title: 'anything'}
   ],
   [
     { title: 'Ottawa'},

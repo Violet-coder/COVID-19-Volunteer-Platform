@@ -12,6 +12,7 @@ class SearchResultPage extends React.Component {
          const keyword = this.props.location.state
          const posts = this.props.location.query.posts
          const queueComponent =  this.props.location.query.queueComponent
+         const app = this.props.app
          
          console.log("queueComponent",queueComponent )
          console.log("posts", posts)
@@ -38,7 +39,7 @@ class SearchResultPage extends React.Component {
             return(
             <div id="page">
             <Navbar/>
-            <Header_appli title="Search Result" subtitle="Good Luck"/>
+            <Header_appli title="Search Result" subtitle="Good Luck" app ={app} />
                 <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
                     <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">

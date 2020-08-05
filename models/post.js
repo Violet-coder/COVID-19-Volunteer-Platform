@@ -15,7 +15,10 @@ const Post = mongoose.model('Post', {
         trim: true
 	}, 
 	title: {
-
+		type: String,
+		required: true,
+        minlength: 1,
+        trim: true
 	},
 	relevant_area: {
 		type: String,
@@ -25,16 +28,14 @@ const Post = mongoose.model('Post', {
 		type: String,
 		required: true,
 	},
-	requirements: {
-		type: String,
-		required: false,
-    },
+	requirements: [String],
     is_approved: {
         type: Boolean,
         required: true
 	},
 	date: {
-		
+		type: Date,
+		required: true
 	}
 })
 

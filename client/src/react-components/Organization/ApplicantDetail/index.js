@@ -218,13 +218,14 @@ class ApplicantDetail extends React.Component {
       })
       }}
     render(){
+        const app = this.props.app
         const id = this.props.matchProps.match.params.id
         const context = this.props.context
         const user = volusers.find((u) => u.id===parseInt(id))
         return(
         
             <div>
-                <OrgNav />
+                <OrgNav app={app}/>
                 <VolProfileForm user={user}/>
                 <div className='buttons'>
                 {this.checkState(context, parseInt(id))}

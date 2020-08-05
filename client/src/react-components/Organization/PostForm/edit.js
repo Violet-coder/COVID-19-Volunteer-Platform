@@ -118,11 +118,12 @@ class PostEditForm extends React.Component {
     }
   
   render() {  
+    const app = this.props.app
     const matchProps = this.props.matchProps
     const id = parseInt(matchProps.match.params.id)
     return (
       <div>
-      <OrgNav/>
+      <OrgNav app={app}/>
       <div id="fh5co-started">
       <h1 className='header'>Update your job information</h1>
       <p className='post-form'>Your edited information will be posted after our review</p>

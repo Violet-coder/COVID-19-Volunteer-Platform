@@ -23,9 +23,10 @@ class ProfileForm extends React.Component {
   } 
   render() {  
     const {info, infoComponent} = this.props;
+    const app = this.props.app
     return (
       <div>
-      <OrgNav/>
+      <OrgNav app={app}/>
       <div id="fh5co-started">
       <h1 className='header'>Update your profile</h1>
       </div>

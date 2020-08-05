@@ -15,6 +15,7 @@ import "./styles.css"
 
 class SelfPostDetail extends React.Component {
     render(){
+        const app = this.props.app
       //detailed information should be requested from the database
         const {matchProps,context} = this.props
         const id = parseInt(matchProps.match.params.id)
@@ -24,7 +25,7 @@ class SelfPostDetail extends React.Component {
         const addr = "/organization/post_edit/" + String(id)
         return(
             <div>
-            <OrgNav/>
+            <OrgNav app={app}/>
             <Header_appli title={post.name} subtitle='Listening Society'/>
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">

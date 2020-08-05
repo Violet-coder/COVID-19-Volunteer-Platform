@@ -1,10 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter,Link } from "react-router-dom";
 import "./styles.css";
-
+import {logout} from '../../actions/login'
 /* The Navigarion Bar of Organization Component */
 class OrgNav extends React.Component {
+  logoutUser = (app) => {
+    this.props.history.push("/");
+    logout(app);
+  };
+
   render() {
+    const app = this.props.app
     
     return (
       <nav className="fh5co-nav" role="navigation" id='nav'>
@@ -18,7 +24,7 @@ class OrgNav extends React.Component {
                                 <li><Link to="/organization/profile">Profile</Link></li>
                                 <li><Link to="/organization/post">Post a New Job</Link></li>
                                 <li><Link to="/organization/applicants">All Applicants</Link></li>
-                                <li><Link to="/">Log Out</Link></li>
+                                <li><a onClick={()=> this.logoutUser(app)}>Log Out</a></li>
                             </ul>
                         </div>
                     </div>
@@ -29,4 +35,4 @@ class OrgNav extends React.Component {
   }
 }
 
-export default OrgNav;
+export default withRouter(OrgNav);

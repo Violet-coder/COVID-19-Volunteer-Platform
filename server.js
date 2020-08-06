@@ -11,7 +11,9 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { Volunteer } = require("./models/volunteer"); 
+const { Organization } = require("./models/organization")
 // const { User } = require("./models/user");
+
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -22,6 +24,8 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /*** Session handling **************************************/
@@ -54,21 +58,38 @@ app.post("/users/register", (req, res) => {
 		return;
     } 
     
-    console.log('req',req.body)
 
-    const volunteer = new Volunteer({
+    if(req.body.type === 'volunteer'){
+        log("register as vol")
+        const volunteer = new Volunteer({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email:req.body.email,
         password:req.body.password,
         type:req.body.type
-    })
-    volunteer.save().then((result) => {
-        res.send(result)
-    }).catch((error) => {
-        log(error)
-        res.status(400).send("Bad Request.")
-    }) 
+        })
+        volunteer.save().then((result) => {
+            res.send(result)
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request.")
+        }) 
+    } else if(req.body.type==='organization'){
+        const organization = new Organization({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            type:req.body.type
+        })
+        organization.save().then((result) => {
+            res.send(result) 
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request.")
+        })
+    } else{
+        res.status(400).send()
+    }
 
 })
 
@@ -76,14 +97,12 @@ app.post("/users/register", (req, res) => {
 app.post("/users/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    console.log("this is login route")
-    console.log("login req", req.body)
 
 
     log(email, password);
     // Use the static method on the User model to find a user
     // by their email and password
-    Volunteer.findByEmailPassword(email, password)
+    /* Volunteer.findByEmailPassword(email, password)
         .then(user => {
             // Add the user's id to the session cookie.
             // We can check later if this exists to ensure we are logged in.
@@ -97,7 +116,34 @@ app.post("/users/login", (req, res) => {
         })
         .catch(error => {
             res.status(400).send()
-        });
+        }); */
+        async function promiseAsynx(email, password)
+        {
+            const promiseArray = [Volunteer.findByEmailPassword(email, password), Organization.findByEmailPassword(email, password)]
+            const results = await Promise.all(promiseArray.map(p => p.catch(e => e)))
+            return results
+        }
+        promiseAsynx(email, password).then(results =>
+        {
+            log("results",results)
+            const validResult = results[0] || results[1]
+            log('valide',validResult)
+            if(validResult){
+                req.session.user = validResult._id
+                req.session.email = validResult.email
+                req.session.type = validResult.type
+                res.send({
+                    currentUser: validResult.email,
+                    currentUserId: validResult._id,
+                    type: validResult.type
+                })
+            }
+        }
+        ).catch((error) => {
+            log(error)
+        })
+        
+        
 });
 
 // A route to logout a user
@@ -172,7 +218,7 @@ app.get('/volunteer/profile/:id', (req, res) => {
 		res.status(500).send("Internal server error")
 	})
 
-})
+});
 
 
 // a POST for updating profile info to a particular volunteer
@@ -234,7 +280,7 @@ app.get("*", (req, res) => {
 
 /*************************************************/
 // Express server listening...
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import SignUpNav from '../../react-components/SignUp/SignUpNav';
 import OrgSignUpForm from '../../react-components/SignUp/OrgSignUpForm';
+import {orgRegister} from '../../actions/register'
 
 
 
@@ -113,6 +114,7 @@ class OrgSignUp extends React.Component {
         event.preventDefault();
         if(this.validateForm()) {
             console.info('Valid Form')
+            orgRegister(this)
         } else {
             console.error('Invalid Form')
         }

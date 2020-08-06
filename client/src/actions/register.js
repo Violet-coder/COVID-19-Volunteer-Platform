@@ -2,9 +2,9 @@ export const orgRegister = (registerComp) => {
     const request = new Request("/users/register", {
         method: "post",
         body: JSON.stringify({
-            name:registerComp.name,
-            email:registerComp.email,
-            password:registerComp.password,
+            name:registerComp.state.orgName,
+            email:registerComp.state.email,
+            password:registerComp.state.password,
             type:"organization"
         }),
         headers: {
@@ -17,12 +17,38 @@ export const orgRegister = (registerComp) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
+                window.location = "/login"
                 return res.json();
             }
         })
-        .then(json => {
-            if (json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser });
+        .catch(error => {
+            console.log(error);
+            console.log("some error msg")
+        });
+}
+
+export const volRegister = (registerComp) => {
+    const request = new Request("/users/register", {
+        method: "post",
+        body: JSON.stringify({
+            firstName:registerComp.state.firstName,
+            lastName:registerComp.state.lastName,
+            email:registerComp.state.email,
+            password:registerComp.state.password,
+            type:"volunteer"
+        }),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                window.location = "/login"
+                return res.json();
             }
         })
         .catch(error => {

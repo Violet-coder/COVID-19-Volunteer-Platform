@@ -1,6 +1,7 @@
 import React from 'react';
 import SignUpNav from '../../react-components/SignUp/SignUpNav';
 import VolSignUpForm from '../../react-components/SignUp/VolSignUpForm';
+import {volRegister} from '../../actions/register'
 
 
 class VolSignUp extends React.Component {
@@ -125,6 +126,7 @@ class VolSignUp extends React.Component {
         event.preventDefault();
         if(this.validateForm()) {
             console.info('Valid Form')
+            volRegister(this)
         } else {
             console.error('Invalid Form')
         }

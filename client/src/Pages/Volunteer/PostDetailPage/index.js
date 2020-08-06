@@ -32,44 +32,69 @@ const posts=[
 
 
 class PostDetailPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: {},
+            isLoading: false
+        }
+        
+    }
+    componentDidMount() {
+        const id = this.props.match.params.id
+        const url = `/post/${id}`
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get post detail");
+            }
+        })
+        .then(json => {
+            this.setState({ post: json, isLoading: true });
+            console.log("current state: ", this.state)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
 
     
     render(){
-        // this.componentWillMount()
-        //const {id} = this.props.match.params
-        const id = parseInt(this.props.matchProps.match.params.id)
+        // // this.componentWillMount()
+        // // const {id} = this.props.match.params
+        // // console.log("post id", id)
+        // const id = parseInt(this.props.matchProps.match.params.id)
         
-        const post = posts.find((p) => p.id==id)
-        // console.log("state", this.props.location)
+        // const post = posts.find((p) => p.id==id)
+        
         
         //const queueComponent = this.props.location.query
         const queueComponent = this.props.queueComponent
         //console.log("queueComponent",queueComponent)
-        const applied_posts = this.props.applied_posts
+        // const applied_posts = this.props.applied_posts
         const app = this.props.app
 
-        let applied_posts_ids = []
-        for(let i=0; i< applied_posts.length; i++){
-            applied_posts_ids.push(applied_posts[i].id)
-        }
+        // let applied_posts_ids = []
+        // for(let i=0; i< applied_posts.length; i++){
+        //     applied_posts_ids.push(applied_posts[i].id)
+        // }
         
-        //console.log('include', applied_posts_ids.includes(id))
+       
 
-        const post_apply_status = applied_posts_ids.includes(id)
+        // const post_apply_status = applied_posts_ids.includes(id)
     
         return(
             <div id="page">
             <Navbar user="Application" app={app}/>
-            <Header_appli title={post.name} subtitle={post.organization}  />
+            <Header_appli title={this.state.post.name} subtitle={this.state.post.organization}  />
             <div id="fh5co-blog" class="fh5co-bg-section">
             <div class="container">
-            <PostDetail post={post}/>
-            {/* <PostDetail_button  application={post}/> */}
-            <div className="detailpagebutton">
+            <PostDetail post={this.state.post}/>
+            
+            {/* <div className="detailpagebutton">
             <span ><Link to={{pathname:`/volunteer/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span>
-            {/* <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
-            Apply Now
-            </Button></Link></span> */}
             {
             (post_apply_status)? <span><Button>Applied</Button></span> : 
             <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
@@ -78,11 +103,12 @@ class PostDetailPage extends React.Component {
               
             }
             
-            </div>
+            </div> */}
             </div>         
             </div>  
 
             </div>
+           
 
 
 

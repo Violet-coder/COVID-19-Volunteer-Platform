@@ -25,7 +25,12 @@ class PostDetail extends React.Component {
 			<div className="fh5co-post" style={{minHeight: "300px"}}>
 			<h3>Skills Needed</h3>
       <hr/>
-      <p>{post.requirement}</p>
+      {/* <div>{
+      
+      requirements.map(requirement => (<p>{requirement}</p>))
+      }</div> */}
+      
+      <p>{post.requirements}</p>
 			</div>
 
       <div className="fh5co-post" style={{minHeight: "250px"}}>

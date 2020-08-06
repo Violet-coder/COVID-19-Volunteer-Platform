@@ -312,7 +312,7 @@ app.get('/organization/profile/:id', (req, res) => {
 
 })
 
-// a POST for updating profile info to a particular volunteer
+// a POST for updating profile info to a particular organization
 app.post("/organization/update/:id", (req, res) => {
     // log(req.body)
     const id = req.params.id

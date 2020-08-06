@@ -261,6 +261,91 @@ app.post("/volunteer/update/:id", (req, res) => {
     })
 });
 
+/** organization resource routes **/
+// a POST route to *create* a organization
+app.post("/organization", (req, res) => {
+    // log(req.body)
+
+    // Create a new organization using the Organization mongoose model
+    const organization = new Organization({
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.firstname,
+        posts: []
+    });
+
+    // Save organization to the database
+    organization.save().then(
+        result => {
+            res.send(result);
+        },
+        error => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+});
+
+app.get('/organization/profile/:id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Organization.findById(id).then((organization)=>{
+		if(!organization){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(organization)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+// a POST for updating profile info to a particular volunteer
+app.post("/organization/update/:id", (req, res) => {
+    // log(req.body)
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Organization.findById(id).then((organization)=> {
+        if(!organization){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            organization.website = req.body.website     
+            organization.info = req.body.info
+            organization.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
+
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

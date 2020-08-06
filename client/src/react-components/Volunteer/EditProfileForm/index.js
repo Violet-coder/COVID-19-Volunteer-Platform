@@ -245,7 +245,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     onChange={handleCheckboxChange}
                     className={classes.checkbox}                 
-                    checked={newInfo.analytics}
+                    checked={skills.analytics}
                     id='analytics'
                     color='primary'
                     inputProps={{
@@ -262,7 +262,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.biology}
+                    checked={skills.biology}
                     id='biology'
                     color='primary'
                     inputProps={{
@@ -279,7 +279,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.biotech}
+                    checked={skills.biotech}
                     id='biotech'
                     color='primary'
                     inputProps={{
@@ -296,7 +296,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.community}
+                    checked={skills.community}
                     id='community'
                     color='primary'
                     inputProps={{
@@ -313,7 +313,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.content}
+                    checked={skills.content}
                     id='content'
                     color='primary'
                     inputProps={{
@@ -330,7 +330,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.data}
+                    checked={skills.data}
                     id='data'
                     color='primary'
                     inputProps={{
@@ -347,7 +347,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.finance}
+                    checked={skills.finance}
                     id='finance'
                     color='primary'
                     inputProps={{
@@ -364,7 +364,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.helpdesk}
+                    checked={skills.helpdesk}
                     id='helpdesk'
                     color='primary'
                     inputProps={{
@@ -381,7 +381,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.manufacturing}
+                    checked={skills.manufacturing}
                     id='manufacturing'
                     color='primary'
                     inputProps={{
@@ -398,7 +398,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.marketing}
+                    checked={skills.marketing}
                     id='marketing'
                     color='primary'
                     inputProps={{
@@ -415,7 +415,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.mechanics}
+                    checked={skills.mechanics}
                     id='mechanics'
                     color='primary'
                     inputProps={{
@@ -432,7 +432,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.IT}
+                    checked={skills.IT}
                     id='IT'
                     color='primary'
                     inputProps={{
@@ -449,7 +449,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.anything}
+                    checked={skills.anything}
                     id='anything'
                     color='primary'
                     inputProps={{
@@ -472,7 +472,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.option1}
+                    checked={availability.option1}
                     id='option1'
                     color='primary'
                     inputProps={{
@@ -489,7 +489,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.option2}
+                    checked={availability.option2}
                     id='option2'
                     color='primary'
                     inputProps={{
@@ -505,7 +505,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.option3}
+                    checked={availability.option3}
                     id='option3'
                     color='primary'
                     inputProps={{
@@ -522,7 +522,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.option4}
+                    checked={availability.option4}
                     id='option4'
                     color='primary'
                     inputProps={{
@@ -538,7 +538,7 @@ class EditProfileForm extends React.Component{
                 <Checkbox
                     className={classes.checkbox}
                     onChange={handleCheckboxChange}
-                    checked={newInfo.option5}
+                    checked={availability.option5}
                     id='option5'
                     color='primary'
                     inputProps={{
@@ -554,8 +554,10 @@ class EditProfileForm extends React.Component{
         
             
         </FormControl>   
+            {console.log("new Info 1111111", newInfo)}
                  
-            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, queueComponent, newInfo)}  >Update My Profile</Button></Link></span>
+            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, this.props.user, newInfo)}  >Update My Profile</Button></Link></span>
+            {console.log("new Info 222222", newInfo)}
         
            
       </form>

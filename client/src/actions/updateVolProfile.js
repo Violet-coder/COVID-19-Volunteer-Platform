@@ -6,26 +6,29 @@ export const getVolProfile = (id, vol) => {
           // return a promise that resolves with the JSON body
           return res.json();
       } else {
-          alert("Could not get students");
+          // alert("Could not get students");
       }
   })
   .then(json => {
       // the resolved promise with the JSON body
-      console.log("json", json)
       vol.setState({ user: json, isLoading: true });
-      console.log(vol.state)
   })
   .catch(error => {
       console.log(error);
   });
 }
 
-export const updateVolProfile = (queueComponent, info) => {
+export const updateVolProfile = (user, info) => {
   // the URL for the request 
-  const url = "/volunteer/update/5f29e3b9fcecd5232c568bfe"
+  console.log("test info if is empty", info)
+  const url = "/volunteer/update/5f2b03eac9e769061869b2b5"
+
   
-  let newInfo = queueComponent.state.profile;//Get old profile from server
+  let newInfo = user;//Get old profile from server
   
+  console.log("user in updateVolProfile",newInfo)
+  
+
   if(info.links !==''){
     newInfo.links=info.links
   }
@@ -35,8 +38,14 @@ export const updateVolProfile = (queueComponent, info) => {
   if(info.desc!==''){
     newInfo.desc=info.desc
   }
+  // console.log("skills",info.skills)
+  // console.log("availability", info.availability)
   newInfo.skills=info.skills
   newInfo.availability=info.availability
+
+  
+
+
 
   const request = new Request(url, {
     method:"post",
@@ -47,7 +56,7 @@ export const updateVolProfile = (queueComponent, info) => {
   }
   })
 
-  console.log("body", JSON.stringify(newInfo))
+  
    // Send the request with fetch()
    fetch(request)
       .then(function (res) {
@@ -73,7 +82,7 @@ export const updateVolProfile = (queueComponent, info) => {
 
 
   
-  queueComponent.setState(
-    {profile: newInfo}
-  )
+  // queueComponent.setState(
+  //   {profile: newInfo}
+  // )
 };

@@ -5,7 +5,7 @@ import "../../../css/icomoon.css";
 import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import { logout } from '../../../actions/login';
 
 
@@ -29,9 +29,9 @@ class Navbar extends React.Component{
 				</div>
 				<div className="col-xs-10 text-right menu-1">
 					<ul>
-						<li><a href="/volunteer/userpage">Home</a></li>
-						<li><a href="/volunteer/myprofile">My Profile</a></li>
-						<li><a href="/volunteer/editprofile">Update Profile</a></li>
+						<li><Link to="/volunteer/userpage">Home</Link></li>
+						<li><Link to="/volunteer/myprofile">My Profile</Link></li>
+						<li><Link to="/volunteer/editprofile">Update Profile</Link></li>
 		
 						{/* <li className="has-dropdown">
 							<a href="/volunteer/myprofile">My Profile</a>
@@ -39,7 +39,7 @@ class Navbar extends React.Component{
 								<li><a href="/volunteer/editprofile">Update Profile</a></li>
 							</ul>
 						</li> */}
-						<li><a href="/volunteer/myapplication" >My Application</a></li>
+						<li><Link to="/volunteer/myapplication" >My Application</Link></li>
 							
 							
 						

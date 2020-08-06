@@ -8,7 +8,7 @@ import My_profile from '../My_profile';
 import SearchResultPage from '../SearchResultPage';
 import VolunteerSeeall from '../VolunteerSeeall';
 import OrgProfilePage from '../OrgProfilePage';
-import { withRouter } from "react-router-dom";
+
 
 
 class Volunteer extends React.Component{
@@ -65,7 +65,7 @@ class Volunteer extends React.Component{
               <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} recommended_posts={posts.slice(2,5)} posts={posts} app ={app}/>)}/>
               <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} app={app} />)}/>
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile} app={app} />)}/>
-              <Route path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this} app={app} />)} />
+              <Route exact path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this} app={app} />)} />
               {/* <Route path='/volunteer/post/:id' component={PostDetailPage} /> */}
               <Route path='/volunteer/post/:id' render={
                 (matchProps) => {
@@ -88,4 +88,4 @@ class Volunteer extends React.Component{
     }
   }
   
-  export default withRouter(Volunteer);
+  export default Volunteer;

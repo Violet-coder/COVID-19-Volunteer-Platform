@@ -29,7 +29,7 @@ class SearchResultPage extends React.Component {
     
         return(
             <div id="page">
-            <Navbar/>
+            <Navbar app={app}/>
             <Header_appli title="Search Result" subtitle="Good Luck"/>
          
             <All_ops queueComponent={queueComponent} posts={result}/>

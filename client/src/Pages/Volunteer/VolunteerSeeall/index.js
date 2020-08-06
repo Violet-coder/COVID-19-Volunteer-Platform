@@ -31,7 +31,7 @@ class VolunteerSeeall extends React.Component{
 
         return(
             <div id="page">
-            <Navbar user="Application"/>
+            <Navbar user="Application" app={app}/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} app={app}/>
             <All_ops queueComponent={queueComponent} posts={filteredPosts}/>
 

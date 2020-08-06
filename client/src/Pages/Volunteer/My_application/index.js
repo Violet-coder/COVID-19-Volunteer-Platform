@@ -26,7 +26,7 @@ class My_application extends React.Component{
       console.log("myapplicationinapplicationpage", applications)
         return(
             <div id="page">
-            <Navbar user="Application"/>
+            <Navbar user="Application" app={app}/>
             <Header_appli title="My Application" subtitle="Let's work together" app={app} />
             <ApplicationList applications={applications}/>
 

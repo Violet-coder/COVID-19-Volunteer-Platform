@@ -59,8 +59,8 @@ class PostDetailPage extends React.Component {
     
         return(
             <div id="page">
-            <Navbar user="Application"/>
-            <Header_appli title={post.name} subtitle={post.organization} app={app} />
+            <Navbar user="Application" app={app}/>
+            <Header_appli title={post.name} subtitle={post.organization}  />
             <div id="fh5co-blog" class="fh5co-bg-section">
             <div class="container">
             <PostDetail post={post}/>

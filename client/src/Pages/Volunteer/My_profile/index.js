@@ -36,7 +36,7 @@ class My_profile extends React.Component{
       
         return(
             <div id="page">
-            <Navbar />
+            <Navbar app={app}/>
             <Header_appli title="My Profile" subtitle="Let's work together"/>
             {/* <VolProfileForm user={user}/>            */}
             { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }

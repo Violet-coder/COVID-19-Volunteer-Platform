@@ -62,7 +62,7 @@ class OrgProfilePage extends React.Component {
        
         return(
             <div id='page'>
-                <Navbar />
+                <Navbar app={app}/>
                 <Header_appli title={info.name} subtitle={info.email} app={app} />
                 <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">

@@ -91,7 +91,6 @@ app.post("/users/login", (req, res) => {
             req.session.user = user._id;
             req.session.email = user.email;
             req.session.type = user.type
-
             res.send({ currentUser: user.email,
                        currentUserId: user._id,
                        type: user.type});

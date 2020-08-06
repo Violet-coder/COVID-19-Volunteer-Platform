@@ -3,6 +3,7 @@ import Navbar from "../../../react-components/Volunteer/Navbar";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import EditProfileForm from "../../../react-components/Volunteer/EditProfileForm";
 import {merge} from 'lodash/fp';
+import {getVolProfile} from "../../../actions/updateVolProfile";
 // import { Link} from 'react-router-dom';
 // import Button from '@material-ui/core/Button';
 
@@ -13,52 +14,35 @@ import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
 
 class EditProfilePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {},
+            isLoading: false
+        }
 
-
-    state = {
-        id: 1,
-        firstName:"John", 
-        lastName:"Smith", 
-        email:"johnsmith@user.com",    
-        links:"",
-        location:"",
-        desc:"",
-        skills:{
-            analytics: false,
-            biology: false,
-            biotech: false,
-            community: false,
-            content: false,
-            data: false,
-            finance: false,
-            helpdesk: false,
-            manufacturing: false,
-            marketing: false,
-            mechanics: false,
-            IT: false,
-            anything: false,
-            },
-        availability:{
-            option1: false,
-            option2: false,
-            option3: false,
-            option4: false,
-            option5: false,
-          }
-        
-            
-            
     }
+    
+    componentDidMount() {
+        getVolProfile("5f2b03eac9e769061869b2b5", this)
+       }
 
+
+    
     handleInputChange = (event) => {
-        console.log("input change")
+        
         const target = event.target;
         const value = target.value;
         const id = target.id;
 
+        // this.setState({
+        //     [id]:value
+        // });
+        var currentUser = this.state.user
+        currentUser[id]=value
         this.setState({
-            [id]:value
-        });
+            user:currentUser
+        })
     }
     
     handleCheckboxChange = (event) => {
@@ -67,17 +51,21 @@ class EditProfilePage extends React.Component {
         const category = document.getElementById(id).parentElement.parentElement.parentElement.parentElement.parentElement.firstChild.innerText.toLowerCase()
         // console.log("category", category)
         const value = document.getElementById(id).checked
-        console.log(id, document.getElementById(id).checked)
+        // console.log(id, document.getElementById(id).checked)
         // console.log("id", id)
         // console.log("value",value)
-
-        const newState = merge(this.state, {[category]:{[id] : value}})
+        var newUser = this.state.user
+        newUser[category][id]=value
         this.setState({
-            skills: newState.skills,
-            availability: newState.availability
-
-
+            user:newUser
         })
+
+        // const newState = merge(this.state.user, {[category]:{[id] : value}})
+        // this.setState({
+        //     user:newState
+
+
+        // })
         /* this.state = newState
         console.log("this state", this.state) */
         
@@ -85,7 +73,7 @@ class EditProfilePage extends React.Component {
     }
     render(){
        
-        const user = this.props.user
+        const user = this.state.user
         const queueComponent = this.props.queueComponent
         const app = this.props.app
         console.log('edit profile app',app)
@@ -94,7 +82,10 @@ class EditProfilePage extends React.Component {
             <div id='page'>
             <Navbar app={app}/>
             <Header_appli title="Update Profile" subtitle="Let's work together" app = {app} />
-            <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} />
+            {/* <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} /> */}
+            <div>
+            {this.state.isLoading ?<EditProfileForm user={user} newInfo={this.state.user} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} /> :null}
+            </div>
                       
             </div>
 

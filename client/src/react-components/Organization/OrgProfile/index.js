@@ -10,9 +10,9 @@ import "./styles.css";
 class OrgProfile extends React.Component {
   render() {
     //organizations information should be requested from the database
-    const {posts, queueComponent} = this.props;
+    const {posts, queueComponent, matchProps} = this.props;
     const app = this.props.app
-    
+    const id = parseInt(matchProps.match.params.id)
     return (
       <div>
         <OrgNav app={app} />

@@ -261,6 +261,72 @@ app.post("/volunteer/update/:id", (req, res) => {
     })
 });
 
+// a POST request for adding an application to a particular volunteer
+app.post('/volunteer/application/:id', (req, res) => {
+    const id = req.params.id
+    	
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+	}
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+	const newApplication = {
+        post_id: req.body.post_id,
+        name:req.body.name,
+        status: req.body.status,  //status here should be the application processing status: pending(default), approved, rejected
+    }
+    
+	Volunteer.findById(id).then((volunteer) => {
+		if(!volunteer){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+            volunteer.applications.push(newApplication)
+            console.log
+			volunteer.save().then((result) => {
+				res.send(result.applications)    
+			})
+			.catch((error) => {
+				res.status(400).send("Bad Request.")
+				
+			})
+		}
+	})
+	
+
+})
+
+// a GET request for getting application list of a particular volunteer
+app.get('/volunteer/applicatoinlist/:id', (req, res) => {
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Volunteer.findById(id).then((volunteer)=>{
+		if(!volunteer){
+			// could't find the volunteer
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(volunteer.applications)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
 /** post resource routes **/
 // a POST route to *create* a post
 app.post("/post", (req, res) => {

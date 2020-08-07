@@ -404,8 +404,7 @@ app.get('/post/:id', (req, res) => {
 /** organization resource routes **/
 // a POST route to *create* a organization
 app.post("/organization", (req, res) => {
-    // log(req.body)
-
+    //log(req.body)
     // Create a new organization using the Organization mongoose model
     const organization = new Organization({
         email: req.body.email,
@@ -798,7 +797,9 @@ app.get("*", (req, res) => {
     }
 
     // send index.html
+    
     res.sendFile(__dirname + "/client/build/index.html");
+    
 });
 
 /*************************************************/

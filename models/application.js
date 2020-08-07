@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('mongoose')
 
-const Application = mongoose.model('Application', {
+const ApplicationSchema = new mongoose.Schema({
     applicant_id:{ 
         type: mongoose.Schema.Types.ObjectId,
         required:true
@@ -24,5 +24,5 @@ const Application = mongoose.model('Application', {
         required:true
     },
 })
-
+const Application = mongoose.model('Application', ApplicationSchema)
 module.exports = { Application }

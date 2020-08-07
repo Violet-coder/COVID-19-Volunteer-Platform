@@ -3,7 +3,8 @@ import Button from "@material-ui/core/Button";
 import "./styles.css";
 import { ButtonGroup } from "@material-ui/core";
 import { Link } from "react-router-dom";
-class Applicant extends React.Component {
+import { acceptApplicant } from "../../../actions/decision";
+class SingleApplicant extends React.Component {
   //applicants information should be requested from the database
   //rejecting or accepting an applicant should make a change to the database
   state = {
@@ -34,6 +35,7 @@ class Applicant extends React.Component {
         style={{fontSize: 12}}
         onClick={()=>{
           this.reject(context, id)
+          acceptApplicant(id)
         }}
       >
         reject
@@ -121,4 +123,4 @@ class Applicant extends React.Component {
   }
 }
 
-export default Applicant;
+export default SingleApplicant;

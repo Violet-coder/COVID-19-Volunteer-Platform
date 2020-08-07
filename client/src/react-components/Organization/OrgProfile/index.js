@@ -15,7 +15,7 @@ class OrgProfile extends React.Component {
     this.state = {
         user: {},
         isLoading: false,
-        posts: {}
+        posts: []
     }
     
 }

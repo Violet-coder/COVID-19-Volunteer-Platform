@@ -52,7 +52,7 @@
   })
   .then(json => {
       // the resolved promise with the JSON body
-      org.setState({ user: json, isLoading: true });
+      org.setState({ user: json });
   })
   .catch(error => {
       console.log(error);
@@ -72,7 +72,7 @@ export const getOrgPosts = (id, org) => {
   })
   .then(json => {
       // the resolved promise with the JSON body
-      org.setState({ user: json, isLoading: true });
+      org.setState({ posts: json, isLoading: true });
   })
   .catch(error => {
       console.log(error);

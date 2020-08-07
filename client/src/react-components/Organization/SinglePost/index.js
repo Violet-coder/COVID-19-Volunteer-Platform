@@ -14,11 +14,36 @@ class SinglePost extends React.Component {
     super(props);
     this.state = {
       isToggleOn: true,
-      display: 'none'
+      display: 'none',
+      applications: [],
+      isLoading: false
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
+  componentDidMount() {
+    const applications = []
+    for (var app_id in this.props.post.applications) {
+      const url = `/organization/get_applications/${this.props.post.applications[app_id]}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        applications.push(json)
+          // console.log("state this time", this.state)
+      })
+      .catch(error => {
+          console.log(error);
+      });
+    }
+    this.setState({ applications: applications, isLoading: true });
+
+}
   handleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn,
@@ -30,7 +55,7 @@ class SinglePost extends React.Component {
     const { post, queueComponent} = this.props;
     //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
       //return applicant.jobId===post.id});
-    const filteredApplicants = post.applicants
+    const filteredApplicants = this.state.applications
     const addr = "/organization/posts/"+String(post.id)
     return (
       <>

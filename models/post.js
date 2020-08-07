@@ -1,24 +1,5 @@
 'use strict';
 const mongoose = require('mongoose')
-const ApplicantSchema = new mongoose.Schema({
-    applicant_id:{ 
-        type: mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    applicant_name: {
-        type: String,
-        required:true
-	},
-	applicant_rank: {
-		type: String,
-		required: true
-	},
-	applicant_status: {
-		type: String,
-		required: true,
-		default: 'pending'
-	}
-});
 const Post = mongoose.model('Post', {
 	name: {
 		type: String,			//post name
@@ -62,7 +43,7 @@ const Post = mongoose.model('Post', {
 		type: mongoose.Schema.Types.ObjectId,
         required:true
 	},
-	applicants: [ApplicantSchema],
+	applications: [mongoose.Schema.Types.ObjectId],
 })
 
 module.exports = { Post }

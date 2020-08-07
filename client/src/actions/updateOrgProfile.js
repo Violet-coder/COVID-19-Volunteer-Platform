@@ -1,6 +1,6 @@
  const log = console.log;
 
- export const updateOrgProfile = (context, info) => {
+ export const updateOrgProfile = (context, id, info) => {
     const url = `/organization/update_profile/${id}`
     const oldInfo = context.state.info;
    if (info.website===""){

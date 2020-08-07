@@ -54,9 +54,9 @@ class ApplicantList extends React.Component {
             id={applicant.applicant_id}
             name={applicant.applicant_name}
             rank={applicant.applicant_rank}
-            jobName={post.name}
+            jobName= "Post Name"
             status={applicant.applicant_status}
-            context={queueComponent}
+            context={this}
             />
           ))}
 

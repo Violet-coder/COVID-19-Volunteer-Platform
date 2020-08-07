@@ -12,12 +12,14 @@ class PostDetailPage extends React.Component{
     render(){
         const post=this.props.post
         const queueComponent=this.props.queueComponent
-        console.log('queue',queueComponent)
+
         const status = post.status
-        console.log('status', status)
+
+        const app = this.props.app
+
         return(
             <div>
-            <AdminNav />
+            <AdminNav app={app}/>
             <Header_appli title={post.name} subtitle={post.organization}/>
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">

@@ -1,9 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter,Link } from 'react-router-dom';
 import './styles.css'
+import {logout} from '../../../actions/login';
+
 
 class AdminNav extends React.Component {
+    logoutUser = (app) => {
+		console.log("log out admin")
+        this.props.history.push("/login");
+        logout(app);
+	};
     render(){
+        const app = this.props.app
         return(
             <nav className="admin-nav" role="navigation">
                 <div className="container">
@@ -13,8 +21,9 @@ class AdminNav extends React.Component {
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
-                                <li><a href="/admin" >Home</a></li>
-                                <li><a href="/">Log Out</a></li>
+                                <li><Link to={"/admin"} >Home</Link></li>
+                                <li><Link><a onClick={() =>{
+                                    this.logoutUser(app)} }>Log Out</a></Link></li>
                                 <li>
                                     <Link to='/admin/publishpost'><button type="submit" className="btn btn-primary navBtn">Create New Post</button></Link>
                                 </li>
@@ -30,4 +39,4 @@ class AdminNav extends React.Component {
     }
 }
 
-export default AdminNav;
+export default withRouter(AdminNav);

@@ -100,11 +100,13 @@ class EditVolProfilePage extends React.Component {
         const user = volusers.find((u) => u.id==id)
 
         //console.log("edit page queue",queueComponent)
+        const app = this.props.app
+
 
         return(
             
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app} />
                 <EditVolProfileForm user={user} state={this.state} handleInputChange={this.handleInputChange} queueComponent={queueComponent} />
             </div>
         )

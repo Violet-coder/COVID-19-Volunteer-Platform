@@ -8,9 +8,12 @@ import './styles.css'
 
 class AdminGuide extends React.Component {
     render(){
+        const app = this.props.app
+        console.log("admin guide, app", app)
+
         return(
             <div id="fh5co-blog" className="fh5co-bg-section">
-                    <AdminNav />
+                    <AdminNav app={app}/>
                     <div  className='guide-page'>
                         <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
                             <span>Admin Functionality</span>

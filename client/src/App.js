@@ -68,17 +68,9 @@ class App extends React.Component{
                   (currentUser && type=='volunteer') ?  <Redirect to={"/volunteer/userpage"}/>:
                   <Login history={history} app={this} /> 
                   } /> */}
-            {<Route exact path='/login' render={(history) =>{
-              if(currentUser && type=='volunteer'){
-                return <Redirect to={"/volunteer/userpage"}/>
-              } else if (currentUser && type=='organization'){
-                return <Redirect to={"/organization/profile"}/>
-              } else {
-                return <Login history={history} app={this} />
-              }
-            } } />}
+            
             <Route path='/volunteer' render={(history) => (
-              (currentUser && type=='volunteer') ?  <Volunteer posts={this.state.posts}  app={this} /> :
+              (currentUser && type=='volunteer') ?  <Volunteer  app={this} /> :
               <Login history={history} app={this}/> )}/>
             <Route path='/publicpost' render={() => <Publicpost posts={this.state.posts} />}/>
             <Route path='/post/:id' component={PublicPostDetailPage} />
@@ -88,8 +80,22 @@ class App extends React.Component{
               (currentUser && type=='organization') ?  <Organization app={this} /> :
               <Login  app={this}/>
             }/>
-            <Route path='/admin' component={Admin} />
+            <Route path='/admin' render={() => 
+              (currentUser && type=='admin') ?  <Admin app={this} /> :
+              <Login  app={this}/>
+            } />
 
+            <Route exact path='/login' render={(history) =>{
+              if(currentUser && type=='volunteer'){
+                return <Redirect to={"/volunteer/userpage"}/>
+              } else if (currentUser && type=='organization'){
+                return <Redirect to={"/organization/profile"}/>
+              } else if(currentUser && type=='admin') {
+                return <Redirect to={'/admin/entry'} />
+              } else {
+                return <Login history={history} app={this} />
+              }
+            } } />
 
           </Switch>
         </BrowserRouter>

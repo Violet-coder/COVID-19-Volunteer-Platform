@@ -115,10 +115,12 @@ class AdminPostForm extends React.Component {
     }
     }
   
-  render() {  
+  render() { 
+    const app = this.props.app
+ 
     return (
       <div>
-      <AdminNav/>
+      <AdminNav app={app}/>
       <div id="fh5co-started">
       <h1 className='header'>Fill in your job information</h1>
       <p className='post-form'>Your job will be posted after our review</p>

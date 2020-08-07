@@ -47,7 +47,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            expires: 5*60000,
             httpOnly: true
         }
     })
@@ -89,7 +89,21 @@ app.post("/users/register", (req, res) => {
             log(error)
             res.status(400).send("Bad Request.")
         })
-    } else{
+    } else if(req.body.type === 'admin'){
+        const organization = new Organization({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            type:req.body.type
+        })
+        organization.save().then((result) => {
+            res.send(result) 
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request.")
+        })
+    }
+    else{
         res.status(400).send()
     }
 
@@ -170,6 +184,10 @@ app.get("/users/check-session", (req, res) => {
         res.status(401).send();
     }
 });
+
+/*** Admin Routes ***/
+
+
 
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer
@@ -287,7 +305,6 @@ app.post('/volunteer/application/:id', (req, res) => {
 			res.status(404).send('404 Resource Not Found')
 		} else {
             volunteer.applications.push(newApplication)
-            console.log
 			volunteer.save().then((result) => {
 				res.send(result.applications)    
 			})
@@ -329,20 +346,52 @@ app.get('/volunteer/applicatoinlist/:id', (req, res) => {
 
 })
 
+// a GET request for getting a particular application of a particular volunteer
+app.get('/volunteer/:id/:post_id', (req, res) => {
+	const vol_id = req.params.id
+	const post_id = req.params.post_id
+	if (!ObjectID.isValid(vol_id)) {
+		res.status(404).send('Resource not found')  
+		return;  
+	}
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+	Volunteer.findById(vol_id).then((volunteer) => {
+		if (!volunteer) {
+			res.status(404).send('Resource not found')  
+		} else {
+            const targetApplication = volunteer.applications.filter((application) => application.post_id.toString() === post_id)
+			res.send(targetApplication)
+			
+		}
+	})
+	.catch((error) => {
+		log(error)
+		res.status(500).send('Internal Server Error')  
+	})
+
+})
+
 /** post resource routes **/
 // a POST route to *create* a post
 app.post("/post", (req, res) => {
     // Create a new post using the Volunteer mongoose model
     const post = new Post({
         name: req.body.name,
-        orgname: req.body.orgname,
+        org_name: req.body.org_name,
         description: req.body.description,
         title: req.body.title,
-        relevant_area:req.body.relevant_area,
         location: req.body.location,
         requirements: req.body.requirements,
-        is_approved: req.body.is_approved,
+        status: req.body.status,
         date: req.body.date,
+        org_id:req.body.org_id,
+        applications:req.body.applications
     });
 
     // Save post to the database
@@ -351,6 +400,7 @@ app.post("/post", (req, res) => {
             res.send(result);
         },
         error => {
+            console.log(error)
             res.status(400).send("Bad request"); // 400 for bad request
         }
     );
@@ -368,6 +418,7 @@ app.get('/posts', (req, res) => {
 		res.send(posts)
 	})
 	.catch((error)=> {
+        log(error)
 		res.status(500).send("Internal server error")
 	})
 
@@ -409,7 +460,7 @@ app.post("/organization", (req, res) => {
     const organization = new Organization({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.name,
+        name: req.body.firstname,
         posts: []
     });
 
@@ -553,7 +604,7 @@ app.get('/organization/get_applicants/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        applicants.push.apply(applicants, post.applications)
+                        applicants.push(post)
                     }
                 })
             }
@@ -655,7 +706,7 @@ app.get('/organization/get_posts/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        posts.push(post.json())
+                        posts.push(post)
                     }
                 })
             }
@@ -668,33 +719,7 @@ app.get('/organization/get_posts/:id', (req, res) => {
 
 })
 
-app.get('/organization/get_post/:post_id', (req, res) => {
-	// Add code here
-	if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-	}  
-
-	const id = req.params.post_id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('404 Resource Not Found')
-		return;
-	}
-	Post.findById(id).then((post)=>{
-		if(!post){
-			res.status(404).send('404 Resource Not Found')
-		} else {
-            res.send(post)
-		}
-	})
-	.catch((error) => {
-		res.status(500).send("Internal server error")
-	})
-
-})
-
-app.get('/organization/get_application/:app_id', (req, res) => {
+app.get('/organization/get_applications/:app_id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')

@@ -30,9 +30,46 @@ class My_profile extends React.Component{
     
     
     render() {
-        const {user} = this.props
+        // const {user} = this.props
         const app = this.props.app
-        console.log('vol my_profile app', app)
+        const user = this.state.user
+        if (!user.desc) {
+            user.desc=""
+        }
+        if(!user.links) {
+            user.links=""
+        }
+        if(!user.location){
+            user.location = ""
+        }
+        if (!user.skills){
+            user.skills = {
+                analytics:false,
+                biology:false,
+                biotech:false,
+                community:false,
+                content:false,
+                data:false,
+                finance:false,
+                helpdesk:false,
+                manufacturing:false,
+                marketing:false,
+                mechanics:false,
+                IT:false,
+                anything:false
+            }
+        }
+        if (!user.availability){
+            user.availability={
+                option1:false,
+                option2:false,
+                option3:false,
+                option4:false,
+                option5:false
+            }
+        }
+
+       
       
         return(
             <div id="page">
@@ -40,7 +77,7 @@ class My_profile extends React.Component{
             <Header_appli title="My Profile" subtitle="Let's work together"/>
             {/* <VolProfileForm user={user}/>            */}
             <div>
-            { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }</div>
+            { this.state.isLoading ? <VolProfileForm user={user}/>:null }</div>
             </div>
 
 

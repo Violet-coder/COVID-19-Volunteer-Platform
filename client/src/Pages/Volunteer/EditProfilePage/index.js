@@ -24,7 +24,7 @@ class EditProfilePage extends React.Component {
     }
     
     componentDidMount() {
-        getVolProfile("5f2b03eac9e769061869b2b5", this)
+        getVolProfile(this.props.app.state.currentUserId, this)
        }
 
 
@@ -77,6 +77,41 @@ class EditProfilePage extends React.Component {
         const queueComponent = this.props.queueComponent
         const app = this.props.app
         console.log('edit profile app',app)
+        if (!user.desc) {
+            user.desc=""
+        }
+        if(!user.links) {
+            user.links=""
+        }
+        if(!user.location){
+            user.location = ""
+        }
+        if (!user.skills){
+            user.skills = {
+                analytics:false,
+                biology:false,
+                biotech:false,
+                community:false,
+                content:false,
+                data:false,
+                finance:false,
+                helpdesk:false,
+                manufacturing:false,
+                marketing:false,
+                mechanics:false,
+                IT:false,
+                anything:false
+            }
+        }
+        if (!user.availability){
+            user.availability={
+                option1:false,
+                option2:false,
+                option3:false,
+                option4:false,
+                option5:false
+            }
+        }
         return(
             
             <div id='page'>
@@ -84,7 +119,7 @@ class EditProfilePage extends React.Component {
             <Header_appli title="Update Profile" subtitle="Let's work together" app = {app} />
             {/* <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} /> */}
             <div>
-            {this.state.isLoading ?<EditProfileForm user={user} newInfo={this.state.user} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} /> :null}
+            {this.state.isLoading ?<EditProfileForm user={user} newInfo={this.state.user} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} app={app}/> :null}
             </div>
                       
             </div>

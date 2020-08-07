@@ -94,7 +94,7 @@ class SingleApplicant extends React.Component {
     }
   }
   render() {
-    const { name, rank ,jobName, context, id } = this.props;
+    const { name, rank ,jobName, context, id, app_id } = this.props;
     const addr = "/organization/volprofile/" + String(id)
     return (
       <tr key={name} className="fh5co-post" id='row'>
@@ -119,7 +119,7 @@ class SingleApplicant extends React.Component {
           </Link>
         </td>
         
-        {this.checkState(context, id)}
+        {this.checkState(context, app_id)}
 
       </tr>
     );

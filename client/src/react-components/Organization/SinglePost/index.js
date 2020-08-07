@@ -6,6 +6,7 @@ import { deletePost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
 import {uid} from "react-uid";
 import { TableBody } from "@material-ui/core";
+import application from "../../../../../models/application";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   //post information should be requested from the database
@@ -16,7 +17,7 @@ class SinglePost extends React.Component {
       isToggleOn: true,
       display: 'none',
       applications: [],
-      isLoading: false
+      isLoading: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -55,7 +56,7 @@ class SinglePost extends React.Component {
     const { post, queueComponent} = this.props;
     //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
       //return applicant.jobId===post.id});
-    const filteredApplicants = this.state.applications
+    //const filteredApplicants = this.state.applications
     const addr = "/organization/posts/"+String(post.id)
     return (
       <>
@@ -103,9 +104,10 @@ class SinglePost extends React.Component {
           </td>
       </tr>
       <TableBody style={{display: this.state.display}}>
-      {filteredApplicants.map(applicant=>(
+      {this.state.applications.map(applicant=>(
             <SingleApplicant
               key = {uid(applicant)}
+              app_id = {applicant._id}
               id={applicant.applicant_id}
               name={applicant.applicant_name}
               rank={applicant.applicant_rank}

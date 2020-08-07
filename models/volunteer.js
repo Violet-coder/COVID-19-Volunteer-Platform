@@ -9,6 +9,10 @@ const ApplicationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required:true
     },
+    status: {
+        type: String,
+        required:true
+    },
     rank: {
         type: String,
         required:false

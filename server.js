@@ -464,6 +464,33 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
         }
     })
 });
+
+app.get('/organization/volprofile/:id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Organization.findById(id).then((organization)=>{
+		if(!organization){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(organization)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

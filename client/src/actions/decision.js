@@ -1,21 +1,8 @@
-export const acceptApplicant = (id, info) => {
+export const acceptApplicant = (id) => {
     const url = `/organization/accept/${id}`
-    const oldInfo = context.state.info;
-   if (info.website===""){
-     info.website=oldInfo.website
-   }
-   if (info.intro===""){
-     info.intro=oldInfo.intro
-   }
-   const newInfo = {
-     name: oldInfo.name,
-     email: oldInfo.email,
-     website: info.website,
-     intro: info.intro
-   };
-   const request = new Request(url, {
+    const request = new Request(url, {
      method:"post",
-     body: JSON.stringify(newInfo),
+     body: "",
      headers: {
        Accept: "application/json, text/plain, */*",
        "Content-Type": "application/json"
@@ -31,30 +18,13 @@ export const acceptApplicant = (id, info) => {
        .catch(error => {
            console.log(error);
        });
-
-   context.setState({
-     info: newInfo
-     });  
  };
 
- export const rejectApplicant = (id, info) => {
+ export const rejectApplicant = (id) => {
     const url = `/organization/reject/${id}`
-    const oldInfo = context.state.info;
-   if (info.website===""){
-     info.website=oldInfo.website
-   }
-   if (info.intro===""){
-     info.intro=oldInfo.intro
-   }
-   const newInfo = {
-     name: oldInfo.name,
-     email: oldInfo.email,
-     website: info.website,
-     intro: info.intro
-   };
    const request = new Request(url, {
      method:"post",
-     body: JSON.stringify(newInfo),
+     body: "",
      headers: {
        Accept: "application/json, text/plain, */*",
        "Content-Type": "application/json"
@@ -70,8 +40,4 @@ export const acceptApplicant = (id, info) => {
        .catch(error => {
            console.log(error);
        });
-
-   context.setState({
-     info: newInfo
-     });  
  };

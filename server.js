@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const application = require("./models/application");
 
 
 
@@ -693,6 +694,70 @@ app.get('/organization/get_applications/:app_id', (req, res) => {
 	})
 
 })
+
+app.post("/organization/reject/:app_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.app_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Application.findById(id).then((application)=> {
+        if(!application){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            application.applicant_status = 'accepted'  
+            application.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
+
+app.post("/organization/accept/:app_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.app_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Application.findById(id).then((application)=> {
+        if(!application){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            application.applicant_status = 'rejected'
+            application.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

@@ -7,10 +7,12 @@ import './styles.css';
 class FixedOrgProfilePage extends React.Component{
     render(){
         const organization=this.props.organization;
+        const app = this.props.app
+
 
         return(
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app}/>
                 {/* Pass the organization data as props to the component OrgProfileForm, and we will use database to get data later in phase 2*/}
                 <OrgProfileForm organization={organization}/>
                 <div id='button-services' className='fh5co-bg-section'>

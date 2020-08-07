@@ -14,11 +14,36 @@ class SinglePost extends React.Component {
     super(props);
     this.state = {
       isToggleOn: true,
-      display: 'none'
+      display: 'none',
+      applications: [],
+      isLoading: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
+  componentDidMount() {
+    const applications = []
+    for (var app_id in this.props.post.applications) {
+      const url = `/organization/get_application/${this.props.post.applications[app_id]}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        applications.push(json)
+          // console.log("state this time", this.state)
+      })
+      .catch(error => {
+          console.log(error);
+      });
+    }
+    this.setState({ applications: applications, isLoading: true });
+
+}
   handleClick() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn,
@@ -28,9 +53,10 @@ class SinglePost extends React.Component {
   render() {
 
     const { post, queueComponent} = this.props;
-    const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
-      return applicant.jobId===post.id});
-    const addr = "/organization/posts/"+String(post.id)
+    //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
+      //return applicant.jobId===post.id});
+    //const filteredApplicants = this.state.applications
+    const addr = "/organization/posts/"+String(post._id)
     return (
       <>
         <tr key={post.name} className="fh5co-post" id='row'>
@@ -76,19 +102,20 @@ class SinglePost extends React.Component {
           </Button>
           </td>
       </tr>
-      <TableBody style={{display: this.state.display}}>
-      {filteredApplicants.map(applicant=>(
+      { this.state.isLoading ? <TableBody style={{display: this.state.display}}>
+      {this.state.applications.map(applicant=>(
             <SingleApplicant
               key = {uid(applicant)}
-              id={applicant.id}
-              name={applicant.name}
-              rank={applicant.rank}
-              jobName={applicant.jobName}
-              status={applicant.status}
+              app_id = {applicant._id}
+              id={applicant.applicant_id}
+              name={applicant.applicant_name}
+              rank={applicant.applicant_rank}
+              jobName={post.name}
+              status={applicant.applicant_status}
               context={queueComponent}
             />
           ))}
-      </TableBody>
+      </TableBody>:null }
       </>
     );
   }

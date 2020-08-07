@@ -1,15 +1,5 @@
 'use strict';
 const mongoose = require('mongoose')
-const ApplicantSchema = new mongoose.Schema({
-    applicant_id:{ 
-        type: mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    applicant_name: {
-        type: String,
-        required:true
-    }
-});
 const Post = mongoose.model('Post', {
 	name: {
 		type: String,			//post name
@@ -35,19 +25,15 @@ const Post = mongoose.model('Post', {
         minlength: 1,
         trim: true
 	},
-	relevant_area: {
-		type: String,
-		required: true,
-    },
     location: {
 		type: String,
 		required: true,
 	},
 	requirements: [String],
-    is_approved: {
-        type: Boolean,
+    status: {
+        type: String,
 		required: true,
-		default: false
+		default: "Under review"
 	},
 	date: {
 		type: Date,
@@ -57,7 +43,7 @@ const Post = mongoose.model('Post', {
 		type: mongoose.Schema.Types.ObjectId,
         required:true
 	},
-	applicants: [ApplicantSchema],
+	applications: [mongoose.Schema.Types.ObjectId],
 })
 
 module.exports = { Post }

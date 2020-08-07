@@ -13,7 +13,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { Volunteer } = require("./models/volunteer"); 
 const { Organization } = require("./models/organization")
 const { Post } = require("./models/post");
-
+const { Application } = require("./models/application")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+//const application = require("./models/application");
 
 
 
@@ -46,7 +47,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            expires: 5*60000,
             httpOnly: true
         }
     })
@@ -88,7 +89,21 @@ app.post("/users/register", (req, res) => {
             log(error)
             res.status(400).send("Bad Request.")
         })
-    } else{
+    } else if(req.body.type === 'admin'){
+        const organization = new Organization({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            type:req.body.type
+        })
+        organization.save().then((result) => {
+            res.send(result) 
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request.")
+        })
+    }
+    else{
         res.status(400).send()
     }
 
@@ -169,6 +184,10 @@ app.get("/users/check-session", (req, res) => {
         res.status(401).send();
     }
 });
+
+/*** Admin Routes ***/
+
+
 
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer
@@ -397,6 +416,7 @@ app.get('/posts', (req, res) => {
 		res.send(posts)
 	})
 	.catch((error)=> {
+        log(error)
 		res.status(500).send("Internal server error")
 	})
 
@@ -439,7 +459,7 @@ app.post("/organization", (req, res) => {
     const organization = new Organization({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.firstname,
+        name: req.body.name,
         posts: []
     });
 
@@ -454,7 +474,7 @@ app.post("/organization", (req, res) => {
     );
 });
 
-app.get('/organization/profile/:id', (req, res) => {
+app.get('/organization/get_profile/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -482,7 +502,7 @@ app.get('/organization/profile/:id', (req, res) => {
 })
 
 // a POST for updating profile info to a particular organization
-app.post("/organization/update/:id", (req, res) => {
+app.post("/organization/update_profile/:id", (req, res) => {
     // log(req.body)
     const id = req.params.id
 
@@ -541,7 +561,7 @@ app.post("/organization/post/:id", (req, res) => {
     const post = new Post({
         name: req.body.name,
         description: req.body.description,
-        relevant_area: req.body.relevant_area,
+        title: req.body.title,
         location: req.body.location,
         requirements: req.body.requirements,
         is_approved: req.body.is_approved,
@@ -559,7 +579,7 @@ app.post("/organization/post/:id", (req, res) => {
     );
 });
 
-app.get('/organization/applicants/:id', (req, res) => {
+app.get('/organization/get_applicants/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -583,19 +603,20 @@ app.get('/organization/applicants/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        applicants.push(post)
+                        applicants.push.apply(applicants, post.applications)
                     }
                 })
             }
+            res.send(applicants)
 		}
-	})
+	})          
 	.catch((error) => {
 		res.status(500).send("Internal server error")
 	})
 
 })
 
-app.post("/organization/post_edit/:post_id", (req, res) => {
+app.post("/organization/edit_post/:post_id", (req, res) => {
     // log(req.body)
     const id = req.params.post_id
 
@@ -615,10 +636,9 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
             post.name = req.body.name     
             post.description = req.body.description
             post.title = req.body.title
-            post.relevant_area = req.body.relevant_area
             post.location = req.body.location
             post.requirements = req.body.requirements
-            post.is_approved = false
+            post.status = "Under review"
             post.date = req.body.date
             post.save().then((result) => {
                 res.send(result)
@@ -634,7 +654,7 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
     })
 });
 
-app.get('/organization/volprofile/:vol_id', (req, res) => {
+app.get('/organization/get_vol_profile/:vol_id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -661,7 +681,7 @@ app.get('/organization/volprofile/:vol_id', (req, res) => {
 
 })
 
-app.get('/organization/posts/:id', (req, res) => {
+app.get('/organization/get_posts/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -685,10 +705,11 @@ app.get('/organization/posts/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        posts.push(post)
+                        posts.push(post.json())
                     }
                 })
             }
+            res.send(posts)
 		}
 	})
 	.catch((error) => {
@@ -696,6 +717,122 @@ app.get('/organization/posts/:id', (req, res) => {
 	})
 
 })
+
+app.get('/organization/get_post/:post_id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.post_id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Post.findById(id).then((post)=>{
+		if(!post){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+            res.send(post)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+app.get('/organization/get_application/:app_id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.app_id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Application.findById(id).then((application)=>{
+		if(!application){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+            res.send(application)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+app.post("/organization/reject/:app_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.app_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Application.findById(id).then((application)=> {
+        if(!application){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            application.applicant_status = 'accepted'  
+            application.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
+
+app.post("/organization/accept/:app_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.app_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Application.findById(id).then((application)=> {
+        if(!application){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            application.applicant_status = 'rejected'
+            application.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

@@ -29,6 +29,32 @@ class PostEditForm extends React.Component {
       })
     }
   };
+  componentDidMount() {
+    const post_id = this.props.matchProps.match.params.id
+    const url = `/organization/get_post/${post_id}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        this.setState({     
+          jobName: json.name,
+          jobDescription: json.description,
+          requirement: "",
+          jobTitle: "",
+          location: "",
+          isLoading: true });
+      })
+      .catch(error => {
+          console.log(error);
+      });
+    
+
+}
   id = parseInt(this.props.matchProps.match.params.id)
   post = this.props.posts.find((p) => p.id===this.id)
   state = {
@@ -39,7 +65,7 @@ class PostEditForm extends React.Component {
     location: "",
   } 
   nameErrorCheck = () => {
-    if (this.state.jobNameIsEmpty===true) {
+    if (this.state.jobNameIsEmpty===true && this.state.isLoading) {
       return (
         <ErrorTextField
           name="jobName"
@@ -49,9 +75,9 @@ class PostEditForm extends React.Component {
         />
       )
     }
-    else {
+    else if (this.state.isLoading) {
       return (
-        <Input
+          <Input
           name="jobName"
           value={this.state.jobName}
           onChange={this.handleInputChange}
@@ -61,7 +87,7 @@ class PostEditForm extends React.Component {
     }
   }
   descriptionErrorCheck = () => {
-    if (this.state.jobDescriptionIsEmpty===true) {
+    if (this.state.jobDescriptionIsEmpty===true && this.state.isLoading) {
       return (
         <ErrorTextField
           name="jobDescription"
@@ -71,7 +97,7 @@ class PostEditForm extends React.Component {
         />
       )
     }
-    else {
+    else if (this.state.isLoading) {
       return (
         <Input
           name="jobDescription"
@@ -121,6 +147,7 @@ class PostEditForm extends React.Component {
     const app = this.props.app
     const matchProps = this.props.matchProps
     const id = parseInt(matchProps.match.params.id)
+    const post_id = matchProps.match.params.id
     return (
       <div>
       <OrgNav app={app}/>
@@ -154,7 +181,7 @@ class PostEditForm extends React.Component {
         </div>
         </div>
         <div className="contain">
-          {this.submit(id)}
+          {this.submit(post_id)}
       </div>
       </div>
       <Footer/>

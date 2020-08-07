@@ -210,24 +210,25 @@ class Admin extends React.Component {
     }
 
     render() {
+        const app = this.props.app
         return(
             <div>
                 <Switch>
                     <Route exact path='/admin/volunteers' render={() => (<VolUsers  
-                        volusers={this.state.volusers} queueComponent={this} />)}/>
+                        volusers={this.state.volusers} queueComponent={this} app={app}/>)}/>
                     <Route exact path='/admin/organizations' render={() => (<OrganizationListPage  
-                        organizations={this.state.organizations} queueComponent={this} />)}/>
+                        organizations={this.state.organizations} queueComponent={this} app={app}/>)}/>
 
                     <Route exact path='/admin/publishpost' render={() => (
-                        <AdminPostForm queueComponent={this} />)} />
+                        <AdminPostForm queueComponent={this} app={app}/>)} />
                     {/* <Route exact path='/admin/volprofile' render={() => (<VolFixedProfilePage />)} /> */}
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
 
                     <Route exact path='/admin/volunteers/volprofile/:id' render={(matchProps)=> {
-                       return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} />
+                       return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} app={app} />
                     }} />
                     <Route exact path='/admin/volunteers/editvolprofile/:id' render={(matchProps)=> {
-                       return <EditVolProfilePage matchProps={matchProps} {...this.props} queueComponent={this} />
+                       return <EditVolProfilePage matchProps={matchProps} {...this.props} queueComponent={this} app={app} />
                     }} />
 
 
@@ -235,7 +236,7 @@ class Admin extends React.Component {
                         const {id}=matchProps.match.params
                         const organization = this.state.organizations.find(u => u.id==id)
                         if(organization){
-                            return <FixedOrgProfilePage organization={organization} />}
+                            return <FixedOrgProfilePage organization={organization} app={app} />}
                         else{
                            return <Redirect to='/not-found' />
                        }
@@ -244,7 +245,7 @@ class Admin extends React.Component {
                         const {id}=matchProps.match.params
                         const organization = this.state.organizations.find(u => u.id==id)
                         if(organization){
-                            return <EditOrgProfilePage organization={organization} queueComponent={this} />}
+                            return <EditOrgProfilePage organization={organization} queueComponent={this} app={app}/>}
                         else{
                            return <Redirect to='/not-found' />
                        }
@@ -252,19 +253,19 @@ class Admin extends React.Component {
 
 
                     <Route exact path='/admin/posts' render={
-                        ()=> (<PostList  posts= {this.state.posts} queueComponent={this} />)} />
+                        ()=> (<PostList  posts= {this.state.posts} queueComponent={this} app={app} />)} />
 
                     <Route exact path='/admin/posts/:id' render={(matchProps)=> {
                         const {id}=matchProps.match.params
                         const post = this.state.posts.find(u => u.id==id)
                         if(post){
-                            return <PostDetailPage post={post} queueComponent={this} />}
+                            return <PostDetailPage post={post} queueComponent={this} app={app} />}
                         else{
                            return <Redirect to='/not-found' />
                        }
                     }} />
                     
-                    <Route exact path='/admin' component={AdminGuide} />                   
+                    <Route exact path='/admin/entry' render={() => <AdminGuide app={app} />}  />                   
                     
                     
                 </Switch>

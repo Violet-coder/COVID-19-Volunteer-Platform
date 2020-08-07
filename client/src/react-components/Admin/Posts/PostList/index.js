@@ -19,10 +19,12 @@ class PostList extends React.Component{
         const desc = 'Administration'
         const title = 'Post Management'
         const subtitle =''
+        const app = this.props.app
+
        
         return(
             <div>
-                <AdminNav />
+                <AdminNav app={app} />
                 <div id="fh5co-blog" className="fh5co-bg-section">
                     <div className="container">
                         <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">

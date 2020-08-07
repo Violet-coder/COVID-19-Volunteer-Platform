@@ -5,6 +5,7 @@ import VolProfileForm from "../../Admin/Users/VolProfileForm";
 import Button from "@material-ui/core/Button";
 import { ButtonGroup } from "@material-ui/core";
 import { BackButton } from '../Hook/backButton'
+import { acceptApplicant, rejectApplicant } from "../../../actions/decision";
 import "./styles.css";
 const volusers=[
     {
@@ -134,14 +135,52 @@ const volusers=[
 
 ]
 class ApplicantDetail extends React.Component {
-  id = this.props.matchProps.match.params.id
+  
   //applicants information should be requested from the database
   //rejecting or accepting an applicant should make a change to the database
   applicant = this.props.applicants.find((u) => u.id===parseInt(this.id))
-  
-    state = {
-        status: this.applicant.status
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: "",
+      isLoading: false,
+    };
+  }
+  componentDidMount() {
+    const app_id = this.props.matchProps.match.params.id
+    let vol_id
+    let url = `/organization/get_application/${app_id}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        this.setState({ status: json.applicant_status });
+        vol_id = json.applicant_id
+      })
+      .catch(error => {
+          console.log(error);
+      });
+      url = `/organization/get_vol_profile/${vol_id}` 
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        this.setState({ user: json, isLoading: true });
+      })
+      .catch(error => {
+          console.log(error);
+      });
+}
       checkState = (context, id) => {
         if (this.state.status==='rejected') {
           return (
@@ -197,6 +236,7 @@ class ApplicantDetail extends React.Component {
           break
         }
       }
+      acceptApplicant(id)
       context.setState({
         applicants: appList
       })
@@ -213,22 +253,23 @@ class ApplicantDetail extends React.Component {
           break
         }
       }
+      rejectApplicant(id)
       context.setState({
         applicants: appList
       })
       }}
     render(){
         const app = this.props.app
-        const id = this.props.matchProps.match.params.id
+        const app_id = this.props.matchProps.match.params.id
         const context = this.props.context
-        const user = volusers.find((u) => u.id===parseInt(id))
+        //const user = volusers.find((u) => u.id===parseInt(id))
         return(
         
             <div>
                 <OrgNav app={app}/>
-                <VolProfileForm user={user}/>
+                { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }
                 <div className='buttons'>
-                {this.checkState(context, parseInt(id))}
+                {this.checkState(context, app_id)}
                 <BackButton/>
             </div>
                 <Footer/>

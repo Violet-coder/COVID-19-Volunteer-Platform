@@ -82,11 +82,12 @@ class VolFixedProfilePage extends React.Component {
         const volusers = queueComponent.state.volusers
         const user = volusers.find((u) => u.id==id)
 
+        const app = this.props.app
 
         return(
         
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app}/>
                 
                 <VolProfileForm user={user}/>
                 <div id='button-services' className='fh5co-bg-section'>

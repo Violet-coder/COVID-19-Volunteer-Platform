@@ -14,6 +14,36 @@ import { deletePost } from "../../../actions/postList";
 import "./styles.css"
 
 class SelfPostDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      applications: [],
+      isLoading: false,
+    };
+  }
+  componentDidMount() {
+    const applications = []
+    for (var app_id in this.props.post.applications) {
+      const url = `/organization/get_applications/${this.props.post.applications[app_id]}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        applications.push(json)
+          // console.log("state this time", this.state)
+      })
+      .catch(error => {
+          console.log(error);
+      });
+    }
+    this.setState({ applications: applications, isLoading: true });
+
+}
     render(){
         const app = this.props.app
       //detailed information should be requested from the database
@@ -61,19 +91,20 @@ class SelfPostDetail extends React.Component {
 
         <h1>Applicants</h1>
       <Table style={{ width: '80%' }}>
-        <TableBody>
-        {filteredApplicants.map(applicant => (
+      { this.state.isLoading ? <TableBody>
+        {this.state.applications.map(applicant => (
             <SingleApplicant
-              key = {uid(applicant)}
-              id={applicant.id}
-              name={applicant.name}
-              rank={applicant.rank}
-              jobName={applicant.jobName}
-              status={applicant.status}
-              context={this}
+            key = {uid(applicant)}
+            app_id = {applicant._id}
+            id={applicant.applicant_id}
+            name={applicant.applicant_name}
+            rank={applicant.applicant_rank}
+            jobName= "Post Name"
+            status={applicant.applicant_status}
+            context={this}
             />
           ))}
-        </TableBody>
+        </TableBody>:null }
       </Table>
       </div>
       </div>

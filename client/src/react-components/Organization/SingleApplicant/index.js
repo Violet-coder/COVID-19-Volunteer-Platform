@@ -3,7 +3,8 @@ import Button from "@material-ui/core/Button";
 import "./styles.css";
 import { ButtonGroup } from "@material-ui/core";
 import { Link } from "react-router-dom";
-class Applicant extends React.Component {
+import { acceptApplicant, rejectApplicant } from "../../../actions/decision";
+class SingleApplicant extends React.Component {
   //applicants information should be requested from the database
   //rejecting or accepting an applicant should make a change to the database
   state = {
@@ -34,6 +35,7 @@ class Applicant extends React.Component {
         style={{fontSize: 12}}
         onClick={()=>{
           this.reject(context, id)
+          
         }}
       >
         reject
@@ -43,6 +45,7 @@ class Applicant extends React.Component {
         color="primary"
         onClick={()=>{
           this.accept(context, id)
+          
         }}
         style={{fontSize: 12}}
       >
@@ -66,6 +69,7 @@ class Applicant extends React.Component {
           break
         }
       }
+      acceptApplicant(id)
       context.setState({
         applicants: appList
       })
@@ -86,11 +90,12 @@ class Applicant extends React.Component {
       context.setState({
         applicants: appList
       })
+      rejectApplicant(id)
     }
   }
   render() {
-    const { name, rank ,jobName, context, id } = this.props;
-    const addr = "/organization/volprofile/" + String(id)
+    const { name, rank ,jobName, context, id, app_id } = this.props;
+    const addr = "/organization/volprofile/" + String(app_id)
     return (
       <tr key={name} className="fh5co-post" id='row'>
         <td>
@@ -114,11 +119,11 @@ class Applicant extends React.Component {
           </Link>
         </td>
         
-        {this.checkState(context, id)}
+        {this.checkState(context, app_id)}
 
       </tr>
     );
   }
 }
 
-export default Applicant;
+export default SingleApplicant;

@@ -9,10 +9,12 @@ class OrganizationListPage extends React.Component{
         //In phase 2 get data from database instead
         const organizations = this.props.organizations
         const queueComponent = this.props.queueComponent
+        const app = this.props.app
+
 
         return(
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app} />
                 <OrganizationTable organizations={organizations} queueComponent={queueComponent}/>
             </div>
         )

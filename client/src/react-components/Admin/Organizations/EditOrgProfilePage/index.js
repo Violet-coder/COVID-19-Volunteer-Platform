@@ -28,10 +28,12 @@ class EditOrgProfilePage extends React.Component{
         //the queueComponent represents the class object whose state we want to modify.
         const organization=this.props.organization;
         const queueComponent=this.props.queueComponent;
+        const app = this.props.app
+
 
         return(
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app} />
                 <EditOrgProfileForm organization={organization} state={this.state} 
                 handleInputChange={this.handleInputChange}
                 queueComponent={queueComponent} />

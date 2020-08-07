@@ -16,7 +16,8 @@ const ApplicationSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required:true
+        required:true,
+        default:"pending"
     },
     rank: {
         type: String,

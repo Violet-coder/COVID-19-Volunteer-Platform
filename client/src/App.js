@@ -70,7 +70,7 @@ class App extends React.Component{
                   } /> */}
             
             <Route path='/volunteer' render={(history) => (
-              (currentUser && type=='volunteer') ?  <Volunteer posts={this.state.posts}  app={this} /> :
+              (currentUser && type=='volunteer') ?  <Volunteer  app={this} /> :
               <Login history={history} app={this}/> )}/>
             <Route path='/publicpost' render={() => <Publicpost posts={this.state.posts} />}/>
             <Route path='/post/:id' component={PublicPostDetailPage} />

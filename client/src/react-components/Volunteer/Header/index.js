@@ -31,7 +31,7 @@ class Header extends React.Component {
 		
 	}
   render() {
-	const { title, subtitle, posts, queueComponent } = this.props;
+	const { title, subtitle,  queueComponent } = this.props;
 
     return (
         <div id="fh5co-started">
@@ -46,10 +46,10 @@ class Header extends React.Component {
 				<div className="searchbar">
 					<form>
 					<span className="searchinput"><input id="postname"  required="required" onChange={this.handleInputChange} type="text" placeholder="Search"/></span>
-						{console.log('valid',this.validateForm())}
-						{console.log("postsahaha",posts)}
+						
+						
 						{(this.validateForm())?
-						<span ><Link to={{pathname:`/volunteer/searchresult`, state: this.state.postname,query: {posts,queueComponent} }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span> :
+						<span ><Link to={{pathname:`/volunteer/searchresult`, state: this.state.postname,query: {queueComponent} }}><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></Link></span> :
 						<span ><button id="searchbutton" type="submit" className="btn-search btn-primary" >GO</button></span>
 
  						 }

@@ -305,7 +305,6 @@ app.post('/volunteer/application/:id', (req, res) => {
 			res.status(404).send('404 Resource Not Found')
 		} else {
             volunteer.applications.push(newApplication)
-            console.log
 			volunteer.save().then((result) => {
 				res.send(result.applications)    
 			})
@@ -343,6 +342,37 @@ app.get('/volunteer/applicatoinlist/:id', (req, res) => {
 	})
 	.catch((error) => {
 		res.status(500).send("Internal server error")
+	})
+
+})
+
+// a GET request for getting a particular application of a particular volunteer
+app.get('/volunteer/:id/:post_id', (req, res) => {
+	const vol_id = req.params.id
+	const post_id = req.params.post_id
+	if (!ObjectID.isValid(vol_id)) {
+		res.status(404).send('Resource not found')  
+		return;  
+	}
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+	Volunteer.findById(vol_id).then((volunteer) => {
+		if (!volunteer) {
+			res.status(404).send('Resource not found')  
+		} else {
+            const targetApplication = volunteer.applications.filter((application) => application.post_id.toString() === post_id)
+			res.send(targetApplication)
+			
+		}
+	})
+	.catch((error) => {
+		log(error)
+		res.status(500).send('Internal Server Error')  
 	})
 
 })

@@ -1,6 +1,15 @@
 'use strict';
 const mongoose = require('mongoose')
-
+const ApplicantSchema = new mongoose.Schema({
+    applicant_id:{ 
+        type: mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    applicant_name: {
+        type: String,
+        required:true
+    }
+});
 const Post = mongoose.model('Post', {
 	name: {
 		type: String,			//post name
@@ -47,7 +56,8 @@ const Post = mongoose.model('Post', {
 	org_id: {
 		type: mongoose.Schema.Types.ObjectId,
         required:true
-	}
+	},
+	applicants: [ApplicantSchema],
 })
 
 module.exports = { Post }

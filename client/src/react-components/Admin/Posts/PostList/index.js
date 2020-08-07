@@ -10,11 +10,37 @@ import {adminApprovePost} from '../../../../actions/adminApprovePost';
 
 
 class PostList extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: [],
+            dataIsReturned: false
+        }
+    } 
+
+    componentDidMount() {
+        const url = "/posts"
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get posts");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            this.setState({ posts: json, dataIsReturned: true });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     render(){
         //here we get post data from global state
         //in phase2 get data from database
-        const posts = this.props.posts;
-        posts.reverse();
+        const posts = this.state.posts;
+        //posts.reverse();
         const queueComponent = this.props.queueComponent;
         const desc = 'Administration'
         const title = 'Post Management'
@@ -25,6 +51,7 @@ class PostList extends React.Component{
         return(
             <div>
                 <AdminNav app={app} />
+                {this.state.dataIsReturned ? 
                 <div id="fh5co-blog" className="fh5co-bg-section">
                     <div className="container">
                         <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
@@ -55,7 +82,8 @@ class PostList extends React.Component{
                                  
                         </div>	       
                     </div>
-                </div>
+                </div> 
+                : <h1>Loading</h1>}
 
             </div>
         )

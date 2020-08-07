@@ -10,6 +10,7 @@ class PostDetail extends React.Component {
   // const classes = useStyles();
   render(){
   const {post} = this.props
+  const requirements = new Array(post.requirements)
   
 
   return (
@@ -25,12 +26,9 @@ class PostDetail extends React.Component {
 			<div className="fh5co-post" style={{minHeight: "300px"}}>
 			<h3>Skills Needed</h3>
       <hr/>
-      {/* <div>{
+      { requirements[0] ? requirements[0].map(requirement => (<p>{requirement}</p>)) :null }
       
-      requirements.map(requirement => (<p>{requirement}</p>))
-      }</div> */}
       
-      <p>{post.requirements}</p>
 			</div>
 
       <div className="fh5co-post" style={{minHeight: "250px"}}>

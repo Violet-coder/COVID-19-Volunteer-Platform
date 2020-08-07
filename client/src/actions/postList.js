@@ -1,6 +1,6 @@
 const log = console.log;
 
-export const addPost = (queue, info) => {
+export const addPost = (queue, id, info) => {
   const url = `/organization/post/${id}`
   const postList = queue.state.posts;
   let requirements = ""
@@ -79,7 +79,7 @@ else {
 }
 };
 
-export const editPost = (id, queue, info) => {
+export const editPost = (post_id, queue, info) => {
   const url = `/organization/edit_post/${post_id}`
   const postList = queue.state.posts;
   let requirements = ""
@@ -111,11 +111,13 @@ export const editPost = (id, queue, info) => {
   date: d.toLocaleDateString(),
   location: info.location,
 };
+/*
   for (var i in postList) {
     if (postList[i].id===id) {
       postList[i] = post
     }
   }
+  */
   const request = new Request(url, {
     method:"post",
     body: JSON.stringify(post),
@@ -133,8 +135,9 @@ export const editPost = (id, queue, info) => {
        .catch(error => {
            console.log(error);
        });
-
+/*
     queue.setState({
       posts: postList,
     });  
+    */
 };

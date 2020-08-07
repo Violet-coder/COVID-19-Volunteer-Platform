@@ -7,7 +7,31 @@ import "./styles.css";
 
 /* Component for the List of Applicants */
 class ApplicantList extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      applicants: [],
+      isLoading: false,
+    };
+  }
+
+  componentDidMount() {
+    const url = `/organization/get_applicants/${this.props.app.state.currentUserId}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        this.setState({ applicants: json, isLoading: true });
+      })
+      .catch(error => {
+          console.log(error);
+      });
+}
   render() {
     //applicants information should be requested from the database
     const {applicants, context} = this.props;
@@ -21,21 +45,22 @@ class ApplicantList extends React.Component {
         </div>
         </div>
         <div id="fh5co-blog" className="fh5co-bg-section">
-        <div className="container" id='single-applicant'>
+        { this.state.isLoading ? <div className="container" id='single-applicant'>
 
-        {applicants.map(applicant => (
+        {this.state.applicants.map(applicant => (
             <SingleApplicant
-              key = {uid(applicant)}
-              id={applicant.id}
-              name={applicant.name}
-              rank={applicant.rank}
-              jobName={applicant.jobName}
-              status={applicant.status}
-              context={context}
+            key = {uid(applicant)}
+            app_id = {applicant._id}
+            id={applicant.applicant_id}
+            name={applicant.applicant_name}
+            rank={applicant.applicant_rank}
+            jobName={post.name}
+            status={applicant.applicant_status}
+            context={queueComponent}
             />
           ))}
 
-      </div>
+      </div>:null }
       </div>
       <Footer/>
     </div>

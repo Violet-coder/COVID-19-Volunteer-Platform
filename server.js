@@ -13,7 +13,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { Volunteer } = require("./models/volunteer"); 
 const { Organization } = require("./models/organization")
 const { Post } = require("./models/post");
-
+const { Application } = require("./models/application")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
-const application = require("./models/application");
+//const application = require("./models/application");
 
 
 

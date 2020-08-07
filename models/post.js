@@ -3,11 +3,18 @@ const mongoose = require('mongoose')
 
 const Post = mongoose.model('Post', {
 	name: {
-		type: String,
+		type: String,			//post name
 		required: true,
 		minlegth: 1,
 		trim: true
-    },
+	},
+	orgname: {
+		type: String,			//organization name
+		required: true,
+		minlegth: 1,
+		trim: true
+	},
+	
     description: {
 		type: String,
 		required: true,

@@ -14,26 +14,48 @@ import "../../../css/style.css";
 
 
 class VolunteerSeeall extends React.Component{
-
-    
-    
-       
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: [],
+            isLoading: false
+        }
+        
+    }
+    componentDidMount() {
+        const url = "/posts"
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get posts");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            this.setState({ posts: json, isLoading: true });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+  
     render() {
-        const {queueComponent, posts} = this.props
+        const {queueComponent} = this.props
         const app = this.props.app
-        /* console.log("queueComponent",queueComponent)
-        console.log("posts",posts)  */
-         //only display posts that are approved
-        const filteredPosts = posts.filter(
-            p => p.status === 'Approved'
+        //only display posts that are approved
+        const filteredPosts = this.state.posts.filter(
+            p => p.is_approved === true
         )
 
         return(
             <div id="page">
             <Navbar user="Application" app={app}/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together" posts={filteredPosts} app={app}/>
-            <All_ops queueComponent={queueComponent} posts={filteredPosts}/>
+            <div>
+            {this.state.isLoading ? <All_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
+            </div>
 
 
 

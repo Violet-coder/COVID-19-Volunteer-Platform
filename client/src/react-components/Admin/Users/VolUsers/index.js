@@ -10,9 +10,10 @@ class VolUsers extends React.Component{
         //console.log("volusers",volusers)
         const queueComponent = this.props.queueComponent
         //console.log("VolUsers queueComponent", queueComponent)
+        const app = this.props.app
         return(
             <div id='page'>
-                <AdminNav />
+                <AdminNav app={app}/>
                 <VolUserTable volusers={volusers} queueComponent={queueComponent}/>
             </div>
         )

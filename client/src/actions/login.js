@@ -49,6 +49,9 @@ export const login = (loginComp, app) => {
     })
     .catch(error => {
         console.log(error);
+        app.setState({
+            message: { type: "error", body: "Cannot login" }
+        })
     });
 };
 

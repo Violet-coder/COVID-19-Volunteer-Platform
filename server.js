@@ -47,7 +47,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            expires: 5*60000,
             httpOnly: true
         }
     })
@@ -89,7 +89,21 @@ app.post("/users/register", (req, res) => {
             log(error)
             res.status(400).send("Bad Request.")
         })
-    } else{
+    } else if(req.body.type === 'admin'){
+        const organization = new Organization({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password,
+            type:req.body.type
+        })
+        organization.save().then((result) => {
+            res.send(result) 
+        }).catch((error) => {
+            log(error)
+            res.status(400).send("Bad Request.")
+        })
+    }
+    else{
         res.status(400).send()
     }
 
@@ -170,6 +184,10 @@ app.get("/users/check-session", (req, res) => {
         res.status(401).send();
     }
 });
+
+/*** Admin Routes ***/
+
+
 
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer
@@ -368,6 +386,7 @@ app.get('/posts', (req, res) => {
 		res.send(posts)
 	})
 	.catch((error)=> {
+        log(error)
 		res.status(500).send("Internal server error")
 	})
 

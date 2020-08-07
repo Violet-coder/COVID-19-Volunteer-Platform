@@ -8,7 +8,7 @@ const Post = mongoose.model('Post', {
 		minlegth: 1,
 		trim: true
 	},
-	orgname: {
+	org_name: {
 		type: String,			//organization name
 		required: true,
 		minlegth: 1,

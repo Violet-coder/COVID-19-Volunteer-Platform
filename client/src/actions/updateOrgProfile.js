@@ -13,7 +13,7 @@ const log = console.log;
      name: oldInfo.name,
      email: oldInfo.email,
      website: info.website,
-     intro: info.intro
+     info: info.intro
    };
    const request = new Request(url, {
      method:"post",

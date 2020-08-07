@@ -6,7 +6,6 @@ import { deletePost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
 import {uid} from "react-uid";
 import { TableBody } from "@material-ui/core";
-import application from "../../../../../models/application";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
   //post information should be requested from the database

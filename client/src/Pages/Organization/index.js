@@ -39,8 +39,8 @@ class Organization extends React.Component{
               <Route exact path='/organization/profile/:id' render={(matchProps) => (<OrgProfile matchProps = {matchProps} posts={this.state.posts} queueComponent={this} app={app}/>)}/>
               <Route exact path='/organization/post/:id' render={(matchProps) => 
                               (<PostForm matchProps = {matchProps} queueComponent={this} app={app} />)}/>
-              <Route exact path='/organization/applicants' render={() => 
-                              (<ApplicantList applicants={this.state.applicants} context={this} app={app}/>)}/>
+              <Route exact path='/organization/applicants/:id' render={(matchProps) => 
+                              (<ApplicantList matchProps = {matchProps} applicants={this.state.applicants} context={this} app={app}/>)}/>
               <Route exact path='/organization/update/:id' render={(matchProps) => 
                               (<ProfileForm matchProps = {matchProps} info={this.state.info} infoComponent={this} app={app} />)}/>
               <Route exact path='/organization/post_edit/:id' render={(matchProps) => 

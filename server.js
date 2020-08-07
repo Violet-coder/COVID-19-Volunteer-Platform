@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const { Post } = require("./models/post");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -388,6 +389,80 @@ app.post("/organization/post/:id", (req, res) => {
             res.status(400).send(error); // 400 for bad request
         }
     );
+});
+app.get('/organization/applicants/:id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.id
+    const applicants = []
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Organization.findById(id).then((organization)=>{
+		if(!organization){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			for (var i in organization.posts) {
+                Post.findById(organization.posts[i]).then((post)=>{
+                    if (!post) {
+                        res.status(404).send('404 Resource Not Found')
+                    }
+                    else {
+                        applicants.push(post)
+                    }
+                })
+            }
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+app.post("/organization/post_edit/:post_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.post_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Post.findById(id).then((post)=> {
+        if(!post){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            post.name = req.body.name     
+            post.description = req.body.description
+            post.title = req.body.title
+            post.relevant_area = req.body.relevant_area
+            post.location = req.body.location
+            post.requirements = req.body.requirements
+            post.is_approved = false
+            post.date = req.body.date
+            post.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
 });
 /*** Webpage routes below **********************************/
 // Serve the build

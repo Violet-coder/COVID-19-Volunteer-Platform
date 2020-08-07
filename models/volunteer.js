@@ -9,6 +9,11 @@ const ApplicationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required:true
     },
+    name:{
+        type: String,
+        minlegth: 1,
+		trim: true
+    },
     status: {
         type: String,
         required:true

@@ -25,7 +25,7 @@ class My_profile extends React.Component{
     }
 
     componentDidMount() {
-        getVolProfile("5f2b03eac9e769061869b2b5", this)
+        getVolProfile(this.props.app.state.currentUserId, this)
     }
     
     

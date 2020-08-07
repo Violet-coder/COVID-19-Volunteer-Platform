@@ -1,7 +1,9 @@
 import React from "react";
 import { uid } from "react-uid";
+import { Link } from "react-router-dom";
 
 class ApplicationList extends React.Component{
+
     render(){
        const {applications} = this.props
 
@@ -10,8 +12,8 @@ class ApplicationList extends React.Component{
             <div className="container">
             <div className="row">
             {applications.map(application => (<div key={uid(application)} className="fh5co-post"  style={{height: "100px"}}>
-                <h3><a href="#">{ application.name}</a></h3>
-                <span><button type="submit" class="btn btn-primary" >{ application.org_status }</button></span>
+                <h3><Link to={{pathname:`/volunteer/post/${application.post_id}`}} >{ application.name}</Link></h3>
+                <span><button type="submit" class="btn btn-primary" >{ application.status }</button></span>
                 </div>
                 ))}
 

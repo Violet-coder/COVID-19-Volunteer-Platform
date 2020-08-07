@@ -10,26 +10,55 @@ import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
 import "./styles.css"
-// import "../../js/modernizr-2.6.2.min.js"
+
 
 
 
 
 
 class My_application extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            applications: [],
+            isLoading: false
+        }
+        
+    }
+
+    componentDidMount() {
+        const id = this.props.app.state.currentUserId
+        const url = `/volunteer/applicatoinlist/${id}`
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get applications");
+            }
+        })
+        .then(json => {
+            this.setState({ applications: json, isLoading: true });
+            // console.log("state this time", this.state)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     
     
     render() {
-      const {applications} = this.props
+    //   const {applications} = this.props
       const app = this.props.app
       console.log("vol my applicaiton app", app)
-      console.log("myapplicationinapplicationpage", applications)
+      
         return(
             <div id="page">
             <Navbar user="Application" app={app}/>
             <Header_appli title="My Application" subtitle="Let's work together" app={app} />
-            <ApplicationList applications={applications}/>
-
+            <div>
+            { this.state.isLoading ?<ApplicationList applications={this.state.applications}/> : null}
+            </div>
 
 
 

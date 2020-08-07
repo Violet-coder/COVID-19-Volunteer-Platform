@@ -1,4 +1,4 @@
-// const log = console.log;
+const log = console.log;
 
 export const addPost = (queue, id, info) => {
   const url = `/organization/post/${id}`
@@ -36,110 +36,49 @@ export const addPost = (queue, id, info) => {
     applicants: []
   };
   
-//   if (post.name!=="" && post.description!=="" && post.title!=="") {
-//     postList.push(post);
-//     queue.setState({
-//       posts: postList,
-//     });  
-//   }
-//   const request = new Request(url, {
-//     method:"post",
-//     body: JSON.stringify(post),
-//     headers: {
-//       Accept: "application/json, text/plain, */*",
-//       "Content-Type": "application/json"
-//   }
-//   })
-//   fetch(request)
-//        .then(function (res) {
-//            if (res.status === 200) {
-//            } else {
-//            }
-//        })
-//        .catch(error => {
-//            console.log(error);
-//        });
+  if (post.name!=="" && post.description!=="" && post.title!=="") {
+    postList.push(post);
+    queue.setState({
+      posts: postList,
+    });  
+  }
+  const request = new Request(url, {
+    method:"post",
+    body: JSON.stringify(post),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+  }
+  })
+  fetch(request)
+       .then(function (res) {
+           if (res.status === 200) {
+           } else {
+           }
+       })
+       .catch(error => {
+           console.log(error);
+       });
 
-// };
+};
 
-// export const deletePost = (queue, post) => {
-//   const res = window.confirm('Delete this post?')
-//   if (res) {
-//   const filteredPosts = queue.state.posts.filter(s => {
+export const deletePost = (queue, post) => {
+  const res = window.confirm('Delete this post?')
+  if (res) {
+  const filteredPosts = queue.state.posts.filter(s => {
     
-//     return s !== post;
-//   });
-//   queue.setState({
-//     posts: filteredPosts
-//   });
-//   return true
-// }
-// else {
-//   return false
-// }
-// };
+    return s !== post;
+  });
+  queue.setState({
+    posts: filteredPosts
+  });
+  return true
+}
+else {
+  return false
+}
+};
 
-<<<<<<< HEAD
-// export const editPost = (id, queue, info) => {
-//   const url = `/organization/edit_post/${post_id}`
-//   const postList = queue.state.posts;
-//   let requirements = ""
-//   for (var i in info.requirement) {
-//     if (requirements!=="") {
-//       requirements += ", "
-//     }
-//     requirements += info.requirement[i].title
-//   }
-//   const d = new Date()
-//   /*
-//   const post = {
-//     name: info.jobName,
-//     description: info.jobDescription,
-//     requirement: requirements,
-//     title: info.jobTitle,
-//     status: "Under review",
-//     date: d.toLocaleDateString(),
-//     location: info.location,
-//     id: id
-//   };
-//   */
-//  const post = {
-//   name: info.jobName,
-//   description: info.jobDescription,
-//   requirement: requirements,
-//   title: info.jobTitle,
-//   status: "Under review",
-//   date: d.toLocaleDateString(),
-//   location: info.location,
-// };
-//   for (var i in postList) {
-//     if (postList[i].id===id) {
-//       postList[i] = post
-//     }
-//   }
-//   const request = new Request(url, {
-//     method:"post",
-//     body: JSON.stringify(post),
-//     headers: {
-//       Accept: "application/json, text/plain, */*",
-//       "Content-Type": "application/json"
-//   }
-//   })
-//   fetch(request)
-//        .then(function (res) {
-//            if (res.status === 200) {
-//            } else {
-//            }
-//        })
-//        .catch(error => {
-//            console.log(error);
-//        });
-
-//     queue.setState({
-//       posts: postList,
-//     });  
-// };
-=======
 export const editPost = (post_id, queue, info) => {
   const url = `/organization/edit_post/${post_id}`
   const postList = queue.state.posts;
@@ -202,4 +141,3 @@ export const editPost = (post_id, queue, info) => {
     });  
     */
 };
->>>>>>> 560b7c11d96099b233705de635e83380b654cb8c

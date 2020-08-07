@@ -24,7 +24,7 @@ class SinglePost extends React.Component {
   componentDidMount() {
     const applications = []
     for (var app_id in this.props.post.applications) {
-      const url = `/organization/get_applications/${this.props.post.applications[app_id]}`  
+      const url = `/organization/get_application/${this.props.post.applications[app_id]}`  
       fetch(url)
       .then(res => {
           if (res.status === 200) {
@@ -56,7 +56,7 @@ class SinglePost extends React.Component {
     //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
       //return applicant.jobId===post.id});
     //const filteredApplicants = this.state.applications
-    const addr = "/organization/posts/"+String(post.id)
+    const addr = "/organization/posts/"+String(post._id)
     return (
       <>
         <tr key={post.name} className="fh5co-post" id='row'>
@@ -102,7 +102,7 @@ class SinglePost extends React.Component {
           </Button>
           </td>
       </tr>
-      <TableBody style={{display: this.state.display}}>
+      { this.state.isLoading ? <TableBody style={{display: this.state.display}}>
       {this.state.applications.map(applicant=>(
             <SingleApplicant
               key = {uid(applicant)}
@@ -115,7 +115,7 @@ class SinglePost extends React.Component {
               context={queueComponent}
             />
           ))}
-      </TableBody>
+      </TableBody>:null }
       </>
     );
   }

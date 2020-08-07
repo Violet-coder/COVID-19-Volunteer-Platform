@@ -95,7 +95,7 @@ class SingleApplicant extends React.Component {
   }
   render() {
     const { name, rank ,jobName, context, id, app_id } = this.props;
-    const addr = "/organization/volprofile/" + String(id)
+    const addr = "/organization/volprofile/" + String(app_id)
     return (
       <tr key={name} className="fh5co-post" id='row'>
         <td>

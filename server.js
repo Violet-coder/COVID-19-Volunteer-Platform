@@ -429,7 +429,7 @@ app.post("/organization", (req, res) => {
     const organization = new Organization({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.firstname,
+        name: req.body.name,
         posts: []
     });
 
@@ -573,7 +573,7 @@ app.get('/organization/get_applicants/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        applicants.push(post)
+                        applicants.push.apply(applicants, post.applications)
                     }
                 })
             }
@@ -675,7 +675,7 @@ app.get('/organization/get_posts/:id', (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        posts.push(post)
+                        posts.push(post.json())
                     }
                 })
             }
@@ -688,7 +688,33 @@ app.get('/organization/get_posts/:id', (req, res) => {
 
 })
 
-app.get('/organization/get_applications/:app_id', (req, res) => {
+app.get('/organization/get_post/:post_id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.post_id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Post.findById(id).then((post)=>{
+		if(!post){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+            res.send(post)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+app.get('/organization/get_application/:app_id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')

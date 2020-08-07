@@ -18,9 +18,34 @@ class ProfileForm extends React.Component {
   };
   //default value should be requested from the database
   state = {
-    website: this.props.info.website,
-    intro: this.props.info.intro
+    name: "",
+    email: "",
+    website: "",
+    intro: "",
+    isLoading: false
   } 
+  componentDidMount() {
+    const url = `/organization/get_profile/${this.props.app.state.currentUserId}`  
+      fetch(url)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          } else {
+              alert("Could not get applications");
+          }
+      })
+      .then(json => {
+        this.setState({ 
+        name: json.name,
+        email: json.email,
+        website: json.website,
+        intro: json.info,
+        isLoading: true });
+      })
+      .catch(error => {
+          console.log(error);
+      });
+}
   render() {  
     const {info, infoComponent} = this.props;
     const app = this.props.app
@@ -31,10 +56,10 @@ class ProfileForm extends React.Component {
       <h1 className='header'>Update your profile</h1>
       </div>
       <div id="fh5co-services" className="fh5co-bg-section border-bottom">
-        <div className="contain">
+      { this.state.isLoading ? <div className="contain">
         <TextField
             name="name"
-            defaultValue={info.name}
+            defaultValue={this.state.name}
             className="input"
             margin='normal'
             variant="filled"
@@ -44,7 +69,7 @@ class ProfileForm extends React.Component {
           />
         <TextField
             name="email"
-            defaultValue={info.email}
+            defaultValue={this.state.email}
             className="input"
             margin='normal'
             variant="filled"
@@ -76,14 +101,14 @@ class ProfileForm extends React.Component {
           InputLabelProps={{style: {fontSize: 20} }}
           label="Introduction"
         />
-        </div>
+        </div>:null }
         <div className="contain">
           <Link to="/organization/profile">
           <Button
             variant="contained"
             color="primary"
             className="button"
-            onClick={updateOrgProfile.bind(this, infoComponent, this.state)}
+            onClick={updateOrgProfile.bind(this, infoComponent, app.state.currentUserId, this.state)}
             style={{fontSize: 20}}
           >
             Submit

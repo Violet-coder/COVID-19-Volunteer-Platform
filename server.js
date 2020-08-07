@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
-const { Post } = require("./models/post");
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

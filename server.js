@@ -462,6 +462,7 @@ app.post("/organization/post/:id", (req, res) => {
         }
     );
 });
+
 app.get('/organization/applicants/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
@@ -537,7 +538,34 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
     })
 });
 
-app.get('/organization/volprofile/:id', (req, res) => {
+app.get('/organization/volprofile/:vol_id', (req, res) => {
+	// Add code here
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.vol_id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Volunteer.findById(id).then((volunteer)=>{
+		if(!volunteer){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(volunteer)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+
+})
+
+app.get('/organization/posts/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -546,7 +574,7 @@ app.get('/organization/volprofile/:id', (req, res) => {
 	}  
 
 	const id = req.params.id
-
+    const posts = []
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send('404 Resource Not Found')
 		return;
@@ -555,7 +583,16 @@ app.get('/organization/volprofile/:id', (req, res) => {
 		if(!organization){
 			res.status(404).send('404 Resource Not Found')
 		} else {
-			res.send(organization)
+			for (var i in organization.posts) {
+                Post.findById(organization.posts[i]).then((post)=>{
+                    if (!post) {
+                        res.status(404).send('404 Resource Not Found')
+                    }
+                    else {
+                        posts.push(post)
+                    }
+                })
+            }
 		}
 	})
 	.catch((error) => {

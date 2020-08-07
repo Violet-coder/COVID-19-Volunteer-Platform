@@ -12,7 +12,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 // import the mongoose models
 const { Volunteer } = require("./models/volunteer"); 
 const { Organization } = require("./models/organization")
-const { Post } = require("./models/post");
+// const { User } = require("./models/user");
 
 
 // to validate object IDs
@@ -260,80 +260,6 @@ app.post("/volunteer/update/:id", (req, res) => {
         }
     })
 });
-/** post resource routes **/
-// a POST route to *create* a post
-app.post("/post", (req, res) => {
-    // Create a new post using the Volunteer mongoose model
-    const post = new Post({
-        name: req.body.name,
-        orgname: req.body.orgname,
-        description: req.body.description,
-        title: req.body.title,
-        relevant_area:req.body.relevant_area,
-        location: req.body.location,
-        requirements: req.body.requirements,
-        is_approved: req.body.is_approved,
-        date: req.body.date,
-    });
-
-    // Save post to the database
-    post.save().then(
-        result => {
-            res.send(result);
-        },
-        error => {
-            res.status(400).send("Bad request"); // 400 for bad request
-        }
-    );
-});
-
-// a Get route to get all the posts
-app.get('/posts', (req, res) => {
-	if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-	}  
-
-	Post.find().then((posts) =>{
-		res.send(posts)
-	})
-	.catch((error)=> {
-		res.status(500).send("Internal server error")
-	})
-
-
-})
-
-// a Get route to get information for one post 
-app.get('/post/:id', (req, res) => {
-	if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-	}  
-
-	const id = req.params.id
-
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('404 Resource Not Found')
-		return;
-	}
-	Post.findById(id).then((post)=>{
-		if(!post){
-			res.status(404).send('404 Resource Not Found')
-		} else {
-			res.send(post)
-		}
-	})
-	.catch((error) => {
-		res.status(500).send("Internal server error")
-	})
-
-})
-
-
-
 
 /** organization resource routes **/
 // a POST route to *create* a organization
@@ -420,6 +346,49 @@ app.post("/organization/update/:id", (req, res) => {
     })
 });
 
+app.post("/organization/post/:id", (req, res) => {
+    // log(req.body)
+    const id = req.params.id
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+    }
+    let org_name
+	Organization.findById(id).then((organization)=>{
+		if(!organization){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			org_name = organization.name
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+    const post = new Post({
+        name: req.body.name,
+        description: req.body.description,
+        relevant_area: req.body.relevant_area,
+        location: req.body.location,
+        requirements: req.body.requirements,
+        is_approved: req.body.is_approved,
+        date: req.body.date,
+        org_id: id,
+        org_name: org_name,
+    });
+    post.save().then(
+        result => {
+            res.send(result);
+        },
+        error => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+});
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
@@ -443,3 +412,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
 });
+
+

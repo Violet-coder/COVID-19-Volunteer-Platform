@@ -410,7 +410,7 @@ app.post("/organization", (req, res) => {
     const organization = new Organization({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.firstname,
+        name: req.body.name,
         posts: []
     });
 

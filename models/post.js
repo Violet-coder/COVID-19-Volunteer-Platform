@@ -14,7 +14,6 @@ const Post = mongoose.model('Post', {
 		minlegth: 1,
 		trim: true
 	},
-	
     description: {
 		type: String,
 		required: true,

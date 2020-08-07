@@ -35,19 +35,15 @@ const Post = mongoose.model('Post', {
         minlength: 1,
         trim: true
 	},
-	relevant_area: {
-		type: String,
-		required: true,
-    },
     location: {
 		type: String,
 		required: true,
 	},
 	requirements: [String],
-    is_approved: {
-        type: Boolean,
+    status: {
+        type: String,
 		required: true,
-		default: false
+		default: "Under review"
 	},
 	date: {
 		type: Date,

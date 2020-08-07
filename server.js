@@ -424,7 +424,7 @@ app.post("/organization", (req, res) => {
     );
 });
 
-app.get('/organization/profile/:id', (req, res) => {
+app.get('/organization/get_profile/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -452,7 +452,7 @@ app.get('/organization/profile/:id', (req, res) => {
 })
 
 // a POST for updating profile info to a particular organization
-app.post("/organization/update/:id", (req, res) => {
+app.post("/organization/update_profile/:id", (req, res) => {
     // log(req.body)
     const id = req.params.id
 
@@ -511,7 +511,7 @@ app.post("/organization/post/:id", (req, res) => {
     const post = new Post({
         name: req.body.name,
         description: req.body.description,
-        relevant_area: req.body.relevant_area,
+        title: req.body.title,
         location: req.body.location,
         requirements: req.body.requirements,
         is_approved: req.body.is_approved,
@@ -529,7 +529,7 @@ app.post("/organization/post/:id", (req, res) => {
     );
 });
 
-app.get('/organization/applicants/:id', (req, res) => {
+app.get('/organization/get_applicants/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -565,7 +565,7 @@ app.get('/organization/applicants/:id', (req, res) => {
 
 })
 
-app.post("/organization/post_edit/:post_id", (req, res) => {
+app.post("/organization/edit_post/:post_id", (req, res) => {
     // log(req.body)
     const id = req.params.post_id
 
@@ -585,10 +585,9 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
             post.name = req.body.name     
             post.description = req.body.description
             post.title = req.body.title
-            post.relevant_area = req.body.relevant_area
             post.location = req.body.location
             post.requirements = req.body.requirements
-            post.is_approved = false
+            post.status = "Under review"
             post.date = req.body.date
             post.save().then((result) => {
                 res.send(result)
@@ -604,7 +603,7 @@ app.post("/organization/post_edit/:post_id", (req, res) => {
     })
 });
 
-app.get('/organization/volprofile/:vol_id', (req, res) => {
+app.get('/organization/get_vol_profile/:vol_id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -631,7 +630,7 @@ app.get('/organization/volprofile/:vol_id', (req, res) => {
 
 })
 
-app.get('/organization/posts/:id', (req, res) => {
+app.get('/organization/get_posts/:id', (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')

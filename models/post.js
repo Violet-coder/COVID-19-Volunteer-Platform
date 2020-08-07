@@ -31,11 +31,16 @@ const Post = mongoose.model('Post', {
 	requirements: [String],
     is_approved: {
         type: Boolean,
-        required: true
+		required: true,
+		default: false
 	},
 	date: {
 		type: Date,
 		required: true
+	},
+	org_id: {
+		type: mongoose.Schema.Types.ObjectId,
+        required:true
 	}
 })
 

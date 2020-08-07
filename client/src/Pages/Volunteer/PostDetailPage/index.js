@@ -2,6 +2,7 @@ import React from "react";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import PostDetail from "../../../react-components/PostDetail";
+import {getApplicationFromVol} from "../../../actions/applicationList";
 import Button from '@material-ui/core/Button';
 import { addApplication } from "../../../actions/applicationList"
 import "./styles.css"
@@ -36,13 +37,21 @@ class PostDetailPage extends React.Component {
         super(props);
         this.state = {
             post: {},
-            isLoading: false
+            isApplied: false,
+            isLoading: false,
+            isLoading1: false
         }
         
     }
     componentDidMount() {
-        const id = this.props.match.params.id
+        
+        const id = this.props.matchProps.match.params.id
+        console.log("mlgb",id)
+        const userid = this.props.app.state.currentUserId
         const url = `/post/${id}`
+        const url1 = `/volunteer/${userid}/${id}`
+        console.log("url1", url1)
+        
         fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -53,37 +62,25 @@ class PostDetailPage extends React.Component {
         })
         .then(json => {
             this.setState({ post: json, isLoading: true });
-            console.log("current state: ", this.state)
         })
         .catch(error => {
             console.log(error);
         });
+
+        getApplicationFromVol(url1, this)
+
+        console.log("currnet state", this.state)
+
+        
+
     }
 
     
     render(){
-        // // this.componentWillMount()
-        // // const {id} = this.props.match.params
-        // // console.log("post id", id)
-        // const id = parseInt(this.props.matchProps.match.params.id)
         
-        // const post = posts.find((p) => p.id==id)
-        
-        
-        //const queueComponent = this.props.location.query
         const queueComponent = this.props.queueComponent
-        //console.log("queueComponent",queueComponent)
-        // const applied_posts = this.props.applied_posts
         const app = this.props.app
-
-        // let applied_posts_ids = []
-        // for(let i=0; i< applied_posts.length; i++){
-        //     applied_posts_ids.push(applied_posts[i].id)
-        // }
-        
-       
-
-        // const post_apply_status = applied_posts_ids.includes(id)
+        const userid = this.props.app.state.currentUserId
     
         return(
             <div id="page">
@@ -93,17 +90,17 @@ class PostDetailPage extends React.Component {
             <div class="container">
             <PostDetail post={this.state.post}/>
             
-            {/* <div className="detailpagebutton">
-            <span ><Link to={{pathname:`/volunteer/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span>
+            <div className="detailpagebutton">
+            {/* <span ><Link to={{pathname:`/volunteer/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span> */}
             {
-            (post_apply_status)? <span><Button>Applied</Button></span> : 
-            <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary"  onClick={ addApplication.bind(this, queueComponent, post)}>
+            (this.state.isApplied)? <span><Button>Applied</Button></span> : 
+            <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary" onClick={ addApplication.bind(this, userid, this.state.post)} >
             Apply Now
             </Button></Link></span>
               
             }
             
-            </div> */}
+            </div>
             </div>         
             </div>  
 

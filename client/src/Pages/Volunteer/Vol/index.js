@@ -54,7 +54,7 @@ class Volunteer extends React.Component{
      
     }
     render() {
-     const {posts} = this.props
+    //  const {posts} = this.props
      const app = this.props.app
 
     
@@ -62,19 +62,17 @@ class Volunteer extends React.Component{
           <div>
             <Switch> 
               <Route exact path ='/volunteer' render = {() => (<div>404 Not Found</div>)}/> 
-              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} recommended_posts={posts.slice(2,5)} posts={posts} app ={app}/>)}/>
+              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} app ={app}/>)}/>
               <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} app={app} />)}/>
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile} app={app} />)}/>
               <Route exact path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this} app={app} />)} />
-              {/* <Route path='/volunteer/post/:id' component={PostDetailPage} /> */}
-              {/* <Route path='/volunteer/post/:id' render={
+              <Route path='/volunteer/post/:id' render={
                 (matchProps) => {
-                 return<PostDetailPage matchProps={matchProps} applied_posts={this.state.applied_posts} queueComponent={this} app={app} /> 
+                 return<PostDetailPage matchProps={matchProps}  queueComponent={this} app={app} /> 
                 }
-              } app={app} /> */}
-              <Route path='/volunteer/post/:id' component={PostDetailPage} app={app} />
+              } app={app} />
               <Route path='/volunteer/searchresult'  component={SearchResultPage} app={app} />
-              <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} posts={posts}/>)} app={app} />
+              <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} />)} app={app} />
               <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} app={app} />
 
 

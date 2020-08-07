@@ -20,7 +20,7 @@ export const getVolProfile = (id, vol) => {
 
 export const updateVolProfile = (user, info) => {
   // the URL for the request 
-  console.log("test info if is empty", info)
+  
   const url = "/volunteer/update/5f2b03eac9e769061869b2b5"
 
   

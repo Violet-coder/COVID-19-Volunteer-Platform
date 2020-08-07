@@ -18,10 +18,10 @@ export const getVolProfile = (id, vol) => {
   });
 }
 
-export const updateVolProfile = (user, info) => {
+export const updateVolProfile = (user, info, userid) => {
   // the URL for the request 
   
-  const url = "/volunteer/update/5f2b03eac9e769061869b2b5"
+  const url = `/volunteer/update/${userid}`
 
   
   let newInfo = user;//Get old profile from server

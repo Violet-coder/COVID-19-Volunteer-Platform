@@ -46,7 +46,7 @@ class VolunteerSeeall extends React.Component{
         const app = this.props.app
         //only display posts that are approved
         const filteredPosts = this.state.posts.filter(
-            p => p.is_approved === true
+            p => p.status === "Approved"
         )
 
         return(

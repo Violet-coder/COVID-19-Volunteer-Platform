@@ -557,8 +557,9 @@ app.get('/organization/get_applicants/:id', (req, res) => {
                     }
                 })
             }
+            res.send(applicants)
 		}
-	})
+	})          
 	.catch((error) => {
 		res.status(500).send("Internal server error")
 	})
@@ -658,6 +659,7 @@ app.get('/organization/get_posts/:id', (req, res) => {
                     }
                 })
             }
+            res.send(posts)
 		}
 	})
 	.catch((error) => {

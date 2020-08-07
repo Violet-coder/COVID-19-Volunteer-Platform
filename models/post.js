@@ -8,7 +8,16 @@ const ApplicantSchema = new mongoose.Schema({
     applicant_name: {
         type: String,
         required:true
-    }
+	},
+	applicant_rank: {
+		type: String,
+		required: true
+	},
+	applicant_status: {
+		type: String,
+		required: true,
+		default: 'pending'
+	}
 });
 const Post = mongoose.model('Post', {
 	name: {

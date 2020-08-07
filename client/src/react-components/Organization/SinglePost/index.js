@@ -28,8 +28,9 @@ class SinglePost extends React.Component {
   render() {
 
     const { post, queueComponent} = this.props;
-    const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
-      return applicant.jobId===post.id});
+    //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
+      //return applicant.jobId===post.id});
+    const filteredApplicants = post.applicants
     const addr = "/organization/posts/"+String(post.id)
     return (
       <>
@@ -80,11 +81,11 @@ class SinglePost extends React.Component {
       {filteredApplicants.map(applicant=>(
             <SingleApplicant
               key = {uid(applicant)}
-              id={applicant.id}
-              name={applicant.name}
-              rank={applicant.rank}
-              jobName={applicant.jobName}
-              status={applicant.status}
+              id={applicant.applicant_id}
+              name={applicant.applicant_name}
+              rank={applicant.applicant_rank}
+              jobName={post.name}
+              status={applicant.applicant_status}
               context={queueComponent}
             />
           ))}

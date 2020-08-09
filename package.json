@@ -4,7 +4,8 @@
   "description": "## Team Member zhan8118 - Ziyue Zhang   zhan3009 - Yifan Zhang   panganqi - Anqi Pang",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

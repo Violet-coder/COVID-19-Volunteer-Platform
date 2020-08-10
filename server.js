@@ -30,9 +30,10 @@ const session = require("express-session");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*** Session handling **************************************/
-
-
+/*** Helper function **************************************/
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 /*********************************************************/
 
 /*** API Routes below ************************************/
@@ -451,6 +452,33 @@ app.get('/post/:id', (req, res) => {
 	})
 
 })
+
+//a Get route to get the posts as search result
+app.post('/search', (req, res) => {
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+    const keyword = req.body.keyword
+    if (keyword){
+        const regex = new RegExp(escapeRegex(keyword), 'gi');
+        Post.find({
+            $or: [
+              {'name': regex},
+              {'description': regex}
+            ] }, function(err, foundposts) {
+            if(err) {
+                res.status(500).send("Internal server error")
+            } else {        
+                res.send(foundposts);
+            }
+        }); 
+    }
+
+})
+
 
 /** organization resource routes **/
 // a POST route to *create* a organization

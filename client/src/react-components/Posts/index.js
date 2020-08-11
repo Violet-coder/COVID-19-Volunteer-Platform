@@ -19,7 +19,7 @@ class Posts extends React.Component{
 				</div>
 			</div> 
         <div className="row">
-            {posts.map(post => (<Link to={{pathname:`/post/${post.id}`}} >
+            {posts.map(post => (<Link to={{pathname:`/post/${post._id}`}} >
             <div key={uid(post)} className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
             <div className="fh5co-post">
                 <span className="fh5co-date">{ post.date }</span>

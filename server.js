@@ -187,6 +187,42 @@ app.get("/users/check-session", (req, res) => {
 });
 
 /*** Admin Routes ***/
+// a Post route to update a post 
+app.post("/admin/post/approve/:id", (req, res) => {
+    log('req', req.body)
+
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    Post.findById(id).then((post) => {
+        if(!post){
+            res.status(404).send("404 Resource not found.")
+        } else {
+            post.status = req.body.status
+            post.save().then((result) => 
+            res.send(result)
+            ).catch((error) => {
+                log(error)
+                if(isMongoError()){
+                    res.status(500).send("Intercal server error.")
+                } else {
+                    res.status(400).send("Bad request.")
+                }
+            })
+        }
+    }
+        
+    )
+})
 
 
 

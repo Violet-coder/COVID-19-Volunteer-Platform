@@ -19,6 +19,7 @@ class PostList extends React.Component{
     } 
 
     componentDidMount() {
+        console.log('test')
         const url = "/posts"
         fetch(url)
         .then(res => {
@@ -40,6 +41,7 @@ class PostList extends React.Component{
         //here we get post data from global state
         //in phase2 get data from database
         const posts = this.state.posts;
+        console.log("post list",this.state.posts)
         //posts.reverse();
         const queueComponent = this.props.queueComponent;
         const desc = 'Administration'
@@ -65,10 +67,10 @@ class PostList extends React.Component{
                             {posts.map( op => (
                                 <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box post-manage"  data-animate-effect="fadeInUp">
                                     <button type="submit" className="btn btn-primary user-manage" onClick={adminDeletePost.bind(this, queueComponent, op)}>Delete</button>
-                                    <Link to={{pathname:`/admin/posts/${op.id}`}} ><button type="submit" className="btn btn-primary user-manage"  
+                                    <Link to={{pathname:`/admin/posts/${op._id}`}} ><button type="submit" className="btn btn-primary user-manage"  
                                                 >View</button></Link>
-                                    {(op.status === 'Approved')? <button type="button" className='btn btn-info'>{op.status}</button> :
-                                        <button type="submit" className='btn btn-primary' onClick={adminApprovePost.bind(this,queueComponent,op)} >Approve</button>}
+                                    {(op.status === 'Approved')? <button type="button" className='btn btn-info disabled'>{op.status}</button> :
+                                        <button type="submit" className='btn btn-primary' onClick={adminApprovePost.bind(this,this,op)} >Approve</button>}
 
                                     <div className="fh5co-post">
                                         <span className="fh5co-date">{op.date}</span>

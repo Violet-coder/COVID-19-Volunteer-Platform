@@ -21,3 +21,8 @@
 .back-button{
     display: inline;
 }
+
+.disabled{
+  pointer-events: none;
+  cursor: not-allowed;
+}

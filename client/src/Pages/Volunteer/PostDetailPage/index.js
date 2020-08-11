@@ -89,6 +89,7 @@ class PostDetailPage extends React.Component {
             </Button></Link></span>
               
             }
+           
             
             </div>
             </div>         

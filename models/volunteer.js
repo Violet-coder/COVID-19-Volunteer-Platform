@@ -4,26 +4,26 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
-const ApplicationSchema = new mongoose.Schema({
-    post_id:{ 
-        type: mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    name:{
-        type: String,
-        minlegth: 1,
-		trim: true
-    },
-    status: {
-        type: String,
-        required:true,
-        default:"pending"
-    },
-    rank: {
-        type: String,
-        required:false
-    }
-});
+// const ApplicationSchema = new mongoose.Schema({
+//     post_id:{ 
+//         type: mongoose.Schema.Types.ObjectId,
+//         required:true
+//     },
+//     name:{
+//         type: String,
+//         minlegth: 1,
+// 		trim: true
+//     },
+//     status: {
+//         type: String,
+//         required:true,
+//         default:"pending"
+//     },
+//     rank: {
+//         type: String,
+//         required:false
+//     }
+// });
 
 const SkillsSchema = new mongoose.Schema({
     analytics: {
@@ -176,7 +176,7 @@ const VolunteerSchema = new mongoose.Schema({
 
     skills: SkillsSchema,
     availability: AvailabilitySchema,
-    applications:[ApplicationSchema]
+    // applications:[ApplicationSchema]
 
 })
 

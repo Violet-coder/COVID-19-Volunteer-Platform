@@ -29,6 +29,9 @@ class My_application extends React.Component{
     componentDidMount() {
         const id = this.props.app.state.currentUserId
         const url = `/volunteer/applicatoinlist/${id}`
+        console.log("idyayayay", id)
+        console.log("url", url)
+        
         fetch(url)
         .then(res => {
             if (res.status === 200) {

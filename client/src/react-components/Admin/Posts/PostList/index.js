@@ -69,8 +69,8 @@ class PostList extends React.Component{
                                     <button type="submit" className="btn btn-primary user-manage" onClick={adminDeletePost.bind(this, queueComponent, op)}>Delete</button>
                                     <Link to={{pathname:`/admin/posts/${op._id}`}} ><button type="submit" className="btn btn-primary user-manage"  
                                                 >View</button></Link>
-                                    {(op.status === 'Approved')? <button type="button" className='btn btn-info'>{op.status}</button> :
-                                        <button type="submit" className='btn btn-primary' onClick={adminApprovePost.bind(this,queueComponent,op)} >Approve</button>}
+                                    {(op.status === 'Approved')? <button type="button" className='btn btn-info disabled'>{op.status}</button> :
+                                        <button type="submit" className='btn btn-primary' onClick={adminApprovePost.bind(this,this,op)} >Approve</button>}
 
                                     <div className="fh5co-post">
                                         <span className="fh5co-date">{op.date}</span>

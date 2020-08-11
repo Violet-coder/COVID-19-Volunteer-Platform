@@ -256,8 +256,8 @@ class Admin extends React.Component {
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} app={app} />)} />
 
                     <Route path='/admin/posts/:id' render={(matchProps)=> {
-                        const post = this.state.posts.find(p => p.id === 5)
-                        return <PostDetailPage matchProps={matchProps} post={post} queueComponent={this} app={app} />
+
+                        return <PostDetailPage matchProps={matchProps}  queueComponent={this} app={app} />
                     }} />
                     
                     <Route exact path='/admin/entry' render={() =><AdminGuide app={app} />}  />                   

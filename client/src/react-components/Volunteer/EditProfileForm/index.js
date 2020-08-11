@@ -88,7 +88,8 @@ class EditProfileForm extends React.Component{
         const handleCheckboxChange = this.props.handleCheckboxChange;
         
         const queueComponent = this.props.queueComponent;
-        // console.log("edit form", queueComponent)
+        // const app = this.props.app
+        
 
 
 
@@ -554,10 +555,10 @@ class EditProfileForm extends React.Component{
         
             
         </FormControl>   
-            {console.log("new Info 1111111", newInfo)}
+           
                  
-            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, this.props.user, newInfo)}  >Update My Profile</Button></Link></span>
-            {console.log("new Info 222222", newInfo)}
+            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, this.props.user, newInfo, this.props.app.state.currentUserId)}  >Update My Profile</Button></Link></span>
+           
         
            
       </form>

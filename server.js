@@ -30,9 +30,10 @@ const session = require("express-session");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*** Session handling **************************************/
-
-
+/*** Helper function **************************************/
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 /*********************************************************/
 
 /*** API Routes below ************************************/
@@ -452,16 +453,42 @@ app.get('/post/:id', (req, res) => {
 
 })
 
+//a Get route to get the posts as search result
+app.post('/search', (req, res) => {
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+    const keyword = req.body.keyword
+    if (keyword){
+        const regex = new RegExp(escapeRegex(keyword), 'gi');
+        Post.find({
+            $or: [
+              {'name': regex},
+              {'description': regex}
+            ] }, function(err, foundposts) {
+            if(err) {
+                res.status(500).send("Internal server error")
+            } else {        
+                res.send(foundposts);
+            }
+        }); 
+    }
+
+})
+
+
 /** organization resource routes **/
 // a POST route to *create* a organization
 app.post("/organization", (req, res) => {
-    // log(req.body)
-
+    //log(req.body)
     // Create a new organization using the Organization mongoose model
     const organization = new Organization({
         email: req.body.email,
         password: req.body.password,
-        name: req.body.firstname,
+        name: req.body.name,
         posts: []
     });
 
@@ -549,36 +576,57 @@ app.post("/organization/post/:id", (req, res) => {
 		res.status(404).send('404 Resource Not Found')
 		return;
     }
-    let org_name
+    let org_name = ""
 	Organization.findById(id).then((organization)=>{
 		if(!organization){
-			res.status(404).send('404 Resource Not Found')
+            res.status(404).send('404 Resource Not Found')
+            return 
 		} else {
-			org_name = organization.name
+            org_name = organization.name
+            const post = new Post({
+                name: req.body.name,
+                description: req.body.description,
+                title: req.body.title,
+                location: req.body.location,
+                requirements: req.body.requirements,
+                status: req.body.status,
+                date: req.body.date,
+                org_id: id,
+                org_name: org_name,
+            });
+            post.save().then(
+                result => {
+                    res.send(result);
+                    Organization.findById(id).then((organization)=>{
+                        if(!organization){
+                            res.status(404).send('404 Resource Not Found')
+                        } else {
+                            const posts = organization.posts
+                            posts.push(post._id)
+                            organization.posts = posts
+                            organization.save().then((result) => {
+                                res.send(result)
+                            })
+                            .catch((error) => {
+                                if(isMongoError(error)){
+                                    res.status(500).send('Internal server error')
+                                } else{
+                                    res.status(400).send('Bad request.')
+                                }
+                            })
+                        }
+                    })
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
 		}
 	})
 	.catch((error) => {
-		res.status(500).send("Internal server error")
+        res.status(500).send("Internal server error")
+        return
 	})
-    const post = new Post({
-        name: req.body.name,
-        description: req.body.description,
-        title: req.body.title,
-        location: req.body.location,
-        requirements: req.body.requirements,
-        is_approved: req.body.is_approved,
-        date: req.body.date,
-        org_id: id,
-        org_name: org_name,
-    });
-    post.save().then(
-        result => {
-            res.send(result);
-        },
-        error => {
-            res.status(400).send(error); // 400 for bad request
-        }
-    );
 });
 
 app.get('/organization/get_applicants/:id', (req, res) => {
@@ -701,17 +749,20 @@ app.get('/organization/get_posts/:id', (req, res) => {
 		if(!organization){
 			res.status(404).send('404 Resource Not Found')
 		} else {
-			for (var i in organization.posts) {
-                Post.findById(organization.posts[i]).then((post)=>{
+            const l = organization.posts.length
+            organization.posts.map((id)=>{
+                Post.findById(id).then((post)=>{
                     if (!post) {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
                         posts.push(post)
                     }
+                    if (posts.length==l) {
+                        res.send(posts)
+                    }
                 })
-            }
-            res.send(posts)
+            })       
 		}
 	})
 	.catch((error) => {
@@ -823,7 +874,9 @@ app.get("*", (req, res) => {
     }
 
     // send index.html
+    
     res.sendFile(__dirname + "/client/build/index.html");
+    
 });
 
 /*************************************************/

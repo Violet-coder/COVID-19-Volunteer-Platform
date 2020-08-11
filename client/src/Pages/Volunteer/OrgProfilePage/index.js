@@ -13,60 +13,49 @@ import "../../../css/bootstrap.css";
 import "../../../css/magnific-popup.css";
 import "../../../css/style.css";
 
-const organizations= [
-    {
-    id:5,
-    type:'organization',
-    name:"Listening Society",
-    email: "ls@organization.com",
-    website: "www.LS.ca",
-    intro: "We deliver food. We need you!"
-    },
-    {
-    id:6,
-    type:'organization',
-    name:"EAST TORONTO FOOD COALITION",
-    email: "covidfoodcoalition@gmail.com",
-    website:"https://covidfoodcoalition.wixsite.com/website",
-    intro:"The East Toronto Food Coalition (ETFC) is a grassroots food security initiative serving the Beaches East-York, Regent Park, Leslieville areas. "
-    },
-    {
-    id:7,
-    type:'organization',
-    name:"The Atrium Project",
-    email: "TheAtriumProject@gmail.com",
-    website:"https://TheAtriumProject.wixsite.com/website",
-    intro:"The Atrium Project was created as a way for people within different communities to come together and support each other."
-    },
-    {
-    id:8,
-    type:'organization',
-    name:"The mental Health books",
-    email: "ThementalHealthbooks@gmail.com",
-    website:"https://covidfoodcoalition.wixsite.com/website",
-    intro:"The mental Health books is an organization helps vulnerable groups with their mental health in this special period."
-    }
-
-    
-]
-
-    
-   
 
 class OrgProfilePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            org: {},          
+            isLoading: false,
+        }
+        
+    }
+    componentDidMount() {   
+        const id = this.props.matchProps.match.params.id
+        console.log("company id",id )
+        const url = `/organization/get_profile/${id}`
+     
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get post detail");
+            }
+        })
+        .then(json => {
+            this.setState({ org: json, isLoading: true });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+    }
     
     render() {
-        const {id} = this.props.match.params
         const app = this.props.app
-        const info = organizations.find((o) => o.id==id)
-       
+               
         return(
             <div id='page'>
                 <Navbar app={app}/>
-                <Header_appli title={info.name} subtitle={info.email} app={app} />
+                <Header_appli title={this.state.org.name} subtitle={this.state.org.email} app={app} />
                 <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
-                <OrgDetail info={info}/>
+                <OrgDetail org={this.state.org}/>
                 </div>
                 </div>
                 <span className='Applybutton'><BackButton/></span>

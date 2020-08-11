@@ -75,7 +75,7 @@ class App extends React.Component{
             <Route path='/publicpost' render={() => <Publicpost />}/>
             <Route path='/post/:id' render={(matchProps) => {return <PublicPostDetailPage matchProps={matchProps}/>}} />
             <Route path='/searchresult' component={PublicSearchResultPage}/>
-            <Route path='/orgProfile/:id' component={OrgProfilePage} />
+            <Route path='/orgProfile/:id' render={(matchProps) => {return <OrgProfilePage matchProps={matchProps}/> }} />
             <Route path='/organization' render={() => 
               (currentUser && type=='organization') ?  <Organization app={this} /> :
               <Login  app={this}/>

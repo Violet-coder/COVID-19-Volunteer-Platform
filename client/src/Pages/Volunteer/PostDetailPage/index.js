@@ -81,7 +81,7 @@ class PostDetailPage extends React.Component {
             
             
             <div className="detailpagebutton">
-            {/* <span ><Link to={{pathname:`/volunteer/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span> */}
+            <span ><Link to={{pathname:`/volunteer/orgProfile/${this.state.post.org_id}`}}><Button className="Organizationbutton" variant="contained" color="secondary">Organization Profile</Button></Link></span>
             {
             (this.state.isApplied)? <span><Button>Applied</Button></span> : 
             <span><Link to="/volunteer/myapplication"><Button className="Applybutton" variant="contained" color="secondary" onClick={ addApplication.bind(this, userid, this.state.post)} >

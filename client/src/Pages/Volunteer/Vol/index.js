@@ -73,7 +73,7 @@ class Volunteer extends React.Component{
               } app={app} />
               <Route path='/volunteer/searchresult'  component={SearchResultPage} app={app} />
               <Route exat path='/volunteer/seeall'  render={() => (<VolunteerSeeall queueComponent={this} />)} app={app} />
-              <Route path='/volunteer/orgProfile/:id' component={OrgProfilePage} app={app} />
+              <Route path='/volunteer/orgProfile/:id' render={(matchProps) => {return <OrgProfilePage matchProps={matchProps} app={app}/> }} app={app}/>
 
 
 

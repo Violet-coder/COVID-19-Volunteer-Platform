@@ -64,9 +64,9 @@ class PublicPostDetailPage extends React.Component {
                 <div class="container">
                 {this.state.isLoading ? <PostDetail post={this.state.post}/> : null}
                 <div className="detailpagebutton">
-                {/* <span ><Link to={{pathname:`/orgProfile/${post.orgId}`}}><Button className="Organizationbutton" variant="contained" color="secondary">
+                <span ><Link to={{pathname:`/orgProfile/${this.state.post.org_id}`}}><Button className="Organizationbutton" variant="contained" color="secondary">
                 Organization Profile
-                </Button></Link></span> */}
+                </Button></Link></span>
                 <span ><Button  onClick={(e) => this.setState({isOpen: true})} className="Applybutton" variant="contained" color="secondary">
                 Apply Now
                 </Button></span>

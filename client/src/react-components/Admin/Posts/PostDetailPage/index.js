@@ -9,8 +9,43 @@ import {adminApprovePost} from '../../../../actions/adminApprovePost';
 import './styles.css'
 
 class PostDetailPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: {},
+            dataIsReturned: false,
+        }
+        
+    }
+
+    componentDidMount() {
+        console.log('jjjjjj')
+        
+            console.log('test')
+            const url = `/post/${id}`
+            fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    alert("Could not get posts");
+                }
+            })
+            .then(json => {
+                // the resolved promise with the JSON body
+                this.setState({ posts: json, dataIsReturned: true });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        
+    }
+
+    
     render(){
+        console.log("post detail page")
         const post=this.props.post
+        console.log("post detail", post)
         const queueComponent=this.props.queueComponent
 
         const status = post.status

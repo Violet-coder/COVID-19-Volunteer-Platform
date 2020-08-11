@@ -255,17 +255,12 @@ class Admin extends React.Component {
                     <Route exact path='/admin/posts' render={
                         ()=> (<PostList  posts= {this.state.posts} queueComponent={this} app={app} />)} />
 
-                    <Route exact path='/admin/posts/:id' render={(matchProps)=> {
-                        const {id}=matchProps.match.params
-                        const post = this.state.posts.find(u => u.id==id)
-                        if(post){
-                            return <PostDetailPage post={post} queueComponent={this} app={app} />}
-                        else{
-                           return <Redirect to='/not-found' />
-                       }
+                    <Route path='/admin/posts/:id' render={(matchProps)=> {
+                        const post = this.state.posts.find(p => p.id === 5)
+                        return <PostDetailPage matchProps={matchProps} post={post} queueComponent={this} app={app} />
                     }} />
                     
-                    <Route exact path='/admin/entry' render={() => <AdminGuide app={app} />}  />                   
+                    <Route exact path='/admin/entry' render={() =><AdminGuide app={app} />}  />                   
                     
                     
                 </Switch>

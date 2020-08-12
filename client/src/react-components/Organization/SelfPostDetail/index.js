@@ -72,7 +72,7 @@ class SelfPostDetail extends React.Component {
             <div>
             <OrgNav app={app}/>
             { this.state.isLoading ? 
-            <Header_appli title={this.state.post.name} subtitle='Listening Society'/>:null }
+            <Header_appli title={this.state.post.name} subtitle={this.state.post.org_name}/>:null }
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">
             { this.state.isLoading ? 

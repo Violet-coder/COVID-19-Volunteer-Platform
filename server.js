@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const organization = require("./models/organization");
 //const application = require("./models/application");
 
 
@@ -754,11 +755,10 @@ app.post("/organization/edit_post/:post_id", (req, res) => {
     })
 });
 
-app.delete("/organization/delete_post/:post_id", (req, res) => {
+app.post("/organization/delete_post/:post_id", (req, res) => {
     // log(req.body)
-    const id = req.params.post_id
-
-    if (!ObjectID.isValid(id)) {
+    const post_id = req.params.post_id
+    if (!ObjectID.isValid(post_id)) {
 		res.status(404).send('Resource not found')
 		return;  
     }
@@ -767,8 +767,30 @@ app.delete("/organization/delete_post/:post_id", (req, res) => {
 		res.status(500).send('Internal server error')
 		return;
     } 
-    Post.deleteOne({_id: id}, function (err) {
-        if (err) return handleError(err);})
+    Post.findById(post_id).then((post)=>{
+        Organization.findById(post.org_id).then((organization)=>{
+            const posts = organization.posts
+            posts.filter((p)=>{
+                if (p!=post_id) {
+                    return p
+                }
+            })
+            organization.posts = posts
+            organization.save().then((result) => {
+                res.send(result)
+                Post.deleteOne({_id: post_id}, function (err) {
+                    if (err) return handleError(err);})
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        })
+    })
+    
 });
 
 app.get('/organization/get_vol_profile/:vol_id', (req, res) => {

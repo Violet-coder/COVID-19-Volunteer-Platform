@@ -41,7 +41,7 @@ export const deletePost = (post_id) => {
   const res = window.confirm('Delete this post?')
   if (res) {
     const request = new Request(url, {
-      method:"delete",
+      method:"post",
       body: "",
       headers: {
         Accept: "application/json, text/plain, */*",

@@ -42,7 +42,7 @@ export const deletePost = (post_id) => {
   if (res) {
     const request = new Request(url, {
       method:"delete",
-      body: JSON.stringify(post),
+      body: "",
       headers: {
         Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json"

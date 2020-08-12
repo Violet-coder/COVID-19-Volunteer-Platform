@@ -18,7 +18,8 @@ class SelfPostDetail extends React.Component {
     super(props);
     this.state = {
       applications: [],
-      isLoading: false,
+      postIsLoading: false,
+      appIsLoading: false,
       post: {}
     };
   }
@@ -37,6 +38,7 @@ class SelfPostDetail extends React.Component {
       })
       .then(json => {
         this.setState({post: json})
+        this.setState({postIsLoading: true})
         const applicationlist = new Array(json.applications)
         console.log("applicationlist", applicationlist[0].length)
         for (var app_id of applicationlist[0]) {
@@ -54,8 +56,7 @@ class SelfPostDetail extends React.Component {
             applications.push(appli)
             console.log("applications now", applications)
             if (applications.length ===  applicationlist[0].length) {
-            this.setState({ applications: applications, isLoading: true });
-            console.log("state this time", this.state)
+            this.setState({ applications: applications, appIsLoading: true });
           }
             
           })
@@ -78,11 +79,11 @@ class SelfPostDetail extends React.Component {
         return(
             <div>
             <OrgNav app={app}/>
-            { this.state.isLoading ? 
+            { this.state.postIsLoading ? 
             <Header_appli title={this.state.post.name} subtitle={this.state.post.org_name}/>:null }
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">
-            { this.state.isLoading ? 
+            { this.state.appIsLoading ? 
             <PostDetail post={this.state.post}/>:null }
             <div className='buttons'>
                 <Link to="/organization/profile">
@@ -115,20 +116,15 @@ class SelfPostDetail extends React.Component {
 
         <h1>Applicants</h1>
       <Table style={{ width: '80%' }}>
-      { this.state.isLoading ? <TableBody>
+      { this.state.appIsLoading ? <TableBody>
         {this.state.applications.map(applicant => (
             <SingleApplicant
             key = {uid(applicant)}
             app_id = {applicant._id}
             id={applicant.applicant_id}
             name={applicant.applicant_name}
-<<<<<<< HEAD
-            // rank={applicant.applicant_rank}
-            jobName= "Post Name"
-=======
-            rank={applicant.applicant_rank}
+            //rank={applicant.applicant_rank}
             jobName= {applicant.post_name}
->>>>>>> 2605056833b8d64aa042e7173c98568a8988b708
             status={applicant.applicant_status}
             />
           ))}

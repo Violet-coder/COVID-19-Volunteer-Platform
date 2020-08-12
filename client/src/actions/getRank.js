@@ -25,6 +25,7 @@ fetch(post_url)
     })
     .then(vol => {
         // the resolved promise with the JSON body
+        console.log("vol.skills", vol.skills)
         vol.skills.eachPath((pathname, schematype) => {
             if (vol.skills.pathname === true) {
                 if (pathname == title) {
@@ -40,11 +41,11 @@ fetch(post_url)
         }
     })
     .catch(error => {
-        console.log(error);
+        // console.log(error);
     });
 })
 .catch(error => {
-    console.log(error);
+    // console.log(error);
 });
 if (score<=7) {
     return 'D'

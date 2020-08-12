@@ -341,7 +341,6 @@ app.post("/volunteer/update/:id", (req, res) => {
             volunteer.desc = req.body.desc
             volunteer.skills = req.body.skills
             volunteer.availability = req.body.availability
-            console.log("volunteer info", volunteer)
             volunteer.save().then((result) => {
                 res.send(result)
             })
@@ -382,7 +381,8 @@ app.post('/volunteer/application/:id', (req, res) => {
                 applicant_name: applicant_name,
                 applicant_status: "pending", //status here should be the application processing status: pending(default), approved, rejected
                 post_id: req.body.post_id,
-                post_name:req.body.post_name 
+                post_name:req.body.post_name,
+                applicant_rank: req.body.applicant_rank
             })
             
             newApplication.save().then((result) => {

@@ -12,7 +12,7 @@ const ApplicationSchema = new mongoose.Schema({
 	},
 	applicant_rank: {
 		type: String,
-		required: false //modify
+		required: true 
 	},
 	applicant_status: {
 		type: String,

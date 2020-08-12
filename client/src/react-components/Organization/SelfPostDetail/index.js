@@ -116,7 +116,7 @@ class SelfPostDetail extends React.Component {
             id={applicant.applicant_id}
             name={applicant.applicant_name}
             rank={applicant.applicant_rank}
-            jobName= "Post Name"
+            jobName= {applicant.post_name}
             status={applicant.applicant_status}
             />
           ))}

@@ -24,7 +24,7 @@ class SelfPostDetail extends React.Component {
   }
   componentDidMount() {
     const applications = []
-    const post_id = parseInt(this.props.matchProps.match.params.id)
+    const post_id = this.props.matchProps.match.params.id
     const url = `/post/${post_id}`
     fetch(url)
       .then(res => {
@@ -66,7 +66,7 @@ class SelfPostDetail extends React.Component {
         const app = this.props.app
       //detailed information should be requested from the database
         const {matchProps} = this.props
-        const id = parseInt(matchProps.match.params.id)
+        const id = matchProps.match.params.id
         const addr = "/organization/post_edit/" + String(id)
         return(
             <div>

@@ -32,7 +32,9 @@ class My_profile extends React.Component{
     render() {
         // const {user} = this.props
         const app = this.props.app
-        const user = this.state.user
+        let user = this.state.user
+        if (this.state.isLoading) {
+            user = this.state.user
         if (!user.desc) {
             user.desc=""
         }
@@ -67,7 +69,7 @@ class My_profile extends React.Component{
                 option4:false,
                 option5:false
             }
-        }
+        }}
 
        
       

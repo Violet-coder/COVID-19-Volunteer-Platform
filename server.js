@@ -306,15 +306,16 @@ app.post("/volunteer/update/:id", (req, res) => {
             volunteer.desc = req.body.desc
             volunteer.skills = req.body.skills
             volunteer.availability = req.body.availability
+            console.log("volunteer info", volunteer)
             volunteer.save().then((result) => {
                 res.send(result)
             })
             .catch((error) => {
-                if(isMongoError(error)){
-					res.status(500).send('Internal server error')
-				} else{
-					res.status(400).send('Bad request.')
-				}
+                
+					res.status(500).send(error)
+				
+				
+				
             })
         }
     })

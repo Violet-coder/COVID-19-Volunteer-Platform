@@ -7,6 +7,7 @@ import { ButtonGroup } from "@material-ui/core";
 import { BackButton } from '../Hook/backButton'
 import { acceptApplicant, rejectApplicant } from "../../../actions/decision";
 import "./styles.css";
+/*
 const volusers=[
     {
     id: 1,
@@ -134,11 +135,11 @@ const volusers=[
       }
 
 ]
+*/
 class ApplicantDetail extends React.Component {
   
   //applicants information should be requested from the database
   //rejecting or accepting an applicant should make a change to the database
-  applicant = this.props.applicants.find((u) => u.id===parseInt(this.id))
   constructor(props) {
     super(props);
     this.state = {
@@ -181,7 +182,7 @@ class ApplicantDetail extends React.Component {
           console.log(error);
       });
 }
-      checkState = (context, id) => {
+      checkState = (id) => {
         if (this.state.status==='rejected') {
           return (
             <div className='buttons'>
@@ -204,7 +205,7 @@ class ApplicantDetail extends React.Component {
             color="secondary"
             style={{fontSize: 12}}
             onClick={()=>{
-                this.reject(context, id)
+                this.reject(id)
               }}
         >
             reject
@@ -214,7 +215,7 @@ class ApplicantDetail extends React.Component {
             color="primary"
             style={{fontSize: 12}}
             onClick={()=>{
-                this.accept(context, id)
+                this.accept(id)
               }}
         >
             accept
@@ -224,44 +225,23 @@ class ApplicantDetail extends React.Component {
         }
         
       }
-    accept = (context, id) => {
+    accept = (id) => {
         if (window.confirm("Are you sure you want to accept this candidate?")) {
           this.setState({
             status: 'accepted'
           })
-          let appList = context.state.applicants
-      for (var i in appList) {
-        if (appList[i].id===id) {
-          appList[i].status='accepted'
-          break
-        }
-      }
       acceptApplicant(id)
-      context.setState({
-        applicants: appList
-      })
       }}
-      reject = (context, id) => {
+      reject = (id) => {
         if (window.confirm("Are you sure you want to reject this candidate?")) {
           this.setState({
             status: 'rejected'
           })
-          let appList = context.state.applicants
-      for (var i in appList) {
-        if (appList[i].id===id) {
-          appList[i].status='rejected'
-          break
-        }
-      }
       rejectApplicant(id)
-      context.setState({
-        applicants: appList
-      })
       }}
     render(){
         const app = this.props.app
         const app_id = this.props.matchProps.match.params.id
-        const context = this.props.context
         //const user = volusers.find((u) => u.id===parseInt(id))
         return(
         
@@ -269,7 +249,7 @@ class ApplicantDetail extends React.Component {
                 <OrgNav app={app}/>
                 { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }
                 <div className='buttons'>
-                {this.checkState(context, app_id)}
+                {this.checkState(app_id)}
                 <BackButton/>
             </div>
                 <Footer/>

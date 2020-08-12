@@ -12,6 +12,7 @@ class Organization extends React.Component{
     super(props);
   }
   //all these data below should be requested from the database
+  /*
     state = {
       posts: [
         { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto", id: 1},
@@ -30,24 +31,25 @@ class Organization extends React.Component{
         email: "user2@user.com"
       }
     }
+    */
     render() {
       const app = this.props.app
       return (
           <div>
             <Switch> 
-              <Route exact path='/organization/profile' render={() => (<OrgProfile posts={this.state.posts} queueComponent={this} app={app}/>)}/>
+              <Route exact path='/organization/profile' render={() => (<OrgProfile app={app}/>)}/>
               <Route exact path='/organization/post' render={() => 
-                              (<PostForm queueComponent={this} app={app} />)}/>
+                              (<PostForm app={app} />)}/>
               <Route exact path='/organization/applicants' render={() => 
-                              (<ApplicantList applicants={this.state.applicants} context={this} app={app}/>)}/>
+                              (<ApplicantList app={app}/>)}/>
               <Route exact path='/organization/update' render={() => 
-                              (<ProfileForm info={this.state.info} infoComponent={this} app={app} />)}/>
+                              (<ProfileForm app={app} />)}/>
               <Route exact path='/organization/post_edit/:id' render={(matchProps) => 
-                              (<PostEditForm matchProps = {matchProps} posts={this.state.posts} context={this} app={app}/>)}/>
+                              (<PostEditForm matchProps = {matchProps} app={app}/>)}/>
               <Route path='/organization/volprofile/:id' render={(matchProps) => 
-                              (<ApplicantDetail matchProps = {matchProps} applicants={this.state.applicants} context={this} app={app}/>)}/>
+                              (<ApplicantDetail matchProps = {matchProps} app={app}/>)}/>
               <Route path='/organization/posts/:id' render={(matchProps) => 
-                              (<SelfPostDetail matchProps = {matchProps} context={this} app={app} />)}/>
+                              (<SelfPostDetail matchProps = {matchProps} app={app} />)}/>
               </Switch> 
         </div>
       );  

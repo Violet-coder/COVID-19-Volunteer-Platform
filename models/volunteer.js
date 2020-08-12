@@ -159,7 +159,6 @@ const VolunteerSchema = new mongoose.Schema({
         type:String,
         required:false,
         minlength:1,
-
     },
     desc: {
         type: String,

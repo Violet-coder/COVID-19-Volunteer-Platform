@@ -6,7 +6,7 @@ import "./styles.css";
 /* Component for the List of Posts */
 class SelfPosts extends React.Component {
   render() {
-    const { posts, queueComponent} = this.props;
+    const { posts } = this.props;
     //all the posts should be requested from the database
     return (
       <>
@@ -14,7 +14,7 @@ class SelfPosts extends React.Component {
           {posts.map(post => 
             <SinglePost key = {uid(post)}
               post={post}
-              queueComponent={queueComponent}
+              
             />
           )}
 

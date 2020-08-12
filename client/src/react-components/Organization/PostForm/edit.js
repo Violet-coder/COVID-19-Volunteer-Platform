@@ -132,7 +132,7 @@ class PostEditForm extends React.Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={editPost.bind(this, id, this.props.context, this.state)}
+            onClick={editPost.bind(this, id, this.state)}
             className="button"
             style={{fontSize: 20}}
           >

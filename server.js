@@ -642,6 +642,7 @@ app.post("/organization/post/:id", (req, res) => {
                 date: req.body.date,
                 org_id: id,
                 org_name: org_name,
+                applications: []
             });
             post.save().then(
                 result => {
@@ -751,6 +752,23 @@ app.post("/organization/edit_post/:post_id", (req, res) => {
             })
         }
     })
+});
+
+app.delete("/organization/delete_post/:post_id", (req, res) => {
+    // log(req.body)
+    const id = req.params.post_id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Post.deleteOne({_id: id}, function (err) {
+        if (err) return handleError(err);})
 });
 
 app.get('/organization/get_vol_profile/:vol_id', (req, res) => {

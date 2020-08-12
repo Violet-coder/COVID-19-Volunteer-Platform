@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Userpage_volunteer from'../Userpage_volunteer';
 import My_application from '../My_application';
 import PostDetailPage from '../PostDetailPage';
@@ -14,6 +14,10 @@ import OrgProfilePage from '../OrgProfilePage';
 class Volunteer extends React.Component{
   constructor(props) {
     super(props);
+    this.state ={
+      app:this.props.app
+    }
+
   }
     state = {
         applied_posts: [
@@ -55,15 +59,15 @@ class Volunteer extends React.Component{
     }
     render() {
     //  const {posts} = this.props
-     const app = this.props.app
-
+    const app = this.props.app
+  
     
       return (
           <div>
             <Switch> 
               <Route exact path ='/volunteer' render = {() => (<div>404 Not Found</div>)}/> 
-              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer  queueComponent={this} app ={app}/>)}/>
-              <Route exact path='/volunteer/myapplication' render={() => (<My_application applications={this.state.applied_posts} app={app} />)}/>
+              <Route exact path='/volunteer/userpage' render={() => (<Userpage_volunteer   queueComponent={this} app ={app}/>)}/>
+              <Route exact path='/volunteer/myapplication' render={() => (<My_application  applications={this.state.applied_posts} app={app} />)}/>
               <Route exact path='/volunteer/myprofile' render={() => (<My_profile user={this.state.profile} app={app} />)}/>
               <Route exact path='/volunteer/editprofile' render={() => (<EditProfilePage user={this.state.profile} queueComponent={this} app={app} />)} />
               <Route path='/volunteer/post/:id' render={

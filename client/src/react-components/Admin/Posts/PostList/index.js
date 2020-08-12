@@ -3,7 +3,7 @@ import React from 'react';
 import AdminNav from '../../AdminNav';
 import PostArea from '../../../PostArea';
 import {uid} from 'react-uid';
-import {Link} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import {adminDeletePost} from '../../../../actions/adminDeletePost';
 import {adminApprovePost} from '../../../../actions/adminApprovePost';
 
@@ -12,6 +12,7 @@ import {adminApprovePost} from '../../../../actions/adminApprovePost';
 class PostList extends React.Component{
     constructor(props) {
         super(props);
+        this.props.history.push('/admin/posts')
         this.state = {
             posts: [],
             dataIsReturned: false
@@ -66,7 +67,7 @@ class PostList extends React.Component{
                         <div className="row">
                             {posts.map( op => (
                                 <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box post-manage"  data-animate-effect="fadeInUp">
-                                    <button type="submit" className="btn btn-primary user-manage" onClick={adminDeletePost.bind(this, queueComponent, op)}>Delete</button>
+                                    <button type="submit" className="btn btn-primary user-manage" onClick={adminDeletePost.bind(this, this, op)}>Delete</button>
                                     <Link to={{pathname:`/admin/posts/${op._id}`}} ><button type="submit" className="btn btn-primary user-manage"  
                                                 >View</button></Link>
                                     {(op.status === 'Approved')? <button type="button" className='btn btn-info disabled'>{op.status}</button> :
@@ -92,4 +93,4 @@ class PostList extends React.Component{
     }
 }
 
-export default PostList;
+export default withRouter(PostList);

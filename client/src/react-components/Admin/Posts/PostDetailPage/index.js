@@ -61,7 +61,8 @@ class PostDetailPage extends React.Component{
             Organization Profile
             </button></Link>
             {(status !== 'Approved')?<button className='btn btn-primary' onClick={adminApprovePost.bind(this,this,post)}>Approve This Post</button> :
-            <button className='btn btn-success disabled'>Approved</button>} 
+            <button className='btn btn-success disabled'>Approved</button>}
+            {/* <button className='btn btn-success disabled' onClick={adminDeletePost.bind(this, this, op)}>Delete</button> */}
             <BackButton className="Organizationbutton"/>
             </span>
             

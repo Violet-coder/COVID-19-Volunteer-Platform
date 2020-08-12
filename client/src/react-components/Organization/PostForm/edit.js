@@ -146,7 +146,6 @@ class PostEditForm extends React.Component {
   render() {  
     const app = this.props.app
     const matchProps = this.props.matchProps
-    const id = parseInt(matchProps.match.params.id)
     const post_id = matchProps.match.params.id
     return (
       <div>

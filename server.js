@@ -756,7 +756,6 @@ app.post("/organization/edit_post/:post_id", (req, res) => {
 });
 
 app.post("/organization/delete_post/:post_id", (req, res) => {
-    // log(req.body)
     const post_id = req.params.post_id
     if (!ObjectID.isValid(post_id)) {
 		res.status(404).send('Resource not found')
@@ -769,12 +768,12 @@ app.post("/organization/delete_post/:post_id", (req, res) => {
     } 
     Post.findById(post_id).then((post)=>{
         Organization.findById(post.org_id).then((organization)=>{
-            const posts = organization.posts
-            posts.filter((p)=>{
-                if (p!=post_id) {
-                    return p
+            const posts = []
+            for (var i in organization.posts) {
+                if (String(organization.posts[i])!=post_id){
+                    posts.push(organization.posts[i])
                 }
-            })
+            }
             organization.posts = posts
             organization.save().then((result) => {
                 res.send(result)

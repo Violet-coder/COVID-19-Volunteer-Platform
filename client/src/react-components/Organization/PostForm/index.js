@@ -104,7 +104,7 @@ class PostForm extends React.Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={addPost.bind(this, this.props.queueComponent, this.props.app.state.currentUserId, this.state)}
+            onClick={addPost.bind(this, this.props.app.state.currentUserId, this.state)}
             className="button"
             style={{fontSize: 20}}
           >

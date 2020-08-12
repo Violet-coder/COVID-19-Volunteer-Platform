@@ -12,8 +12,8 @@ class ApplicationList extends React.Component{
             <div className="container">
             <div className="row">
             {applications.map(application => (<div key={uid(application)} className="fh5co-post"  style={{height: "100px"}}>
-                <h3><Link to={{pathname:`/volunteer/post/${application.post_id}`}} >{ application.name}</Link></h3>
-                <span><button type="submit" class="btn btn-primary" >{ application.status }</button></span>
+                <h3><Link to={{pathname:`/volunteer/post/${application.post_id}`}} >{ application.post_name}</Link></h3>
+                <span><button type="submit" class="btn btn-primary" >{ application.applicant_status }</button></span>
                 </div>
                 ))}
 

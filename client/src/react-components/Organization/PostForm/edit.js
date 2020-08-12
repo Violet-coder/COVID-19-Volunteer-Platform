@@ -31,7 +31,7 @@ class PostEditForm extends React.Component {
   };
   componentDidMount() {
     const post_id = this.props.matchProps.match.params.id
-    const url = `/organization/get_post/${post_id}`  
+    const url = `/post/${post_id}`  
       fetch(url)
       .then(res => {
           if (res.status === 200) {
@@ -55,12 +55,11 @@ class PostEditForm extends React.Component {
     
 
 }
-  id = parseInt(this.props.matchProps.match.params.id)
-  post = this.props.posts.find((p) => p.id===this.id)
+  id = this.props.matchProps.match.params.id
   state = {
-    jobName: this.post.name,
-    jobDescription: this.post.description,
-    requirement: "",
+    jobName: "",
+    jobDescription: "",
+    requirement: [],
     jobTitle: "",
     location: "",
   } 
@@ -132,7 +131,7 @@ class PostEditForm extends React.Component {
           <Button
             variant="contained"
             color="primary"
-            onClick={editPost.bind(this, id, this.props.context, this.state)}
+            onClick={editPost.bind(this, id, this.state)}
             className="button"
             style={{fontSize: 20}}
           >
@@ -146,7 +145,6 @@ class PostEditForm extends React.Component {
   render() {  
     const app = this.props.app
     const matchProps = this.props.matchProps
-    const id = parseInt(matchProps.match.params.id)
     const post_id = matchProps.match.params.id
     return (
       <div>

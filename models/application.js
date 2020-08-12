@@ -12,7 +12,7 @@ const ApplicationSchema = new mongoose.Schema({
 	},
 	applicant_rank: {
 		type: String,
-		required: true
+		required: false //modify
 	},
 	applicant_status: {
 		type: String,
@@ -23,6 +23,11 @@ const ApplicationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required:true
     },
+    post_name:{
+        type: String,
+        required:true // add
+
+    }
 })
 const Application = mongoose.model('Application', ApplicationSchema)
 module.exports = { Application }

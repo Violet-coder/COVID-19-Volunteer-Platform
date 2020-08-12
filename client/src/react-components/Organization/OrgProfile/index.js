@@ -25,7 +25,7 @@ class OrgProfile extends React.Component {
 }
   render() {
     //organizations information should be requested from the database
-    const {posts, queueComponent} = this.props;
+    //const {posts, queueComponent} = this.props;
     const app = this.props.app
     return (
       <div>
@@ -51,7 +51,7 @@ class OrgProfile extends React.Component {
         <div id="fh5co-blog" className="fh5co-bg-section">
         <div className="container" id='single-post'>
         <h1>My Posts</h1>
-        { this.state.isLoading ? <SelfPosts posts={this.state.posts} queueComponent={queueComponent}/>:null }
+        { this.state.isLoading ? <SelfPosts posts={this.state.posts}/>:null }
         </div>
         </div>
         <Footer/>

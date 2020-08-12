@@ -23,8 +23,9 @@ class SinglePost extends React.Component {
   }
   componentDidMount() {
     const applications = []
-    for (var app_id in this.props.post.applications) {
-      const url = `/organization/get_application/${this.props.post.applications[app_id]}`  
+    const applicationlist = new Array(this.props.post.applications)
+    for (var app_id of applicationlist[0]) {
+      const url = `/organization/get_application/${app_id}`  
       fetch(url)
       .then(res => {
           if (res.status === 200) {
@@ -35,14 +36,15 @@ class SinglePost extends React.Component {
       })
       .then(json => {
         applications.push(json)
-          // console.log("state this time", this.state)
+        if (applications.length === applicationlist[0].length) {
+          this.setState({ applications: applications, isLoading: true });
+        }
       })
       .catch(error => {
           console.log(error);
       });
+      
     }
-    this.setState({ applications: applications, isLoading: true });
-
 }
   handleClick() {
     this.setState(prevState => ({
@@ -52,7 +54,7 @@ class SinglePost extends React.Component {
   }
   render() {
 
-    const { post, queueComponent} = this.props;
+    const { post } = this.props;
     //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
       //return applicant.jobId===post.id});
     //const filteredApplicants = this.state.applications
@@ -94,7 +96,7 @@ class SinglePost extends React.Component {
             variant="contained"
             color="secondary"
             onClick={
-                deletePost.bind(this, queueComponent, post)
+                deletePost.bind(this, post._id)
             }
             style={{fontSize: 12, width: 150}}
           >
@@ -109,10 +111,9 @@ class SinglePost extends React.Component {
               app_id = {applicant._id}
               id={applicant.applicant_id}
               name={applicant.applicant_name}
-              rank={applicant.applicant_rank}
+              //rank={applicant.applicant_rank}
               jobName={post.name}
               status={applicant.applicant_status}
-              context={queueComponent}
             />
           ))}
       </TableBody>:null }

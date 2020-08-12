@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const organization = require("./models/organization");
 //const application = require("./models/application");
 
 
@@ -317,6 +318,7 @@ app.get('/volunteer/profile/:id', (req, res) => {
 app.post("/volunteer/update/:id", (req, res) => {
     // log(req.body)
     const id = req.params.id
+    
 
     if (!ObjectID.isValid(id)) {
 		res.status(404).send('Resource not found')
@@ -356,6 +358,9 @@ app.post("/volunteer/update/:id", (req, res) => {
 // a POST request for adding an application to a particular volunteer
 app.post('/volunteer/application/:id', (req, res) => {
     const id = req.params.id
+    const post_id = req.body.post_id
+    var applicant_name;
+    
     	
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send('Resource not found')
@@ -365,29 +370,45 @@ app.post('/volunteer/application/:id', (req, res) => {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return;
-	} 
-	const newApplication = {
-        post_id: req.body.post_id,
-        name:req.body.name,
-        status: req.body.status,  //status here should be the application processing status: pending(default), approved, rejected
-    }
-    
-	Volunteer.findById(id).then((volunteer) => {
+    } 
+    Volunteer.findById(id).then((volunteer) => {
 		if(!volunteer){
 			res.status(404).send('404 Resource Not Found')
 		} else {
-            volunteer.applications.push(newApplication)
-			volunteer.save().then((result) => {
-				res.send(result.applications)    
-			})
-			.catch((error) => {
-				res.status(400).send("Bad Request.")
-				
-			})
-		}
-	})
-	
+            applicant_name = volunteer.firstName + " " +volunteer.lastName
+            const newApplication = new Application ({
+                applicant_id: id,
+                applicant_name: applicant_name,
+                applicant_status: "pending", //status here should be the application processing status: pending(default), approved, rejected
+                post_id: req.body.post_id,
+                post_name:req.body.post_name 
+            })
+            
+            newApplication.save().then((result) => {
+                Post.findById(post_id).then((post) => {
+                    if(!post){
+                        res.status(404).send('404 Resource Not Found')
+                    } else {
+                        post.applications.push(result._id)
+                        post.save().then((post) => {
+                            res.send(post)    
+                        })
+                        .catch((error) => {          
+                            res.status(500).send('Internal server error')
+                            
+                        })
 
+                    }})
+
+                // res.send(result)
+            })
+            .catch((error) => {	
+                    res.status(400).send(error)	
+            })
+            
+		}
+    })
+    
 })
 
 // a GET request for getting application list of a particular volunteer
@@ -404,17 +425,16 @@ app.get('/volunteer/applicatoinlist/:id', (req, res) => {
 		res.status(404).send('404 Resource Not Found')
 		return;
 	}
-	Volunteer.findById(id).then((volunteer)=>{
-		if(!volunteer){
-			// could't find the volunteer
-			res.status(404).send('404 Resource Not Found')
-		} else {
-			res.send(volunteer.applications)
-		}
-	})
-	.catch((error) => {
-		res.status(500).send("Internal server error")
-	})
+	
+    
+    Application.find({'applicant_id': id}, function(err, foundapplications) {
+        if(err) {
+            res.status(500).send("Internal server error")
+        } else {        
+            res.send(foundapplications);
+        }
+    }); 
+    
 
 })
 
@@ -431,21 +451,15 @@ app.get('/volunteer/:id/:post_id', (req, res) => {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return;
-	} 
-
-	Volunteer.findById(vol_id).then((volunteer) => {
-		if (!volunteer) {
-			res.status(404).send('Resource not found')  
-		} else {
-            const targetApplication = volunteer.applications.filter((application) => application.post_id.toString() === post_id)
-			res.send(targetApplication)
-			
-		}
-	})
-	.catch((error) => {
-		log(error)
-		res.status(500).send('Internal Server Error')  
-	})
+    } 
+    
+    Application.find({$and:[{"post_id": post_id}, {"applicant_id": vol_id}]}, function(err,foundapplication){
+        if(err) {
+            res.status(500).send("Internal server error")
+        } else {        
+            res.send(foundapplication);
+        }
+    })
 
 })
 
@@ -463,7 +477,7 @@ app.post("/post", (req, res) => {
         status: req.body.status,
         date: req.body.date,
         org_id:req.body.org_id,
-        applications:req.body.applications
+        applications:[]
     });
 
     // Save post to the database
@@ -664,6 +678,7 @@ app.post("/organization/post/:id", (req, res) => {
                 date: req.body.date,
                 org_id: id,
                 org_name: org_name,
+                applications: []
             });
             post.save().then(
                 result => {
@@ -773,6 +788,43 @@ app.post("/organization/edit_post/:post_id", (req, res) => {
             })
         }
     })
+});
+
+app.post("/organization/delete_post/:post_id", (req, res) => {
+    const post_id = req.params.post_id
+    if (!ObjectID.isValid(post_id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Post.findById(post_id).then((post)=>{
+        Organization.findById(post.org_id).then((organization)=>{
+            const posts = []
+            for (var i in organization.posts) {
+                if (String(organization.posts[i])!=post_id){
+                    posts.push(organization.posts[i])
+                }
+            }
+            organization.posts = posts
+            organization.save().then((result) => {
+                res.send(result)
+                Post.deleteOne({_id: post_id}, function (err) {
+                    if (err) return handleError(err);})
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        })
+    })
+    
 });
 
 app.get('/organization/get_vol_profile/:vol_id', (req, res) => {

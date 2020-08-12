@@ -47,7 +47,6 @@ class ProfileForm extends React.Component {
       });
 }
   render() {  
-    const {info, infoComponent} = this.props;
     const app = this.props.app
     return (
       <div>
@@ -108,7 +107,7 @@ class ProfileForm extends React.Component {
             variant="contained"
             color="primary"
             className="button"
-            onClick={updateOrgProfile.bind(this, infoComponent, app.state.currentUserId, this.state)}
+            onClick={updateOrgProfile.bind(this, app.state.currentUserId, this.state)}
             style={{fontSize: 20}}
           >
             Submit

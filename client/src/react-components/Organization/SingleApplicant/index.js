@@ -10,7 +10,7 @@ class SingleApplicant extends React.Component {
   state = {
     status: this.props.status
   }
-  checkState = (context, id) => {
+  checkState = (id) => {
     if (this.state.status==='rejected') {
       return (
         <td className='status'>
@@ -34,7 +34,7 @@ class SingleApplicant extends React.Component {
         color="secondary"
         style={{fontSize: 12}}
         onClick={()=>{
-          this.reject(context, id)
+          this.reject(id)
           
         }}
       >
@@ -44,7 +44,7 @@ class SingleApplicant extends React.Component {
         variant="contained"
         color="primary"
         onClick={()=>{
-          this.accept(context, id)
+          this.accept(id)
           
         }}
         style={{fontSize: 12}}
@@ -57,44 +57,24 @@ class SingleApplicant extends React.Component {
     }
     
   }
-  accept = (context, id) => {
+  accept = (id) => {
     if (window.confirm("Are you sure you want to accept this candidate?")) {
       this.setState({
         status: 'accepted'
       })
-      let appList = context.state.applicants
-      for (var i in appList) {
-        if (appList[i].id===id) {
-          appList[i].status='accepted'
-          break
-        }
-      }
       acceptApplicant(id)
-      context.setState({
-        applicants: appList
-      })
     }
   }
-  reject = (context, id) => {
+  reject = (id) => {
     if (window.confirm("Are you sure you want to reject this candidate?")) {
       this.setState({
         status: 'rejected'
-      })
-      let appList = context.state.applicants
-      for (var i in appList) {
-        if (appList[i].id===id) {
-          appList[i].status='rejected'
-          break
-        }
-      }
-      context.setState({
-        applicants: appList
       })
       rejectApplicant(id)
     }
   }
   render() {
-    const { name, rank ,jobName, context, id, app_id } = this.props;
+    const { name, rank ,jobName, id, app_id } = this.props;
     const addr = "/organization/volprofile/" + String(app_id)
     return (
       <tr key={name} className="fh5co-post" id='row'>
@@ -119,7 +99,7 @@ class SingleApplicant extends React.Component {
           </Link>
         </td>
         
-        {this.checkState(context, app_id)}
+        {this.checkState(app_id)}
 
       </tr>
     );

@@ -1,17 +1,10 @@
 const log = console.log;
 
- export const updateOrgProfile = (context, id, info) => {
+ export const updateOrgProfile = (id, info) => {
     const url = `/organization/update_profile/${id}`
-    const oldInfo = context.state.info;
-   if (info.website===""){
-     info.website=oldInfo.website
-   }
-   if (info.intro===""){
-     info.intro=oldInfo.intro
-   }
    const newInfo = {
-     name: oldInfo.name,
-     email: oldInfo.email,
+     name: info.name,
+     email: info.email,
      website: info.website,
      info: info.intro
    };
@@ -33,10 +26,6 @@ const log = console.log;
        .catch(error => {
            console.log(error);
        });
-
-   context.setState({
-     info: newInfo
-     });  
  };
 
  export const getOrgProfile = (id, org) => {

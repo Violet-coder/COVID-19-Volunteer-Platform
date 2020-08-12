@@ -73,10 +73,12 @@ class EditProfilePage extends React.Component {
     }
     render(){
        
-        const user = this.state.user
+        let user = this.state.user
         const queueComponent = this.props.queueComponent
         const app = this.props.app
-        console.log('edit profile app',app)
+
+        if (this.state.isLoading) {
+            user = this.state.user
         if (!user.desc) {
             user.desc=""
         }
@@ -111,7 +113,7 @@ class EditProfilePage extends React.Component {
                 option4:false,
                 option5:false
             }
-        }
+        }}
         return(
             
             <div id='page'>
@@ -119,7 +121,7 @@ class EditProfilePage extends React.Component {
             <Header_appli title="Update Profile" subtitle="Let's work together" app = {app} />
             {/* <EditProfileForm user={user} newInfo={this.state} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} /> */}
             <div>
-            {this.state.isLoading ?<EditProfileForm user={user} newInfo={this.state.user} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} app={app}/> :null}
+            {this.state.isLoading ?<EditProfileForm  user={user} newInfo={this.state.user} handleInputChange={this.handleInputChange}  handleCheckboxChange={this.handleCheckboxChange} queueComponent={queueComponent} app={app}/> :null}
             </div>
                       
             </div>

@@ -448,11 +448,11 @@ app.post("/volunteer/update/:id", (req, res) => {
                 res.send(result)
             })
             .catch((error) => {
-                if(isMongoError(error)){
-					res.status(500).send('Internal server error')
-				} else{
-					res.status(400).send('Bad request.')
-				}
+                
+					res.status(500).send(error)
+				
+				
+				
             })
         }
     })
@@ -484,7 +484,8 @@ app.post('/volunteer/application/:id', (req, res) => {
                 applicant_name: applicant_name,
                 applicant_status: "pending", //status here should be the application processing status: pending(default), approved, rejected
                 post_id: req.body.post_id,
-                post_name:req.body.post_name 
+                post_name:req.body.post_name,
+                applicant_rank: req.body.applicant_rank
             })
             
             newApplication.save().then((result) => {

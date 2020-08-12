@@ -26,7 +26,8 @@ export const updateVolProfile = (user, info, userid) => {
   
   let newInfo = user;//Get old profile from server
   
-  console.log("user in updateVolProfile",newInfo)
+  
+  
   
 
   if(info.links !==''){
@@ -42,6 +43,9 @@ export const updateVolProfile = (user, info, userid) => {
   // console.log("availability", info.availability)
   newInfo.skills=info.skills
   newInfo.availability=info.availability
+
+  console.log("url", url)
+  console.log("newInfo",newInfo)
 
   
 
@@ -82,7 +86,5 @@ export const updateVolProfile = (user, info, userid) => {
 
 
   
-  // queueComponent.setState(
-  //   {profile: newInfo}
-  // )
+  
 };

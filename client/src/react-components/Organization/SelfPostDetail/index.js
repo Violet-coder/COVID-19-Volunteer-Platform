@@ -24,7 +24,7 @@ class SelfPostDetail extends React.Component {
   }
   componentDidMount() {
     const applications = []
-    const post_id = parseInt(matchProps.match.params.id)
+    const post_id = parseInt(this.props.matchProps.match.params.id)
     const url = `/post/${post_id}`
     fetch(url)
       .then(res => {

@@ -23,7 +23,8 @@ class SinglePost extends React.Component {
   }
   componentDidMount() {
     const applications = []
-    for (var app_id in this.props.post.applications) {
+    const applicationlist = new Array(this.props.post.applications)
+    for (var app_id of applicationlist[0]) {
       const url = `/organization/get_application/${app_id}`  
       fetch(url)
       .then(res => {
@@ -35,14 +36,14 @@ class SinglePost extends React.Component {
       })
       .then(json => {
         applications.push(json)
-          // console.log("state this time", this.state)
+        if (applications.length === applicationlist[0].length) {
+          this.setState({ applications: applications, isLoading: true });
+        }
       })
       .catch(error => {
           console.log(error);
       });
-      if (applications.length == this.props.post.applications.length) {
-        this.setState({ applications: applications, isLoading: true });
-      }
+      
     }
 }
   handleClick() {
@@ -110,7 +111,7 @@ class SinglePost extends React.Component {
               app_id = {applicant._id}
               id={applicant.applicant_id}
               name={applicant.applicant_name}
-              rank={applicant.applicant_rank}
+              //rank={applicant.applicant_rank}
               jobName={post.name}
               status={applicant.applicant_status}
             />

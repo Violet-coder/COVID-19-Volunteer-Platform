@@ -5,7 +5,7 @@ export const addApplication = (userid, post) => {
     
     const newApplication = {
         post_id: post._id,
-        post_name: post.name
+        post_name: post.name   //need add rank in the future
         };
    
     

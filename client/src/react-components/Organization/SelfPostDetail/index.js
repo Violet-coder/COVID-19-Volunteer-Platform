@@ -25,37 +25,44 @@ class SelfPostDetail extends React.Component {
   componentDidMount() {
     const applications = []
     const post_id = this.props.matchProps.match.params.id
+
     const url = `/post/${post_id}`
     fetch(url)
       .then(res => {
           if (res.status === 200) {
               return res.json();
           } else {
-              alert("Could not get applications");
+              // alert("Could not get applications");
           }
       })
       .then(json => {
         this.setState({post: json})
-        for (var app_id in json.applications) {
+        const applicationlist = new Array(json.applications)
+        console.log("applicationlist", applicationlist[0].length)
+        for (var app_id of applicationlist[0]) {
           const url = `/organization/get_applications/${app_id}`  
+          console.log("url",url)
           fetch(url)
           .then(res => {
               if (res.status === 200) {
                   return res.json();
               } else {
-                  alert("Could not get applications");
+                  // alert("Could not get applications");
               }
           })
           .then(appli => {
             applications.push(appli)
-              // console.log("state this time", this.state)
+            console.log("applications now", applications)
+            if (applications.length ===  applicationlist[0].length) {
+            this.setState({ applications: applications, isLoading: true });
+            console.log("state this time", this.state)
+          }
+            
           })
           .catch(error => {
               console.log(error);
           });
-          if (applications.length == json.applications.length) {
-            this.setState({ applications: applications, isLoading: true });
-          }
+          
         }
       })
       .catch(error => {
@@ -73,6 +80,7 @@ class SelfPostDetail extends React.Component {
             <OrgNav app={app}/>
             { this.state.isLoading ? 
             <Header_appli title={this.state.post.name} subtitle='Listening Society'/>:null }
+            {console.log("applications", this.state.applications)}
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">
             { this.state.isLoading ? 
@@ -115,7 +123,7 @@ class SelfPostDetail extends React.Component {
             app_id = {applicant._id}
             id={applicant.applicant_id}
             name={applicant.applicant_name}
-            rank={applicant.applicant_rank}
+            // rank={applicant.applicant_rank}
             jobName= "Post Name"
             status={applicant.applicant_status}
             />

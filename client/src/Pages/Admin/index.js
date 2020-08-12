@@ -221,7 +221,7 @@ class Admin extends React.Component {
                     <Route exact path='/admin/volunteers' render={() => (<VolUsers  
                         volusers={this.state.volusers} queueComponent={this} app={app}/>)}/>
                     <Route exact path='/admin/organizations' render={() => (<OrganizationListPage  
-                        organizations={this.state.organizations} queueComponent={this} app={app}/>)}/>
+                        organizations={this.state.organizations} app={app}/>)}/>
 
                     <Route exact path='/admin/publishpost' render={() => (
                         <AdminPostForm queueComponent={this} app={app}/>)} />
@@ -232,36 +232,24 @@ class Admin extends React.Component {
                        return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} app={app} />
                     }} />
                     <Route exact path='/admin/volunteers/editvolprofile/:id' render={(matchProps)=> {
-                       return <EditVolProfilePage matchProps={matchProps} {...this.props} queueComponent={this} app={app} />
+                       return <EditVolProfilePage matchProps={matchProps} {...this.props}  app={app} />
                     }} />
 
 
                     <Route exact path='/admin/organizations/orgprofile/:id' render={(matchProps)=> {
-                        const {id}=matchProps.match.params
-                        const organization = this.state.organizations.find(u => u.id==id)
-                        if(organization){
-                            return <FixedOrgProfilePage organization={organization} app={app} />}
-                        else{
-                           return <Redirect to='/not-found' />
-                       }
+                        return <FixedOrgProfilePage matchProps={matchProps} app={app} />
                     }} />
                     <Route exact path='/admin/organizations/editorgprofile/:id' render={(matchProps)=> {
-                        const {id}=matchProps.match.params
-                        const organization = this.state.organizations.find(u => u.id==id)
-                        if(organization){
-                            return <EditOrgProfilePage organization={organization} queueComponent={this} app={app}/>}
-                        else{
-                           return <Redirect to='/not-found' />
-                       }
+                        return <EditOrgProfilePage matchProps={matchProps}  app={app}/>
                     }} />
 
 
                     <Route exact path='/admin/posts' render={
-                        ()=> (<PostList  posts= {this.state.posts} queueComponent={this} app={app} />)} />
+                        ()=> (<PostList  posts= {this.state.posts} app={app} />)} />
 
                     <Route path='/admin/posts/:id' render={(matchProps)=> {
 
-                        return <PostDetailPage matchProps={matchProps}  queueComponent={this} app={app} />
+                        return <PostDetailPage matchProps={matchProps}  app={app} />
                     }} />
                     
                     <Route exact path='/admin/entry' render={() =><AdminGuide app={app} />}  />                   

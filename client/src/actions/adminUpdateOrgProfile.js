@@ -1,29 +1,53 @@
-export const adminUpdateOrgProfile = (queue, info, userId) => {
+export const adminUpdateOrgProfile = (info, userId) => {
 
-    // here get user info and updated profile info from its parent component
-    // in phase 2 we get the function parameters from front-end and pass to back-end
-    // code below requires server call: update the organization profile information in database
-    const oldOrgs = queue.state.organizations;
-    const userToUpdate = oldOrgs.find(u => u.id==userId)
-    let newInfo = userToUpdate;
-    const index = oldOrgs.findIndex(u => u.id==userId)
-
-    if(info.orgName !==''){
-      newInfo.orgName=info.orgName
-    }
-
-    if(info.website !==''){
-        newInfo.website=info.website
-      }
-    if(info.introduction!==''){
-      newInfo.introduction=info.introduction
-    }
-    
-    //console.log('new info', newInfo)
-    oldOrgs[index]=newInfo;
-    //console.log("new vols", oldVols)
-
-    queue.setState(
-      {orgnizations: oldOrgs}
-    )
+  const url = `/admin/organization/update/${userId}`
+  const newInfo = {
+    name: info.name,
+    email: info.email,
+    website: info.website,
+    info: info.intro
   };
+  const request = new Request(url, {
+    method:"post",
+    body: JSON.stringify(newInfo),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+  }
+  })
+    //Send the request with fetch()
+  fetch(request)
+      .then(function (res) {
+          if (res.status === 200) {
+          } else {
+          }
+      })
+      .catch(error => {
+          console.log(error);
+      });
+
+  };
+
+
+  export const getOrgProfile = (orgComp, userId) => {
+    console.log("user id",userId)
+    const url =`/admin/organization/${userId}`
+
+    fetch(url)
+    .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            // alert("Could not get students");
+        }
+    })
+    .then(json => {
+        // the resolved promise with the JSON body
+        orgComp.setState({ organization: json,
+                           dataIsReturned: true });
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }

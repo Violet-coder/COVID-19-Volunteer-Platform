@@ -47,15 +47,14 @@ class EditOrgProfileForm extends React.Component{
     render(){
         const {classes} = this.props;
         const {
-            id,
-            orgName,
+            name,
             email,
             website,
-            introduction,
+            intro
         } = this.props.organization;
         const handleInputChange = this.props.handleInputChange;
-        const queueComponent = this.props.queueComponent;
         const newInfo = this.props.state;
+        const orgId = this.props.orgId
 
         return(
             <div id="profile-services" className="fh5co-bg-section ">
@@ -73,9 +72,10 @@ class EditOrgProfileForm extends React.Component{
                 id="orgName"
                 label="Orgnization Name"
                 className={classes.fullTextField}
-                defaultValue={orgName || ""}
+                defaultValue={name || ""}
                 onChange={handleInputChange}
                 fullWidth
+                disabled
                 variant="outlined"
                 InputProps={
                     {
@@ -143,7 +143,7 @@ class EditOrgProfileForm extends React.Component{
                 id="introduction"
                 label="Introduction"
                 className={classes.fullTextField}
-                defaultValue={introduction || ""}
+                defaultValue={intro || ""}
                 onChange={handleInputChange}
                 margin="normal"
                 variant="outlined"
@@ -169,7 +169,7 @@ class EditOrgProfileForm extends React.Component{
             <BackButton />
             </div> */}
 
-            <span id = 'updateform'><OrgUpdateSuccessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
+            <span id = 'updateform'><OrgUpdateSuccessSnackbars newInfo={newInfo} id={orgId} />
             <BackButton /></span>
             {/* We will write the updated data to database in phase 2. Now just modify the queueComponent state. */}
             </form>

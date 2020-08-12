@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function OrgUpdateSuccessSnackbars(props) {
-  const queueComponent= props.queueComponent;
   const newInfo = props.newInfo;
   const id = props.id;
 
@@ -35,7 +34,7 @@ export default function OrgUpdateSuccessSnackbars(props) {
     setState({
       open:true,
     });
-    adminUpdateOrgProfile(queueComponent, newInfo, id);
+    adminUpdateOrgProfile(newInfo, id);
   } 
 
   const handleClose = (event, reason) => {

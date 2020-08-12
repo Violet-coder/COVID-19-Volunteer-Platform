@@ -107,6 +107,7 @@ class VolProfileForm extends React.Component{
           className={classes.textField}
           value={firstName || ""}
           margin="normal"
+          disabled
           variant="outlined"
           InputProps={
               {
@@ -129,6 +130,7 @@ class VolProfileForm extends React.Component{
           value={lastName || ""}
           margin="normal"
           variant="outlined"
+          disabled
           InputProps={
               {
                   classes:{
@@ -147,6 +149,7 @@ class VolProfileForm extends React.Component{
         <TextField
           id="email"
           label="Email"
+          disabled
           className={classes.textField}
           value={email || ""}
           margin="normal"

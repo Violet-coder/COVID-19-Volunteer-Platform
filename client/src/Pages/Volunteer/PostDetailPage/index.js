@@ -65,7 +65,7 @@ class PostDetailPage extends React.Component {
     
     render(){
         
-        const queueComponent = this.props.queueComponent
+
         const app = this.props.app
         const userid = this.props.app.state.currentUserId
     

@@ -42,9 +42,8 @@ class PostList extends React.Component{
         //here we get post data from global state
         //in phase2 get data from database
         const posts = this.state.posts;
-        console.log("post list",this.state.posts)
-        //posts.reverse();
-        const queueComponent = this.props.queueComponent;
+        posts.reverse();
+
         const desc = 'Administration'
         const title = 'Post Management'
         const subtitle =''

@@ -79,7 +79,6 @@ export default function OrganizationTable(props) {
   };
   //console.log("props",props)
   const organizations = props.organizations;
-  const queueComponent = props.queueComponent;
 
   return (
     <div id="fh5co-blog" className="fh5co-bg-section">
@@ -110,22 +109,22 @@ export default function OrganizationTable(props) {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={uid(org)}>
                       <TableCell className={classes.singleCell} key={columns[0].id} >
-                      {org.orgName}
+                      {org.name}
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[1].id} >
-                      {org.id}
+                      {org._id}
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[2].id} >
-                        <Link to={{pathname:`/admin/organizations/orgprofile/${org.id}`}}>
+                        <Link to={{pathname:`/admin/organizations/orgprofile/${org._id}`}}>
                         <button  type="submit" className="btn btn-info ">View</button></Link>
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[3].id}>
-                        <Link to={{pathname:`/admin/organizations/editorgprofile/${org.id}`}}> 
+                        <Link to={{pathname:`/admin/organizations/editorgprofile/${org._id}`}}> 
                         <button  type="submit" className="btn btn-info">Edit</button></Link>
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[4].id}> 
                         
-                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, queueComponent, org)}>Delete</button>
+                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, this, org)}>Delete</button>
                       </TableCell>
                 </TableRow>
               );

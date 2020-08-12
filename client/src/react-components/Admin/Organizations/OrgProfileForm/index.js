@@ -42,11 +42,11 @@ class OrgProfileForm extends React.Component{
     render(){
         const {classes} = this.props;
         const {
-            id,
-            orgName,
+            _id,
+            name,
             email,
             website,
-            introduction,
+            info,
         } = this.props.organization;
 
         return(
@@ -65,8 +65,9 @@ class OrgProfileForm extends React.Component{
                 id="orgName"
                 label="Orgnization Name"
                 className={classes.fullTextField}
-                value={orgName || ""}
+                value={name || ""}
                 fullWidth
+                disabled
                 variant="outlined"
                 InputProps={
                     {
@@ -91,6 +92,7 @@ class OrgProfileForm extends React.Component{
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                disabled
                 InputProps={
                     {
                         classes:{
@@ -115,6 +117,7 @@ class OrgProfileForm extends React.Component{
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                disabled
                 InputProps={
                     {
                         classes:{
@@ -135,10 +138,11 @@ class OrgProfileForm extends React.Component{
                 id="introduction"
                 label="Introduction"
                 className={classes.fullTextField}
-                value={introduction || ""}
+                value={info || ""}
                 margin="normal"
                 variant="outlined"
                 fullWidth
+                disabled
                 multiline
                 rows={4}
                 InputProps={

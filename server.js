@@ -260,6 +260,109 @@ app.delete('/admin/post/:id', (req, res) => {
 	})
 })
 
+// a GET route to get a specific organizations
+app.get("/admin/organization/:id", (req, res) =>{
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }  
+    
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+
+	Organization.findById(id).then((org) =>{
+		if(!org){
+            res.status(404).send("404 Resource not found.")
+        } else {
+            res.send(org)
+        }
+	})
+	.catch((error)=> {
+        log(error)
+		res.status(500).send("Internal server error")
+	})
+})
+
+// a GET route to get all organizations
+app.get("/admin/allorganizations", (req, res) =>{
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	Organization.find().then((org) =>{
+		res.send(org)
+	})
+	.catch((error)=> {
+        log(error)
+		res.status(500).send("Internal server error")
+	})
+})
+
+app.get("/admin/organization/profile/:id", (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+	Organization.findById(id).then((organization)=>{
+		if(!organization){
+			res.status(404).send('404 Resource Not Found')
+		} else {
+			res.send(organization)
+		}
+	})
+	.catch((error) => {
+		res.status(500).send("Internal server error")
+	})
+});
+
+// a POST for updating profile info to a particular organization
+app.post("/admin/organization/update/:id", (req, res) => {
+    // log(req.body)
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    Organization.findById(id).then((organization)=> {
+        if(!organization){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            organization.website = req.body.website     
+            organization.info = req.body.info
+            organization.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
+            })
+        }
+    })
+});
 
 
 /** volunteer resource routes **/

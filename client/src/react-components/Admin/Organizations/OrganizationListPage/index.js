@@ -5,17 +5,44 @@ import OrganizationList from '../OrganizationList';
 import OrganizationTable from '../OrganizationTable';
 
 class OrganizationListPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            organizations: [],
+            dataIsReturned: false
+        }
+    } 
+
+    componentDidMount() {
+        const url = "/admin/allorganizations"
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Could not get organizations");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            this.setState({ organizations: json, dataIsReturned: true });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+
     render(){
         //In phase 2 get data from database instead
-        const organizations = this.props.organizations
-        const queueComponent = this.props.queueComponent
+        const organizations = this.state.organizations
         const app = this.props.app
 
 
         return(
             <div id='page'>
                 <AdminNav app={app} />
-                <OrganizationTable organizations={organizations} queueComponent={queueComponent}/>
+                <OrganizationTable organizations={organizations}/>
             </div>
         )
     }

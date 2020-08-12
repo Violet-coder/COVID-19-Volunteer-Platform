@@ -35,6 +35,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
+
+function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
+	return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
+}
 /*********************************************************/
 
 /*** API Routes below ************************************/
@@ -183,7 +187,7 @@ app.get("/users/check-session", (req, res) => {
     if (req.session.user) {
         res.send({ currentUser: req.session.email, currentUserId: req.session.user, type: req.session.type});
     } else {
-        res.status(401).send();
+        res.send({currentUser:null, currentUserId: null, type: null});
     }
 });
 
@@ -209,6 +213,7 @@ app.post("/admin/post/approve/:id", (req, res) => {
             res.status(404).send("404 Resource not found.")
         } else {
             post.status = req.body.status
+            post.date = new Date()
             post.save().then((result) => 
             res.send(result)
             ).catch((error) => {
@@ -223,6 +228,36 @@ app.post("/admin/post/approve/:id", (req, res) => {
     }
         
     )
+})
+
+app.delete('/admin/post/:id', (req, res) => {
+    const id = req.params.id
+
+	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+	// Delete a student by their id
+	Post.findByIdAndRemove(id).then((post) => {
+		if (!post) {
+			res.status(404).send("404 Resource not found.")
+		} else {   
+			res.send(post)
+		}
+	})
+	.catch((error) => {
+		log(error)
+		res.status(500).send("Internal server error.") // server error, could not delete.
+	})
 })
 
 
@@ -956,7 +991,7 @@ app.use(express.static(__dirname + "/client/build"));
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/volunteer"];
+    const goodPageRoutes = ["/", "/volunteer","/login","/volunteer/userpage","/volunteer/myapplication","/admin/posts","volunteer/5f29e3b9fcecd5232c568bfe"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
         res.status(404);

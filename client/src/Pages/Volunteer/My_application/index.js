@@ -19,6 +19,7 @@ import "./styles.css"
 class My_application extends React.Component{
     constructor(props) {
         super(props);
+        //this.props.history.push('/volunteer/myapplication')
         this.state = {
             applications: [],
             isLoading: false
@@ -53,7 +54,6 @@ class My_application extends React.Component{
     render() {
     //   const {applications} = this.props
       const app = this.props.app
-      console.log("vol my applicaiton app", app)
       
         return(
             <div id="page">

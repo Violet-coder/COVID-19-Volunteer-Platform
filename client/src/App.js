@@ -21,29 +21,23 @@ import Admin from './Pages/Admin';
 
 import {readCookie} from "./actions/login";
 
+
+
 const log = console.log
 
 class App extends React.Component{
   constructor(props){
     super(props)
-    readCookie(this);
+   
+    this.state={
+      currentUser:null,
+      currentUserId:null,
+      type:null,
+      dataIsReturned:false
+    }
   }
-
-  state = {
-    currentUser:null,
-    currentUserId:null,
-    type:"volunteer",
-    posts: [
-      { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", organization:"Listening Society",location: "Toronto", id:1},
-      { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task, self-motivated, repititive task, self-motivated", title: "Driver", status: "Approved", date: "6/16/2020", organization:"Listening Society",location: "Vancouver",id:2},
-      { name: "Online Chatting", description: "Through this role you will have the opportunity to safely volunteer from the comfort of your own home. All volunteers are provided with online training and the necessary support to safely and responsibly support local community members.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The Atrium Project",location: "Toronto", id:3},
-      { name: "Peer Support Volunteer", description: "Your tasks for this position would include, attending sessions about mental health and crisis intervention, supporting a youth or adult 1:1.", requirement: "self-motivated, Minimum 18 years of age, previous experience, Knowledge and understanding of community services", title: "Courier", status: "Approved", date: "5/29/2020", organization:"The mental Health books",location: "Vancouver", id:4},
-      { name: 'THIS SATURDAY - Contactless Delivery Driver Volunteers', 
-              description: "We are looking for volunteer drivers, with their own vehicle, to deliver grocery care packages to families that are unable to leave their home this Saturday June 27th", 
-              requirement: "driver's license, multi-task", 
-              title: "Driver", status: "Under Review", date: "6/27/2020", organization:"Hand Up from Hunger Toronto",
-              location: "Toronto", id:5},
-    ]
+  componentDidMount(){
+    readCookie(this);
   }
 
 
@@ -52,9 +46,11 @@ class App extends React.Component{
     const currentUser = this.state.currentUser;
     const currentUserId = this.state.currentUserId;
     const type = this.state.type
-    log("current user", currentUser, currentUserId)
+    log("current user", currentUser, currentUserId, type)
+    log("datareturn?", this.state.dataIsReturned)
     // log("current user", currentUser)
     return (
+        
         <div>
         <BrowserRouter>
           <Switch> 
@@ -69,25 +65,50 @@ class App extends React.Component{
                   <Login history={history} app={this} /> 
                   } /> */}
             
-            <Route path='/volunteer' render={(history) => (
-              (currentUser && type=='volunteer') ?  <Volunteer  app={this} /> :
-              <Login history={history} app={this}/> )}/>
+            {/* <Route path='/login' render={
+              ()=>{
+                console.log("login route")
+                return (currentUser && type=='volunteer') ? <Publicpost /> :
+                <Login app={this} />
+              }
+            } /> */}
+          
+            { this.state.dataIsReturned ? 
+            <Route path='/volunteer' render={( props ) => {
+              console.log("vol route")
+              console.log(currentUser && type=='volunteer')
+              if (currentUser && type=='volunteer'){
+                console.log('enter volunteer route')
+                return <Volunteer   app={this} /> 
+              }else{
+                console.log('usr',currentUser)
+                console.log('tye',type)
+                console.log('redirect to login')
+                return <Login app={this}/>
+              }
+            }}/> :null}
+
             <Route path='/publicpost' render={() => <Publicpost />}/>
             <Route path='/post/:id' render={(matchProps) => {return <PublicPostDetailPage matchProps={matchProps}/>}} />
             <Route path='/searchresult' component={PublicSearchResultPage}/>
             <Route path='/orgProfile/:id' render={(matchProps) => {return <OrgProfilePage matchProps={matchProps}/> }} />
+            
+            { this.state.dataIsReturned ?
             <Route path='/organization' render={() => 
               (currentUser && type=='organization') ?  <Organization app={this} /> :
               <Login  app={this}/>
-            }/>
+            }/> : null}
+
+            { this.state.dataIsReturned ?
             <Route path='/admin' render={() => 
               (currentUser && type=='admin') ?  <Admin app={this} /> :
               <Login  app={this}/>
-            } />
+            } /> : null}
 
-            <Route exact path='/login' render={(history) =>{
+            <Route path='/login' render={({ history }) =>{
               if(currentUser && type=='volunteer'){
-                return <Redirect to={"/volunteer/userpage"}/>
+                console.log("hello volunteer")
+                return <Redirect to="/volunteer/userpage"/>
               } else if (currentUser && type=='organization'){
                 return <Redirect to={"/organization/profile"}/>
               } else if(currentUser && type=='admin') {
@@ -97,9 +118,13 @@ class App extends React.Component{
               }
             } } />
 
+            
+            
+
           </Switch>
         </BrowserRouter>
-      </div>
+      </div> 
+      
     );  
   }
 }

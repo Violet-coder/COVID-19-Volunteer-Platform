@@ -6,6 +6,7 @@ import CheckLogin from '../../react-components/Login/CheckLogin';
 import {login} from '../../actions/login';
 import "./styles.css";
 
+
 const user1 ={
     email:"user1@user.com",
     password: "user1",
@@ -15,6 +16,7 @@ class Login extends React.Component{
      constructor(props){
         super(props);
         this.props.history.push("/login");
+        //history.push('/login')
         this.state = { 
             email : "",
             password : "",

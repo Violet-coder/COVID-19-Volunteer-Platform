@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route,Switch, Redirect } from 'react-router-dom';
+import { Route,Switch, Redirect, BrowserRouter } from 'react-router-dom';
 import VolUsers from '../../react-components/Admin/Users/VolUsers';
 import VolFixedProfilePage from '../../react-components/Admin/Users/VolFixedProfilePage';
 import EditVolProfileForm from '../../react-components/Admin/Users/EditVolProfileForm';
@@ -15,6 +15,9 @@ import PostDetailPage from '../../react-components/Admin/Posts/PostDetailPage';
 
 
 class Admin extends React.Component {
+    constructor(props){
+        super(props)
+    }
     //Store all the data in Admin global state,
     //and pass the necessary data to each page component.
     //When the components of each page perform some actions, the global state will be updated.
@@ -211,8 +214,9 @@ class Admin extends React.Component {
 
     render() {
         const app = this.props.app
+
         return(
-            <div>
+            <BrowserRouter>
                 <Switch>
                     <Route exact path='/admin/volunteers' render={() => (<VolUsers  
                         volusers={this.state.volusers} queueComponent={this} app={app}/>)}/>
@@ -264,7 +268,7 @@ class Admin extends React.Component {
                     
                     
                 </Switch>
-            </div>
+            </BrowserRouter>
         )
     }
 }

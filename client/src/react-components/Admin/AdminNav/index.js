@@ -21,7 +21,7 @@ class AdminNav extends React.Component {
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
-                                <li><Link to={"/admin"} >Home</Link></li>
+                                <li><Link to={"/admin/entry"} >Home</Link></li>
                                 <li><Link><a onClick={() =>{
                                     this.logoutUser(app)} }>Log Out</a></Link></li>
                                 <li>

@@ -46,5 +46,14 @@ fetch(post_url)
 .catch(error => {
     console.log(error);
 });
-return score
+if (score<=7) {
+    return 'D'
+}
+if (score>=24) {
+    return 'A'
+}
+if (score>=16) {
+    return 'B'
+}
+return 'C'
 }

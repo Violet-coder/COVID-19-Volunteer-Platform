@@ -83,7 +83,7 @@ class SelfPostDetail extends React.Component {
             <Header_appli title={this.state.post.name} subtitle={this.state.post.org_name}/>:null }
             <div id="fh5co-blog" className="fh5co-bg-section">
             <div className="container">
-            { this.state.appIsLoading ? 
+            { this.state.postIsLoading ? 
             <PostDetail post={this.state.post}/>:null }
             <div className='buttons'>
                 <Link to="/organization/profile">

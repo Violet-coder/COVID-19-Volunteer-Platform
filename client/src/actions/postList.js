@@ -2,19 +2,16 @@ const log = console.log;
 
 export const addPost = (id, info) => {
   const url = `/organization/post/${id}`
-  let requirements = ""
+  let requirements = []
   for (var i in info.requirement) {
-    if (requirements!=="") {
-      requirements += ", "
-    }
-    requirements += info.requirement[i].title
+    requirements.push(info.requirement[i].title)
   }
   const d = new Date()
   const post = {
     name: info.jobName,
     org_name: info.orgName,
     description: info.jobDescription,
-    requirement: requirements,
+    requirements: requirements,
     title: info.jobTitle,
     status: "Under review",
     date: d.toLocaleDateString(),
@@ -59,18 +56,15 @@ else {
 
 export const editPost = (post_id, info) => {
   const url = `/organization/edit_post/${post_id}`
-  let requirements = ""
+  let requirements = []
   for (var i in info.requirement) {
-    if (requirements!=="") {
-      requirements += ", "
-    }
-    requirements += info.requirement[i].title
+    requirements.push(info.requirement[i].title)
   }
   const d = new Date()
  const post = {
   name: info.jobName,
   description: info.jobDescription,
-  requirement: requirements,
+  requirements: requirements,
   title: info.jobTitle,
   status: "Under review",
   date: d.toLocaleDateString(),

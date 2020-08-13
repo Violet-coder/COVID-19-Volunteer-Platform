@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {BackButton} from '../../Hook/backButton';
-import {adminUpdateOrgProfile} from '../../../../actions/adminUpdateOrgProfile';
 import OrgUpdateSuccessSnackbars from '../../Hook/orgSuccessMsg';
 import './styles.css'
 

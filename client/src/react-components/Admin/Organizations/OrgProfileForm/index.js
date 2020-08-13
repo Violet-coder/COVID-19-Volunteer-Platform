@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { fade,withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -27,16 +27,26 @@ const styles = theme => ({
     inputResize: {
         fontSize:20,
         lineHeight:2,
+        color:"black"
     },
     labelResize: {
         fontSize:16,
     },
     fullTextField: {
-        
         marginLeft: theme.spacing(10),
         marginRight: theme.spacing(10),
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        '&:hover':{
+        },
+        '&$focused': {
+            backgroundColor: '#fff',
+            boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+            borderColor: theme.palette.primary.main,
+        }
+        
     },
   });
+
 
 class OrgProfileForm extends React.Component{
     render(){

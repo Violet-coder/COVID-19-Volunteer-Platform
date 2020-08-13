@@ -230,35 +230,61 @@ app.post("/admin/post/approve/:id", (req, res) => {
     )
 })
 
-app.delete('/admin/post/:id', (req, res) => {
-    const id = req.params.id
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
+// a POST route to delete a post
+app.post("/admin/post/delete/:post_id", (req, res) => {
+    const post_id = req.params.post_id
+    if (!ObjectID.isValid(post_id)) {
 		res.status(404).send('Resource not found')
-		return;
-	}
-
-	// check mongoose connection established.
-	if (mongoose.connection.readyState != 1) {
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return;
-	} 
+    } 
+    Post.findById(post_id).then((post)=>{
+        if(!post){
+            res.status(404).send("404 Resource not found.")
+            return
+        }
+        Organization.findById(post.org_id).then((organization)=>{
+            if(organization){
+                const posts = []
+                for (var i in organization.posts) {
+                    if (String(organization.posts[i])!=post_id){
+                        posts.push(organization.posts[i])
+                    }
+                }
+                organization.posts = posts
+                organization.save().then((result) => {
+                    res.send(result)
+                    Post.deleteOne({_id: post_id}, function (err) {
+                        if (err) return handleError(err);})
+                })
+                .catch((error) => {
+                    if(isMongoError(error)){
+                        res.status(500).send('Internal server error')
+                    } else{
+                        res.status(400).send('Bad request.')
+                    }
+                })
+            } else {
+                Post.deleteOne({_id: post_id}, function(err, result){
+                    if(err){
+                        log(err)
+                        res.status(500).send()
+                    } else{
+                        log(result)
+                    }
 
-	// Delete a student by their id
-	Post.findByIdAndRemove(id).then((post) => {
-		if (!post) {
-			res.status(404).send("404 Resource not found.")
-		} else {   
-			res.send(post)
-		}
-	})
-	.catch((error) => {
-		log(error)
-		res.status(500).send("Internal server error.") // server error, could not delete.
-	})
-})
+                })
+            }
+        })
+    })
+    
+});
+
+
 
 // a GET route to get a specific organizations
 app.get("/admin/organization/:id", (req, res) =>{
@@ -305,30 +331,6 @@ app.get("/admin/allorganizations", (req, res) =>{
 	})
 })
 
-app.get("/admin/organization/profile/:id", (req, res) => {
-    if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-	}  
-
-	const id = req.params.id
-
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('404 Resource Not Found')
-		return;
-	}
-	Organization.findById(id).then((organization)=>{
-		if(!organization){
-			res.status(404).send('404 Resource Not Found')
-		} else {
-			res.send(organization)
-		}
-	})
-	.catch((error) => {
-		res.status(500).send("Internal server error")
-	})
-});
 
 // a POST for updating profile info to a particular organization
 app.post("/admin/organization/update/:id", (req, res) => {
@@ -363,6 +365,72 @@ app.post("/admin/organization/update/:id", (req, res) => {
         }
     })
 });
+
+// a POST route to delete a particular organization
+// deleting an organization will modify Organization, Post and Application
+app.post('/admin/organization/delete/:orgId', (req, res) => {
+    const orgId = req.params.orgId
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }  
+    
+    if (!ObjectID.isValid(orgId)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+    }
+
+    Organization.findByIdAndRemove(orgId).then((organization) => {
+        if(!organization){
+            res.status(404).send('404 Resource Not Found')
+		    return;
+        }
+        console.log("organization to del", organization)
+
+    }).catch(error => {
+        log(error)
+        res.status(500).send("Internal server error.")
+    })
+
+    Post.find({org_id: orgId }).then((posts) => {
+        let application_ids = new Array()
+        
+        posts.map(post =>{
+            //application_ids.push(application_ids.concat(post.applications))
+            application_ids = application_ids.concat(post.applications)
+        } )
+
+        Application.deleteMany({_id: {
+            $in: application_ids
+        }}, function(err, result){
+            if(err){
+                log(err)
+                res.status(500).send("Internal server error.")
+            } else {
+                res.send(result)
+            }
+        } )
+
+        Post.deleteMany({org_id: orgId }, function(err){
+            if(err){
+                log(err)
+                res.status(500).send("Internal server error.");
+            }
+            console.log("Successful deletion");
+        })
+
+
+    })
+    .catch((error) => {
+        log(error)
+        res.status(500).send("Internal server error.")
+    })
+
+
+})
+
+
 
 
 /** volunteer resource routes **/
@@ -906,6 +974,10 @@ app.post("/organization/delete_post/:post_id", (req, res) => {
 		return;
     } 
     Post.findById(post_id).then((post)=>{
+        if(!post){
+            res.status(404).send("404 Resource not found.")
+            return
+        }
         Organization.findById(post.org_id).then((organization)=>{
             const posts = []
             for (var i in organization.posts) {

@@ -21,3 +21,46 @@ export const deleteUser = (queue, user) => {
     )
     }
 };
+
+export const adminDeleteOrganization = (orgComp, org) =>{
+    const filteredOrg = orgComp.state.organizations.filter(
+        o => {
+            return o._id !== org._id;
+        }
+    );    
+    console.log("filtered org",filteredOrg)
+    const url = `/admin/organization/delete/${org._id}`
+
+    const request = new Request(url, {
+        method: "post",
+        body:"",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+    if(window.confirm('Are you sure to delete this organization?')){
+    fetch(request)
+        .then(function(res){
+            if(res.status === 200){
+                console.log("set state")
+                orgComp.setState({
+                    organizations: filteredOrg,
+                    dataIsReturned: true
+                })
+            
+            } else {
+                console.log("Error: cannot delete this organization.")
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+            }
+        )
+    }
+
+
+
+
+
+}

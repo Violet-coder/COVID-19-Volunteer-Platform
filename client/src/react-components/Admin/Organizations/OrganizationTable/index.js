@@ -1,7 +1,7 @@
 import React from 'react';
 import {uid} from 'react-uid';
 import {Link} from "react-router-dom";
-import {deleteUser} from '../../../../actions/deleteUser';
+import {adminDeleteOrganization} from '../../../../actions/deleteUser';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -124,7 +124,7 @@ export default function OrganizationTable(props) {
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[4].id}> 
                         
-                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, this, org)}>Delete</button>
+                          <button  type="submit" className="btn btn-primary"  onClick={adminDeleteOrganization.bind(this, props.orgComp, org)}>Delete</button>
                       </TableCell>
                 </TableRow>
               );

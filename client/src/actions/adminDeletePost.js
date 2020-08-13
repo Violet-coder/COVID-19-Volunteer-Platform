@@ -10,33 +10,33 @@ export const adminDeletePost = (queue, post) =>{
     //console.log("filetered post", filteredPost)
     
 
-    const url = `/admin/post/${post._id}`
+    const url = `/admin/post/delete/${post._id}`
 
     const request = new Request(url, {
-        method: "delete",
+        method: "post",
+        body:"",
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
         }
     })
-
+    if(window.confirm('Are you sure to delete this post?')){
     fetch(request)
         .then(function(res){
             if(res.status === 200){
-                if(window.confirm('Are you sure to delete this post?')){
-                        queue.setState({
-                            posts: filteredPost,
-                            dataIsReturned: true
-                })}
-            
+                queue.setState({
+                    posts: filteredPost,
+                    dataIsReturned: true
+                })
             } else {
-                console.log("Error: cannot approve this post.")
+                console.log("Error: cannot delete this post.")
             }
         })
         .catch((error) => {
             console.log(error)
             }
         )
+    }
 
 
 

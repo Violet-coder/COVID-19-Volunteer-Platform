@@ -42,7 +42,8 @@ class OrganizationListPage extends React.Component{
         return(
             <div id='page'>
                 <AdminNav app={app} />
-                <OrganizationTable organizations={organizations}/>
+                {this.state.dataIsReturned ?
+                <OrganizationTable organizations={organizations} orgComp = {this} /> : null}
             </div>
         )
     }

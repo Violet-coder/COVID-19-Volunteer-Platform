@@ -24,15 +24,16 @@ export const adminApprovePost = (queue, post) => {
         }
     })
 
+    if(window.confirm("Are you sure to approve this post?")){ 
     fetch(request)
         .then(function(res){
             if(res.status === 200){
-                if(window.confirm("Are you sure to approve this post?")){   
-                    queue.setState({
-                        post:post,
-                        dataIsReturned: true
-                    })
-                }
+                  
+                queue.setState({
+                    post:post,
+                    dataIsReturned: true
+                })
+                
             } else {
                 console.log("Error: cannot approve this post.")
             }
@@ -41,6 +42,6 @@ export const adminApprovePost = (queue, post) => {
             console.log(error)
         }
         )
+    }
 
-    console.log("this",queue)
 }

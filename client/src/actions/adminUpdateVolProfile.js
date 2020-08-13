@@ -27,3 +27,25 @@ export const adminUpdateVolProfile = (queue, info, userId) => {
     )
     console.log(queue.state)
   };
+
+  export const getVolProfile = (volComp,id) => {
+    const url = `/admin/volunteer/${id}`
+    fetch(url)
+    .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            // alert("Could not get students");
+            console.log("Cannot get the volunteer info.")
+        }
+    })
+    .then(json => {
+        // the resolved promise with the JSON body
+        console.log("update vol state")
+        volComp.setState({ volunteer: json, dataIsReturned: true });
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }

@@ -157,19 +157,16 @@ const VolunteerSchema = new mongoose.Schema({
     },
     location: {
         type:String,
-        required:false,
-        minlength:1,
+        required:false
     },
     desc: {
         type: String,
-        required: false,
-        minlength: 1
+        required: false
 
     },
     links: {
         type: String,
-        required: false,
-        minlength: 1
+        required: false
 
     },
 

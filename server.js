@@ -447,6 +447,34 @@ app.get("/admin/allvolunteers", (req, res) =>{
 	})
 })
 
+//a GET route to get a specific volunteer
+app.get("/admin/volunteer/:id", (req,res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }  
+    
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+	}
+
+	Volunteer.findById(id).then((vol) =>{
+		if(!vol){
+            res.status(404).send("404 Resource not found.")
+        } else {
+            res.send(vol)
+        }
+	})
+	.catch((error)=> {
+        log(error)
+		res.status(500).send("Internal server error")
+	})
+})
+
 
 
 

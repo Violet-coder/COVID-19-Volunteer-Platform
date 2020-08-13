@@ -229,7 +229,7 @@ class Admin extends React.Component {
                     {/* <Route path='/admin/volprofile' component={VolFixedProfilePage} /> */}
 
                     <Route exact path='/admin/volunteers/volprofile/:id' render={(matchProps)=> {
-                       return <VolFixedProfilePage matchProps={matchProps} queueComponent={this} app={app} />
+                       return <VolFixedProfilePage matchProps={matchProps} app={app} />
                     }} />
                     <Route exact path='/admin/volunteers/editvolprofile/:id' render={(matchProps)=> {
                        return <EditVolProfilePage matchProps={matchProps} {...this.props}  app={app} />

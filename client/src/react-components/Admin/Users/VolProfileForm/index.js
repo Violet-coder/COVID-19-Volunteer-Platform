@@ -38,6 +38,7 @@ const styles = theme => ({
     inputResize: {
         fontSize:16,
         lineHeight:1.6,
+        color:'black'
     },
     labelResize: {
         fontSize:14
@@ -65,18 +66,14 @@ const styles = theme => ({
 
 class VolProfileForm extends React.Component{
     
-      handleChange = name => event => {
-        this.setState({
-          [name]: event.target.value,
-        });
-      };
+
     
     
     render(){
         const { classes } = this.props;
         //console.log("form prop", this.props)
         const {
-            id,
+            _id,
             firstName, 
             lastName, 
             email,
@@ -85,7 +82,7 @@ class VolProfileForm extends React.Component{
             desc,
             skills,
             availability,
-        } = this.props.user
+        } = this.props.volunteer
 
         //console.log("availability", availability)
 
@@ -154,7 +151,6 @@ class VolProfileForm extends React.Component{
           value={email || ""}
           margin="normal"
           variant="outlined"
-          
           InputProps={
               {
                   classes:{
@@ -177,7 +173,7 @@ class VolProfileForm extends React.Component{
           value={location || ""}
           margin="normal"
           variant="outlined"
-          
+          disabled
           InputProps={
               {
                   classes:{
@@ -201,6 +197,7 @@ class VolProfileForm extends React.Component{
           margin="normal"
           variant="outlined"
           fullWidth
+          disabled
           InputProps={
               {
                   classes:{
@@ -224,6 +221,7 @@ class VolProfileForm extends React.Component{
           margin="normal"
           variant="outlined"
           fullWidth
+          disabled
           multiline
           rows={4}
           InputProps={
@@ -250,6 +248,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.analytics}
                     name='analytics'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -265,6 +264,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.biology}
                     name='biology'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -280,6 +280,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.biotech}
                     name='biotech'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -295,6 +296,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.community}
                     name='community'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -310,6 +312,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.content}
                     name='content'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -325,6 +328,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.data}
                     name='data'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -340,6 +344,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.finance}
                     name='finance'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -355,6 +360,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.helpdesk}
                     name='helpdesk'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -370,6 +376,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.manufacturing}
                     name='manufacturing'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -385,6 +392,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.marketing}
                     name='marketing'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -400,6 +408,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.mechanics}
                     name='mechanics'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -415,6 +424,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.IT}
                     name='IT'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -430,6 +440,7 @@ class VolProfileForm extends React.Component{
                     checked={skills.anything}
                     name='anything'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -451,6 +462,7 @@ class VolProfileForm extends React.Component{
                     checked={availability.option1}
                     name='option1'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -466,6 +478,7 @@ class VolProfileForm extends React.Component{
                     checked={availability.option2}
                     name='option2'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -480,6 +493,7 @@ class VolProfileForm extends React.Component{
                     checked={availability.option3}
                     name='option3'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -495,6 +509,7 @@ class VolProfileForm extends React.Component{
                     checked={availability.option4}
                     name='option4'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    
@@ -509,6 +524,7 @@ class VolProfileForm extends React.Component{
                     checked={availability.option5}
                     name='option5'
                     color='primary'
+                    disabled
                     inputProps={{
                         readOnly: true,
                     }}    

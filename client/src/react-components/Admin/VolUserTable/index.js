@@ -77,9 +77,9 @@ export default function VolUserTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  console.log("props",props)
-  const volusers = props.volusers;
-  const queueComponent = props.queueComponent;
+
+  const volusers = props.volunteers;
+
 
   return (
     <div id="fh5co-blog" className="fh5co-bg-section">
@@ -113,19 +113,19 @@ export default function VolUserTable(props) {
                       {vol.firstName+" "+vol.lastName}
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[1].id} >
-                      {vol.id}
+                      {vol._id}
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[2].id} >
-                        <Link to={{pathname:`/admin/volunteers/volprofile/${vol.id}`}}>
+                        <Link to={{pathname:`/admin/volunteers/volprofile/${vol._id}`}}>
                         <button  type="submit" className="btn btn-info ">View</button></Link>
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[3].id}>
-                        <Link to={{pathname:`/admin/volunteers/editvolprofile/${vol.id}`}}> 
+                        <Link to={{pathname:`/admin/volunteers/editvolprofile/${vol._id}`}}> 
                         <button  type="submit" className="btn btn-info">Edit</button></Link>
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[4].id}> 
                         
-                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, queueComponent, vol)}>Delete</button>
+                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, props.volComp, vol)}>Delete</button>
                       </TableCell>
                 </TableRow>
               );

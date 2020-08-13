@@ -430,6 +430,23 @@ app.post('/admin/organization/delete/:orgId', (req, res) => {
 
 })
 
+// a GET route to get all volunteers
+app.get("/admin/allvolunteers", (req, res) =>{
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
+
+	Volunteer.find().then((vol) =>{
+		res.send(vol)
+	})
+	.catch((error)=> {
+        log(error)
+		res.status(500).send("Internal server error")
+	})
+})
+
 
 
 

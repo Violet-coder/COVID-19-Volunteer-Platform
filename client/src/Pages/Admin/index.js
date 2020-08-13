@@ -219,7 +219,7 @@ class Admin extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/admin/volunteers' render={() => (<VolUsers  
-                        volusers={this.state.volusers} queueComponent={this} app={app}/>)}/>
+                        volusers={this.state.volusers}  app={app}/>)}/>
                     <Route exact path='/admin/organizations' render={() => (<OrganizationListPage  
                         organizations={this.state.organizations} app={app}/>)}/>
 

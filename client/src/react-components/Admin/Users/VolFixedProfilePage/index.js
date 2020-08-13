@@ -24,9 +24,7 @@ class VolFixedProfilePage extends React.Component {
         //console.log(this.props.match)
         //get the id of user and read the user info from database
         //const {id} = this.props.matchProps.match.params
-        const matchProps = this.props.matchProps
-        const {id} = matchProps.match.params
-        console.log("id",id)
+
         
         let volunteer = this.state.volunteer
         if (this.state.dataIsReturned) {
@@ -67,7 +65,7 @@ class VolFixedProfilePage extends React.Component {
             }
         }}
 
-        console.log("volunteer", volunteer)
+
 
 
         const app = this.props.app

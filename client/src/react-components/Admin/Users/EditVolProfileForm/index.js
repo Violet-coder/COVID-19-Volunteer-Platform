@@ -73,7 +73,7 @@ class EditVolProfileForm extends React.Component{
         const { classes } = this.props;
         //console.log("form prop", this.props)
         const {
-            id,
+            _id,
             firstName, 
             lastName, 
             email,
@@ -83,17 +83,10 @@ class EditVolProfileForm extends React.Component{
             skills,
             availability,
         } = this.props.user
-        //console.log("form user id", id)
-        //console.log("from props user", this.props.user)
-        const newInfo = this.props.state
-        //console.log("form new state", this.props.state)
 
+        const newInfo = this.props.state.volunteer
         const handleInputChange = this.props.handleInputChange;
-        const queueComponent = this.props.queueComponent;
-        //console.log("edit form", queueComponent)
 
-
-        //console.log("availability", availability)
 
         return(
         <div id="fh5co-services" className="fh5co-bg-section border-bottom">
@@ -550,7 +543,7 @@ class EditVolProfileForm extends React.Component{
             {/* <span id='updateform'><button  type='button' className="btn btn-primary updatebutton" onClick={adminUpdateVolProfile.bind(this, queueComponent, newInfo,id)}  >Update Profile</button>
             <BackButton />
             </span> */}
-            <span id = 'updateform'><VolUpdateSucessSnackbars queueComponent={queueComponent} newInfo={newInfo} id={id} />
+            <span id = 'updateform'><VolUpdateSucessSnackbars user={this.props.user} newInfo={newInfo} id={_id} />
             <BackButton /></span>
             {/* Write the updated data to database after submit. */}
 

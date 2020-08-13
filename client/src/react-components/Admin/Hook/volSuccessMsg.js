@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VolUpdateSucessSnackbars(props){
     
-    
-    const queueComponent= props.queueComponent;
+    const user = props.user
     const newInfo = props.newInfo;
     const id = props.id;
 
@@ -34,7 +33,7 @@ export default function VolUpdateSucessSnackbars(props){
   
     const handleClick =(e) => {
       setOpen(true);
-      adminUpdateVolProfile(queueComponent, newInfo, id);
+      adminUpdateVolProfile(user,newInfo, id);
     } 
   
     const handleClose = (event, reason) => {

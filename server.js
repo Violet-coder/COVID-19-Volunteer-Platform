@@ -477,6 +477,45 @@ app.get("/admin/volunteer/:id", (req,res) => {
 
 
 
+// a POST for updating profile info to a particular volunteer
+app.post("/admin/volunteer/update/:id", (req, res) => {
+    // log(req.body)
+    const id = req.params.id 
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    Volunteer.findById(id).then((volunteer)=> {
+        if(!volunteer){
+            res.status(404).send("404 Resource Not Found")
+        } else {
+            volunteer.location = req.body.location       
+            volunteer.links = req.body.links
+            volunteer.desc = req.body.desc
+            volunteer.skills = req.body.skills
+            volunteer.availability = req.body.availability
+            volunteer.save().then((result) => {
+                res.send(result)
+            })
+            .catch((error) => {
+                
+					res.status(500).send(error)
+				
+				
+				
+            })
+        }
+    })
+});
+
+
 
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer

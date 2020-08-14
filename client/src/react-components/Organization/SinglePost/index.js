@@ -25,7 +25,7 @@ class SinglePost extends React.Component {
     const applications = []
     const applicationlist = new Array(this.props.post.applications)
     for (var app_id of applicationlist[0]) {
-      const url = `/organization/get_application/${app_id}`  
+      const url = `/organization/get_applications/${app_id}`  
       fetch(url)
       .then(res => {
           if (res.status === 200) {

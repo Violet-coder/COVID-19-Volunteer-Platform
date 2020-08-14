@@ -555,13 +555,9 @@ class EditProfileForm extends React.Component{
         
             
         </FormControl>   
-           
-                 
-            <span id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><Button  className="updatebutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, this.props.user, newInfo, this.props.app.state.currentUserId)}  >Update My Profile</Button></Link></span>
-           
-        
-           
+          
       </form>
+      <div id="updateform" ><Link to={{pathname:`/volunteer/myprofile`}}><button type='button' className=" btn btn-primary Organizationbutton" variant="contained" color="secondary" onClick={updateVolProfile.bind(this, this.props.user, newInfo, this.props.app.state.currentUserId)}  >Submit</button></Link></div>
       </div>
       </div>
         );

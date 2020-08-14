@@ -3,6 +3,8 @@ import Header_appli from "../../react-components/Volunteer/Header_appli";
 import HomeNav from '../../react-components/HomeNav';
 import {searchByKeyword} from "../../actions/searchByKeyword"
 import Posts from "../../react-components/Posts"
+// import {BackButton} from '../../react-components/Organization/Hook/backButton';
+
 
 
 class PublicSearchResultPage extends React.Component {
@@ -28,6 +30,7 @@ class PublicSearchResultPage extends React.Component {
             p => p.status === "Approved"
         )
         }
+        
    
         return(
             <div id="page">
@@ -43,6 +46,8 @@ class PublicSearchResultPage extends React.Component {
                 </div> 	
                 </div>
                 </div>}
+
+                {/* <span className='Applybutton'><BackButton/></span> */}
             
                     
             </div>  

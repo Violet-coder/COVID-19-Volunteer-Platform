@@ -3,6 +3,8 @@ import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import {searchByKeyword} from "../../../actions/searchByKeyword"
 import All_ops from "../../../react-components/Volunteer/All_ops"
+// import {BackButton} from '../../../react-components/Organization/Hook/backButton';
+
 
 class SearchResultPage extends React.Component {
     constructor(props) {
@@ -51,6 +53,7 @@ class SearchResultPage extends React.Component {
                 </div> 	
                 </div>
                 </div>}
+                {/* <span className='Applybutton'><BackButton/></span> */}
                       
             </div>  
         )

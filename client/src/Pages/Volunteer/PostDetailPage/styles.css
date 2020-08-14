@@ -1,19 +1,6 @@
-.detailpagebutton{
-    width: 100%;
-    margin-left: 30%;
+#organizationprofile{
+    margin-left: 20%;
 }
-.Organizationbutton {
-    width: 220px;
-    text-align: center;
-    display: inline-block;
-    /* margin-right:"20px" */
-}
-.Applybutton {
-    width:220px;
-    text-align: center ;
-    display:inline-block;
-    /* margin-left: 20px; */
-}
-.detailpagebutton span {
-    margin-left: 10px;
+#applybutton {
+    margin-left: 20%;  
 }

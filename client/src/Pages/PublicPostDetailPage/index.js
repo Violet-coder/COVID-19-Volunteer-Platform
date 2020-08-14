@@ -63,18 +63,18 @@ class PublicPostDetailPage extends React.Component {
                 <div id="fh5co-blog" class="fh5co-bg-section">
                 <div class="container">
                 {this.state.isLoading ? <PostDetail post={this.state.post}/> : null}
-                <div className="detailpagebutton">
-                <span ><Link to={{pathname:`/orgProfile/${this.state.post.org_id}`}}><Button className="Organizationbutton" variant="contained" color="secondary">
+                
+                <Link to={{pathname:`/orgProfile/${this.state.post.org_id}`}}><button id="organizationprofile"className=" btn btn-primary Organizationbutton" variant="contained" color="secondary">
                 Organization Profile
-                </Button></Link></span>
-                <span ><Button  onClick={(e) => this.setState({isOpen: true})} className="Applybutton" variant="contained" color="secondary">
+                </button></Link>
+                <button id="applybutton" type='button' onClick={(e) => this.setState({isOpen: true})} className="btn btn-primary Applybutton" variant="contained" color="secondary">
                 Apply Now
-                </Button></span>
+                </button>
 
                 <Dialog isOpen={this.state.isOpen} onClose={(e) => this.setState({ isOpen: false})}>If you are interested in this opportunity, please log in.</Dialog>
 
                 
-                </div>
+                
                 </div>
             
                 

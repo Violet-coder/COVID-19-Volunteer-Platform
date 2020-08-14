@@ -1,14 +1,15 @@
 import React from "react";
 import Home from '../../Pages/Home';
+import './styles.css'
 
 class HomeNav extends React.Component {
     render() {
         return(
-            <nav className="fh5co-nav" role="navigation">
+            <nav className="admin-nav" role="navigation">
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-2 text-left">
-                            <div id="fh5co-logo"><a href="/">Volunteer<span>.</span></a></div>
+                            <div id="admin-logo" ><a href="/" >VOLUNTEER<span>.</span></a></div>
                         </div>
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
@@ -20,7 +21,7 @@ class HomeNav extends React.Component {
                     </div>
                     
                 </div>
-	        </nav>
+            </nav>
         )
     }
 

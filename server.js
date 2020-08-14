@@ -515,6 +515,101 @@ app.post("/admin/volunteer/update/:id", (req, res) => {
     })
 });
 
+// a POST route to delte a specific volunteer
+app.post('/admin/volunteer/delete/:volId', (req, res) => {
+    const volId = req.params.volId
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }  
+    
+    if (!ObjectID.isValid(volId)) {
+		res.status(404).send('404 Resource Not Found')
+		return;
+    }
+
+    async function PromiseArray(){
+    
+    await Volunteer.findByIdAndRemove(volId).then((vol) => {
+        if(!vol){
+            res.status(404).send('404 Resource Not Found')
+		    return;
+        }
+
+    }).catch(error => {
+        log(error)
+        res.status(500).send("Internal server error.")
+    })
+
+    await Application.find({applicant_id: volId }).then((applications) => {
+        let application_ids = new Array()
+        
+        applications.map(app =>{
+            //application_ids.push(application_ids.concat(post.applications))
+            application_ids.push(app._id)
+        } )
+
+
+        application_ids.map(id => {
+            id = JSON.stringify(id)
+        })
+
+
+        //update the Post that contains the id in the application_ids array
+        application_ids.map( app_id =>{
+            Post.find({
+                "applications":app_id
+            }).then(post => {
+                let filteredApplications = post[0].applications
+                filteredApplications = filteredApplications.filter(res_id => {
+                    return JSON.stringify(res_id) !== JSON.stringify(app_id)
+                })
+                
+                post[0].applications = filteredApplications
+
+                post[0].save().catch(error => {
+                    log(error)
+                })
+                
+            }).catch(error =>{
+                log(error)
+                res.status(500).send("Internal server error.")
+            })
+        }
+        )
+
+        //remove the applications
+        Application.deleteMany({_id: {
+            $in: application_ids
+        }}, function(err, result){
+            if(err){
+                log(err)
+                res.status(500).send("Internal server error.")
+            } else {
+                //res.send(result)
+            }
+        } )
+
+
+
+    })
+    .catch((error) => {
+        log(error)
+        res.status(500).send("Internal server error.")
+    })
+    }
+
+    PromiseArray().then(
+        res.send("Delete volunteer successfully")
+    ).catch(error => {
+        log(error)
+    })
+
+}
+
+)
+
 
 
 /** volunteer resource routes **/

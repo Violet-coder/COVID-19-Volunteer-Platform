@@ -2,7 +2,7 @@ import React from "react";
 import Header_appli from "../../react-components/Volunteer/Header_appli";
 import HomeNav from '../../react-components/HomeNav';
 import {searchByKeyword} from "../../actions/searchByKeyword"
-import Search_ops from "../../react-components/Volunteer/Search_ops";
+import Search_ops from "../../react-components/Search_ops";
 import {BackButton} from '../../react-components/Organization/Hook/backButton';
 
 

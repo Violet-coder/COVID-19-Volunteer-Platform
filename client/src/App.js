@@ -88,8 +88,8 @@ class App extends React.Component{
               }
             }}/> :null}
 
-            <Route path='/publicpost' render={() => <Publicpost />}/>
-            <Route path='/post/:id' render={(matchProps) => {return <PublicPostDetailPage matchProps={matchProps}/>}} />
+            <Route path='/publicposts' render={() => <Publicpost />}/>
+            <Route path='/pulicpost/:id' render={(matchProps) => {return <PublicPostDetailPage matchProps={matchProps}/>}} />
             <Route path='/searchresult' component={PublicSearchResultPage}/>
             <Route path='/orgProfile/:id' render={(matchProps) => {return <OrgProfilePage matchProps={matchProps}/> }} />
             

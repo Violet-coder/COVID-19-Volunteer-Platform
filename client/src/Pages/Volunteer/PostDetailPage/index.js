@@ -38,7 +38,8 @@ class PostDetailPage extends React.Component {
         const id = this.props.matchProps.match.params.id
         const userid = this.props.app.state.currentUserId
         const url = `/post/${id}`
-        const url1 = `/volunteer/${userid}/${id}`
+        const url1 = `/volunteer/getapplication/${userid}/${id}`
+       
 
         
         fetch(url)

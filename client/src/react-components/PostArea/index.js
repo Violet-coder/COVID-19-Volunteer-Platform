@@ -19,7 +19,7 @@ class PostArea extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        {ops.slice(0,4).map( op => (<Link to={{pathname:`/post/${op._id}`}} >
+                        {ops.slice(0,4).map( op => (<Link to={{pathname:`/pulicpost/${op._id}`}} >
                             <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
                             
                             <div className="fh5co-post">
@@ -31,7 +31,7 @@ class PostArea extends React.Component {
                             </div>
                             </div></Link>))}
                             <div className="center">
-                                <p><span><Link to="/publicpost" ><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
+                                <p><span><Link to="/publicposts" ><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
                             </div>
                         
                     </div>	

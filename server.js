@@ -790,11 +790,11 @@ app.get('/volunteer/applicatoinlist/:id', (req, res) => {
 })
 
 // a GET request for getting a particular application of a particular volunteer
-app.get('/volunteer/:id/:post_id', (req, res) => {
+app.get('/volunteer/getapplication/:id/:post_id', (req, res) => {
 	const vol_id = req.params.id
-	const post_id = req.params.post_id
+    const post_id = req.params.post_id
 	if (!ObjectID.isValid(vol_id)) {
-		res.status(404).send('Resource not found')  
+		res.status(404).send(vol_id)  
 		return;  
 	}
 
@@ -1361,7 +1361,7 @@ app.use(express.static(__dirname + "/client/build"));
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/volunteer","/login","/volunteer/userpage","/volunteer/myapplication","/admin/posts","volunteer/5f29e3b9fcecd5232c568bfe"];
+    const goodPageRoutes = ["/","/post/:id", "/volunteer","/volunteer/post/:id", "/login","/volunteer/userpage","/volunteer/myapplication","/admin/posts"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
         res.status(404);

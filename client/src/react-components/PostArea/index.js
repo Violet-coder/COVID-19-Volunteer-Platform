@@ -23,7 +23,7 @@ class PostArea extends React.Component {
                             <div key= {uid(op)}  className="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
                             
                             <div className="fh5co-post">
-                                <span className="fh5co-date">{op.date}</span>
+                                <span className="fh5co-date">{new Date(op.date).toDateString()}</span>
                                 <h3>{op.name}</h3>
                                 <p id='post-para'>{op.description}</p>
                                 <p className="author"><cite> {op.organization}</cite></p>

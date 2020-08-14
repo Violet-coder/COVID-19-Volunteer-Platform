@@ -55,7 +55,7 @@ class Home extends React.Component {
                 <HomeHeader />
                 <HomeIntro />
                 <div>
-                { (this.state.isLoading && filteredPosts.length>=4) ? <PostArea desc='Opportunities  &amp; Jobs' title='Opportunities'subtitle='COVID-19 Support Opportunities' 
+                { (this.state.isLoading && filteredPosts.length>0) ? <PostArea desc='Opportunities  &amp; Jobs' title='Opportunities'subtitle='COVID-19 Support Opportunities' 
                           ops={filteredPosts}/> : null}
                 </div>
                 

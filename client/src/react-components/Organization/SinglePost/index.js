@@ -31,7 +31,7 @@ class SinglePost extends React.Component {
           if (res.status === 200) {
               return res.json();
           } else {
-              alert("Could not get applications");
+              // alert("Could not get applications");
           }
       })
       .then(json => {

@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import Header_appli from "../../../react-components/Volunteer/Header_appli";
 import ApplicationList from "../../../react-components/Volunteer/ApplicationList"
+import {BackButton} from "../../../react-components/Organization/Hook/backButton"
 
 
 import "../../../css/animate.css";
@@ -59,14 +60,25 @@ class My_application extends React.Component{
             <div id="page">
             <Navbar user="Application" app={app}/>
             <Header_appli title="My Application" subtitle="Let's work together" app={app} />
-            <div>
-            { this.state.isLoading ?<ApplicationList applications={this.state.applications}/> : null}
+            
+            { this.state.isLoading ?<ApplicationList applications={this.state.applications}/> : <div id="fh5co-blog" className="fh5co-bg-section">
+                <div className="container">
+                    <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
+                        <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
+                            <h2>No Application now.</h2>
+                            
+                        </div>
+                </div> 	
+                <span className='Applybutton'><BackButton/></span>
+                </div>
+                </div>}
+            
             </div>
 
 
 
 
-            </div>
+           
 
 
 

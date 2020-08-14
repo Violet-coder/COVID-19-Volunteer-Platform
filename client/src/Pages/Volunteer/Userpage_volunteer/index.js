@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../../../react-components/Volunteer/Navbar";
 import Header from "../../../react-components/Volunteer/Header";
-import Recommended_ops from "../../../react-components/Volunteer/Recommended_op";
-import All_ops from "../../../react-components/Volunteer/All_ops";
+import Vol_ops from "../../../react-components/Volunteer/Vol_ops";
 import { Link} from 'react-router-dom';
 
 import "../../../css/animate.css";
@@ -49,7 +48,7 @@ class Userpage_volunteer extends React.Component{
             <Navbar user="Application" app={app}/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together"  queueComponent={queueComponent}/>
             <div>
-            { (this.state.isLoading&&filteredPosts.length>0) ? <All_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
+            { (this.state.isLoading&&filteredPosts.length>0) ? <Vol_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
             {(this.state.isLoading&&filteredPosts.length===0)? <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
                     <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
@@ -59,11 +58,12 @@ class Userpage_volunteer extends React.Component{
                             <p>Or click on the <b>See All</b> button to see all the posts on our platform</p>
                         </div>
                 </div> 	
-                </div>
-                </div> : null}
-            <div className="center">
+                <div className="center">
 					<p><span><Link to="/volunteer/seeall"><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
 				</div>
+                </div>
+                </div> : null}
+            
             </div>
             
 			
@@ -82,4 +82,3 @@ class Userpage_volunteer extends React.Component{
 }
 
 export default Userpage_volunteer;
-

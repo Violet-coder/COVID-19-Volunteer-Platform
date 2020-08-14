@@ -2,9 +2,9 @@ import React from "react";
 import { uid } from "react-uid";
 import { Link} from 'react-router-dom'
 import './styles.css'
-import {BackButton} from '../../../react-components/Organization/Hook/backButton';
+import {BackButton} from '../../Organization/Hook/backButton';
 
-class All_ops extends React.Component{
+class Search_ops extends React.Component{
     render(){
        
        const {queueComponent, posts} = this.props
@@ -31,11 +31,11 @@ class All_ops extends React.Component{
         </div></Link>
           ))}
 			</div>	
-        
+        <span className='Applybutton'><BackButton/></span>
 		</div>
         </div>
        )
     }
 }
 
-export default All_ops;
+export default Search_ops;

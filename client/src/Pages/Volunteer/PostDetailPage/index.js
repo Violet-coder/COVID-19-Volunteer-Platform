@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { addApplication } from "../../../actions/applicationList"
 import "./styles.css"
 import { Link} from 'react-router-dom';
+import {BackButton} from "../../../react-components/Organization/Hook/backButton"
 
 
 
@@ -83,12 +84,13 @@ class PostDetailPage extends React.Component {
             
             <Link to={{pathname:`/volunteer/orgProfile/${this.state.post.org_id}`}}><button id="organizationprofile" type='button' className=" btn btn-primary Organizationbutton" variant="contained" color="secondary">Organization Profile</button></Link>
             {
-            (this.state.isApplied)? <span><Button>Applied</Button></span> : 
+            (this.state.isApplied)? <span><Button id={"applied"} disabled ={true}>Applied</Button></span> : 
             <Link to="/volunteer/myapplication"><button id="applybutton" type='button' className=" btn btn-primary Applybutton" variant="contained" color="secondary" onClick={ addApplication.bind(this, userid, this.state.post)} >
             Apply Now
             </button></Link>
               
             }
+            <span className='Applybutton'><BackButton/></span>
            
             
             

@@ -6,6 +6,7 @@ import { Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import Dialog from '../../react-components/Dialog';
 import './styles.css'
+import {BackButton} from "../../react-components/Organization/Hook/backButton"
 
 
 import "../../css/animate.css";
@@ -72,6 +73,8 @@ class PublicPostDetailPage extends React.Component {
                 </button>
 
                 <Dialog isOpen={this.state.isOpen} onClose={(e) => this.setState({ isOpen: false})}>If you are interested in this opportunity, please log in.</Dialog>
+
+                <span className='Applybutton'><BackButton/></span>
 
                 
                 

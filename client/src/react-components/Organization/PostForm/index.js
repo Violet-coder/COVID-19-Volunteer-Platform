@@ -81,7 +81,7 @@ class PostForm extends React.Component {
     
   }
 }
-//data should be added to database on submit
+
   submit = () => {
     if (this.state.jobName===""||this.state.jobDescription===""||this.state.jobTitle===""||this.state.location==="") {
       return (

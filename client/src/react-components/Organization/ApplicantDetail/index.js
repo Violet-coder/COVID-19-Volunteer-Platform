@@ -7,151 +7,23 @@ import { ButtonGroup } from "@material-ui/core";
 import { BackButton } from '../Hook/backButton'
 import { acceptApplicant, rejectApplicant } from "../../../actions/decision";
 import "./styles.css";
-/*
-const volusers=[
-    {
-    id: 1,
-    firstName:"John", 
-    lastName:"Smith", 
-    email:"johnsmith@user.com",
-    links:"github.com/johnsmith",
-    location:"Toronto",
-    desc:"Software Engineer",
-    skills:{
-        analytics: false,
-        biology: false,
-        biotech: false,
-        community: false,
-        content: false,
-        data: false,
-        finance: true,
-        helpdesk: false,
-        manufacturing: false,
-        marketing: false,
-        mechanics: false,
-        IT: true,
-        anything: false,
-        },
-    availability:{
-        option1: true,
-        option2: false,
-        option3: false,
-        option4: false,
-        option5: false,
-    }
-    },
-    {
-    id:2,
-    firstName:"Maria", 
-    lastName:"Hernandz", 
-    email:"mariahernandez@user.com",
-    links:"github.com/maria",
-    location:"Toronto",
-    desc:"Data analytics",
-    skills:{
-        analytics: true,
-        biology: false,
-        biotech: false,
-        community: false,
-        content: false,
-        data: false,
-        finance: false,
-        helpdesk: false,
-        manufacturing: false,
-        marketing: true,
-        mechanics: false,
-        IT: true,
-        anything: false,
-        },
-    availability:{
-        option1: true,
-        option2: false,
-        option3: false,
-        option4: false,
-        option5: false,
-    }
-    },
-    {
-      id:3,
-      firstName:"Hannah", 
-      lastName:"Logan", 
-      email:"hannahlogan@user.com",
-      links:"github.com/hannah",
-      location:"Toronto",
-      desc:"Food industry",
-      skills:{
-          analytics: false,
-          biology: false,
-          biotech: false,
-          community: false,
-          content: false,
-          data: false,
-          finance: false,
-          helpdesk: true,
-          manufacturing: false,
-          marketing: true,
-          mechanics: false,
-          IT: true,
-          anything: false,
-          },
-      availability:{
-          option1: true,
-          option2: false,
-          option3: false,
-          option4: false,
-          option5: false,
-    }
-    },
-    {
-      id:4,
-      firstName:"Janice", 
-      lastName:"Bingham", 
-      email:"janicebingham@user.com",
-      links:"github.com/janice",
-      location:"Toronto",
-      desc:"Front-desk",
-      skills:{
-          analytics: false,
-          biology: false,
-          biotech: false,
-          community: true,
-          content: false,
-          data: false,
-          finance: false,
-          helpdesk: true,
-          manufacturing: false,
-          marketing: false,
-          mechanics: false,
-          IT: true,
-          anything: false,
-          },
-      availability:{
-          option1: true,
-          option2: false,
-          option3: false,
-          option4: false,
-          option5: false,
-      }
-      }
 
-]
-*/
 class ApplicantDetail extends React.Component {
   
-  //applicants information should be requested from the database
-  //rejecting or accepting an applicant should make a change to the database
   constructor(props) {
     super(props);
     this.state = {
       status: "",
       isLoading: false,
+      user: {}
     };
   }
   componentDidMount() {
     const app_id = this.props.matchProps.match.params.id
     let vol_id
-    let url = `/organization/get_application/${app_id}`  
+    let url = `/organization/get_applications/${app_id}`  
       fetch(url)
+      
       .then(res => {
           if (res.status === 200) {
               return res.json();
@@ -162,25 +34,27 @@ class ApplicantDetail extends React.Component {
       .then(json => {
         this.setState({ status: json.applicant_status });
         vol_id = json.applicant_id
+        url = `/organization/get_vol_profile/${vol_id}`
+        console.log(url)
+        fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get applications");
+            }
+        })
+        .then(user => {
+          this.setState({ user: user, isLoading: true });
+        })
+        .catch(error => {
+            console.log(error);
+        });
       })
       .catch(error => {
           console.log(error);
       });
-      url = `/organization/get_vol_profile/${vol_id}` 
-      fetch(url)
-      .then(res => {
-          if (res.status === 200) {
-              return res.json();
-          } else {
-              alert("Could not get applications");
-          }
-      })
-      .then(json => {
-        this.setState({ user: json, isLoading: true });
-      })
-      .catch(error => {
-          console.log(error);
-      });
+
 }
       checkState = (id) => {
         if (this.state.status==='rejected') {
@@ -242,12 +116,49 @@ class ApplicantDetail extends React.Component {
     render(){
         const app = this.props.app
         const app_id = this.props.matchProps.match.params.id
-        //const user = volusers.find((u) => u.id===parseInt(id))
+        let user = this.state.user
+        if (this.state.isLoading) {
+          user = this.state.user
+          if (!user.desc) {
+              user.desc=""
+          }
+          if(!user.links) {
+              user.links=""
+          }
+          if(!user.location){
+              user.location = ""
+          }
+          if (!user.skills){
+              user.skills = {
+                  analytics:false,
+                  biology:false,
+                  biotech:false,
+                  community:false,
+                  content:false,
+                  data:false,
+                  finance:false,
+                  helpdesk:false,
+                  manufacturing:false,
+                  marketing:false,
+                  mechanics:false,
+                  IT:false,
+                  anything:false
+              }
+          }
+          if (!user.availability){
+              user.availability={
+                  option1:false,
+                  option2:false,
+                  option3:false,
+                  option4:false,
+                  option5:false
+              }
+          }}
         return(
         
             <div>
                 <OrgNav app={app}/>
-                { this.state.isLoading ? <VolProfileForm user={this.state.user}/>:null }
+                { this.state.isLoading ? <VolProfileForm volunteer={user}/>:null }
                 <div className='buttons'>
                 {this.checkState(app_id)}
                 <BackButton/>

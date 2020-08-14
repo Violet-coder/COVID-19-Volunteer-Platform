@@ -1292,7 +1292,7 @@ app.post("/organization/reject/:app_id", (req, res) => {
         if(!application){
             res.status(404).send("404 Resource Not Found")
         } else {
-            application.applicant_status = 'accepted'  
+            application.applicant_status = 'rejected'  
             application.save().then((result) => {
                 res.send(result)
             })
@@ -1324,7 +1324,7 @@ app.post("/organization/accept/:app_id", (req, res) => {
         if(!application){
             res.status(404).send("404 Resource Not Found")
         } else {
-            application.applicant_status = 'rejected'
+            application.applicant_status = 'accepted'
             application.save().then((result) => {
                 res.send(result)
             })

@@ -8,6 +8,7 @@ import TitleSelect from '../Hook/jobTitle';
 import ErrorTextField from '../Hook/errorInput';
 import { editPost } from "../../../actions/postList";
 import { Link } from "react-router-dom";
+import { BackButton } from '../Hook/backButton'
 import "./styles.css";
 /* Component for Updating Post Form */
 class PostEditForm extends React.Component {
@@ -108,7 +109,7 @@ class PostEditForm extends React.Component {
     
   }
 }
-//data should be changed in database respectively on submit
+
   submit = (id) => {
     if (this.state.jobName===""||this.state.jobDescription===""||this.state.jobTitle===""||this.state.location==="") {
       return (
@@ -180,6 +181,9 @@ class PostEditForm extends React.Component {
         </div>
         <div className="contain">
           {this.submit(post_id)}
+      </div>
+      <div className="contain">
+      <BackButton/>
       </div>
       </div>
       <Footer/>

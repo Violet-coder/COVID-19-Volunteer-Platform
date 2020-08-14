@@ -72,7 +72,6 @@ class SelfPostDetail extends React.Component {
 }
     render(){
         const app = this.props.app
-      //detailed information should be requested from the database
         const {matchProps} = this.props
         const id = matchProps.match.params.id
         const addr = "/organization/post_edit/" + String(id)

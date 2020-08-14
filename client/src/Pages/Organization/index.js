@@ -11,27 +11,6 @@ class Organization extends React.Component{
   constructor(props) {
     super(props);
   }
-  //all these data below should be requested from the database
-  /*
-    state = {
-      posts: [
-        { name: 'Driver', description: "Deliver food", requirement: "driver's license, multi-task", title: "Driver", status: "Approved", date: "6/15/2020", location: "Toronto", id: 1},
-        { name: "Rider", description: "Deliver food", requirement: "self-motivated, repititive task", title: "Driver", status: "Approved", date: "6/16/2020", location: "Vancouver", id: 2}
-      ],
-      applicants: [
-        {name: 'Jonh Smith', jobId: 1, rank: 'A', status: 'pending', id: 1, jobName: 'Driver'},
-        {name: 'Maria Hernandz', jobId: 2, rank: 'B', status: 'pending', id: 2, jobName: 'Rider'},
-        {name: 'Hannah Logan', jobId: 2, rank: 'A', status: 'accepted', id: 3, jobName: 'Rider'},
-        {name: 'Janice Bingham', jobId: 1, rank: 'C', status: 'rejected', id: 4, jobName: 'Driver'},
-      ],
-      info: {
-        name: "Listening Society",
-        intro: "We deliver food. We need you!",
-        website: 'www.LS.ca',
-        email: "user2@user.com"
-      }
-    }
-    */
     render() {
       const app = this.props.app
       return (

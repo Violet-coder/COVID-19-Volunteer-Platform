@@ -5,8 +5,6 @@ import { ButtonGroup } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { acceptApplicant, rejectApplicant } from "../../../actions/decision";
 class SingleApplicant extends React.Component {
-  //applicants information should be requested from the database
-  //rejecting or accepting an applicant should make a change to the database
   state = {
     status: this.props.status
   }

@@ -5,7 +5,7 @@ import "./styles.css";
 class OrgDetail extends React.Component {
   render() {
     const {org} = this.props;
-    //organization information should be requested from the database
+
     return (
 		<div className="container" style={{marginTop:"60px"}}>
       

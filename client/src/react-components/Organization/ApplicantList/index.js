@@ -33,7 +33,6 @@ class ApplicantList extends React.Component {
       });
 }
   render() {
-    //applicants information should be requested from the database
     const app = this.props.app
     return (
     <div>

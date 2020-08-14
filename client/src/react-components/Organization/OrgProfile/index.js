@@ -14,8 +14,9 @@ class OrgProfile extends React.Component {
     super(props);
     this.state = {
         user: {},
-        isLoading: false,
-        posts: []
+        profileIsLoading: false,
+        posts: [],
+        postIsLoading: false
     }
     
 }
@@ -24,15 +25,14 @@ class OrgProfile extends React.Component {
     getOrgPosts(this.props.app.state.currentUserId, this)
 }
   render() {
-    //organizations information should be requested from the database
-    //const {posts, queueComponent} = this.props;
+
     const app = this.props.app
     return (
       <div>
         <OrgNav app={app} />
         <div id="fh5co-started">
         <div className="container">
-        { this.state.isLoading ? <>
+        { this.state.profileIsLoading ? <>
         <h1 className='h'>{this.state.user.name}</h1>
         <h3 className='h'>{this.state.user.info}</h3>
         <div className='h'>Website: {this.state.user.website}</div>
@@ -51,7 +51,7 @@ class OrgProfile extends React.Component {
         <div id="fh5co-blog" className="fh5co-bg-section">
         <div className="container" id='single-post'>
         <h1>My Posts</h1>
-        { this.state.isLoading ? <SelfPosts posts={this.state.posts}/>:null }
+        { this.state.postIsLoading ? <SelfPosts posts={this.state.posts}/>:null }
         </div>
         </div>
         <Footer/>

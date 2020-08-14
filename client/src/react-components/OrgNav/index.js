@@ -17,14 +17,14 @@ class OrgNav extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-2 text-left">
-                            <div id="fh5co-logo"><a href="/">Volunteer<span>.</span></a></div>
+                            <div id="fh5co-logo"><a href="/" id='a-header'>Volunteer</a><span>.</span></div>
                         </div>
-                        <div className="col-xs-10 text-right menu-1">
+                        <div className="col-xs-10 text-right" >
                             <ul>
-                                <li><Link to="/organization/profile">Profile</Link></li>
-                                <li><Link to="/organization/post">Post a New Job</Link></li>
-                                <li><Link to="/organization/applicants">All Applicants</Link></li>
-                                <li><a onClick={()=> this.logoutUser(app)}>Log Out</a></li>
+                                <Link to="/organization/profile"><li id='nav-li'>Profile</li></Link>
+                                <Link to="/organization/post"><li id='nav-li'>Post a New Job</li></Link>
+                                <Link to="/organization/applicants"><li id='nav-li'>All Applicants</li></Link>
+                                <li id='nav-li' onClick={()=> this.logoutUser(app)}>Log Out</li>
                             </ul>
                         </div>
                     </div>

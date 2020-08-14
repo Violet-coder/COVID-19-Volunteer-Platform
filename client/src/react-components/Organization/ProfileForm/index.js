@@ -1,11 +1,44 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import OrgNav from './../../OrgNav';
 import Footer from './../../Footer';
 import TextField from "@material-ui/core/TextField";
+import { withStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import { updateOrgProfile } from "../../../actions/updateOrgProfile";
 
+const styles = theme => ({
+  typography: {
+      // In Chinese and Japanese the characters are usually larger,
+      // so a smaller fontsize may be appropriate.
+      fontSize: 16,
+    },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width:300,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  inputResize: {
+      fontSize:16,
+      lineHeight:1.6,
+  },
+  labelResize: {
+      fontSize:14
+  },
+  fullTextField: {
+      
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+  },
+});
 /* Component for the Profile Form */
 class ProfileForm extends React.Component {
   handleInputChange = event => {
@@ -16,7 +49,7 @@ class ProfileForm extends React.Component {
       [name]: value
     });
   };
-  //default value should be requested from the database
+
   state = {
     name: "",
     email: "",
@@ -48,6 +81,7 @@ class ProfileForm extends React.Component {
 }
   render() {  
     const app = this.props.app
+    const { classes } = this.props;
     return (
       <div>
       <OrgNav app={app}/>
@@ -56,50 +90,104 @@ class ProfileForm extends React.Component {
       </div>
       <div id="fh5co-services" className="fh5co-bg-section border-bottom">
       { this.state.isLoading ? <div className="contain">
-        <TextField
-            name="name"
-            defaultValue={this.state.name}
-            className="input"
-            margin='normal'
-            variant="filled"
-            disabled
-            InputProps={{style:{fontSize: 20}}}
-            InputLabelProps={{style: {fontSize: 20} }}
-          />
-        <TextField
-            name="email"
-            defaultValue={this.state.email}
-            className="input"
-            margin='normal'
-            variant="filled"
-            disabled
-            InputProps={{style:{fontSize: 20}}}
-            InputLabelProps={{style: {fontSize: 20} }}
-          />
-        <TextField
-            name="website"
-            label="Website"
-            defaultValue={this.state.website || ""}
-            className="input"
-            margin='normal'
-            onChange={this.handleInputChange}
-            multiline
-            variant="filled"
-            InputProps={{style:{fontSize: 20}}}
-            InputLabelProps={{style: {fontSize: 20} }}
-          />
-        <TextField
-          name="intro"
-          defaultValue={this.state.intro || ""}
-          className="input"
-          margin='normal'
-          onChange={this.handleInputChange}
+      <form className={classes.container} noValidate autoComplete="off">
+      <TextField
+          label="Name"
+          className={classes.textField}
+          defaultValue={this.state.name || ""}
+          margin="normal"
+          variant="outlined"
+          disabled
           multiline
-          variant="filled"
-          InputProps={{style:{fontSize: 20}}}
-          InputLabelProps={{style: {fontSize: 20} }}
-          label="Introduction"
+          rows={1}
+          InputProps={
+              {
+                  classes:{
+                      input: classes.inputResize,
+                  },
+                  readOnly:true,
+              }
+          }
+          InputLabelProps={{
+              classes:{
+                  root: classes.labelResize,
+              }
+          }}
         />
+      <TextField
+          label="Email"
+          disabled
+          multiline
+          className={classes.textField}
+          defaultValue={this.state.email || ""}
+          margin="normal"
+          variant="outlined"
+          rows={1}
+          InputProps={
+              {
+                  classes:{
+                      input: classes.inputResize,
+                  },
+                  readOnly:true,
+              }
+          }
+          InputLabelProps={{
+              classes:{
+                  root: classes.labelResize,
+              }
+          }}
+        />
+      <TextField
+          name="website"
+          label="Website"
+          className={classes.fullTextField}
+          defaultValue={this.state.website || ""}
+          onChange={this.handleInputChange}
+          margin="normal"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={2}
+          InputProps={
+              {
+                  classes:{
+                      input: classes.inputResize,
+                  },
+
+              }
+          }
+          InputLabelProps={{
+              classes:{
+                  root: classes.labelResize,
+              }
+          }}
+        />
+    <TextField
+          name="intro"
+          label="Introduction"
+          className={classes.fullTextField}
+          defaultValue={this.state.intro || ""}
+          onChange={this.handleInputChange}
+          fullWidth
+          multiline
+          rows={4}
+          margin="normal"
+          variant="outlined"
+          InputProps={
+              {
+                  classes:{
+                      input: classes.inputResize,
+                  },
+
+              }
+          }
+          InputLabelProps={{
+              classes:{
+                  root: classes.labelResize,
+              }
+          }}
+        />
+        </form>
         </div>:null }
         <div className="contain">
           <Link to="/organization/profile">
@@ -121,4 +209,7 @@ class ProfileForm extends React.Component {
   }
 }
 
-export default ProfileForm;
+ProfileForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(ProfileForm);

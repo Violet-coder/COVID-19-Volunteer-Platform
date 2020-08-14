@@ -7,7 +7,7 @@ import "./styles.css";
 class SelfPosts extends React.Component {
   render() {
     const { posts } = this.props;
-    //all the posts should be requested from the database
+
     return (
       <>
 

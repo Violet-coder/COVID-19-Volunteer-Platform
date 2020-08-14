@@ -8,8 +8,7 @@ import {uid} from "react-uid";
 import { TableBody } from "@material-ui/core";
 /* Component for a Single Post */
 class SinglePost extends React.Component {
-  //post information should be requested from the database
-  //deleting a post should delete the data in the database
+
   constructor(props) {
     super(props);
     this.state = {
@@ -55,9 +54,7 @@ class SinglePost extends React.Component {
   render() {
 
     const { post } = this.props;
-    //const filteredApplicants = queueComponent.state.applicants.filter(applicant => {
-      //return applicant.jobId===post.id});
-    //const filteredApplicants = this.state.applications
+
     const addr = "/organization/posts/"+String(post._id)
     return (
       <>

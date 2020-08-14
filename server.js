@@ -1076,6 +1076,7 @@ app.get('/organization/get_applicants/:id', (req, res) => {
 
 	const id = req.params.id
     const applicants = []
+    const applications = []
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send('404 Resource Not Found')
 		return;
@@ -1084,17 +1085,32 @@ app.get('/organization/get_applicants/:id', (req, res) => {
 		if(!organization){
 			res.status(404).send('404 Resource Not Found')
 		} else {
-			for (var i in organization.posts) {
-                Post.findById(organization.posts[i]).then((post)=>{
+            const postList = new Array(organization.posts)
+			for (var item in postList[0]) {
+                Post.findById(postList[0][item]).then((post)=>{
                     if (!post) {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        applicants.push(post)
+                        applicants.push.apply(applicants, post.applications)
+                        if (item == postList[0].length-1) {
+                            for (var applicant of applicants) {
+                                Application.findById(applicant).then((application)=>{
+                                    applications.push(application)
+                                    if (applications.length === applicants.length) {
+                                        res.send(applications)
+                                    }
+                                })
+                            }
+
+                        }
+
+                        
+                        
                     }
                 })
             }
-            res.send(applicants)
+            
 		}
 	})          
 	.catch((error) => {

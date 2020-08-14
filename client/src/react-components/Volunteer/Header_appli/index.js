@@ -1,6 +1,6 @@
 import React from "react";
 
-// import "./styles.css";
+import "./styles.css";
 
 /* The Header Component */
 class Header_appli extends React.Component {
@@ -14,8 +14,8 @@ class Header_appli extends React.Component {
 		<div className="container">
 			<div className="row animate-box">
 				<div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<span>{ subtitle }</span>
-					<h2>{ title }</h2>			
+					<span id='header-sub'>{ subtitle }</span>
+					<h2 id='header-title'>{ title }</h2>			
 				</div>
 			</div>
 		</div>

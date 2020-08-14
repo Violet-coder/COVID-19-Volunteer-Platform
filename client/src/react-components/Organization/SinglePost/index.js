@@ -65,7 +65,7 @@ class SinglePost extends React.Component {
         </p>
         </td>
         <td>
-        <p className='single-post'>{post.status} on {post.date}</p>
+        <p className='single-post'>{post.status} on {post.date.slice(0, 10)}</p>
         </td>
         <td className='button'>
         <Button

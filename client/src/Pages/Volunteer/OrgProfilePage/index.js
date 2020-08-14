@@ -58,7 +58,7 @@ class OrgProfilePage extends React.Component {
                 <OrgDetail org={this.state.org}/>
                 </div>
                 </div>
-                <span className='Applybutton'><BackButton/></span>
+                
                 
             </div>
         )

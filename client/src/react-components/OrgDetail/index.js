@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import {BackButton} from "../Organization/Hook/backButton"
 
 /* The Organization Profile Component */
 class OrgDetail extends React.Component {
@@ -26,6 +27,8 @@ class OrgDetail extends React.Component {
       <hr/>
       <p>{org.website}</p>
 			</div>
+
+      <span className='Applybutton'><BackButton/></span>
       
     </div>
     );

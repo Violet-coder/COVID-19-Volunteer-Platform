@@ -44,6 +44,27 @@ function isMongoError(error) { // checks for first error returned by promise rej
 /*** API Routes below ************************************/
 // NOTE: The JSON routes (/volunteers) are not protected in this react server (no authentication required). 
 //       You can (and should!) add this using similar middleware techniques we used in lecture.
+const authenticate = (req, res, next) => {
+        if (req.session.user) {
+            Volunteer.findById(req.session.user).then((vol) => {
+                if (!vol) {
+                    Organization.findById(req.session.user).then((org) =>{
+                        if(!org){
+                           return Promise.reject() 
+                        } else {
+                            next()
+                        }
+                    })                   
+                } else {
+                    next()
+                }
+            }).catch((error) => {
+                res.status(401).send("Unauthorized")
+            })
+        } else {
+            res.status(401).send("Unauthorized")
+        }
+}
 
 /*** Session handling **************************************/
 // Create a session cookie
@@ -636,8 +657,9 @@ app.post("/volunteer", (req, res) => {
     );
 });
 // a GET for getting vol profile from a particulat volunteer
-app.get('/volunteer/profile/:id', (req, res) => {
-	// Add code here
+app.get('/volunteer/profile/:id', authenticate, (req, res) => {
+    // Add code here
+
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -665,7 +687,7 @@ app.get('/volunteer/profile/:id', (req, res) => {
 
 
 // a POST for updating profile info to a particular volunteer
-app.post("/volunteer/update/:id", (req, res) => {
+app.post("/volunteer/update/:id", authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.id
     
@@ -706,7 +728,7 @@ app.post("/volunteer/update/:id", (req, res) => {
 });
 
 // a POST request for adding an application to a particular volunteer
-app.post('/volunteer/application/:id', (req, res) => {
+app.post('/volunteer/application/:id', authenticate, (req, res) => {
     const id = req.params.id
     const post_id = req.body.post_id
     var applicant_name;
@@ -763,7 +785,7 @@ app.post('/volunteer/application/:id', (req, res) => {
 })
 
 // a GET request for getting application list of a particular volunteer
-app.get('/volunteer/applicatoinlist/:id', (req, res) => {
+app.get('/volunteer/applicatoinlist/:id', authenticate, (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -790,7 +812,7 @@ app.get('/volunteer/applicatoinlist/:id', (req, res) => {
 })
 
 // a GET request for getting a particular application of a particular volunteer
-app.get('/volunteer/getapplication/:id/:post_id', (req, res) => {
+app.get('/volunteer/getapplication/:id/:post_id', authenticate, (req, res) => {
 	const vol_id = req.params.id
     const post_id = req.params.post_id
 	if (!ObjectID.isValid(vol_id)) {
@@ -939,7 +961,7 @@ app.post("/organization", (req, res) => {
     );
 });
 
-app.get('/organization/get_profile/:id', (req, res) => {
+app.get('/organization/get_profile/:id', authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -967,7 +989,7 @@ app.get('/organization/get_profile/:id', (req, res) => {
 })
 
 // a POST for updating profile info to a particular organization
-app.post("/organization/update_profile/:id", (req, res) => {
+app.post("/organization/update_profile/:id",authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.id
 
@@ -1000,7 +1022,7 @@ app.post("/organization/update_profile/:id", (req, res) => {
     })
 });
 
-app.post("/organization/post/:id", (req, res) => {
+app.post("/organization/post/:id",authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.id
     if (mongoose.connection.readyState != 1) {
@@ -1066,7 +1088,7 @@ app.post("/organization/post/:id", (req, res) => {
 	})
 });
 
-app.get('/organization/get_applicants/:id', (req, res) => {
+app.get('/organization/get_applicants/:id', authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -1119,7 +1141,7 @@ app.get('/organization/get_applicants/:id', (req, res) => {
 
 })
 
-app.post("/organization/edit_post/:post_id", (req, res) => {
+app.post("/organization/edit_post/:post_id", authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.post_id
 
@@ -1157,7 +1179,7 @@ app.post("/organization/edit_post/:post_id", (req, res) => {
     })
 });
 
-app.post("/organization/delete_post/:post_id", (req, res) => {
+app.post("/organization/delete_post/:post_id",authenticate, (req, res) => {
     const post_id = req.params.post_id
     if (!ObjectID.isValid(post_id)) {
 		res.status(404).send('Resource not found')
@@ -1198,7 +1220,7 @@ app.post("/organization/delete_post/:post_id", (req, res) => {
     
 });
 
-app.get('/organization/get_vol_profile/:vol_id', (req, res) => {
+app.get('/organization/get_vol_profile/:vol_id', authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -1225,7 +1247,7 @@ app.get('/organization/get_vol_profile/:vol_id', (req, res) => {
 
 })
 
-app.get('/organization/get_posts/:id', (req, res) => {
+app.get('/organization/get_posts/:id', authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -1265,7 +1287,7 @@ app.get('/organization/get_posts/:id', (req, res) => {
 
 })
 
-app.get('/organization/get_applications/:app_id', (req, res) => {
+app.get('/organization/get_applications/:app_id',authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -1291,7 +1313,7 @@ app.get('/organization/get_applications/:app_id', (req, res) => {
 
 })
 
-app.post("/organization/reject/:app_id", (req, res) => {
+app.post("/organization/reject/:app_id", authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.app_id
 
@@ -1323,7 +1345,7 @@ app.post("/organization/reject/:app_id", (req, res) => {
     })
 });
 
-app.post("/organization/accept/:app_id", (req, res) => {
+app.post("/organization/accept/:app_id", authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.app_id
 
@@ -1354,10 +1376,32 @@ app.post("/organization/accept/:app_id", (req, res) => {
         }
     })
 });
+
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+	if (req.session.user) {
+		User.findById(req.session.user).then((user) => {
+			if (!user) {
+				return Promise.reject()
+			} else {
+				req.user = user
+				next()
+			}
+		}).catch((error) => {
+			res.status(401).send("Unauthorized")
+		})
+	} else {
+		res.status(401).send("Unauthorized")
+	}
+}
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
+<<<<<<< HEAD
 //app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+=======
+app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+>>>>>>> dcd5d94141fad3332e3792f8de6e4007b7b48620
 
 
 // All routes other than above will go to index.html

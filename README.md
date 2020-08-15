@@ -9,10 +9,12 @@ panganqi - Anqi Pang
 In order to fight against COVID-19 pandemic, we are devoted to providing a platform for connecting passionate people to contribute together. This web application, COVID-19 Volunteer Platform, is for volunteers who are looking for social volunteering opportunities to help people affected by COVID-19 and organizations that are looking for responsible volunteers. Our web application helps to transfer information between volunteers and organizations. People who want to serve the society as volunteers during this difficult time could browse our website to learn about current volunteering opportunities. Organizations that are hunting for volunteers could post their recruitment information. Our website supports to display information from responsible organizations and prospective volunteers in order to unite people more efficiently in this difficult time.
 
 ## How to Use
-### Download&Install
-Please download the ZIP and unzip it.
-Open the folder "team20-master" in terminal and run **npm install**.
-Run the app using the command **npm start**.
+### Deployed APP Link
+https://frozen-journey-02316.herokuapp.com
+
+### Note About Session
+Please note that the session duration is 15 minutes. You will redirected to the login page after the seesion expires.
+
 ### Login:
 #### Volunteer: 
 email: user@user.com  
@@ -73,18 +75,17 @@ Click the VOLUNTEERS button at the administration page and you will enter the vo
 Clicking the View/Edit button at each row allows the admin user to view or modify a volunteer’s profile. Please note that admin can only modify part of the volunteer’s profile information, including location, links, and description. After editing, please click the Update Profile button at the bottom of the page, a success message will pop up and the user profile is updated.
 
 ##### Delete Volunteer User:
-If you click the Delete button at the last column. A confirming window will  pop up and the selected user will be deleted if you choose “Yes”.
-Organizations Management:
-Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
+If you click the Delete button at the last column. A confirming window will  pop up and the selected user will be deleted if you choose “Yes”. Once the volunteer is deleted, the volunteer's account and all the applications that he/she has made will be removed.The post he/she has applied will remove the volunteer's data. 
+ 
 
 #### Organizations Management:
 Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
 
 ##### View/Edit Organization Profile: 
-Similar to volunteer management, the admin can also edit the organization profile information except email.
+Similar to volunteer management, the admin can also edit the organization profile information except the email and organization name.
 
 ##### Delete Organization User: 
-You can delete an organization user by clicking the Delete button.
+You can delete an organization user by clicking the Delete button. It will delete the organization's account, its published posts, and all the applications that belongs to the posts.
 
 #### Posts Management:
 Go back to the Administration Entry page and click the third entry “POSTS”. You will enter the post management page which displays a list of posts. For each post, there are three buttons “Approved/Approve”, View and Delete.
@@ -92,13 +93,102 @@ Go back to the Administration Entry page and click the third entry “POSTS”. 
 ##### Approve Post: 
 The “Approved/Approve” button shows the post status. When its color is blue, it displays “Approved”; when it’s red, the post status is under review. You can click the red “Approve” button to make the post become approved to be accessible to the public.
 
-##### Create New Post: 
-There is a button at the right top of the navigation bar which redirects you to the publishing post page. After filling in the post form and submit, the new post will appear at the post list.
-
 ##### View/Delete Post: 
-The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts.
+The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts. Deleting a post will remove all the post information and the applications that belongs to the post.
+
 
 ## Overview of the routes 
+The following is the routes in the server.js. For each route, there is a description of it method and the URL used for the deployed app. You could use the provided URL to test the routes, since we have included the params needed for the dynammic routes.
+
+### Authentication Resources Routes
+#### A POST route for registration
+POST: "/users/register" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/register
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a Volunteer or Organization Request including registration information.<br/>
+Please send the request as follows.
+
+To register a volunteer:<br>
+```json
+{
+    "firstName":"Anqi",
+    "lastName": "Pang",
+    "email":"anqitest@user.com",
+    "password":"12345",
+    "type":"volunteer"
+}
+```
+To register an organization:<br>
+```json
+{
+    "name":"test organization",
+    "email":"anqitest2@user.com",
+    "password":"12345",
+    "type":"organization"
+}
+```
+
+What they would return: a docment saved in database <br/>
+```json
+{
+    "type": "volunteer",
+    "_id": "5f3869ad6f93f10017f7b4a4",
+    "firstName": "Anqi",
+    "lastName": "Pang",
+    "email": "anqipang@user.com",
+    "password": "$2a$10$iY5FlNPiJMnzN57qPiBMju1mI2k3KGvUn0xjlaLJx42NZ008u8Lam",
+    "__v": 0
+}
+```
+
+#### A POST route for login
+POST: "/users/login" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/login
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a Volunteer or Organization Request including email and password.<br/>
+Please send the request as follows.
+```json
+{
+    "email":"user@user.com",
+    "password":"user"
+}
+```
+
+What they would return: if login successfully, it returns a json with current user id and type; otherwise it will return a message. <br/>
+Login success:
+{
+    "currentUser": "user@user.com",
+    "currentUserId": "5f38420164f1290017d32285",
+    "type": "volunteer"
+}
+<br>
+Login failure: {
+    "message": "Email or password is not correct."
+}
+
+
+
+#### A GET route for logout
+GET: "/users/logout" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/logout
+What they are used: to logout the current user <br/>
+What data they expect to be sent: a get request<br/>
+What they would return: if logout fails, it will returns a response with status 500, otherwise it returns a empty response.
+
+#### A GET route to check session
+GET: "/users/check-session" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/check-session
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a get request<br/>
+What they would return: send a json response including the current user email, id and type.
+```json
+{
+    "currentUser": null,
+    "currentUserId": null,
+    "type": null
+}
+```
+
 
 ### Volunteer resource routes
 #### a GET for getting vol profile from a particulat volunteer
@@ -414,9 +504,6 @@ What they would return: an array with all the posts which contains the keyword i
     }
 ]
 ```
-
-
-
 
 
 

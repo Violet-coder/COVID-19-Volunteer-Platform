@@ -1357,7 +1357,11 @@ app.post("/organization/accept/:app_id", (req, res) => {
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
+<<<<<<< HEAD
 //app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+=======
+app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+>>>>>>> 87fd9378f2d203970c868dc0f42a6bcb75ba54c9
 
 
 // All routes other than above will go to index.html

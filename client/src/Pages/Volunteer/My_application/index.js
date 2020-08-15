@@ -31,8 +31,7 @@ class My_application extends React.Component{
     componentDidMount() {
         const id = this.props.app.state.currentUserId
         const url = `/volunteer/applicatoinlist/${id}`
-        console.log("idyayayay", id)
-        console.log("url", url)
+        
         
         fetch(url)
         .then(res => {
@@ -44,10 +43,10 @@ class My_application extends React.Component{
         })
         .then(json => {
             this.setState({ applications: json, isLoading: true });
-            // console.log("state this time", this.state)
+           
         })
         .catch(error => {
-            console.log(error);
+            console.log("Internal error");
         });
     }
     

@@ -10,7 +10,7 @@ import { logout } from '../../../actions/login';
 
 class Navbar extends React.Component{
 	logoutUser = (app) => {
-		console.log("log out!1")
+		
         this.props.history.push("/");
         logout(app);
 	};

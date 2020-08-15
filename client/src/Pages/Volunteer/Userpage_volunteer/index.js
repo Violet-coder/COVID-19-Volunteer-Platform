@@ -18,7 +18,6 @@ class Userpage_volunteer extends React.Component{
     constructor(props) {
         super(props);
         //this.props.history.push('/volunteer/userpage')
-        console.log('userpage history', this.props.history)
         this.state = {
             posts: [],
             isLoading: false

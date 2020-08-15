@@ -44,8 +44,7 @@ export const updateVolProfile = (user, info, userid) => {
   newInfo.skills=info.skills
   newInfo.availability=info.availability
 
-  console.log("url", url)
-  console.log("newInfo",newInfo)
+  
 
   
 

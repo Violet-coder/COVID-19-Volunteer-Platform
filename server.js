@@ -1357,6 +1357,8 @@ app.post("/organization/accept/:app_id", (req, res) => {
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
+app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {

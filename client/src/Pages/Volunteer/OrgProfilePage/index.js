@@ -25,7 +25,7 @@ class OrgProfilePage extends React.Component {
     }
     componentDidMount() {   
         const id = this.props.matchProps.match.params.id
-        console.log("company id",id )
+       
         const url = `/organization/get_profile/${id}`
      
         fetch(url)

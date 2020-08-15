@@ -27,7 +27,7 @@ export const findRecommendedPost = (id, vol) => {
         console.log(error);
     });
 
-    console.log("equipedSkills", equipedSkills)
+    
     
     const url1 = "/posts"
     fetch(url1)
@@ -41,17 +41,17 @@ export const findRecommendedPost = (id, vol) => {
     .then(json => {
         // the resolved promise with the JSON body
         const posts = new Array(json)
-        console.log("posts", posts[0])
+        
         for (var post of posts[0]){
             for (var skill of equipedSkills){
                 if (post.title === skill){
                     RecommendedPost.push(post)
-                    console.log("matched post", post)
+                    
                 }
             }
             
         }
-        console.log("RecommendedPost", RecommendedPost)
+       
         
         
         vol.setState({ posts: RecommendedPost, isLoading: true });

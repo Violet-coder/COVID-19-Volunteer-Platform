@@ -11,7 +11,7 @@ class Header extends React.Component {
 	}
 
 	handleInputChange = (event) => {
-        // console.log("input change")
+        
         const target = event.target;
         const value = target.value;
         const id = target.id;
@@ -23,7 +23,7 @@ class Header extends React.Component {
 	
 	validateForm= () => {
 		if(! this.state.postname){
-			console.error("invalid form")
+			
 			return false
 		}
 		else

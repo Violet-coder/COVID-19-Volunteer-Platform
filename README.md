@@ -98,5 +98,64 @@ There is a button at the right top of the navigation bar which redirects you to 
 ##### View/Delete Post: 
 The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts.
 
+## Overview of the routes 
+
+### Volunteer resource routes
+#### a GET for getting vol profile from a particulat volunteer
+Get: '/volunteer/profile/:id'<br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f38420164f1290017d32285 <br/>
+What they are used: to get volunteer profile from a particulat volunteer <br/>
+What data they expect to be sent: a Volunteer Object <br/>
+What they would return: <br/>
+{
+    "type": "volunteer",
+    "_id": "5f38420164f1290017d32285",
+    "firstName": "Ziyue",
+    "lastName": "Zhang",
+    "email": "user@user.com",
+    "password": "$2a$10$etqAkLL06ufWQdKzQ3XBkOQxaRF4wGJkqAKRJXV/fi9K6zba6FZjS",
+    "__v": 0,
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false,
+        "_id": "5f38424564f1290017d32287"
+    },
+    "desc": "I am a student.",
+    "links": "user@user.com",
+    "location": "",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false,
+        "_id": "5f38424564f1290017d32286"
+    }
+}
+
+#### a POST for updating profile info to a particular volunteer
+Post Request: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f38420164f1290017d32285 <br/>
+What they are used: to get volunteer profile from a particulat volunteer <br/>
+What data they expect to be sent: a Volunteer Object <br/>
+What they would return: <br/>
+
+
+
+
+
+
+
+
 
 

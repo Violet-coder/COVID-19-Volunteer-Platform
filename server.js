@@ -1357,16 +1357,82 @@ app.post("/organization/accept/:app_id", (req, res) => {
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
-<<<<<<< HEAD
 //app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
-=======
-app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
->>>>>>> 87fd9378f2d203970c868dc0f42a6bcb75ba54c9
 
 
 // All routes other than above will go to index.html
+app.get("/publicpost/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/orgProfile/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+
 app.get("/volunteer/post/:id", (req, res) => {
-    console.log("dynamic")
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/admin/volunteers/volprofile/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/admin/volunteers/editvolprofile/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/admin/organizations/orgprofile/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/admin/organizations/editorgprofile/:id", (req, res) => {
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+app.get("/admin/posts/:id", (req, res) => {
     const id = req.params.id
 
     if (!ObjectID.isValid(id)) {
@@ -1379,11 +1445,12 @@ app.get("/volunteer/post/:id", (req, res) => {
 
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/","/login","/signGuide","/orgSignUp","/volSignUp","/publicposts","/publicpost/:id", "/searchresult","/orgProfile/:id", 
-    "/volunteer", "/volunteer/userpage","/volunteer/myapplication","/volunteer/myprofile", "/volunteer/editprofile", "/volunteer/post/:id", "/volunteer/searchresult", "/volunteer/seeall"];
+    const goodPageRoutes = ["/","/login","/signGuide","/orgSignUp","/volSignUp","/publicposts", "/searchresult",
+    "/volunteer", "/volunteer/userpage","/volunteer/myapplication","/volunteer/myprofile", "/volunteer/editprofile", "/volunteer/searchresult", "/volunteer/seeall",
+    "/organization", "/organization/profile","organization/post","/organization/applicants", "organization/update", 
+    "/admin/volunteers","/admin/organizations", "/admin/posts","/admin/entry"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
-        console.log("req url", req.url)
         res.status(404);
     }
 

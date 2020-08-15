@@ -52,7 +52,6 @@ class OrgProfileForm extends React.Component{
     render(){
         const {classes} = this.props;
         const {
-            _id,
             name,
             email,
             website,

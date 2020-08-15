@@ -30,7 +30,6 @@ export const adminUpdateOrgProfile = (info, userId) => {
 
 
   export const getOrgProfile = (orgComp, userId) => {
-    console.log("user id",userId)
     const url =`/admin/organization/${userId}`
 
     fetch(url)

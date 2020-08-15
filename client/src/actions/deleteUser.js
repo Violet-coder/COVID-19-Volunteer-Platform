@@ -6,7 +6,7 @@ export const deleteUser = (queue, user) => {
             return u !== user;
         }
     );
-    //console.log(filteredUser)
+
     const filteredOrganizations= queue.state.organizations.filter(
         u => {
             return u !== user;
@@ -28,7 +28,7 @@ export const adminDeleteOrganization = (orgComp, org) =>{
             return o._id !== org._id;
         }
     );    
-    console.log("filtered org",filteredOrg)
+
     const url = `/admin/organization/delete/${org._id}`
 
     const request = new Request(url, {
@@ -43,7 +43,7 @@ export const adminDeleteOrganization = (orgComp, org) =>{
     fetch(request)
         .then(function(res){
             if(res.status === 200){
-                console.log("set state")
+
                 orgComp.setState({
                     organizations: filteredOrg,
                     dataIsReturned: true

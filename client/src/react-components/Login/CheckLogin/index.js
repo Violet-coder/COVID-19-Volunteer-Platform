@@ -29,7 +29,7 @@ class CheckLogin extends React.Component {
 
         else {
             const error="Email or password is not correct."
-            //alert('login failed');
+            console.log(error);
         }
 
     }

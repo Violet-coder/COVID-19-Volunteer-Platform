@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { UID, uid } from 'react-uid';
+import { uid } from 'react-uid';
 import {Link} from "react-router-dom";
 import {deleteUser} from "../../../../actions/deleteUser";
 class OrganizationList extends React.Component {

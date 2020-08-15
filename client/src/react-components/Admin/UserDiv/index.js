@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { UID, uid } from 'react-uid';
+import { uid } from 'react-uid';
 import {Link} from "react-router-dom";
 import {deleteUser} from "../../../actions/deleteUser";
 class UserDiv extends React.Component {

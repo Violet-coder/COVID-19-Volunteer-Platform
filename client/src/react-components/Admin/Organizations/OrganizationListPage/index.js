@@ -1,7 +1,6 @@
 import React from 'react';
 
 import AdminNav from '../../AdminNav';
-import OrganizationList from '../OrganizationList';
 import OrganizationTable from '../OrganizationTable';
 
 class OrganizationListPage extends React.Component{
@@ -34,7 +33,6 @@ class OrganizationListPage extends React.Component{
 
 
     render(){
-        //In phase 2 get data from database instead
         const organizations = this.state.organizations
         const app = this.props.app
 

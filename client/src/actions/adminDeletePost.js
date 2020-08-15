@@ -7,9 +7,7 @@ export const adminDeletePost = (queue, post) =>{
             return p._id !== post._id;
         }
     );
-    //console.log("filetered post", filteredPost)
     
-
     const url = `/admin/post/delete/${post._id}`
 
     const request = new Request(url, {

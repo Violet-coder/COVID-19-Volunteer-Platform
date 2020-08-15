@@ -23,9 +23,6 @@ class AdminNav extends React.Component {
                                 <li><Link to={"/admin/entry"} >Home</Link></li>
                                 <li><Link onClick={() =>{
                                     this.logoutUser(app)} }>Log Out</Link></li>
-                                <li>
-                                    <Link to='/admin/publishpost'><button type="submit" className="btn btn-primary navBtn">Create New Post</button></Link>
-                                </li>
         
                             
                             </ul>

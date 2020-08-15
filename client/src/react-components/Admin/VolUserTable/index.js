@@ -1,7 +1,7 @@
 import React from 'react';
 import {uid} from 'react-uid';
 import {Link} from "react-router-dom";
-import {deleteUser} from "../../../actions/deleteUser";
+import {adminDeleteVolunteer} from "../../../actions/deleteUser";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -125,7 +125,7 @@ export default function VolUserTable(props) {
                       </TableCell>
                       <TableCell className={classes.singleCell} key={columns[4].id}> 
                         
-                          <button  type="submit" className="btn btn-primary"  onClick={deleteUser.bind(this, props.volComp, vol)}>Delete</button>
+                          <button  type="submit" className="btn btn-primary"  onClick={adminDeleteVolunteer.bind(this, props.volComp, vol)}>Delete</button>
                       </TableCell>
                 </TableRow>
               );

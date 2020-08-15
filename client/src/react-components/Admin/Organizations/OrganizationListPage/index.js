@@ -2,7 +2,8 @@ import React from 'react';
 
 import AdminNav from '../../AdminNav';
 import OrganizationTable from '../OrganizationTable';
-
+import {BackButton} from '../../Hook/backButton';
+import './styles.css'
 class OrganizationListPage extends React.Component{
     constructor(props) {
         super(props);
@@ -33,7 +34,8 @@ class OrganizationListPage extends React.Component{
 
 
     render(){
-        const organizations = this.state.organizations
+        let organizations = this.state.organizations
+        organizations = organizations.filter(org => org.type !== "admin")
         const app = this.props.app
 
 
@@ -42,6 +44,7 @@ class OrganizationListPage extends React.Component{
                 <AdminNav app={app} />
                 {this.state.dataIsReturned ?
                 <OrganizationTable organizations={organizations} orgComp = {this} /> : null}
+                <div className='fh5co-bg-section'><div id='update-button'><BackButton /></div></div>
             </div>
         )
     }

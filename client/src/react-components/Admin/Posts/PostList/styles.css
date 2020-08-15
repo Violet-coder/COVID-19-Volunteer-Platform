@@ -25,3 +25,12 @@
     pointer-events: none;
     cursor: not-allowed;
   }
+
+#update-button {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}

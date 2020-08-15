@@ -50,14 +50,14 @@ class OrgSignUp extends React.Component {
                 break;
             case 'password':
                 errors.password = 
-                    value.length < 8
-                        ? "Password must be 8 characters long."
+                    value.length < 4
+                        ? "Password must be 4 characters long."
                         : '';
                 break;
             case 'confirmPassword':
                 errors.confirmPassword =
-                    value.length < 8
-                    ? "Password must be 8 characters long."
+                    value.length < 4
+                    ? "Password must be 4 characters long."
                     : '';
                 break;
             default:

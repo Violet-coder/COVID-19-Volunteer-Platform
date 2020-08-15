@@ -59,6 +59,47 @@ export const adminDeleteOrganization = (orgComp, org) =>{
         )
     }
 
+}
+
+
+
+export const adminDeleteVolunteer = (volComp, vol) =>{
+    const filteredVol = volComp.state.volunteers.filter(
+        o => {
+            return o._id !== vol._id;
+        }
+    );    
+
+    const url = `/admin/volunteer/delete/${vol._id}`
+
+    const request = new Request(url, {
+        method: "post",
+        body:"",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+    if(window.confirm('Are you sure to delete this volunteer?')){
+    fetch(request)
+        .then(function(res){
+            if(res.status === 200){
+
+                volComp.setState({
+                    volunteers: filteredVol,
+                    dataIsReturned: true
+                })
+            
+            } else {
+                console.log("Error: cannot delete this volunteer.")
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+            }
+        )
+    }
+
 
 
 

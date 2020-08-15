@@ -89,7 +89,7 @@ app.post("/users/register", (req, res) => {
     
 
     if(req.body.type === 'volunteer'){
-        log("register as vol")
+
         const volunteer = new Volunteer({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -141,58 +141,50 @@ app.post("/users/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}  
 
-    log(email, password);
-    // Use the static method on the User model to find a user
-    // by their email and password
-    /* Volunteer.findByEmailPassword(email, password)
-        .then(user => {
-            // Add the user's id to the session cookie.
-            // We can check later if this exists to ensure we are logged in.
-            console.log("find user",user)
-            req.session.user = user._id;
-            req.session.email = user.email;
-            req.session.type = user.type
-            res.send({ currentUser: user.email,
-                       currentUserId: user._id,
-                       type: user.type});
-        })
-        .catch(error => {
-            res.status(400).send()
-        }); */
-        async function promiseAsynx(email, password)
-        {
-            const promiseArray = [Volunteer.findByEmailPassword(email, password), Organization.findByEmailPassword(email, password)]
-            const results = await Promise.all(promiseArray.map(p => p.catch(e => e)))
-            return results
+
+    async function promiseAsynx(email, password){
+        const promiseArray = [Volunteer.findByEmailPassword(email, password), Organization.findByEmailPassword(email, password)]
+        const results = await Promise.all(promiseArray.map(p => p.catch(e => e)))
+        return results
+    }
+
+    promiseAsynx(email, password).then(results =>
+    {
+
+        const validResult = results[0] || results[1]
+
+        if(validResult){
+            req.session.user = validResult._id
+            req.session.email = validResult.email
+            req.session.type = validResult.type
+            res.send({
+                currentUser: validResult.email,
+                currentUserId: validResult._id,
+                type: validResult.type
+            })
         }
-        promiseAsynx(email, password).then(results =>
-        {
-            log("results",results)
-            const validResult = results[0] || results[1]
-            log('valide',validResult)
-            if(validResult){
-                req.session.user = validResult._id
-                req.session.email = validResult.email
-                req.session.type = validResult.type
-                res.send({
-                    currentUser: validResult.email,
-                    currentUserId: validResult._id,
-                    type: validResult.type
-                })
-            }
+    }
+    ).catch((error) => {
+        log(error)
+        if(isMongoError(error)){
+            res.status(500).send("Internal server error")
+        } else {
+            res.status(400).send("Bad Request")
         }
-        ).catch((error) => {
-            log(error)
-        })
-        
-        
+    })
+    
+    
 });
 
 // A route to logout a user
 app.get("/users/logout", (req, res) => {
     // Remove the session
-    log('remove session')
     req.session.destroy(error => {
         if (error) {
             res.status(500).send(error);
@@ -204,7 +196,7 @@ app.get("/users/logout", (req, res) => {
 
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
-    console.log("req session",req.session.user)
+
     if (req.session.user) {
         res.send({ currentUser: req.session.email, currentUserId: req.session.user, type: req.session.type});
     } else {
@@ -215,7 +207,7 @@ app.get("/users/check-session", (req, res) => {
 /*** Admin Routes ***/
 // a Post route to update a post 
 app.post("/admin/post/approve/:id", (req, res) => {
-    log('req', req.body)
+
 
     const id = req.params.id
 
@@ -389,6 +381,7 @@ app.post("/admin/organization/update/:id", (req, res) => {
 
 // a POST route to delete a particular organization
 // deleting an organization will modify Organization, Post and Application
+// the response it the delted organization in JSON
 app.post('/admin/organization/delete/:orgId', (req, res) => {
     const orgId = req.params.orgId
     if (mongoose.connection.readyState != 1) {
@@ -407,7 +400,43 @@ app.post('/admin/organization/delete/:orgId', (req, res) => {
             res.status(404).send('404 Resource Not Found')
 		    return;
         }
-        console.log("organization to del", organization)
+
+
+        Post.find({org_id: orgId }).then((posts) => {
+            let application_ids = new Array()
+            
+            posts.map(post =>{
+                //application_ids.push(application_ids.concat(post.applications))
+                application_ids = application_ids.concat(post.applications)
+            } )
+    
+            Application.deleteMany({_id: {
+                $in: application_ids
+            }}, function(err, result){
+                if(err){
+                    log(err)
+                    res.status(500).send("Internal server error.")
+                } else {
+                    //res.send(result)
+                }
+            } )
+    
+            Post.deleteMany({org_id: orgId }, function(err){
+                if(err){
+                    log(err)
+                    res.status(500).send("Internal server error.");
+                }
+                console.log("Successful deletion");
+            })
+    
+    
+        })
+        .catch((error) => {
+            log(error)
+            res.status(500).send("Internal server error.")
+        })
+
+        res.send(organization)
 
     }).catch(error => {
         log(error)
@@ -429,7 +458,7 @@ app.post('/admin/organization/delete/:orgId', (req, res) => {
                 log(err)
                 res.status(500).send("Internal server error.")
             } else {
-                res.send(result)
+                //res.send(result)
             }
         } )
 
@@ -526,10 +555,11 @@ app.post("/admin/volunteer/update/:id", (req, res) => {
                 res.send(result)
             })
             .catch((error) => {
-                
-					res.status(500).send(error)
-				
-				
+                if(isMongoError(error)){
+					res.status(500).send('Internal server error')
+				} else{
+					res.status(400).send('Bad request.')
+				}
 				
             })
         }
@@ -537,6 +567,7 @@ app.post("/admin/volunteer/update/:id", (req, res) => {
 });
 
 // a POST route to delte a specific volunteer
+// the response is the deleted volunteer in JSON
 app.post('/admin/volunteer/delete/:volId', (req, res) => {
     const volId = req.params.volId
     if (mongoose.connection.readyState != 1) {
@@ -550,82 +581,82 @@ app.post('/admin/volunteer/delete/:volId', (req, res) => {
 		return;
     }
 
-    async function PromiseArray(){
+
     
-    await Volunteer.findByIdAndRemove(volId).then((vol) => {
+    Volunteer.findByIdAndRemove(volId).then((vol) => {
+
         if(!vol){
             res.status(404).send('404 Resource Not Found')
 		    return;
         }
+
+        Application.find({applicant_id: volId }).then((applications) => {
+            let application_ids = new Array()
+            
+            applications.map(app =>{
+                //application_ids.push(application_ids.concat(post.applications))
+                application_ids.push(app._id)
+            } )
+    
+    
+            application_ids.map(id => {
+                id = JSON.stringify(id)
+            })
+    
+    
+            //update the Post that contains the id in the application_ids array
+            application_ids.map( app_id =>{
+                Post.find({
+                    "applications":app_id
+                }).then(post => {
+                    let filteredApplications = post[0].applications
+                    filteredApplications = filteredApplications.filter(res_id => {
+                        return JSON.stringify(res_id) !== JSON.stringify(app_id)
+                    })
+                    
+                    post[0].applications = filteredApplications
+    
+                    post[0].save().catch(error => {
+                        log(error)
+                    })
+                    
+                }).catch(error =>{
+                    log(error)
+                    res.status(500).send("Internal server error.")
+                })
+            }
+            )
+    
+            //remove the applications
+            Application.deleteMany({_id: {
+                $in: application_ids
+            }}, function(err, result){
+                if(err){
+                    log(err)
+                    res.status(500).send("Internal server error.")
+                } else {
+                    //res.send(result)
+                }
+            } )
+            //send the delted volunteer in response
+            res.send(vol)
+    
+        })
+        .catch((error) => {
+            log(error)
+            res.status(500).send("Internal server error.")
+        })
+
 
     }).catch(error => {
         log(error)
         res.status(500).send("Internal server error.")
     })
 
-    await Application.find({applicant_id: volId }).then((applications) => {
-        let application_ids = new Array()
-        
-        applications.map(app =>{
-            //application_ids.push(application_ids.concat(post.applications))
-            application_ids.push(app._id)
-        } )
 
+    
 
-        application_ids.map(id => {
-            id = JSON.stringify(id)
-        })
-
-
-        //update the Post that contains the id in the application_ids array
-        application_ids.map( app_id =>{
-            Post.find({
-                "applications":app_id
-            }).then(post => {
-                let filteredApplications = post[0].applications
-                filteredApplications = filteredApplications.filter(res_id => {
-                    return JSON.stringify(res_id) !== JSON.stringify(app_id)
-                })
-                
-                post[0].applications = filteredApplications
-
-                post[0].save().catch(error => {
-                    log(error)
-                })
-                
-            }).catch(error =>{
-                log(error)
-                res.status(500).send("Internal server error.")
-            })
-        }
-        )
-
-        //remove the applications
-        Application.deleteMany({_id: {
-            $in: application_ids
-        }}, function(err, result){
-            if(err){
-                log(err)
-                res.status(500).send("Internal server error.")
-            } else {
-                //res.send(result)
-            }
-        } )
-
-
-
-    })
-    .catch((error) => {
-        log(error)
-        res.status(500).send("Internal server error.")
-    })
-    }
-
-    PromiseArray().then(
-        res.send("Delete volunteer successfully")
-    ).catch(error => {
-        log(error)
-    })
+  
 
 }
 
@@ -636,7 +667,6 @@ app.post('/admin/volunteer/delete/:volId', (req, res) => {
 /** volunteer resource routes **/
 // a POST route to *create* a volunteer
 app.post("/volunteer", (req, res) => {
-    // log(req.body)
 
     // Create a new volunteer using the Volunteer mongoose model
     const volunteer = new Volunteer({

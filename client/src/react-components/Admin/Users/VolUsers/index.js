@@ -2,6 +2,8 @@ import React from 'react';
 
 import AdminNav from '../../AdminNav';
 import VolUserTable from '../../VolUserTable';
+import {BackButton} from '../../Hook/backButton';
+import './styles.css';
 
 class VolUsers extends React.Component{
     constructor(props) {
@@ -33,15 +35,14 @@ class VolUsers extends React.Component{
 
     render(){
         const volunteers=this.state.volunteers
-        //console.log("volusers",volusers)
-
-        //console.log("VolUsers queueComponent", queueComponent)
         const app = this.props.app
+        
         return(
             <div id='page'>
                 <AdminNav app={app}/>
                 {this.state.dataIsReturned ?
                 <VolUserTable volunteers={volunteers} volComp={this} /> : null }
+                <div className='fh5co-bg-section'><div id='update-button' className="fh5co-bg-section"><BackButton /></div></div>
             </div>
         )
     }

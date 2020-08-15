@@ -5,6 +5,7 @@ import {uid} from 'react-uid';
 import {withRouter,Link} from 'react-router-dom'
 import {adminDeletePost} from '../../../../actions/adminDeletePost';
 import {adminApprovePost} from '../../../../actions/adminApprovePost';
+import {BackButton} from '../../Hook/backButton';
 
 
 
@@ -85,7 +86,7 @@ class PostList extends React.Component{
                     </div>
                 </div> 
                 : <h1>Loading</h1>}
-
+                <div className='fh5co-bg-section'><div id='update-button' className="fh5co-bg-section"><BackButton /></div></div>
             </div>
         )
     }

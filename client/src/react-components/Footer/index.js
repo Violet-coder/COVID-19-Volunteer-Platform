@@ -27,7 +27,7 @@ class Footer extends React.Component {
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p id="copyright">Copyright &copy; 2020 All Rights Reserved by  
-         <a href="#"> CSC309/Team20</a>.
+         <a href="/"> CSC309/Team20</a>.
             </p>
           </div>
           </div>

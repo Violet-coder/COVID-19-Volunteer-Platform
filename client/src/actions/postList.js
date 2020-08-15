@@ -1,5 +1,3 @@
-const log = console.log;
-
 export const addPost = (id, info) => {
   const url = `/organization/post/${id}`
   let requirements = []

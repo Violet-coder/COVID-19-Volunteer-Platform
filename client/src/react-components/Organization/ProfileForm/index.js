@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import { updateOrgProfile } from "../../../actions/updateOrgProfile";
+import { BackButton } from '../Hook/backButton'
 
 const styles = theme => ({
   typography: {
@@ -201,6 +202,9 @@ class ProfileForm extends React.Component {
             Submit
           </Button>
           </Link>
+      </div>
+      <div className="contain">
+      <BackButton/>
       </div>
       </div>
       <Footer/>

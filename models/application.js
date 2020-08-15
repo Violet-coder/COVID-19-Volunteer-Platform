@@ -12,7 +12,8 @@ const ApplicationSchema = new mongoose.Schema({
 	},
 	applicant_rank: {
 		type: String,
-		required: true 
+        required: true, 
+        default: "D"
 	},
 	applicant_status: {
 		type: String,

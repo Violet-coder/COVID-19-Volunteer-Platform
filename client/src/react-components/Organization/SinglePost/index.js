@@ -108,7 +108,7 @@ class SinglePost extends React.Component {
               app_id = {applicant._id}
               id={applicant.applicant_id}
               name={applicant.applicant_name}
-              //rank={applicant.applicant_rank}
+              rank={applicant.applicant_rank}
               jobName={post.name}
               status={applicant.applicant_status}
             />

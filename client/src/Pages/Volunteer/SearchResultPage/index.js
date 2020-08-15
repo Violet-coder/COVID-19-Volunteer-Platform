@@ -24,7 +24,7 @@ class SearchResultPage extends React.Component {
     render(){     
         
       
-        const queueComponent =  this.props.location.query.queueComponent
+       
         const app = this.props.app
         let posts = []
         let filteredPosts=[]
@@ -43,7 +43,7 @@ class SearchResultPage extends React.Component {
             <Navbar app={app}/>
             <Header_appli title="Search Result" subtitle="Good Luck" app ={app}/>
          
-            { (this.state.isLoading && filteredPosts.length>0) ? <Search_ops queueComponent={queueComponent} posts={filteredPosts}/> : <div id="fh5co-blog" className="fh5co-bg-section">
+            { (this.state.isLoading && filteredPosts.length>0) ? <Search_ops  posts={filteredPosts}/> : <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
                     <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
                         <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">

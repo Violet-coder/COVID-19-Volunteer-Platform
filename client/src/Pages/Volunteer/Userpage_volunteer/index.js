@@ -47,8 +47,8 @@ class Userpage_volunteer extends React.Component{
             <Navbar user="Application" app={app}/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together"  queueComponent={queueComponent}/>
             <div>
-            { (this.state.isLoading&&filteredPosts.length>0) ? <Vol_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
-            {(this.state.isLoading&&filteredPosts.length===0)? <div id="fh5co-blog" className="fh5co-bg-section">
+            { (this.state.isLoading && filteredPosts.length > 0) ? <Vol_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
+            {(this.state.isLoading && filteredPosts.length === 0) ? <div id="fh5co-blog" className="fh5co-bg-section">
                 <div className="container">
                     <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
                         <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">

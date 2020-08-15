@@ -1357,21 +1357,40 @@ app.post("/organization/accept/:app_id", (req, res) => {
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
+//app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
+
 
 // All routes other than above will go to index.html
+app.get("/volunteer/post/:id", (req, res) => {
+    console.log("dynamic")
+    const id = req.params.id
+
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/","/post/:id", "/volunteer","/volunteer/post/:id", "/login","/volunteer/userpage","/volunteer/myapplication","/admin/posts"];
+    const goodPageRoutes = ["/","/login","/signGuide","/orgSignUp","/volSignUp","/publicposts","/publicpost/:id", "/searchresult","/orgProfile/:id", 
+    "/volunteer", "/volunteer/userpage","/volunteer/myapplication","/volunteer/myprofile", "/volunteer/editprofile", "/volunteer/post/:id", "/volunteer/searchresult", "/volunteer/seeall"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
+        console.log("req url", req.url)
         res.status(404);
     }
 
     // send index.html
     
     res.sendFile(__dirname + "/client/build/index.html");
+ 
+
     
 });
+
 
 /*************************************************/
 // Express server listening...

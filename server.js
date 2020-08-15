@@ -77,7 +77,7 @@ app.use(
         cookie: {
             expires: 15*60000,
             httpOnly: true,
-            secure: true
+            // secure: true
         }
     })
 );

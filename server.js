@@ -1376,6 +1376,24 @@ app.post("/organization/accept/:app_id", authenticate, (req, res) => {
         }
     })
 });
+
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+	if (req.session.user) {
+		User.findById(req.session.user).then((user) => {
+			if (!user) {
+				return Promise.reject()
+			} else {
+				req.user = user
+				next()
+			}
+		}).catch((error) => {
+			res.status(401).send("Unauthorized")
+		})
+	} else {
+		res.status(401).send("Unauthorized")
+	}
+}
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));

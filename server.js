@@ -1397,11 +1397,7 @@ const authenticate = (req, res, next) => {
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
-<<<<<<< HEAD
-//app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
-=======
-app.use((req, res) => res.sendFile(__dirname + "/client/build/index.html"))
->>>>>>> dcd5d94141fad3332e3792f8de6e4007b7b48620
+
 
 
 // All routes other than above will go to index.html

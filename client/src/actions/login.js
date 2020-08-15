@@ -47,7 +47,6 @@ export const login = (loginComp, app) => {
                 currentUserId:  json.currentUserId,
                 type: json.type});
         } else {
-            console.log('cannot login')
             loginComp.setState({
                 message: { type: "error", body: "Email or password is not correct." }
             })

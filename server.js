@@ -113,7 +113,7 @@ app.post("/users/register", (req, res) => {
         organization.save().then((result) => {
             res.send(result) 
         }).catch((error) => {
-            log(error)
+            //log(error)
             res.status(400).send("Bad Request.")
         })
     } else if(req.body.type === 'admin'){

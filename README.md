@@ -73,18 +73,17 @@ Click the VOLUNTEERS button at the administration page and you will enter the vo
 Clicking the View/Edit button at each row allows the admin user to view or modify a volunteer’s profile. Please note that admin can only modify part of the volunteer’s profile information, including location, links, and description. After editing, please click the Update Profile button at the bottom of the page, a success message will pop up and the user profile is updated.
 
 ##### Delete Volunteer User:
-If you click the Delete button at the last column. A confirming window will  pop up and the selected user will be deleted if you choose “Yes”.
-Organizations Management:
-Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
+If you click the Delete button at the last column. A confirming window will  pop up and the selected user will be deleted if you choose “Yes”. Once the volunteer is deleted, the volunteer's account and all the applications that he/she has made will be removed.The post he/she has applied will remove the volunteer's data. 
+ 
 
 #### Organizations Management:
 Please click the Home button at the navigation bar to go back to the Administration page. Click the second button “ORGANIZATIONS”. There is a list of organizations. 
 
 ##### View/Edit Organization Profile: 
-Similar to volunteer management, the admin can also edit the organization profile information except email.
+Similar to volunteer management, the admin can also edit the organization profile information except the email and organization name.
 
 ##### Delete Organization User: 
-You can delete an organization user by clicking the Delete button.
+You can delete an organization user by clicking the Delete button. It will delete the organization's account, its published posts, and all the applications that belongs to the posts.
 
 #### Posts Management:
 Go back to the Administration Entry page and click the third entry “POSTS”. You will enter the post management page which displays a list of posts. For each post, there are three buttons “Approved/Approve”, View and Delete.
@@ -92,11 +91,9 @@ Go back to the Administration Entry page and click the third entry “POSTS”. 
 ##### Approve Post: 
 The “Approved/Approve” button shows the post status. When its color is blue, it displays “Approved”; when it’s red, the post status is under review. You can click the red “Approve” button to make the post become approved to be accessible to the public.
 
-##### Create New Post: 
-There is a button at the right top of the navigation bar which redirects you to the publishing post page. After filling in the post form and submit, the new post will appear at the post list.
-
 ##### View/Delete Post: 
-The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts.
+The View button redirects to the post detail page where admin can review the post detail to decide whether to approve it. Otherwise admin can delete unapproved posts. Deleting a post will remove all the post information and the applications that belongs to the post.
+
 
 
 

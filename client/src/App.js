@@ -46,44 +46,24 @@ class App extends React.Component{
     const currentUser = this.state.currentUser;
     const currentUserId = this.state.currentUserId;
     const type = this.state.type
-    log("current user", currentUser, currentUserId, type)
-    log("datareturn?", this.state.dataIsReturned)
-    // log("current user", currentUser)
+
     return (
         
         <div>
         <BrowserRouter>
           <Switch> 
-            {/* <Route exact path='/' render={() => 
-                            (<Home state={this.state}/>)}/> */}
+       
             <Route exact path='/' render={()=> (<Home />)}/>
             <Route exact path='/signGuide' render={() => (<SignUpGuide/>)}/>
             <Route exact path='/orgSignUp' render={() => (<OrgSignUp />)} />
             <Route exact path='/volSignUp' render={() => (<VolSignUp />)} />
-           {/*  <Route exact path='/login' render={(history) => 
-                  (currentUser && type=='volunteer') ?  <Redirect to={"/volunteer/userpage"}/>:
-                  <Login history={history} app={this} /> 
-                  } /> */}
-            
-            {/* <Route path='/login' render={
-              ()=>{
-                console.log("login route")
-                return (currentUser && type=='volunteer') ? <Publicpost /> :
-                <Login app={this} />
-              }
-            } /> */}
+    
           
             { this.state.dataIsReturned ? 
             <Route path='/volunteer' render={( props ) => {
-              console.log("vol route")
-              console.log(currentUser && type=='volunteer')
               if (currentUser && type=='volunteer'){
-                console.log('enter volunteer route')
                 return <Volunteer   app={this} /> 
               }else{
-                console.log('usr',currentUser)
-                console.log('tye',type)
-                console.log('redirect to login')
                 return <Login app={this}/>
               }
             }}/> :null}
@@ -107,7 +87,6 @@ class App extends React.Component{
 
             <Route path='/login' render={({ history }) =>{
               if(currentUser && type=='volunteer'){
-                console.log("hello volunteer")
                 return <Redirect to="/volunteer/userpage"/>
               } else if (currentUser && type=='organization'){
                 return <Redirect to={"/organization/profile"}/>

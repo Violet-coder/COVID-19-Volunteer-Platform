@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from "@material-ui/core/Button";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -8,9 +7,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-import { adminUpdateVolProfile } from '../../../../actions/adminUpdateVolProfile';
 import  VolUpdateSucessSnackbars  from '../../Hook/volSuccessMsg';
-import  SuccessWrapper  from '../../Hook/successWrapper';
 import { BackButton } from '../../Hook/backButton';
 
 import './styles.css';

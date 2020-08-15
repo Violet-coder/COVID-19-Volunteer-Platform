@@ -13,16 +13,11 @@ export const adminUpdateVolProfile = (user, info, userId) => {
   if(info.desc!==''){
     newInfo.desc=info.desc
   }
-  // console.log("skills",info.skills)
-  // console.log("availability", info.availability)
+
   newInfo.skills=info.skills
   newInfo.availability=info.availability
 
-  console.log("url", url)
-  console.log("newInfo",newInfo)
-
   
-
 
 
   const request = new Request(url, {
@@ -65,7 +60,6 @@ export const adminUpdateVolProfile = (user, info, userId) => {
     })
     .then(json => {
         // the resolved promise with the JSON body
-        console.log("update vol state")
         volComp.setState({ volunteer: json, dataIsReturned: true });
     })
     .catch(error => {

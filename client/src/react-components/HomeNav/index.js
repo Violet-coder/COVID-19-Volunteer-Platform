@@ -1,5 +1,4 @@
 import React from "react";
-import Home from '../../Pages/Home';
 import './styles.css'
 
 class HomeNav extends React.Component {

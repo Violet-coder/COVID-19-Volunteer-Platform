@@ -1,7 +1,6 @@
 import React from 'react';
 
 import AdminNav from '../../AdminNav';
-import PostArea from '../../../PostArea';
 import {uid} from 'react-uid';
 import {withRouter,Link} from 'react-router-dom'
 import {adminDeletePost} from '../../../../actions/adminDeletePost';
@@ -20,7 +19,7 @@ class PostList extends React.Component{
     } 
 
     componentDidMount() {
-        console.log('test')
+
         const url = "/posts"
         fetch(url)
         .then(res => {

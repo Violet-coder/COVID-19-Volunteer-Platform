@@ -10,7 +10,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { FormControl } from '@material-ui/core';
-import { BackButton } from '../../Hook/backButton';
+
 import'./styles.css'
 
 
@@ -71,9 +71,8 @@ class VolProfileForm extends React.Component{
     
     render(){
         const { classes } = this.props;
-        //console.log("form prop", this.props)
+
         const {
-            _id,
             firstName, 
             lastName, 
             email,
@@ -84,7 +83,7 @@ class VolProfileForm extends React.Component{
             availability,
         } = this.props.volunteer
 
-        //console.log("availability", availability)
+
 
         return(
         <div id="profile-services" className="fh5co-bg-section ">

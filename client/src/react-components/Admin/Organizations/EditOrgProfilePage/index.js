@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminNav from '../../AdminNav';
 import EditOrgProfileForm from '../EditOrgProfileForm';
-import {BackButton} from '../../Hook/backButton';
+
 
 class EditOrgProfilePage extends React.Component{
     state={
@@ -43,14 +43,14 @@ class EditOrgProfilePage extends React.Component{
 
         const target = event.target;
         const value = target.value;
-        console.log('value', value)
+
         const id = target.id;
         if(id === 'orgName'){
             this.setState({
                 'name':value
             })
         } else if(id ==='introduction'){
-            console.log('set intro')
+
             this.setState({
                 'intro':value
             })

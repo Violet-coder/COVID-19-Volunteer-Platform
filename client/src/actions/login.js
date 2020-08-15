@@ -4,13 +4,11 @@ export const readCookie = (app) => {
     fetch(url)
         .then(res => {
             if (res.status === 200) {
-                console.log('cookie success')
                 return res.json();
             }
         })
         .then(json => {
             if (json) {
-                console.log('cookie setstate')
                 app.setState({ currentUser: json.currentUser,
                                currentUserId:json.currentUserId,
                                type: json.type,

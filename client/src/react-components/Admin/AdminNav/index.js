@@ -6,7 +6,6 @@ import {logout} from '../../../actions/login';
 
 class AdminNav extends React.Component {
     logoutUser = (app) => {
-		console.log("log out admin")
         this.props.history.push("/login");
         logout(app);
 	};
@@ -22,8 +21,8 @@ class AdminNav extends React.Component {
                         <div className="col-xs-10 text-right menu-1">
                             <ul>
                                 <li><Link to={"/admin/entry"} >Home</Link></li>
-                                <li><Link><a onClick={() =>{
-                                    this.logoutUser(app)} }>Log Out</a></Link></li>
+                                <li><Link onClick={() =>{
+                                    this.logoutUser(app)} }>Log Out</Link></li>
                                 <li>
                                     <Link to='/admin/publishpost'><button type="submit" className="btn btn-primary navBtn">Create New Post</button></Link>
                                 </li>

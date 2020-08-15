@@ -2,15 +2,10 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import LoginNav from '../../react-components/Login/LoginNav';
 import LoginForm from '../../react-components/Login/LoginForm';
-import CheckLogin from '../../react-components/Login/CheckLogin';
 import {login} from '../../actions/login';
 import "./styles.css";
 
 
-const user1 ={
-    email:"user1@user.com",
-    password: "user1",
-};
 
 class Login extends React.Component{
      constructor(props){
@@ -91,11 +86,7 @@ class Login extends React.Component{
         let errors = this.state.errors
         event.preventDefault();
         if(this.validateForm()) {
-            console.info('Valid Form')
 
-
-            const email = this.state.email
-            const password = this.state.password
             const app = this.props.app
 
             login(this, app)

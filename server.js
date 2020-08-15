@@ -961,7 +961,7 @@ app.post("/organization", (req, res) => {
     );
 });
 
-app.get('/organization/get_profile/:id', (req, res) => {
+app.get('/organization/get_profile/:id', authenticate, (req, res) => {
 	// Add code here
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -1377,35 +1377,30 @@ app.post("/organization/accept/:app_id", authenticate, (req, res) => {
     })
 });
 
-
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+	if (req.session.user) {
+		User.findById(req.session.user).then((user) => {
+			if (!user) {
+				return Promise.reject()
+			} else {
+				req.user = user
+				next()
+			}
+		}).catch((error) => {
+			res.status(401).send("Unauthorized")
+		})
+	} else {
+		res.status(401).send("Unauthorized")
+	}
+}
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(__dirname + "/client/build"));
 
 
 
-//Dynamic url should go to index.html if it is correct
-//Volunteer dynamic url
-app.get("/volunteer/post/:id", (req, res) => {
-    const id = req.params.id
-
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;  
-    }
-    res.sendFile(__dirname + "/client/build/index.html");
-})
-app.get("/volunteer/orgProfile/:id", (req, res) => {
-    const id = req.params.id
-
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;  
-    }
-    res.sendFile(__dirname + "/client/build/index.html");
-})
-
-//Public dynamic url
+// All routes other than above will go to index.html
 app.get("/publicpost/:id", (req, res) => {
     const id = req.params.id
 
@@ -1427,30 +1422,7 @@ app.get("/orgProfile/:id", (req, res) => {
 })
 
 
-
-//Organization dynamic url
-app.get("/organization/posts/:id", (req, res) => {
-    const id = req.params.id
-
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;  
-    }
-    res.sendFile(__dirname + "/client/build/index.html");
-})
-
-app.get("/organization/volprofile/:id", (req, res) => {
-    const id = req.params.id
-
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;  
-    }
-    res.sendFile(__dirname + "/client/build/index.html");
-})
-
-//Admin dynamic url
-app.get("/admin/posts/:id", (req, res) => {
+app.get("/volunteer/post/:id", (req, res) => {
     const id = req.params.id
 
     if (!ObjectID.isValid(id)) {
@@ -1500,15 +1472,25 @@ app.get("/admin/organizations/editorgprofile/:id", (req, res) => {
     res.sendFile(__dirname + "/client/build/index.html");
 })
 
+app.get("/admin/posts/:id", (req, res) => {
+    const id = req.params.id
 
-// All routes other than above will go to index.html
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;  
+    }
+    res.sendFile(__dirname + "/client/build/index.html");
+})
+
+
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/","/login","/signGuide","/orgSignUp","/volSignUp","/publicposts","/publicpost/:id", "/searchresult","/organization/profile", "/organization/update","/organization/applicants","/organization/post",
-    "/volunteer", "/volunteer/userpage","/volunteer/myapplication","/volunteer/myprofile", "/volunteer/editprofile", "/volunteer/post/:id", "/volunteer/searchresult", "/volunteer/seeall","/admin/entry", "/admin/volunteers","/admin/organizations","/admin/posts"];
+    const goodPageRoutes = ["/","/login","/signGuide","/orgSignUp","/volSignUp","/publicposts", "/searchresult",
+    "/volunteer", "/volunteer/userpage","/volunteer/myapplication","/volunteer/myprofile", "/volunteer/editprofile", "/volunteer/searchresult", "/volunteer/seeall",
+    "/organization", "/organization/profile","organization/post","/organization/applicants", "organization/update", 
+    "/admin/volunteers","/admin/organizations", "/admin/posts","/admin/entry"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
-        console.log("req url", req.url)
         res.status(404);
     }
 
@@ -1527,5 +1509,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
 });
-
-

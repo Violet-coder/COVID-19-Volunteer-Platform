@@ -43,7 +43,6 @@ class PostDetailPage extends React.Component{
     
     render(){
         const post=this.state.post
-        const queueComponent=this.props.queueComponent
 
         const status = post.status
 

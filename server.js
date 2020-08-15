@@ -76,7 +76,8 @@ app.use(
         saveUninitialized: false,
         cookie: {
             expires: 15*60000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true
         }
     })
 );

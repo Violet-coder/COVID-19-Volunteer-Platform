@@ -39,17 +39,22 @@ class Userpage_volunteer extends React.Component{
         const filteredPosts = this.state.posts.filter(
             p => p.status === "Approved"
         )
-        
-        
 
-        return(
+        if (this.state.isLoading){
+            if (filteredPosts.length > 0){
+                return(
+                <div id="page">
+                <Navbar user="Application" app={app}/>
+                <Header title="Support Our Community During Covid-19" subtitle="Let's work together"  queueComponent={queueComponent}/>             
+                 <Vol_ops queueComponent={queueComponent} posts={filteredPosts}/>     
+                </div>   
+            );
+            } else {
+                return (
             <div id="page">
             <Navbar user="Application" app={app}/>
             <Header title="Support Our Community During Covid-19" subtitle="Let's work together"  queueComponent={queueComponent}/>
-            <div>
-            { (this.state.isLoading && filteredPosts.length > 0) ? <Vol_ops queueComponent={queueComponent} posts={filteredPosts}/> : null}
-            {(this.state.isLoading && filteredPosts.length === 0) ? <div id="fh5co-blog" className="fh5co-bg-section">
-                <div className="container">
+            <div className="container">
                     <div className="row animate-box row-pb-md" data-animate-effect="fadeInUp">
                         <div className="col-md-8 col-md-offset-2 text-left fh5co-heading">
                             <h2>No recommended post</h2>
@@ -61,22 +66,20 @@ class Userpage_volunteer extends React.Component{
 					<p><span><Link to="/volunteer/seeall"><button type="submit" className="btn btn-primary">See All</button></Link></span></p>
 				</div>
                 </div>
-                </div> : null}
-            
             </div>
+            )
+            }
             
-			
-            
-            
+        } else {
+            return (
+                <div id="page">
+                </div>
+            )
+        }
+       
+        
+        
 
-
-
-
-            </div>
-
-
-
-        );
     }
 }
 

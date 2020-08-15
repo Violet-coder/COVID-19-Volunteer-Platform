@@ -9,10 +9,12 @@ panganqi - Anqi Pang
 In order to fight against COVID-19 pandemic, we are devoted to providing a platform for connecting passionate people to contribute together. This web application, COVID-19 Volunteer Platform, is for volunteers who are looking for social volunteering opportunities to help people affected by COVID-19 and organizations that are looking for responsible volunteers. Our web application helps to transfer information between volunteers and organizations. People who want to serve the society as volunteers during this difficult time could browse our website to learn about current volunteering opportunities. Organizations that are hunting for volunteers could post their recruitment information. Our website supports to display information from responsible organizations and prospective volunteers in order to unite people more efficiently in this difficult time.
 
 ## How to Use
-### Download&Install
-Please download the ZIP and unzip it.
-Open the folder "team20-master" in terminal and run **npm install**.
-Run the app using the command **npm start**.
+### Deployed APP Link
+https://frozen-journey-02316.herokuapp.com
+
+### Note About Session
+Please note that the session duration is 15 minutes. You will redirected to the login page after the seesion expires.
+
 ### Login:
 #### Volunteer: 
 email: user@user.com  
@@ -96,6 +98,7 @@ The View button redirects to the post detail page where admin can review the pos
 
 
 ## Overview of the routes 
+The following is the routes in the server.js. For each route, there is a description of it method and the URL used for the deployed app. You could use the provided URL to test the routes, since we have included the params needed for the dynammic routes.
 
 ### Volunteer resource routes
 #### a GET for getting vol profile from a particulat volunteer
@@ -147,6 +150,16 @@ What they are used: to get volunteer profile from a particulat volunteer <br/>
 What data they expect to be sent: a Volunteer Object <br/>
 What they would return: <br/>
 
+
+### Admin Resources Routes
+#### A POST route for registration
+POST: "/users/register"
+URL: 
+
+```json
+
+
+```
 
 
 

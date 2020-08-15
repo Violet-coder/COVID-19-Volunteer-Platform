@@ -9,6 +9,7 @@ class VolSignUpForm extends React.Component {
             password,
             confirmPassword,
             errors,
+            message,
             handleChange,
             handleSubmit,
         } = this.props;
@@ -51,6 +52,8 @@ class VolSignUpForm extends React.Component {
                                 <input type="password" name="confirmPassword" onChange={handleChange} value={confirmPassword || ""} noValidate />
                                 {errors.confirmPassword.length > 0 && 
                                     <span><small className='error'>{errors.confirmPassword}</small></span>}
+                                {message.body.length > 0 && 
+                                    <span><small className='error'>{message.body}</small></span>}
                             </div>
                             <button type="submit" className="btn btn-primary sign">Sign Up</button>
                             </form>

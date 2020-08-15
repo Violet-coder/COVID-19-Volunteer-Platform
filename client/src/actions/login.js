@@ -39,20 +39,24 @@ export const login = (loginComp, app) => {
     .then(res => {
         if (res.status === 200) {
             return res.json();
-        }
+        } 
     })
     .then(json => {
         if (json.currentUser !== undefined) {
             app.setState({ currentUser: json.currentUser,
                 currentUserId:  json.currentUserId,
                 type: json.type});
+        } else {
+            console.log('cannot login')
+            loginComp.setState({
+                message: { type: "error", body: "Email or password is not correct." }
+            })
+
         }
     })
     .catch(error => {
         console.log(error);
-        app.setState({
-            message: { type: "error", body: "Cannot login" }
-        })
+        
     });
 };
 
@@ -67,7 +71,7 @@ export const logout = (app) => {
                 currentUser: null,
                 currentUserId:null,
                 type:null,
-                message: { type: "", body: "" }
+                message: { type: "Success", body: "Log out successfully!" }
             });
         })
         .catch(error => {

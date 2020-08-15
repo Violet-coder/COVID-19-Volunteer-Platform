@@ -5,24 +5,27 @@ import {volRegister} from '../../actions/register'
 
 
 class VolSignUp extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            firstName : null,
-            lastName : null,
-            email : null,
-            password : null,
-            confirmPassword : null,
-            errors: {
-                firstName: "",
-                lastName:"",
-                email: "",
-                password: "",
-                confirmPassword: "",
-            }
 
-        };
-    }
+
+    state = {
+        firstName : null,
+        lastName : null,
+        email : null,
+        password : null,
+        confirmPassword : null,
+        errors: {
+            firstName: "",
+            lastName:"",
+            email: "",
+            password: "",
+            confirmPassword: "",
+        },
+        message : {
+            type:"",
+            body:""
+        }
+
+    };
 
     handleChange = (event) => {
         event.preventDefault();
@@ -125,12 +128,13 @@ class VolSignUp extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if(this.validateForm()) {
-            console.info('Valid Form')
+            //console.info('Valid Form')
             volRegister(this)
+
         } else {
-            console.error('Invalid Form')
+            //console.error('Invalid Form')
         }
-        //console.log(this.state)
+
 
     }
 
@@ -147,6 +151,7 @@ class VolSignUp extends React.Component {
                     password={this.state.password}
                     confirmPassword={this.state.confirmPassword}
                     errors={this.state.errors}
+                    message={this.state.message}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                 />

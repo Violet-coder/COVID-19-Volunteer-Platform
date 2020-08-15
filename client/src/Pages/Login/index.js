@@ -12,16 +12,20 @@ class Login extends React.Component{
         super(props);
         this.props.history.push("/login");
         //history.push('/login')
-        this.state = { 
-            email : "",
-            password : "",
-            errors: {
-                email: "",
-                password: "",     
-            },
-            
-        };
+
     }
+    state = { 
+        email : "",
+        password : "",
+        errors: {
+            email: "",
+            password: "",     
+        },
+        message:{
+            type:"",
+            body:""
+        } 
+    };
     
     handleChange = (event) => {
         event.preventDefault();
@@ -90,6 +94,7 @@ class Login extends React.Component{
             const app = this.props.app
 
             login(this, app)
+
             /* if(email === 'user@user.com'){
                 p.login(email, password, ()=> {this.props.history.push('/volunteer/userpage')})
             } else if (email === 'user2@user.com'){
@@ -106,13 +111,13 @@ class Login extends React.Component{
  */
 
         } else {
-            console.error('Invalid Form')
+            //console.error('Invalid Form')
         }
 
-        this.setState({
-            errors: errors
-        })
-        //console.log(this.state)
+        // this.setState({
+        //     errors: errors
+        // })
+
 
     }
 
@@ -125,6 +130,7 @@ class Login extends React.Component{
                 email={this.state.email}
                 password={this.state.password}
                 errors={this.state.errors}
+                msg={this.state.message}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
                 />

@@ -1,3 +1,5 @@
+import { readCookie } from "./login";
+
 export const orgRegister = (registerComp) => {
     const request = new Request("/users/register", {
         method: "post",
@@ -23,7 +25,7 @@ export const orgRegister = (registerComp) => {
         })
         .catch(error => {
             console.log(error);
-            console.log("some error msg")
+
         });
 }
 
@@ -53,5 +55,6 @@ export const volRegister = (registerComp) => {
         })
         .catch(error => {
             console.log(error);
+            
         });
 }

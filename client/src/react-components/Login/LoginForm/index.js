@@ -6,6 +6,7 @@ class LoginForm extends React.Component {
             email,
             password,
             errors,
+            msg,
             handleChange,
             handleSubmit,
         } = this.props;
@@ -28,9 +29,13 @@ class LoginForm extends React.Component {
                                 <input type="password" name="password" onChange={handleChange} />
                                 {errors.password.length > 0 && 
                                     <span><small className='error'>{errors.password}</small></span>}
+                                {msg ?
+                                <span><small className='error'>{msg.body}</small></span> : null}
                             </div>
-                            <p><a href='/'>Forget your email or password?</a></p>
+
                             <button type="submit" className="btn btn-primary">Log In</button>
+
+
                             </form>
                         </div>
                     </div>

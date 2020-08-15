@@ -100,7 +100,7 @@ app.post("/users/register", (req, res) => {
         volunteer.save().then((result) => {
             res.send(result)
         }).catch((error) => {
-            log(error)
+            //log(error)
             res.status(400).send("Bad Request.")
         }) 
     } else if(req.body.type==='organization'){
@@ -168,6 +168,10 @@ app.post("/users/login", (req, res) => {
                 currentUserId: validResult._id,
                 type: validResult.type
             })
+        } else{
+            res.send({
+                message:"Email or password is not correct."
+            })
         }
     }
     ).catch((error) => {
@@ -206,7 +210,7 @@ app.get("/users/check-session", (req, res) => {
 
 /*** Admin Routes ***/
 // a Post route to update a post 
-app.post("/admin/post/approve/:id", (req, res) => {
+app.post("/admin/post/approve/:id", authenticate,(req, res) => {
 
 
     const id = req.params.id
@@ -244,7 +248,7 @@ app.post("/admin/post/approve/:id", (req, res) => {
 })
 
 // a POST route to delete a post
-app.post("/admin/post/delete/:post_id", (req, res) => {
+app.post("/admin/post/delete/:post_id", authenticate,(req, res) => {
     const post_id = req.params.post_id
     if (!ObjectID.isValid(post_id)) {
 		res.status(404).send('Resource not found')
@@ -300,7 +304,7 @@ app.post("/admin/post/delete/:post_id", (req, res) => {
 
 
 // a GET route to get a specific organizations
-app.get("/admin/organization/:id", (req, res) =>{
+app.get("/admin/organization/:id", authenticate,(req, res) =>{
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -328,7 +332,7 @@ app.get("/admin/organization/:id", (req, res) =>{
 })
 
 // a GET route to get all organizations
-app.get("/admin/allorganizations", (req, res) =>{
+app.get("/admin/allorganizations", authenticate,(req, res) =>{
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -346,7 +350,7 @@ app.get("/admin/allorganizations", (req, res) =>{
 
 
 // a POST for updating profile info to a particular organization
-app.post("/admin/organization/update/:id", (req, res) => {
+app.post("/admin/organization/update/:id", authenticate,(req, res) => {
     // log(req.body)
     const id = req.params.id
 
@@ -381,8 +385,8 @@ app.post("/admin/organization/update/:id", (req, res) => {
 
 // a POST route to delete a particular organization
 // deleting an organization will modify Organization, Post and Application
-// the response it the delted organization in JSON
-app.post('/admin/organization/delete/:orgId', (req, res) => {
+// the response it the deleted organization in JSON
+app.post('/admin/organization/delete/:orgId', authenticate,(req, res) => {
     const orgId = req.params.orgId
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -481,7 +485,7 @@ app.post('/admin/organization/delete/:orgId', (req, res) => {
 })
 
 // a GET route to get all volunteers
-app.get("/admin/allvolunteers", (req, res) =>{
+app.get("/admin/allvolunteers", authenticate,(req, res) =>{
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -498,7 +502,7 @@ app.get("/admin/allvolunteers", (req, res) =>{
 })
 
 //a GET route to get a specific volunteer
-app.get("/admin/volunteer/:id", (req,res) => {
+app.get("/admin/volunteer/:id", authenticate,(req,res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -528,7 +532,7 @@ app.get("/admin/volunteer/:id", (req,res) => {
 
 
 // a POST for updating profile info to a particular volunteer
-app.post("/admin/volunteer/update/:id", (req, res) => {
+app.post("/admin/volunteer/update/:id", authenticate,(req, res) => {
     // log(req.body)
     const id = req.params.id 
 
@@ -568,7 +572,7 @@ app.post("/admin/volunteer/update/:id", (req, res) => {
 
 // a POST route to delte a specific volunteer
 // the response is the deleted volunteer in JSON
-app.post('/admin/volunteer/delete/:volId', (req, res) => {
+app.post('/admin/volunteer/delete/:volId', authenticate,(req, res) => {
     const volId = req.params.volId
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
@@ -653,10 +657,6 @@ app.post('/admin/volunteer/delete/:volId', (req, res) => {
         res.status(500).send("Internal server error.")
     })
 
-
-    
-
-  
 
 }
 
@@ -1051,7 +1051,7 @@ app.post("/organization/update_profile/:id",authenticate, (req, res) => {
         }
     })
 });
-
+// a POST route to post a new job for organization users
 app.post("/organization/post/:id",authenticate, (req, res) => {
     // log(req.body)
     const id = req.params.id
@@ -1094,7 +1094,7 @@ app.post("/organization/post/:id",authenticate, (req, res) => {
                             posts.push(post._id)
                             organization.posts = posts
                             organization.save().then((result) => {
-                                res.send(result)
+                                //res.send(result)
                             })
                             .catch((error) => {
                                 if(isMongoError(error)){

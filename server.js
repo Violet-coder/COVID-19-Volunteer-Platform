@@ -68,13 +68,14 @@ const authenticate = (req, res, next) => {
 
 /*** Session handling **************************************/
 // Create a session cookie
+// the session duration is 15 minutes
 app.use(
     session({
         secret: "oursecret",
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 5*60000,
+            expires: 15*60000,
             httpOnly: true
         }
     })

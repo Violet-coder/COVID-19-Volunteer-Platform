@@ -100,6 +100,96 @@ The View button redirects to the post detail page where admin can review the pos
 ## Overview of the routes 
 The following is the routes in the server.js. For each route, there is a description of it method and the URL used for the deployed app. You could use the provided URL to test the routes, since we have included the params needed for the dynammic routes.
 
+### Authentication Resources Routes
+#### A POST route for registration
+POST: "/users/register" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/register
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a Volunteer or Organization Request including registration information.<br/>
+Please send the request as follows.
+
+To register a volunteer:<br>
+```json
+{
+    "firstName":"Anqi",
+    "lastName": "Pang",
+    "email":"anqitest@user.com",
+    "password":"12345",
+    "type":"volunteer"
+}
+```
+To register an organization:<br>
+```json
+{
+    "name":"test organization",
+    "email":"anqitest2@user.com",
+    "password":"12345",
+    "type":"organization"
+}
+```
+
+What they would return: a docment saved in database <br/>
+```json
+{
+    "type": "volunteer",
+    "_id": "5f3869ad6f93f10017f7b4a4",
+    "firstName": "Anqi",
+    "lastName": "Pang",
+    "email": "anqipang@user.com",
+    "password": "$2a$10$iY5FlNPiJMnzN57qPiBMju1mI2k3KGvUn0xjlaLJx42NZ008u8Lam",
+    "__v": 0
+}
+```
+
+#### A POST route for login
+POST: "/users/login" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/login
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a Volunteer or Organization Request including email and password.<br/>
+Please send the request as follows.
+```json
+{
+    "email":"user@user.com",
+    "password":"user"
+}
+```
+
+What they would return: if login successfully, it returns a json with current user id and type; otherwise it will return a message. <br/>
+Login success:
+{
+    "currentUser": "user@user.com",
+    "currentUserId": "5f38420164f1290017d32285",
+    "type": "volunteer"
+}
+<br>
+Login failure: {
+    "message": "Email or password is not correct."
+}
+
+
+
+#### A GET route for logout
+GET: "/users/logout" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/logout
+What they are used: to logout the current user <br/>
+What data they expect to be sent: a get request<br/>
+What they would return: if logout fails, it will returns a response with status 500, otherwise it returns a empty response.
+
+#### A GET route to check session
+GET: "/users/check-session" <br />
+URL: https://frozen-journey-02316.herokuapp.com/users/check-session
+What they are used: to register a new user as volunteer or organization <br/>
+What data they expect to be sent: a get request<br/>
+What they would return: send a json response including the current user email, id and type.
+```json
+{
+    "currentUser": null,
+    "currentUserId": null,
+    "type": null
+}
+```
+
+
 ### Volunteer resource routes
 #### a GET for getting vol profile from a particulat volunteer
 Get: '/volunteer/profile/:id'<br/>
@@ -149,19 +239,6 @@ Post Request: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f384
 What they are used: to get volunteer profile from a particulat volunteer <br/>
 What data they expect to be sent: a Volunteer Object <br/>
 What they would return: <br/>
-
-
-### Admin Resources Routes
-#### A POST route for registration
-POST: "/users/register"
-URL: 
-
-```json
-
-
-```
-
-
 
 
 

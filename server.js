@@ -68,14 +68,16 @@ const authenticate = (req, res, next) => {
 
 /*** Session handling **************************************/
 // Create a session cookie
+// the session duration is 15 minutes
 app.use(
     session({
         secret: "oursecret",
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 5*60000,
-            httpOnly: true
+            expires: 15*60000,
+            httpOnly: true,
+            // secure: true
         }
     })
 );
@@ -665,27 +667,6 @@ app.post('/admin/volunteer/delete/:volId', authenticate,(req, res) => {
 
 
 /** volunteer resource routes **/
-// a POST route to *create* a volunteer
-app.post("/volunteer", (req, res) => {
-
-    // Create a new volunteer using the Volunteer mongoose model
-    const volunteer = new Volunteer({
-        email: req.body.email,
-        password: req.body.password,
-        firstName: req.body.firstName,
-        lastName:req.body.lastName
-    });
-
-    // Save volunteer to the database
-    volunteer.save().then(
-        result => {
-            res.send(result);
-        },
-        error => {
-            res.status(400).send(error); // 400 for bad request
-        }
-    );
-});
 // a GET for getting vol profile from a particulat volunteer
 app.get('/volunteer/profile/:id', authenticate, (req, res) => {
     // Add code here
@@ -941,7 +922,7 @@ app.get('/post/:id', (req, res) => {
 
 })
 
-//a Get route to get the posts as search result
+//a Post route to get the posts as search result
 app.post('/search', (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')

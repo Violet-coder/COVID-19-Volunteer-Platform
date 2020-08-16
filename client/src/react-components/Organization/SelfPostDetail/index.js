@@ -40,10 +40,10 @@ class SelfPostDetail extends React.Component {
         this.setState({post: json})
         this.setState({postIsLoading: true})
         const applicationlist = new Array(json.applications)
-        console.log("applicationlist", applicationlist[0].length)
+        //console.log("applicationlist", applicationlist[0].length)
         for (var app_id of applicationlist[0]) {
           const url = `/organization/get_applications/${app_id}`  
-          console.log("url",url)
+          //console.log("url",url)
           fetch(url)
           .then(res => {
               if (res.status === 200) {
@@ -54,7 +54,7 @@ class SelfPostDetail extends React.Component {
           })
           .then(appli => {
             applications.push(appli)
-            console.log("applications now", applications)
+            //console.log("applications now", applications)
             if (applications.length ===  applicationlist[0].length) {
             this.setState({ applications: applications, appIsLoading: true });
           }

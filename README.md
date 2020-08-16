@@ -197,8 +197,8 @@ What they would return: send a json response including the current user email, i
 Get: '/volunteer/profile/:id'<br/>
 Url: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f38420164f1290017d32285 <br/>
 What they are used: to get volunteer profile from a particulat volunteer <br/>
-What data they expect to be sent: a Volunteer Object <br/>
-What they would return: <br/>
+What data they expect to be sent: nothing <br/>
+What they would return: a Volunteer Object <br/>
 {
     "type": "volunteer",
     "_id": "5f38420164f1290017d32285",
@@ -237,10 +237,294 @@ What they would return: <br/>
 }
 
 #### a POST for updating profile info to a particular volunteer
-Post Request: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f38420164f1290017d32285 <br/>
-What they are used: to get volunteer profile from a particulat volunteer <br/>
-What data they expect to be sent: a Volunteer Object <br/>
-What they would return: <br/>
+Post: "/volunteer/update/:id" <br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/update/5f38420164f1290017d32285 <br/>
+What they are used: to update profile for a particulat volunteer <br/>
+What data they expect to be sent: <br/>
+``` json
+{
+    "location": "Toronto",
+    "links": "user@user.com",
+    "desc": "I am a student.",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false
+    },
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false   
+    }
+}
+```
+What they would return:a Volunteer Object whoese info has already updated <br/>
+``` json
+{
+    "type": "volunteer",
+    "_id": "5f38420164f1290017d32285",
+    "firstName": "Ziyue",
+    "lastName": "Zhang",
+    "email": "user@user.com",
+    "password": "$2a$10$etqAkLL06ufWQdKzQ3XBkOQxaRF4wGJkqAKRJXV/fi9K6zba6FZjS",
+    "__v": 0,
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false,
+        "_id": "5f38650b6f93f10017f7b489"
+    },
+    "desc": "I am a student.",
+    "links": "user@user.com",
+    "location": "Toronto",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false,
+        "_id": "5f38650b6f93f10017f7b488"
+    }
+}
+``` 
+
+#### a GET request for getting application list of a particular volunteer
+Get: "/volunteer/applicatoinlist/:id" <br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/update/5f38420164f1290017d32285 <br/>
+What they are used: to get the application list of a particular volunteer <br/>
+What data they expect to be sent: nothing <br/>
+What they would return: An array with applications inside<br/>
+``` json
+[
+    {
+        "applicant_status": "accepted",
+        "_id": "5f3844d564f1290017d322ca",
+        "applicant_id": "5f38420164f1290017d32285",
+        "applicant_name": "Ziyue Zhang",
+        "post_id": "5f38431e64f1290017d322a7",
+        "post_name": "Clothing Centre Volunteer",
+        "applicant_rank": "D",
+        "__v": 0
+    }
+]
+```
+ 
+#### a GET request for getting a particular application of a particular volunteer
+Get: "/volunteer/getapplication/:id/:post_id"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/getapplication/5f38420164f1290017d32285/5f38431e64f1290017d322a7<br/>
+What they are used: to find whether this user has applied  a particular post<br/>
+What data they expect to be sent: nothing<br/>
+What they would return: if a user has applied it will return with an array with an Application object inside else it will be an empty array<br/>
+``` json
+[
+    {
+        "applicant_status": "accepted",
+        "_id": "5f3844d564f1290017d322ca",
+        "applicant_id": "5f38420164f1290017d32285",
+        "applicant_name": "Ziyue Zhang",
+        "post_id": "5f38431e64f1290017d322a7",
+        "post_name": "Clothing Centre Volunteer",
+        "applicant_rank": "D",
+        "__v": 0
+    }
+]
+```
+
+### Post resource routes
+#### a Get request to get all the posts
+Get: "/posts"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/posts <br/>
+What they are used: to get all the posts in the databse<br/>
+What data they expect to be sent: nothing<br/>
+What they would return: an array with all the posts in the database<br/>
+``` json
+[
+    {
+        "requirements": [
+            "driver's license"
+        ],
+        "status": "Approved",
+        "applications": [
+            "5f3844d564f1290017d322ca"
+        ],
+        "_id": "5f38431e64f1290017d322a7",
+        "name": "Clothing Centre Volunteer",
+        "description": "Help sort clothing, and stock items on the shelves. Make new friends and have lots of fun!",
+        "title": "content",
+        "location": "Toronto",
+        "date": "2020-08-15T21:40:23.891Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 2
+    },
+    {
+        "requirements": [
+            "teaching experiance"
+        ],
+        "status": "Approved",
+        "applications": [],
+        "_id": "5f3843ac64f1290017d322a8",
+        "name": "Project Mentor for Students",
+        "description": "Underemployment is a growing concern for students across the globe. Entry-level jobs often require 3-5 years of experience for entry-level positions and the gap between the skills students have and what employers require continues to grow. You can help this problem by working with students on short-term projects and challenges that are embedded directly into their classrooms. They get to learn from supporting you on the problem or project from your organization is facing and apply their theoretical knowledge to a practical real-world example.",
+        "title": "community",
+        "location": "remote",
+        "date": "2020-08-15T20:25:05.903Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 0
+    },
+    {
+        "requirements": [
+            "health degree"
+        ],
+        "status": "Approved",
+        "applications": [],
+        "_id": "5f38550b6f93f10017f7b463",
+        "name": "Food and Essential items Packaging and Delivery",
+        "description": "We are looking for volunteers to help package and deliver food and essential items to vulnerable people all over GTA. Please contact us if you are interested in helping out.",
+        "title": "manufacturing",
+        "location": "Toronto",
+        "date": "2020-08-15T21:40:18.702Z",
+        "org_id": "5f3853ca6f93f10017f7b45c",
+        "org_name": "HumanWellBeingFirst",
+        "__v": 0
+    },
+    {
+        "requirements": [
+            "self-motivated"
+        ],
+        "status": "Approved",
+        "applications": [],
+        "_id": "5f3856bd6f93f10017f7b466",
+        "name": "Letter writer / Drawer",
+        "description": "All you need to do is send in s short letter or even a drawing!",
+        "title": "community",
+        "location": "Ottawa",
+        "date": "2020-08-15T21:42:35.776Z",
+        "org_id": "5f38557f6f93f10017f7b464",
+        "org_name": "Letters and Smiles",
+        "__v": 0
+    },
+    {
+        "requirements": [
+            "teaching experiance"
+        ],
+        "status": "Under review",
+        "applications": [],
+        "_id": "5f3857356f93f10017f7b467",
+        "name": "Peer Supporter",
+        "description": "Expected applicants: University students who have a warm heart to help me.",
+        "title": "content",
+        "location": "Toronto",
+        "date": "2020-08-15T00:00:00.000Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 0
+    }
+]
+```
+
+#### a Get request to get a particular post 
+Get: "/post/:id"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/post/5f38431e64f1290017d322a7<br/>
+What they are used: to get the information of one particular post<br/>
+What data they expect to be sent: nothing<br/>
+What they would return: an Post object <br/>
+``` json
+{
+    "requirements": [
+        "driver's license"
+    ],
+    "status": "Approved",
+    "applications": [
+        "5f3844d564f1290017d322ca"
+    ],
+    "_id": "5f38431e64f1290017d322a7",
+    "name": "Clothing Centre Volunteer",
+    "description": "Help sort clothing, and stock items on the shelves. Make new friends and have lots of fun!",
+    "title": "content",
+    "location": "Toronto",
+    "date": "2020-08-15T21:40:23.891Z",
+    "org_id": "5f3842a464f1290017d322a6",
+    "org_name": "Team20",
+    "__v": 2
+}
+```
+
+#### a Post request to get the posts as search result
+Post: "/search"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/search<br/>
+What they are used: to get the post whose name and content contains the keyword <br/>
+What data they expect to be sent:<br/>
+``` json
+{
+    "keyword": "Clothing"
+}
+```
+What they would return: an array with all the posts which contains the keyword inside <br/>
+``` json
+[
+    {
+        "requirements": [
+            "driver's license"
+        ],
+        "status": "Approved",
+        "applications": [
+            "5f3844d564f1290017d322ca"
+        ],
+        "_id": "5f38431e64f1290017d322a7",
+        "name": "Clothing Centre Volunteer",
+        "description": "Help sort clothing, and stock items on the shelves. Make new friends and have lots of fun!",
+        "title": "content",
+        "location": "Toronto",
+        "date": "2020-08-15T21:40:23.891Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 2
+    }
+]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Admin Resources Routes
 Please note that all the admin resource routes need authentication for access.

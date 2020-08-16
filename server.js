@@ -943,7 +943,7 @@ app.get('/post/:id', (req, res) => {
 
 })
 
-//a Get route to get the posts as search result
+//a Post route to get the posts as search result
 app.post('/search', (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')

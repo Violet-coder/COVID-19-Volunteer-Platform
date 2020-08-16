@@ -199,6 +199,7 @@ Url: https://frozen-journey-02316.herokuapp.com/volunteer/profile/5f38420164f129
 What they are used: to get volunteer profile from a particulat volunteer <br/>
 What data they expect to be sent: nothing <br/>
 What they would return: a Volunteer Object <br/>
+``` json
 {
     "type": "volunteer",
     "_id": "5f38420164f1290017d32285",
@@ -235,6 +236,7 @@ What they would return: a Volunteer Object <br/>
         "_id": "5f38424564f1290017d32286"
     }
 }
+```
 
 #### a POST for updating profile info to a particular volunteer
 Post: "/volunteer/update/:id" <br/>
@@ -310,9 +312,46 @@ What they would return:a Volunteer Object whoese info has already updated <br/>
 }
 ``` 
 
+#### a POST request for adding an application to a particular volunteer
+Post: "/volunteer/application/:id" <br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/application/5f38420164f1290017d32285<br/>
+What they are used: to add application in the application table and push that application objectid to the applications[] array of the post<br/>
+What data they expect to be sent:<br/>
+``` json
+{
+    "applicant_id": "5f38420164f1290017d32285",
+    "applicant_name": "Ziyue Zhang",
+    "applicant_status": "pending", 
+    "post_id": "5f38431e64f1290017d322a7",
+    "post_name":"Clothing Centre Volunteer",
+    "applicant_rank":"D"          
+}
+```
+What they would return: it will return the post which we have add appliation to<br/>
+``` json
+{
+    "requirements": [
+        "driver's license"
+    ],
+    "status": "Approved",
+    "applications": [
+        "5f3844d564f1290017d322ca"
+    ],
+    "_id": "5f38431e64f1290017d322a7",
+    "name": "Clothing Centre Volunteer",
+    "description": "Help sort clothing, and stock items on the shelves. Make new friends and have lots of fun!",
+    "title": "content",
+    "location": "Toronto",
+    "date": "2020-08-15T21:40:23.891Z",
+    "org_id": "5f3842a464f1290017d322a6",
+    "org_name": "Team20",
+    "__v": 2
+}
+```
+
 #### a GET request for getting application list of a particular volunteer
 Get: "/volunteer/applicatoinlist/:id" <br/>
-Url: https://frozen-journey-02316.herokuapp.com/volunteer/update/5f38420164f1290017d32285 <br/>
+Url: https://frozen-journey-02316.herokuapp.com/volunteer/applicatoinlist/5f38420164f1290017d32285 <br/>
 What they are used: to get the application list of a particular volunteer <br/>
 What data they expect to be sent: nothing <br/>
 What they would return: An array with applications inside<br/>
@@ -506,6 +545,199 @@ What they would return: an array with all the posts which contains the keyword i
     }
 ]
 ```
+
+### Organization resource routes
+#### a Get request to get the profile of a particular organization
+Get: "/organization/get_profile/:id" <br/>
+Url: https://frozen-journey-02316.herokuapp.com/organization/get_profile/5f3842a464f1290017d322a6<br/>
+What they are used: to get the profile information of a particular oragnization <br/>
+What data they expect to be sent: nothing <br/>
+What they would return: an organization object<br/>
+``` json
+{
+    "type": "organization",
+    "posts": [
+        "5f38431e64f1290017d322a7",
+        "5f3843ac64f1290017d322a8",
+        "5f3857356f93f10017f7b467"
+    ],
+    "_id": "5f3842a464f1290017d322a6",
+    "name": "Team20",
+    "email": "user2@user.com",
+    "password": "$2a$10$/6.blH32NOoHQdqQSWyZfebVvI9y2MfWVub4VE92FkwmIrSYBWhmq",
+    "__v": 5,
+    "info": "A technology platform on a mission to end graduate underemployment. The platform connects students in higher education with mentors at companies and nonprofits to work on real-world projects that give students experience and prepare them for the next steps of their careers.",
+    "website": "team20@team20.com"
+}
+```
+
+#### a Get request to get all the applicants for the particular organization
+Get: "/organization/get_applicants/:id"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/organization/get_applicants/5f3842a464f1290017d322a6<br/>
+What they are used: to get all the applicants for the particular organization
+What data they expect to be sent: nothing <br/>
+What they would return: an array with all the applicants inside<br/>
+``` json
+[
+    {
+        "applicant_status": "accepted",
+        "_id": "5f3844d564f1290017d322ca",
+        "applicant_id": "5f38420164f1290017d32285",
+        "applicant_name": "Ziyue Zhang",
+        "post_id": "5f38431e64f1290017d322a7",
+        "post_name": "Clothing Centre Volunteer",
+        "applicant_rank": "D",
+        "__v": 0
+    }
+]
+```
+
+#### a Get request to get a profile of a particular applicant
+Get: "/organization/get_vol_profile/:vol_id" <br/>
+Url: https://frozen-journey-02316.herokuapp.com/organization/get_vol_profile/5f38420164f1290017d32285<br/>
+What they are used: to get a profile of a particular applicant
+What data they expect to be sent: nothing <br/>
+What they would return: a Volunteer object <br/>
+``` json
+{
+    "type": "volunteer",
+    "_id": "5f38420164f1290017d32285",
+    "firstName": "Ziyue",
+    "lastName": "Zhang",
+    "email": "user@user.com",
+    "password": "$2a$10$etqAkLL06ufWQdKzQ3XBkOQxaRF4wGJkqAKRJXV/fi9K6zba6FZjS",
+    "__v": 0,
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false,
+        "_id": "5f38650b6f93f10017f7b489"
+    },
+    "desc": "I am a student.",
+    "links": "user@user.com",
+    "location": "",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false,
+        "_id": "5f38650b6f93f10017f7b488"
+    }
+}
+```
+#### a Get request to get all the posts produced by it
+Get: "/organization/get_posts/:id"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/organization/get_posts/5f3842a464f1290017d322a6<br/>
+What they are used: to get all the posts produced by it<br/>
+What data they expect to be sent: nothing <br/>
+What they would return: an array with posts produced by this org <br/>
+``` json
+[
+    {
+        "requirements": [
+            "driver's license"
+        ],
+        "status": "Approved",
+        "applications": [
+            "5f3844d564f1290017d322ca"
+        ],
+        "_id": "5f38431e64f1290017d322a7",
+        "name": "Clothing Centre Volunteer",
+        "description": "Help sort clothing, and stock items on the shelves. Make new friends and have lots of fun!",
+        "title": "content",
+        "location": "Toronto",
+        "date": "2020-08-15T21:40:23.891Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 2
+    },
+    {
+        "requirements": [
+            "teaching experiance"
+        ],
+        "status": "Approved",
+        "applications": [],
+        "_id": "5f3843ac64f1290017d322a8",
+        "name": "Project Mentor for Students",
+        "description": "Underemployment is a growing concern for students across the globe. Entry-level jobs often require 3-5 years of experience for entry-level positions and the gap between the skills students have and what employers require continues to grow. You can help this problem by working with students on short-term projects and challenges that are embedded directly into their classrooms. They get to learn from supporting you on the problem or project from your organization is facing and apply their theoretical knowledge to a practical real-world example.",
+        "title": "community",
+        "location": "remote",
+        "date": "2020-08-15T20:25:05.903Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 0
+    },
+    {
+        "requirements": [
+            "teaching experiance"
+        ],
+        "status": "Under Review",
+        "applications": [],
+        "_id": "5f3857356f93f10017f7b467",
+        "name": "Peer Supporter",
+        "description": "Expected applicants: University students who have a warm heart to help me.",
+        "title": "content",
+        "location": "Toronto",
+        "date": "2020-08-15T23:43:59.091Z",
+        "org_id": "5f3842a464f1290017d322a6",
+        "org_name": "Team20",
+        "__v": 0
+    }
+]
+```
+
+#### a Get request to get a application in the application table
+Get: "/organization/get_applications/:app_id"<br/>
+Url: https://frozen-journey-02316.herokuapp.com/organization/get_applications/5f3844d564f1290017d322ca<br/>
+What they are used: to get a application in the application table<br/>
+What data they expect to be sent: nothing <br/>
+What they would return: an application object 
+``` json
+{
+    "applicant_status": "accepted",
+    "_id": "5f3844d564f1290017d322ca",
+    "applicant_id": "5f38420164f1290017d32285",
+    "applicant_name": "Ziyue Zhang",
+    "post_id": "5f38431e64f1290017d322a7",
+    "post_name": "Clothing Centre Volunteer",
+    "applicant_rank": "D",
+    "__v": 0
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

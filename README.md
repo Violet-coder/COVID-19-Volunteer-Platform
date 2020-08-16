@@ -1040,7 +1040,7 @@ What they would return: an updated volunteer object. Same as the route "/volunte
 
 #### A POST route for admin to delete a particular volunteer
 POST: "/admin/volunteer/delete/:orgId" <br />
-URL: https://frozen-journey-02316.herokuapp.com/admin/volunteer/delete/5f38830f6f93f10017f7b50c <br>
+URL: https://frozen-journey-02316.herokuapp.com/admin/volunteer/delete/5f38847b6f93f10017f7b510 <br>
 What they are used: Admin can delete a particular volunteer user with its id. It will update three tables in the databse: Volunteer, Post and Application. It will remove the volunteer acount itself,the applications it has applied and the posts that received the user's application.<br/>
 What data they expect to be sent: a post request with empty body.<br/>
 What they would return: an deleted volunteer object from the database.<br/>

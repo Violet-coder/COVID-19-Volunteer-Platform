@@ -10,8 +10,8 @@ In order to fight against COVID-19 pandemic, we are devoted to providing a platf
 
 ## How to Use
 ### Deployed APP Link
-https://frozen-journey-02316.herokuapp.com
-
+Heroku App: https://frozen-journey-02316.herokuapp.com
+MongoDB Cluster: mongodb+srv://violet:mymongo@cluster0.pdoea.mongodb.net/test
 ### Note About Session
 Please note that the session duration is 15 minutes. You will redirected to the login page after the seesion expires.
 

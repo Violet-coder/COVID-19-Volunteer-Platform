@@ -100,6 +100,8 @@ The View button redirects to the post detail page where admin can review the pos
 ## Overview of the routes 
 The following is the routes in the server.js. For each route, there is a description of it method and the URL used for the deployed app. You could use the provided URL to test the routes, since we have included the params needed for the dynammic routes.
 
+Notes: For the route testing, we use the <strong>Postman Interceptor</strong> to capture the cookies, in case some routes need authentication. 
+
 ### Authentication Resources Routes
 #### A POST route for registration
 POST: "/users/register" <br />
@@ -240,9 +242,136 @@ What they are used: to get volunteer profile from a particulat volunteer <br/>
 What data they expect to be sent: a Volunteer Object <br/>
 What they would return: <br/>
 
+### Admin Resources Routes
+Please note that all the admin resource routes need authentication for access.
+#### A POST route to approve a under review post
+POST: "/admin/post/approve/:id" <br />
+URL: https://frozen-journey-02316.herokuapp.com//admin/post/approve/5f3857356f93f10017f7b467
+What they are used: to approve a post that's under review.<br/>
+What data they expect to be sent: a post request with post status.<br/>
+```json
+{"status":"Approved"}
+```
 
+What they would return: an updated post object with status "Approved"<br/>
+```json
+{
+    "requirements": [
+        "teaching experiance"
+    ],
+    "status": "Approved",
+    "applications": [],
+    "_id": "5f3857356f93f10017f7b467",
+    "name": "Peer Supporter",
+    "description": "Expected applicants: University students who have a warm heart to help me.",
+    "title": "content",
+    "location": "Toronto",
+    "date": "2020-08-15T23:43:59.091Z",
+    "org_id": "5f3842a464f1290017d322a6",
+    "org_name": "Team20",
+    "__v": 0
+}
+```
+#### A POST route to approve a under review post
+POST: "admin/post/delete/:post_id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/post/delete/5f3875546f93f10017f7b4c2
+What they are used: to delete a post.<br/>
+What data they expect to be sent: a post request with empty body.<br/>
+What they would return: an updated organization object that the deleted the post belongs to.<br/>
+```json
+{
+    "_id":{"$oid":"5f38557f6f93f10017f7b464"},
+    "type":"organization",
+    "posts":[{"$oid":"5f3856bd6f93f10017f7b466"}],
+    "name":"Letters and Smiles","email":"user28@user.com",
+    "password":"$2a$10$.Fzf.wU3B6x/GkPfxA/ew.perIbEuknH6m1lAdb1mtcPJ9lg/Bb7y",
+    "__v":3,
+    "info":"Advocating for Mental Health fro seniors!",
+    "website":"lettersandsmiles.wixsite.com/mysite"
+}
+```
 
+#### A GET route to get a particular organization profile with user id
+GET: "/admin/organization/:id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/organization/5f38747c6f93f10017f7b4c0 <br>
+What they are used: to get an organization user.<br/>
+What data they expect to be sent: a get request.<br/>
+What they would return: an organization object from the database.<br/>
+```json
+{
+    "type": "organization",
+    "posts": [
+        "5f3875546f93f10017f7b4c2"
+    ],
+    "_id": "5f38747c6f93f10017f7b4c0",
+    "name": "testOrg",
+    "email": "testorg@org.com",
+    "password": "$2a$10$7nXbkAtVvb7lvhhh2TI5XOPKM2vsR/RIrgrrG5eKGO2o6P/c/lZLC",
+    "__v": 3
+}
+```
 
-
-
+#### A GET route to get all the organization uesrs 
+GET: "/admin/allorganizations" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/allorganizations <br>
+What they are used: to get all the organization users.<br/>
+What data they expect to be sent: a get request.<br/>
+What they would return: an array including all the organization objects from the database.<br/>
+```json
+[
+    {
+        "type": "organization",
+        "posts": [
+            "5f3856bd6f93f10017f7b466"
+        ],
+        "_id": "5f38557f6f93f10017f7b464",
+        "name": "Letters and Smiles",
+        "email": "user28@user.com",
+        "password": "$2a$10$.Fzf.wU3B6x/GkPfxA/ew.perIbEuknH6m1lAdb1mtcPJ9lg/Bb7y",
+        "__v": 3,
+        "info": "Advocating for Mental Health fro seniors!",
+        "website": "lettersandsmiles.wixsite.com/mysite"
+    },
+    {
+        "type": "organization",
+        "posts": [
+            "5f3875546f93f10017f7b4c2"
+        ],
+        "_id": "5f38747c6f93f10017f7b4c0",
+        "name": "testOrg",
+        "email": "testorg@org.com",
+        "password": "$2a$10$7nXbkAtVvb7lvhhh2TI5XOPKM2vsR/RIrgrrG5eKGO2o6P/c/lZLC",
+        "__v": 3
+    }
+]
+```
+#### A POST route for admin to update a particular organization profile
+GET: "/admin/organization/update/:id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/organization/update/5f38747c6f93f10017f7b4c0 <br>
+What they are used: Admin can update the website and introduction of a particular organization profile.<br/>
+What data they expect to be sent: a post request with modified information made by admin.<br/>
+Please the POST request as follows.
+```json
+{
+    "website": "links",
+    "info":"test info"
+}
+```
+What they would return: an updated organization object.<br/>
+The Response:
+```json
+{
+    "type": "organization",
+    "posts": [
+        "5f3875546f93f10017f7b4c2"
+    ],
+    "_id": "5f38747c6f93f10017f7b4c0",
+    "name": "testOrg",
+    "email": "testorg@org.com",
+    "password": "$2a$10$7nXbkAtVvb7lvhhh2TI5XOPKM2vsR/RIrgrrG5eKGO2o6P/c/lZLC",
+    "__v": 3,
+    "website": "links",
+    "info": "test info"
+}
+```
 

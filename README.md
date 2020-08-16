@@ -716,9 +716,79 @@ What they would return: an application object
 }
 ```
 
+#### a Post route to update organization profile
+POST:"/organization/update_profile/:id"
+Same as the route "/admin/organization/update/:id"
 
-
-
+### a Post route for organization user to publish post
+POST: "/organization/post/:id" <br>
+URL: https://frozen-journey-02316.herokuapp.com/organization/post/5f38747c6f93f10017f7b4c0 <br>
+What they are used: to publish a post<br/>
+What data they expect to be sent: post information <br/>
+```json
+{
+    "name": "job name",
+    "org_name":"testOrg",
+    "description":"desc",
+    "requirements":[],
+    "title":"title",
+    "status":"Under Review",
+    "date":"2020/08/13",
+    "location":"Toronto",
+    "org_id":"5f38747c6f93f10017f7b4c0",
+    "applications":[]
+}
+```
+What they would return: an post object <br>
+```json
+{
+    "requirements": [],
+    "status": "Under Review",
+    "applications": [],
+    "_id": "5f388e1e0b49fd0017c4ba3d",
+    "name": "job name",
+    "description": "desc",
+    "title": "title",
+    "location": "Toronto",
+    "date": "2020-08-13T00:00:00.000Z",
+    "org_id": "5f38747c6f93f10017f7b4c0",
+    "org_name": "testOrg",
+    "__v": 0
+}
+```
+### a Post route for organization user to edit a published post
+POST: "/organization/edit_post/:post_id" <br>
+URL: https://frozen-journey-02316.herokuapp.com/organization/edit_post/5f38747c6f93f10017f7b4c0 <br>
+What they are used: to edit a post<br/>
+What data they expect to be sent: post information <br/>
+```json
+{
+    "name": "job name",
+    "description":"desc",
+    "requirements":[],
+    "title":"title",
+    "status":"Under Review",
+    "date":"2020/08/13",
+    "location":"Toronto"
+}
+```
+What data they expect to be sent: updated post object from the database <br/>
+```json
+{
+    "requirements": [],
+    "status": "Under review",
+    "applications": [],
+    "_id": "5f388e1e0b49fd0017c4ba3d",
+    "name": "job name",
+    "description": "desc",
+    "title": "title",
+    "location": "Toronto",
+    "date": "2020-08-13T00:00:00.000Z",
+    "org_id": "5f38747c6f93f10017f7b4c0",
+    "org_name": "testOrg",
+    "__v": 0
+}
+```
 
 
 

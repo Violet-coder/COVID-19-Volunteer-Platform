@@ -667,27 +667,6 @@ app.post('/admin/volunteer/delete/:volId', authenticate,(req, res) => {
 
 
 /** volunteer resource routes **/
-// // a POST route to *create* a volunteer
-// app.post("/volunteer", (req, res) => {
-
-//     // Create a new volunteer using the Volunteer mongoose model
-//     const volunteer = new Volunteer({
-//         email: req.body.email,
-//         password: req.body.password,
-//         firstName: req.body.firstName,
-//         lastName:req.body.lastName
-//     });
-
-//     // Save volunteer to the database
-//     volunteer.save().then(
-//         result => {
-//             res.send(result);
-//         },
-//         error => {
-//             res.status(400).send(error); // 400 for bad request
-//         }
-//     );
-// });
 // a GET for getting vol profile from a particulat volunteer
 app.get('/volunteer/profile/:id', authenticate, (req, res) => {
     // Add code here

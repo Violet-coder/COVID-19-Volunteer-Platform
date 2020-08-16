@@ -1141,4 +1141,4 @@ What they are used: Organization can reject an application with its application 
 What data they expect to be sent: a post request with an empty body.<br/>
 What they would return: an delted organization object from the database.<br/>
 
-For more details of reject and accpet rout above, please check src/actions/decision.js
+For more details of reject and accpet route above, please check src/actions/decision.js

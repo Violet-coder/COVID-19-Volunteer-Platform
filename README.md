@@ -1133,14 +1133,11 @@ URL: https://frozen-journey-02316.herokuapp.com/organization/accept/:app_id <br>
 What they are used: Organization can accept an application with its application id. It will apdate the Application table in the database.<br/>
 What data they expect to be sent: a post request with an empty body.<br/>
 What they would return: an delted organization object from the database.<br/>
-```json
-{
-    "type": "organization",
-    "posts": [],
-    "_id": "5f387cc66f93f10017f7b4db",
-    "name": "orgToDel",
-    "email": "orgdel@org.com",
-    "password": "$2a$10$EOgFhSGeGshuxC1dntAyaO0cpqj51qROWa0LXDaXJ/qSe7MBnzHIq",
-    "__v": 0
-}
-```
+
+#### A POST route for organizations to reject an application
+POST: "/organization/reject/:app_id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/organization/reject/:app_id <br>
+What they are used: Organization can reject an application with its application id. It will apdate the Application table in the database.<br/>
+What data they expect to be sent: a post request with an empty body.<br/>
+What they would return: an delted organization object from the database.<br/>
+

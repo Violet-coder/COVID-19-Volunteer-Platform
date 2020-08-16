@@ -1,6 +1,6 @@
 export const getRank = (post_id, vol_id) => {
 const post_url = `/post/${post_id}`
-const score = 0
+let score = 0
 fetch(post_url)
 .then(res => {
     if (res.status === 200) {
@@ -28,7 +28,7 @@ fetch(post_url)
         console.log("vol.skills", vol.skills)
         vol.skills.eachPath((pathname, schematype) => {
             if (vol.skills.pathname === true) {
-                if (pathname == title) {
+                if (pathname === title) {
                     score += 10
                 }
                 else {
@@ -36,7 +36,7 @@ fetch(post_url)
                 }
             }
           });
-        if (vol.location == location) {
+        if (vol.location === location) {
             score += 10
         }
     })

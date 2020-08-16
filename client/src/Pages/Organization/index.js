@@ -8,9 +8,7 @@ import ProfileForm from '../../react-components/Organization/ProfileForm';
 import SelfPostDetail from '../../react-components/Organization/SelfPostDetail';
 import ApplicantDetail from '../../react-components/Organization/ApplicantDetail';
 class Organization extends React.Component{
-  constructor(props) {
-    super(props);
-  }
+  
     render() {
       const app = this.props.app
       return (

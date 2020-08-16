@@ -71,13 +71,15 @@ export default function TitleSelect(props) {
       location: ""
     });
   }}
+  let optionSet
+  let setFunc
   if (dataset==='job') {
-   var optionSet=datasets[0]
-   var setFunc = setJob
+   optionSet=datasets[0]
+   setFunc = setJob
   }
   else if (dataset==='location') {
-    var optionSet=datasets[1]
-    var setFunc = setLocation
+    optionSet=datasets[1]
+    setFunc = setLocation
   }
   return (
     <Autocomplete

@@ -30,7 +30,7 @@ password: admin
 
 ### For Volunteers:
 #### Recommended Opportunities:
-After a volunteer user login, he will be directed to his userpage. He can see the opportunities recommended by the platfform based on the profile of him. If he wants to see all the opportunities, he can click on the SEE ALL button below the recommended opportunities and see all the opportunities on the platform. So far, the recommend functionality is just implemented by hard coding and it will be implemented in the later after back end is established.
+After a volunteer user login, he will be directed to his userpage. He can see the opportunities recommended by the platfform based on the profile of him. If he wants to see all the opportunities, he can click on the SEE ALL button below the recommended opportunities and see all the opportunities on the platform. 
 
 #### Apply For New Jobs:
 A user can see the details of a post after clicking on the post and there are two buttons which are ORGANIZATION PROFILE and APPLY NOW in the bottom of the detail page. If he click on the ORGANIZATION PROFILE button, he can see all the information of the organization. For a logged in volunteer user, he can apply a new job by clicking on the APPLY NOW button. If a user applys for a new job, he will be directed to his My Application Page which diplays all the applications he has and the new job will be added in the list. If that job has beed applied by that user, the apply button will be grey and show applied status which can not be clicked by that user.
@@ -43,7 +43,7 @@ If Volunteer users click on the My Profile button, they will see their profile p
 
 #### Search By keyword
 A volunteer user can see a search bar in their userpage. They can enter the keyword of the job to search for related jobs in our platform. After the user has entered the key word and click on the GO button, the search result page will display the related results.The functionality of the search bar is just implemented by search for the post contains the string which the user has entered. The search functionality will be more complex and complete after back end is established.
-Notes: Since the key word is obtained from user and this variable will be passed from userpage to the result page, we can not refresh the result page. An error will occur if you refresh that page because of that property. That issue will be handled nicely after back end is established.
+
 
 ### For Organizations:
 #### Manage Profile:
@@ -145,7 +145,7 @@ What they would return: a docment saved in database <br/>
 
 #### A POST route for login
 POST: "/users/login" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/login
+URL: https://frozen-journey-02316.herokuapp.com/users/login <br>
 What they are used: to register a new user as volunteer or organization <br/>
 What data they expect to be sent: a Volunteer or Organization Request including email and password.<br/>
 Please send the request as follows.
@@ -172,14 +172,14 @@ Login failure: {
 
 #### A GET route for logout
 GET: "/users/logout" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/logout
+URL: https://frozen-journey-02316.herokuapp.com/users/logout <br>
 What they are used: to logout the current user <br/>
 What data they expect to be sent: a get request<br/>
 What they would return: if logout fails, it will returns a response with status 500, otherwise it returns a empty response.
 
 #### A GET route to check session
 GET: "/users/check-session" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/check-session
+URL: https://frozen-journey-02316.herokuapp.com/users/check-session <br>
 What they are used: to register a new user as volunteer or organization <br/>
 What data they expect to be sent: a get request<br/>
 What they would return: send a json response including the current user email, id and type.
@@ -788,7 +788,7 @@ What they would return: an updated post object with status "Approved"<br/>
     "__v": 0
 }
 ```
-#### A POST route to approve a under review post
+#### A POST route to delete a post
 POST: "admin/post/delete/:post_id" <br />
 URL: https://frozen-journey-02316.herokuapp.com/admin/post/delete/5f3875546f93f10017f7b4c2
 What they are used: to delete a post.<br/>
@@ -799,7 +799,8 @@ What they would return: an updated organization object that the deleted the post
     "_id":{"$oid":"5f38557f6f93f10017f7b464"},
     "type":"organization",
     "posts":[{"$oid":"5f3856bd6f93f10017f7b466"}],
-    "name":"Letters and Smiles","email":"user28@user.com",
+    "name":"Letters and Smiles",
+    "email":"user28@user.com",
     "password":"$2a$10$.Fzf.wU3B6x/GkPfxA/ew.perIbEuknH6m1lAdb1mtcPJ9lg/Bb7y",
     "__v":3,
     "info":"Advocating for Mental Health fro seniors!",

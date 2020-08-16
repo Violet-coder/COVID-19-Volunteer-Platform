@@ -789,44 +789,21 @@ What data they expect to be sent: updated post object from the database <br/>
     "__v": 0
 }
 ```
+#### A POST route for organizations to accept an application
+POST: "/organization/accept/:app_id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/organization/accept/:app_id <br>
+What they are used: Organization can accept an application with its application id. It will apdate the Application table in the database.<br/>
+What data they expect to be sent: a post request with an empty body.<br/>
+What they would return: an delted organization object from the database.<br/>
 
+#### A POST route for organizations to reject an application
+POST: "/organization/reject/:app_id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/organization/reject/:app_id <br>
+What they are used: Organization can reject an application with its application id. It will apdate the Application table in the database.<br/>
+What data they expect to be sent: a post request with an empty body.<br/>
+What they would return: an delted organization object from the database.<br/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+For more details of reject and accpet route above, please check src/actions/decision.js
 
 ### Admin Resources Routes
 Please note that all the admin resource routes need authentication for access.
@@ -1126,19 +1103,3 @@ What they would return: an deleted volunteer object from the database.<br/>
     "__v": 0
 }
 ```
-
-#### A POST route for organizations to accept an application
-POST: "/organization/accept/:app_id" <br />
-URL: https://frozen-journey-02316.herokuapp.com/organization/accept/:app_id <br>
-What they are used: Organization can accept an application with its application id. It will apdate the Application table in the database.<br/>
-What data they expect to be sent: a post request with an empty body.<br/>
-What they would return: an delted organization object from the database.<br/>
-
-#### A POST route for organizations to reject an application
-POST: "/organization/reject/:app_id" <br />
-URL: https://frozen-journey-02316.herokuapp.com/organization/reject/:app_id <br>
-What they are used: Organization can reject an application with its application id. It will apdate the Application table in the database.<br/>
-What data they expect to be sent: a post request with an empty body.<br/>
-What they would return: an delted organization object from the database.<br/>
-
-For more details of reject and accpet route above, please check src/actions/decision.js

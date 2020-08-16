@@ -144,7 +144,7 @@ What they would return: a docment saved in database <br/>
 
 #### A POST route for login
 POST: "/users/login" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/login
+URL: https://frozen-journey-02316.herokuapp.com/users/login <br>
 What they are used: to register a new user as volunteer or organization <br/>
 What data they expect to be sent: a Volunteer or Organization Request including email and password.<br/>
 Please send the request as follows.
@@ -171,14 +171,14 @@ Login failure: {
 
 #### A GET route for logout
 GET: "/users/logout" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/logout
+URL: https://frozen-journey-02316.herokuapp.com/users/logout <br>
 What they are used: to logout the current user <br/>
 What data they expect to be sent: a get request<br/>
 What they would return: if logout fails, it will returns a response with status 500, otherwise it returns a empty response.
 
 #### A GET route to check session
 GET: "/users/check-session" <br />
-URL: https://frozen-journey-02316.herokuapp.com/users/check-session
+URL: https://frozen-journey-02316.herokuapp.com/users/check-session <br>
 What they are used: to register a new user as volunteer or organization <br/>
 What data they expect to be sent: a get request<br/>
 What they would return: send a json response including the current user email, id and type.
@@ -787,7 +787,7 @@ What they would return: an updated post object with status "Approved"<br/>
     "__v": 0
 }
 ```
-#### A POST route to approve a under review post
+#### A POST route to delete a post
 POST: "admin/post/delete/:post_id" <br />
 URL: https://frozen-journey-02316.herokuapp.com/admin/post/delete/5f3875546f93f10017f7b4c2
 What they are used: to delete a post.<br/>
@@ -798,7 +798,8 @@ What they would return: an updated organization object that the deleted the post
     "_id":{"$oid":"5f38557f6f93f10017f7b464"},
     "type":"organization",
     "posts":[{"$oid":"5f3856bd6f93f10017f7b466"}],
-    "name":"Letters and Smiles","email":"user28@user.com",
+    "name":"Letters and Smiles",
+    "email":"user28@user.com",
     "password":"$2a$10$.Fzf.wU3B6x/GkPfxA/ew.perIbEuknH6m1lAdb1mtcPJ9lg/Bb7y",
     "__v":3,
     "info":"Advocating for Mental Health fro seniors!",

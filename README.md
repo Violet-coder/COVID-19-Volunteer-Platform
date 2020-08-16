@@ -862,7 +862,7 @@ What they would return: an array including all the organization objects from the
 ]
 ```
 #### A POST route for admin to update a particular organization profile
-GET: "/admin/organization/update/:id" <br />
+POST: "/admin/organization/update/:id" <br />
 URL: https://frozen-journey-02316.herokuapp.com/admin/organization/update/5f38747c6f93f10017f7b4c0 <br>
 What they are used: Admin can update the website and introduction of a particular organization profile.<br/>
 What data they expect to be sent: a post request with modified information made by admin.<br/>
@@ -888,6 +888,171 @@ The Response:
     "__v": 3,
     "website": "links",
     "info": "test info"
+}
+```
+
+#### A POST route for admin to delete a particular organization
+POST: "/admin/organization/delete/:orgId" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/organization/delete/5f387d4e6f93f10017f7b4e6 <br>
+What they are used: Admin can delete a particular organization user with its id. It will update three tables in the databse: Organization, Post and Application. It will remove the organization acount itself, the posts it has released and applications it has received.<br/>
+What data they expect to be sent: a post request with empty body.<br/>
+What they would return: an delted organization object from the database.<br/>
+```json
+{
+    "type": "organization",
+    "posts": [],
+    "_id": "5f387cc66f93f10017f7b4db",
+    "name": "orgToDel",
+    "email": "orgdel@org.com",
+    "password": "$2a$10$EOgFhSGeGshuxC1dntAyaO0cpqj51qROWa0LXDaXJ/qSe7MBnzHIq",
+    "__v": 0
+}
+```
+#### A GET route to get all the volunteer uesrs 
+GET: "/admin/allvolunteers" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/allvolunteers <br>
+What they are used: to get all the volunteers users.<br/>
+What data they expect to be sent: a get request.<br/>
+What they would return: an array including all the volunteers objects from the database.<br/>
+```json
+[
+    {
+        "type": "volunteer",
+        "_id": "5f38420164f1290017d32285",
+        "firstName": "Ziyue",
+        "lastName": "Zhang",
+        "email": "user@user.com",
+        "password": "$2a$10$etqAkLL06ufWQdKzQ3XBkOQxaRF4wGJkqAKRJXV/fi9K6zba6FZjS",
+        "__v": 0,
+        "availability": {
+            "option1": true,
+            "option2": false,
+            "option3": false,
+            "option4": false,
+            "option5": false,
+            "_id": "5f38650b6f93f10017f7b489"
+        },
+        "desc": "I am a student.",
+        "links": "user@user.com",
+        "location": "",
+        "skills": {
+            "analytics": false,
+            "biology": false,
+            "biotech": false,
+            "community": true,
+            "content": false,
+            "data": false,
+            "finance": false,
+            "helpdesk": false,
+            "manufacturing": false,
+            "marketing": false,
+            "mechanics": false,
+            "IT": true,
+            "anything": false,
+            "_id": "5f38650b6f93f10017f7b488"
+        }
+    }
+]
+```
+
+#### A GET route to get a particular volunteer profile with user id
+GET: "/admin/volunteer/:id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/volunteer/5f38420164f1290017d32285 <br>
+What they are used: to get an volunteer user.<br/>
+What data they expect to be sent: a get request.<br/>
+What they would return: an volunteer object from the database.<br/>
+```json
+{
+    "type": "volunteer",
+    "_id": "5f38420164f1290017d32285",
+    "firstName": "Ziyue",
+    "lastName": "Zhang",
+    "email": "user@user.com",
+    "password": "$2a$10$etqAkLL06ufWQdKzQ3XBkOQxaRF4wGJkqAKRJXV/fi9K6zba6FZjS",
+    "__v": 0,
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false,
+        "_id": "5f38650b6f93f10017f7b489"
+    },
+    "desc": "I am a student.",
+    "links": "user@user.com",
+    "location": "",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false,
+        "_id": "5f38650b6f93f10017f7b488"
+    }
+}
+```
+
+#### A POST route for admin to update a particular volunteer profile
+POST: "/admin/volunteer/update/:id" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/volunteer/update/5f38420164f1290017d32285 <br>
+What they are used: Admin can update the information of a particular volunteer profile.<br/>
+What data they expect to be sent: a post request with modified information made by admin. The request body is same as the route "/volunteer/update/:id".<br/>
+```json
+{
+    "location": "Toronto",
+    "links": "user@user.com",
+    "desc": "I am a student.",
+    "skills": {
+        "analytics": false,
+        "biology": false,
+        "biotech": false,
+        "community": true,
+        "content": false,
+        "data": false,
+        "finance": false,
+        "helpdesk": false,
+        "manufacturing": false,
+        "marketing": false,
+        "mechanics": false,
+        "IT": true,
+        "anything": false
+    },
+    "availability": {
+        "option1": true,
+        "option2": false,
+        "option3": false,
+        "option4": false,
+        "option5": false   
+    }
+}
+```
+
+What they would return: an updated volunteer object. Same as the route "/volunteer/update/:id"<br/>
+
+
+#### A POST route for admin to delete a particular volunteer
+POST: "/admin/volunteer/delete/:orgId" <br />
+URL: https://frozen-journey-02316.herokuapp.com/admin/volunteer/delete/5f38830f6f93f10017f7b50c <br>
+What they are used: Admin can delete a particular volunteer user with its id. It will update three tables in the databse: Volunteer, Post and Application. It will remove the volunteer acount itself,the applications it has applied and the posts that received the user's application.<br/>
+What data they expect to be sent: a post request with empty body.<br/>
+What they would return: an deleted volunteer object from the database.<br/>
+```json
+{
+    "type": "volunteer",
+    "_id": "5f38830f6f93f10017f7b50c",
+    "firstName": "volToDel",
+    "lastName": "user",
+    "email": "voldel@user.com",
+    "password": "$2a$10$irlU46Bhg/qzlCaoERRkMe86U7T49lVpsDIIbSHr3gAnh732W3.9a",
+    "__v": 0
 }
 ```
 

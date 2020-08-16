@@ -52,10 +52,11 @@ In the *Post a New Job* page, user can submit a new job information form to the 
 #### Manage Posts:
 Users can always edit and delete their own posts in the *Profile* page. To edit a post, click *DETAIL* to see the details of your post, and click *EDIT* below the post information to edit those details. Edited posts will be reviewed by administrator again and will be invisible to volunteers before approval. The status of your posts will be shown as *Approved* or *Under review*.
 #### Fit Degree:
-The fit degree of applicants is calculated based on the job location, related area, and requirements that both applicants and organizations provide and is only for reference. It will be shown as A/B/C with each applicant's information.  
+The fit degree of applicants is calculated based on the job location, related area, and requirements that both applicants and organizations provide and is only for reference. It will be shown as A/B/C/D with each applicant's information.  
 A: The applicant is highly compatible with your position  
 B: The fit between the applicant and your position is average  
-C: The applicant does not fit your position well
+C: The fit between the applicant and your position is low
+D: The applicant does not fit your position well
 #### Hire Volunteers:
 Volunteers who applied to user's jobs are shown in the *All Applicants* page and under every post's detail page respectively as well. In the *Profile* page, users can also click *APPLICANTS* button  to toggle them on/off. Users can check applicants' detailed profiles and accept or reject each applicant. Decisions are permanent. When an applicant is either *Rejected* or *Accepted*, which can be seen with each applicant's information, it can't be changed afterwards in the app.
 ### For Administrator:

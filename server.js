@@ -1119,6 +1119,7 @@ app.get('/organization/get_applicants/:id', authenticate, (req, res) => {
 			res.status(404).send('404 Resource Not Found')
 		} else {
             const postList = new Array(organization.posts)
+            let flag = 0
 			for (var item in postList[0]) {
                 Post.findById(postList[0][item]).then((post)=>{
                     if (!post) {
@@ -1126,28 +1127,38 @@ app.get('/organization/get_applicants/:id', authenticate, (req, res) => {
                     }
                     else {
                         const postApplications = new Array(post.applications)
-                        log(postApplications)
                         applicants.push.apply(applicants, postApplications[0])
-                        if (item == postList[0].length-1) {
+                        flag += 1
+                    }}).then( function(){
+                        if(flag == postList[0].length) {
+                            log('here')
+                            log(applicants)
                             for (var applicant of applicants) {
+                                log('each')
+                                log(applicant)
                                 Application.findById(applicant).then((application)=>{
                                     applications.push(application)
-                                    if (applications.length === applicants.length) {
+                                    log('applications')
+                                    log(applications)}).then(function(){ 
+                                        if (applications.length === applicants.length) {
                                         res.send(applications)
-                                    }
-                                })
+                                    }})
+                                   
+                                
                             }
-
                         }
+                    }
+                    )
+                        
 
                         
                         
-                    }
-                })
+                    
+                }
             }
             
 		}
-	})          
+	)          
 	.catch((error) => {
 		res.status(500).send("Internal server error")
 	})

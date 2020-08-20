@@ -1125,7 +1125,9 @@ app.get('/organization/get_applicants/:id', authenticate, (req, res) => {
                         res.status(404).send('404 Resource Not Found')
                     }
                     else {
-                        applicants.push.apply(applicants, post.applications)
+                        const postApplications = new Array(post.applications)
+                        log(postApplications)
+                        applicants.push.apply(applicants, postApplications[0])
                         if (item == postList[0].length-1) {
                             for (var applicant of applicants) {
                                 Application.findById(applicant).then((application)=>{
